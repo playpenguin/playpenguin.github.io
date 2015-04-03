@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PlayPenguin.Tech-花花企鹅.技术 - Embedded</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="dangbinghoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="PlayPenguin.Tech-花花企鹅.技术 ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">PlayPenguin.Tech-花花企鹅.技术 </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li class="active">
+                    <a href="/category/embedded.html">
+						<i class="icon-folder-open icon-large"></i>Embedded
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/life.html">
+						<i class="icon-folder-open icon-large"></i>Life
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/linux.html">
+						<i class="icon-folder-open icon-large"></i>Linux
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/misc.html">
+						<i class="icon-folder-open icon-large"></i>misc
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/qi-ta.html">
+						<i class="icon-folder-open icon-large"></i>其他
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/thoughts.html">
+						<i class="icon-folder-open icon-large"></i>thoughts
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/unixwen-dang-gong-ju.html">
+						<i class="icon-folder-open icon-large"></i>Unix文档工具
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+         <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>分类</h4></li>
+<li>
+<a href="/category/embedded.html">
+    <i class="icon-folder-open icon-large"></i>Embedded
+</a>
+</li>
+<li>
+<a href="/category/life.html">
+    <i class="icon-folder-open icon-large"></i>Life
+</a>
+</li>
+<li>
+<a href="/category/linux.html">
+    <i class="icon-folder-open icon-large"></i>Linux
+</a>
+</li>
+<li>
+<a href="/category/misc.html">
+    <i class="icon-folder-open icon-large"></i>misc
+</a>
+</li>
+<li>
+<a href="/category/qi-ta.html">
+    <i class="icon-folder-open icon-large"></i>其他
+</a>
+</li>
+<li>
+<a href="/category/thoughts.html">
+    <i class="icon-folder-open icon-large"></i>thoughts
+</a>
+</li>
+<li>
+<a href="/category/unixwen-dang-gong-ju.html">
+    <i class="icon-folder-open icon-large"></i>Unix文档工具
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<!-- <li class="tag-4">
+    <a href="/tag/embedded.html">
+        <i class="icon-tag icon-large"></i>embedded
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/seascope.html">
+        <i class="icon-tag icon-large"></i>seascope
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/oezhong-wen.html">
+        <i class="icon-tag icon-large"></i>OE中文
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/programming.html">
+        <i class="icon-tag icon-large"></i>programming
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pdf.html">
+        <i class="icon-tag icon-large"></i>pdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/jin-cheng-id.html">
+        <i class="icon-tag icon-large"></i>进程ID
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/jiao-cha-bian-yi.html">
+        <i class="icon-tag icon-large"></i>交叉编译
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/mips.html">
+        <i class="icon-tag icon-large"></i>mips
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/asoundrc.html">
+        <i class="icon-tag icon-large"></i>asound.rc
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/4560g.html">
+        <i class="icon-tag icon-large"></i>4560g
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pidof.html">
+        <i class="icon-tag icon-large"></i>pidof
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/openembedded.html">
+        <i class="icon-tag icon-large"></i>OpenEmbedded
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/txt2tags.html">
+        <i class="icon-tag icon-large"></i>txt2tags
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/parrot.html">
+        <i class="icon-tag icon-large"></i>parrot
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/shell.html">
+        <i class="icon-tag icon-large"></i>shell
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/ostinato.html">
+        <i class="icon-tag icon-large"></i>ostinato
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/life.html">
+        <i class="icon-tag icon-large"></i>Life
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/sync.html">
+        <i class="icon-tag icon-large"></i>sync
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/gong-ju-lian.html">
+        <i class="icon-tag icon-large"></i>工具链
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pgrep.html">
+        <i class="icon-tag icon-large"></i>pgrep
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/exvim.html">
+        <i class="icon-tag icon-large"></i>exvim
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/acer.html">
+        <i class="icon-tag icon-large"></i>acer
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/wen-dang-gong-ju.html">
+        <i class="icon-tag icon-large"></i>文档工具
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/wen-jian-xi-tong.html">
+        <i class="icon-tag icon-large"></i>文件系统
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/biao-ji.html">
+        <i class="icon-tag icon-large"></i>标记
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/markup.html">
+        <i class="icon-tag icon-large"></i>markup
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/ctex.html">
+        <i class="icon-tag icon-large"></i>ctex
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/libevent.html">
+        <i class="icon-tag icon-large"></i>libevent
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+ -->
+
+<li class="nav-header"><h4><i class="icon-external-link"></i>链接</h4></li>
+    <li><a href="http://elinux.org"><i class="icon-external-link"></i>elinux</a></li>
+    <li><a href="wiki.osdev.org"><i class="icon-external-link"></i>osdev</a></li>
+    <li><a href="http://sourceforge.net/p/nanorc"><i class="icon-external-link"></i>nanoRC</a></li>
+    <li><a href="http://sourceforge.net/projects/otob"><i class="icon-external-link"></i>otob</a></li>
+
+
+
+</ul>         </div><!--/.well -->
+
+         <div class="span9" id="content">
+        <div class="article">
+                <h1><a href="/mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html">mips嵌入式linux系统构建过程</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2012-01-11T08:18:00+08:00">
+        <i class="icon-calendar"></i>三 11 一月 2012
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/embedded.html"><i class="icon-tag"></i>embedded</a>
+	<a href="/tag/linux.html"><i class="icon-tag"></i>Linux</a>
+	<a href="/tag/mips.html"><i class="icon-tag"></i>mips</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>mips平台的嵌入式linux构建，比较简明的步骤，包括nanoRC的使用，根文件系统的制作，不包括mips工具链的制作。</p>
+<div class="section" id="mips">
+<h2>&nbsp;1. mips交叉编译环境搭建</h2>
+<p>编译环境需要选择mips-2007-01-21,从
+&quot;这里&quot;:<a class="reference external" href="ftp://ftp.denx.de/pub">ftp://ftp.denx.de/pub</a>/eldk下载光盘iso,然后解压提取出整个环境,然后安装就可以了,安装指令:</p>
+<pre class="literal-block">
+install -d /your/toochain/path
+</pre>
+<p>然后设置path环境变量.</p>
+<pre class="literal-block">
+export PATH=/your/toochain/path/usr/bin:${PATH}
+</pre>
+<pre class="literal-block">
+对于gentoo 系统,可以
+
+&nbsp; &nbsp;  $ cat &gt; /etc/env.d/50mipstoolchain &lt;&lt; &quot;EOF&quot;
+&nbsp; &nbsp; &nbsp; &nbsp;PATH=&quot;/media/workspace/tools/eldk-mips-x.x/usr/bin ...</pre></div>
+                        <a class="btn primary xsmall" href="/mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/yuan-chuang-openembedded-zhong-wen-shou-ce.html">[原创]OpenEmbedded 中文手册</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2011-12-22T01:41:00+08:00">
+        <i class="icon-calendar"></i>四 22 十二月 2011
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/linux.html"><i class="icon-tag"></i>Linux</a>
+	<a href="/tag/oezhong-wen.html"><i class="icon-tag"></i>OE中文</a>
+	<a href="/tag/openembedded.html"><i class="icon-tag"></i>OpenEmbedded</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div><p>8.11 打包:定义包类及其内容</p>
+</div><div></div><div><p>一个bitbake&quot;配方&quot;就是一组创建一个或者多个在目标设备上安装的包的命令集合.典型的包就是</p>
+</div><div><p>.ipkg或者.deb包(尽管bitbake本身并没有跟任何特殊的包格式相关联).</p>
+</div><div></div><div><p>默认情况下会自动生成一些包,这些包并没有包含任何&quot;配方&quot;作者要求的特定动作.上面的helloworld</p>
+</div><div><p>例子的包输出信息就说明了这些:</p>
+</div><div></div><div><p>[NOTE: package helloworld-0.1-r0: task do_package_write: started</p>
+</div><div><p>NOTE: Not creating empty archive for helloworld-dbg-0.1-r0</p>
+</div><div><p>Packaged contents of helloworld into
+/home/lenehan/devel/oe/build/titan-glibc-25/tmp/deploy/ipk/sh4/helloworld_0.1-r0_sh4.ipk ...</p></div>
+                        <a class="btn primary xsmall" href="/yuan-chuang-openembedded-zhong-wen-shou-ce.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/yuan-chuang-openembedded-zhong-wen-shou-ce-di-yi-bu-fen.html">[原创]OpenEmbedded 中文手册-第一部分</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2011-12-22T01:39:00+08:00">
+        <i class="icon-calendar"></i>四 22 十二月 2011
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/linux.html"><i class="icon-tag"></i>Linux</a>
+	<a href="/tag/oezhong-wen.html"><i class="icon-tag"></i>OE中文</a>
+	<a href="/tag/openembedded.html"><i class="icon-tag"></i>OpenEmbedded</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div align="center"><p>声&nbsp;&nbsp; 明：</p>
+</div><div style="text-align: justify;"><p>本文章为openembedded英文手册的中文翻译版。手册版权归OE所有。本文档只供技术和学习交流之用，不得用于商业用途，使用本文档如造成损失,译者一概不负任何责任。</p>
+</div><p>转载请注明出处和作者！</p>
+<p>作者: <a class="reference external" href="mailto:dangbinghoo&#64;gmail.com">dangbinghoo&#64;gmail.com</a></p>
+<div style="text-align: right;"><div class="line-block">
+<div class="line">特此声明!</div>
+<div class="line"><br /></div>
+</div>
+</div><div class="line-block">
+<div class="line">更新日志：</div>
+<div class="line-block">
+<div class="line">2008年12月03日 改正笔误</div>
+<div class="line">2008年12月21日 更新到8.11</div>
+</div>
+</div>
+<div><div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</div><div><div class="line-block">
+<div class="line">2010年07月28日&nbsp;更新到8.12</div>
+<div class="line"><br /></div>
+</div>
+</div><div class="line-block">
+<div class="line">第一章 .简介</div>
+<div class="line-block">
+<div class="line">本章内容</div>
+<div class="line">*预览</div>
+<div class="line">*历史回顾</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">1.1 预览</div>
+<div class="line-block">
+<div class="line">oe bitbake像所有的build工具一样（比如make，ant，jam）控制如何去构建系统并且解决构建依赖，但是</div>
+</div>
+<div class="line">不像那些功能单一的工程管理工具（比如make），bitbake不是基于把依赖写死了的makefile，而是</div>
+<div class="line">收集和管理大量之间没有依赖关系的描述文件（这里我们称为包的配方），然后自动按照正确的顺序进行</div>
+<div class="line">构建。（包的配方下文除非特殊说明都将简称为“配方”；oe都代表OpenEmbedded）</div>
+</div>
+<div class="line-block">
+<div class="line">更确切的说 ...</div></div>
+                        <a class="btn primary xsmall" href="/yuan-chuang-openembedded-zhong-wen-shou-ce-di-yi-bu-fen.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/-host-build-targetdao-di-shi-yao-yi-si.html">--host --build --target到底什么意思？</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2011-11-25T16:04:00+08:00">
+        <i class="icon-calendar"></i>五 25 十一月 2011
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/jiao-cha-bian-yi.html"><i class="icon-tag"></i>交叉编译</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>老是在做交叉编译，其实有时候对这三个东西的理解并不是那么清楚</p>
+<p>从交叉工具链的情况来看，可以总结如下</p>
+<p>--build= 谁在这里编译？ 意思说你目前的编译动作在哪里跑的 ？
+如果是编译一个arm工具链，虽然工具链为为arm弄的，但是构建工具链的时候是在主机上进行的。所以
+--build=i686-pc-linux-gnu</p>
+<p>--host= 目前编译出来的程序在哪里跑 ？
+所以工具链好了之后，给目标系统编译程序全部是设置host为arm的。</p>
+<p>--target=为谁编译程序，这在交叉编译的时候跟host一个意思，一般是guess的，而且configure
+脚本会说是 =--host.</p>
+<p>通常我们编译复杂的情况就是交叉编译了，据说还有一种很复杂的情况，三个平台：</p>
+<p>比较，我现在在 i686机器上，想编译一个在
+ppc上运行的交叉工具链，然后这个交叉工具链为arm生产程序，这个就算比较复杂了。</p>
+<p>应该是binutils，gcc，libc的时候这个三个--要很谨慎的设置了。</p>
+<p>可能是</p>
+<ul class="simple">
+<li>--build=i686-pc-linux-gnu</li>
+<li>--host=ppc-xxx</li>
+<li>--target=arm-xxx</li>
+</ul>
+<p>没有实验过，可以改天实验下，学习下。</p>
+<div class="section" id="id1">
+<h2>续：三平台交叉编译实验</h2>
+<p>对binutils源码解压 ...</p></div>
+                        <a class="btn primary xsmall" href="/-host-build-targetdao-di-shi-yao-yi-si.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html">关于工具链的编译uclibc/gcc</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2011-11-23T15:12:00+08:00">
+        <i class="icon-calendar"></i>三 23 十一月 2011
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/gong-ju-lian.html"><i class="icon-tag"></i>工具链</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>使用之前弄的脚本编译工具链其实还是比较轻松的，脚本也是比较稳定的，不过重点在于配置上，包括target名称的选择，uclibc的配置</p>
+<p>一直困扰的nfs挂载不正常的问题最终发现还是uclibc配置不对，另外，对于thread的支持，一般需要使用nptl，然后如果要用gdb的话，gdbserver的编译必须要在uclibc里面启用thread
+debug，要不然会缺少东西：</p>
+<blockquote>
+<pre class="literal-block">
+#error No uintptr_t available; your C library is too old.
+</pre>
+</blockquote>
+<p>接着还会说thread_db.h 造成的某结构体的成员th不存在。</p>
+<p>新的uclibc
+0.9.32编译时需要链接libgcc_eh库文件，这个库文件在static阶段是不编译的，如果要让编译，需要硬性打patch实现。</p>
+<p>这里贴一个正确的uclibc配置</p>
+<pre class="literal-block">
+#
+# Automatically generated make config: don't edit
+# Version: 0.9.32
+# Wed Nov 23 14:53 ...</pre>
+                        <a class="btn primary xsmall" href="/guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+
+         </div><!--/span-->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

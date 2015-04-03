@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>关于工具链的编译uclibc/gcc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="dangbinghoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="PlayPenguin.Tech-花花企鹅.技术 ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">PlayPenguin.Tech-花花企鹅.技术 </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li class="active">
+                    <a href="/category/embedded.html">
+						<i class="icon-folder-open icon-large"></i>Embedded
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/life.html">
+						<i class="icon-folder-open icon-large"></i>Life
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/linux.html">
+						<i class="icon-folder-open icon-large"></i>Linux
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/misc.html">
+						<i class="icon-folder-open icon-large"></i>misc
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/qi-ta.html">
+						<i class="icon-folder-open icon-large"></i>其他
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/thoughts.html">
+						<i class="icon-folder-open icon-large"></i>thoughts
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/unixwen-dang-gong-ju.html">
+						<i class="icon-folder-open icon-large"></i>Unix文档工具
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+         <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>分类</h4></li>
+<li>
+<a href="/category/embedded.html">
+    <i class="icon-folder-open icon-large"></i>Embedded
+</a>
+</li>
+<li>
+<a href="/category/life.html">
+    <i class="icon-folder-open icon-large"></i>Life
+</a>
+</li>
+<li>
+<a href="/category/linux.html">
+    <i class="icon-folder-open icon-large"></i>Linux
+</a>
+</li>
+<li>
+<a href="/category/misc.html">
+    <i class="icon-folder-open icon-large"></i>misc
+</a>
+</li>
+<li>
+<a href="/category/qi-ta.html">
+    <i class="icon-folder-open icon-large"></i>其他
+</a>
+</li>
+<li>
+<a href="/category/thoughts.html">
+    <i class="icon-folder-open icon-large"></i>thoughts
+</a>
+</li>
+<li>
+<a href="/category/unixwen-dang-gong-ju.html">
+    <i class="icon-folder-open icon-large"></i>Unix文档工具
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<!-- <li class="tag-4">
+    <a href="/tag/embedded.html">
+        <i class="icon-tag icon-large"></i>embedded
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/seascope.html">
+        <i class="icon-tag icon-large"></i>seascope
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/oezhong-wen.html">
+        <i class="icon-tag icon-large"></i>OE中文
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/programming.html">
+        <i class="icon-tag icon-large"></i>programming
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pdf.html">
+        <i class="icon-tag icon-large"></i>pdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/jin-cheng-id.html">
+        <i class="icon-tag icon-large"></i>进程ID
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/jiao-cha-bian-yi.html">
+        <i class="icon-tag icon-large"></i>交叉编译
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/mips.html">
+        <i class="icon-tag icon-large"></i>mips
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/asoundrc.html">
+        <i class="icon-tag icon-large"></i>asound.rc
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/4560g.html">
+        <i class="icon-tag icon-large"></i>4560g
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pidof.html">
+        <i class="icon-tag icon-large"></i>pidof
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/openembedded.html">
+        <i class="icon-tag icon-large"></i>OpenEmbedded
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/txt2tags.html">
+        <i class="icon-tag icon-large"></i>txt2tags
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/parrot.html">
+        <i class="icon-tag icon-large"></i>parrot
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/shell.html">
+        <i class="icon-tag icon-large"></i>shell
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/ostinato.html">
+        <i class="icon-tag icon-large"></i>ostinato
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/life.html">
+        <i class="icon-tag icon-large"></i>Life
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/sync.html">
+        <i class="icon-tag icon-large"></i>sync
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/gong-ju-lian.html">
+        <i class="icon-tag icon-large"></i>工具链
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pgrep.html">
+        <i class="icon-tag icon-large"></i>pgrep
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/exvim.html">
+        <i class="icon-tag icon-large"></i>exvim
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/acer.html">
+        <i class="icon-tag icon-large"></i>acer
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/wen-dang-gong-ju.html">
+        <i class="icon-tag icon-large"></i>文档工具
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/wen-jian-xi-tong.html">
+        <i class="icon-tag icon-large"></i>文件系统
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/biao-ji.html">
+        <i class="icon-tag icon-large"></i>标记
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/markup.html">
+        <i class="icon-tag icon-large"></i>markup
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/ctex.html">
+        <i class="icon-tag icon-large"></i>ctex
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/libevent.html">
+        <i class="icon-tag icon-large"></i>libevent
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+ -->
+
+<li class="nav-header"><h4><i class="icon-external-link"></i>链接</h4></li>
+    <li><a href="http://elinux.org"><i class="icon-external-link"></i>elinux</a></li>
+    <li><a href="wiki.osdev.org"><i class="icon-external-link"></i>osdev</a></li>
+    <li><a href="http://sourceforge.net/p/nanorc"><i class="icon-external-link"></i>nanoRC</a></li>
+    <li><a href="http://sourceforge.net/projects/otob"><i class="icon-external-link"></i>otob</a></li>
+
+
+
+</ul>         </div><!--/.well -->
+
+         <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to 关于工具链的编译uclibc/gcc">
+                                        关于工具链的编译uclibc/gcc
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2011-11-23T15:12:00+08:00">
+        <i class="icon-calendar"></i>三 23 十一月 2011
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/gong-ju-lian.html"><i class="icon-tag"></i>工具链</a>
+</footer><!-- /.post-info -->                </div>
+                <p>使用之前弄的脚本编译工具链其实还是比较轻松的，脚本也是比较稳定的，不过重点在于配置上，包括target名称的选择，uclibc的配置</p>
+<p>一直困扰的nfs挂载不正常的问题最终发现还是uclibc配置不对，另外，对于thread的支持，一般需要使用nptl，然后如果要用gdb的话，gdbserver的编译必须要在uclibc里面启用thread
+debug，要不然会缺少东西：</p>
+<blockquote>
+<pre class="literal-block">
+#error No uintptr_t available; your C library is too old.
+</pre>
+</blockquote>
+<p>接着还会说thread_db.h 造成的某结构体的成员th不存在。</p>
+<p>新的uclibc
+0.9.32编译时需要链接libgcc_eh库文件，这个库文件在static阶段是不编译的，如果要让编译，需要硬性打patch实现。</p>
+<p>这里贴一个正确的uclibc配置</p>
+<pre class="literal-block">
+#
+# Automatically generated make config: don't edit
+# Version: 0.9.32
+# Wed Nov 23 14:53:07 2011
+#
+# TARGET_alpha is not set
+TARGET_arm=y
+# TARGET_avr32 is not set
+# TARGET_bfin is not set
+# TARGET_cris is not set
+# TARGET_e1 is not set
+# TARGET_frv is not set
+# TARGET_h8300 is not set
+# TARGET_hppa is not set
+# TARGET_i386 is not set
+# TARGET_i960 is not set
+# TARGET_ia64 is not set
+# TARGET_m68k is not set
+# TARGET_microblaze is not set
+# TARGET_mips is not set
+# TARGET_nios is not set
+# TARGET_nios2 is not set
+# TARGET_powerpc is not set
+# TARGET_sh is not set
+# TARGET_sh64 is not set
+# TARGET_sparc is not set
+# TARGET_v850 is not set
+# TARGET_vax is not set
+# TARGET_x86_64 is not set
+# TARGET_xtensa is not set
+# TARGET_c6x is not set
+
+#
+# Target Architecture Features and Options
+#
+TARGET_ARCH=&quot;arm&quot;
+FORCE_OPTIONS_FOR_ARCH=y
+# CONFIG_ARM_OABI is not set
+CONFIG_ARM_EABI=y
+USE_BX=y
+# CONFIG_GENERIC_ARM is not set
+# CONFIG_ARM610 is not set
+# CONFIG_ARM710 is not set
+# CONFIG_ARM7TDMI is not set
+# CONFIG_ARM720T is not set
+# CONFIG_ARM920T is not set
+# CONFIG_ARM922T is not set
+CONFIG_ARM926T=y
+# CONFIG_ARM10T is not set
+# CONFIG_ARM1136JF_S is not set
+# CONFIG_ARM1176JZ_S is not set
+# CONFIG_ARM1176JZF_S is not set
+# CONFIG_ARM_CORTEX_M3 is not set
+# CONFIG_ARM_CORTEX_M1 is not set
+# CONFIG_ARM_SA110 is not set
+# CONFIG_ARM_SA1100 is not set
+# CONFIG_ARM_XSCALE is not set
+# CONFIG_ARM_IWMMXT is not set
+TARGET_SUBARCH=&quot;&quot;
+
+#
+# Using ELF file format
+#
+ARCH_ANY_ENDIAN=y
+ARCH_LITTLE_ENDIAN=y
+# ARCH_WANTS_BIG_ENDIAN is not set
+ARCH_WANTS_LITTLE_ENDIAN=y
+ARCH_HAS_MMU=y
+ARCH_USE_MMU=y
+UCLIBC_HAS_FLOATS=y
+# UCLIBC_HAS_FPU is not set
+UCLIBC_HAS_SOFT_FLOAT=y
+DO_C99_MATH=y
+# DO_XSI_MATH is not set
+UCLIBC_HAS_FENV=y
+KERNEL_HEADERS=&quot;/home/dbh/workspace/linux-dev/nmru/prjhome/build-2011-11-23-uClibc/target_root/usr/include&quot;
+HAVE_DOT_CONFIG=y
+
+#
+# General Library Settings
+#
+# HAVE_NO_PIC is not set
+DOPIC=y
+# ARCH_HAS_NO_SHARED is not set
+# ARCH_HAS_NO_LDSO is not set
+HAVE_SHARED=y
+# FORCE_SHAREABLE_TEXT_SEGMENTS is not set
+# LDSO_LDD_SUPPORT is not set
+LDSO_CACHE_SUPPORT=y
+# LDSO_PRELOAD_ENV_SUPPORT is not set
+# LDSO_PRELOAD_FILE_SUPPORT is not set
+LDSO_BASE_FILENAME=&quot;ld-uClibc.so&quot;
+UCLIBC_STATIC_LDCONFIG=y
+LDSO_RUNPATH=y
+LDSO_SEARCH_INTERP_PATH=y
+UCLIBC_CTOR_DTOR=y
+# LDSO_GNU_HASH_SUPPORT is not set
+# HAS_NO_THREADS is not set
+# LINUXTHREADS_OLD is not set
+# LINUXTHREADS_NEW is not set
+UCLIBC_HAS_THREADS_NATIVE=y
+UCLIBC_HAS_THREADS=y
+UCLIBC_HAS_TLS=y
+PTHREADS_DEBUG_SUPPORT=y
+UCLIBC_HAS_SYSLOG=y
+UCLIBC_HAS_LFS=y
+# MALLOC is not set
+# MALLOC_SIMPLE is not set
+MALLOC_STANDARD=y
+MALLOC_GLIBC_COMPAT=y
+UCLIBC_DYNAMIC_ATEXIT=y
+# COMPAT_ATEXIT is not set
+UCLIBC_SUSV3_LEGACY=y
+UCLIBC_SUSV3_LEGACY_MACROS=y
+UCLIBC_SUSV4_LEGACY=y
+# UCLIBC_STRICT_HEADERS is not set
+# UCLIBC_HAS_STUBS is not set
+UCLIBC_HAS_SHADOW=y
+UCLIBC_HAS_PROGRAM_INVOCATION_NAME=y
+UCLIBC_HAS___PROGNAME=y
+UCLIBC_HAS_PTY=y
+ASSUME_DEVPTS=y
+UNIX98PTY_ONLY=y
+# UCLIBC_HAS_GETPT is not set
+UCLIBC_HAS_LIBUTIL=y
+UCLIBC_HAS_TM_EXTENSIONS=y
+UCLIBC_HAS_TZ_CACHING=y
+UCLIBC_HAS_TZ_FILE=y
+UCLIBC_HAS_TZ_FILE_READ_MANY=y
+UCLIBC_TZ_FILE_PATH=&quot;/etc/TZ&quot;
+# UCLIBC_FALLBACK_TO_ETC_LOCALTIME is not set
+
+#
+# Advanced Library Settings
+#
+UCLIBC_PWD_BUFFER_SIZE=256
+UCLIBC_GRP_BUFFER_SIZE=256
+
+#
+# Support various families of functions
+#
+# UCLIBC_LINUX_MODULE_24 is not set
+UCLIBC_LINUX_SPECIFIC=y
+UCLIBC_HAS_GNU_ERROR=y
+UCLIBC_BSD_SPECIFIC=y
+UCLIBC_HAS_BSD_ERR=y
+UCLIBC_HAS_OBSOLETE_BSD_SIGNAL=y
+UCLIBC_HAS_OBSOLETE_SYSV_SIGNAL=y
+UCLIBC_NTP_LEGACY=y
+UCLIBC_SV4_DEPRECATED=y
+UCLIBC_HAS_REALTIME=y
+UCLIBC_HAS_ADVANCED_REALTIME=y
+UCLIBC_HAS_EPOLL=y
+UCLIBC_HAS_XATTR=y
+UCLIBC_HAS_PROFILING=y
+UCLIBC_HAS_CRYPT_IMPL=y
+UCLIBC_HAS_CRYPT=y
+UCLIBC_HAS_NETWORK_SUPPORT=y
+UCLIBC_HAS_SOCKET=y
+UCLIBC_HAS_IPV4=y
+UCLIBC_HAS_IPV6=y
+UCLIBC_HAS_RPC=y
+UCLIBC_HAS_FULL_RPC=y
+UCLIBC_HAS_REENTRANT_RPC=y
+# UCLIBC_USE_NETLINK is not set
+# UCLIBC_HAS_BSD_RES_CLOSE is not set
+# UCLIBC_HAS_COMPAT_RES_STATE is not set
+# UCLIBC_HAS_EXTRA_COMPAT_RES_STATE is not set
+UCLIBC_HAS_LIBRESOLV_STUB=y
+UCLIBC_HAS_LIBNSL_STUB=y
+
+#
+# String and Stdio Support
+#
+UCLIBC_HAS_STRING_GENERIC_OPT=y
+UCLIBC_HAS_STRING_ARCH_OPT=y
+UCLIBC_HAS_CTYPE_TABLES=y
+UCLIBC_HAS_CTYPE_SIGNED=y
+UCLIBC_HAS_CTYPE_UNSAFE=y
+# UCLIBC_HAS_CTYPE_CHECKED is not set
+# UCLIBC_HAS_CTYPE_ENFORCED is not set
+UCLIBC_HAS_WCHAR=y
+# UCLIBC_HAS_LOCALE is not set
+# UCLIBC_HAS_HEXADECIMAL_FLOATS is not set
+UCLIBC_HAS_GLIBC_CUSTOM_PRINTF=y
+UCLIBC_PRINTF_SCANF_POSITIONAL_ARGS=9
+# UCLIBC_HAS_SCANF_GLIBC_A_FLAG is not set
+# UCLIBC_HAS_STDIO_BUFSIZ_NONE is not set
+# UCLIBC_HAS_STDIO_BUFSIZ_256 is not set
+# UCLIBC_HAS_STDIO_BUFSIZ_512 is not set
+# UCLIBC_HAS_STDIO_BUFSIZ_1024 is not set
+# UCLIBC_HAS_STDIO_BUFSIZ_2048 is not set
+UCLIBC_HAS_STDIO_BUFSIZ_4096=y
+# UCLIBC_HAS_STDIO_BUFSIZ_8192 is not set
+UCLIBC_HAS_STDIO_BUILTIN_BUFFER_NONE=y
+# UCLIBC_HAS_STDIO_BUILTIN_BUFFER_4 is not set
+# UCLIBC_HAS_STDIO_BUILTIN_BUFFER_8 is not set
+# UCLIBC_HAS_STDIO_SHUTDOWN_ON_ABORT is not set
+UCLIBC_HAS_STDIO_GETC_MACRO=y
+UCLIBC_HAS_STDIO_PUTC_MACRO=y
+UCLIBC_HAS_STDIO_AUTO_RW_TRANSITION=y
+# UCLIBC_HAS_FOPEN_LARGEFILE_MODE is not set
+# UCLIBC_HAS_FOPEN_EXCLUSIVE_MODE is not set
+# UCLIBC_HAS_GLIBC_CUSTOM_STREAMS is not set
+UCLIBC_HAS_PRINTF_M_SPEC=y
+UCLIBC_HAS_ERRNO_MESSAGES=y
+# UCLIBC_HAS_SYS_ERRLIST is not set
+UCLIBC_HAS_SIGNUM_MESSAGES=y
+# UCLIBC_HAS_SYS_SIGLIST is not set
+UCLIBC_HAS_GNU_GETOPT=y
+UCLIBC_HAS_STDIO_FUTEXES=y
+UCLIBC_HAS_GNU_GETSUBOPT=y
+
+#
+# Big and Tall
+#
+UCLIBC_HAS_REGEX=y
+UCLIBC_HAS_REGEX_OLD=y
+UCLIBC_HAS_FNMATCH=y
+UCLIBC_HAS_FNMATCH_OLD=y
+# UCLIBC_HAS_WORDEXP is not set
+# UCLIBC_HAS_NFTW is not set
+# UCLIBC_HAS_FTW is not set
+# UCLIBC_HAS_FTS is not set
+UCLIBC_HAS_GLOB=y
+UCLIBC_HAS_GNU_GLOB=y
+# UCLIBC_HAS_UTMPX is not set
+
+#
+# Library Installation Options
+#
+RUNTIME_PREFIX=&quot;/&quot;
+DEVEL_PREFIX=&quot;/usr&quot;
+MULTILIB_DIR=&quot;lib&quot;
+# HARDWIRED_ABSPATH is not set
+
+#
+# Security options
+#
+# UCLIBC_BUILD_PIE is not set
+# UCLIBC_HAS_ARC4RANDOM is not set
+# HAVE_NO_SSP is not set
+# UCLIBC_HAS_SSP is not set
+UCLIBC_BUILD_RELRO=y
+# UCLIBC_BUILD_NOW is not set
+UCLIBC_BUILD_NOEXECSTACK=y
+
+#
+# uClibc development/debugging options
+#
+CROSS_COMPILER_PREFIX=&quot;&quot;
+UCLIBC_EXTRA_CFLAGS=&quot;&quot;
+# DODEBUG is not set
+# DOSTRIP is not set
+# DOASSERTS is not set
+# SUPPORT_LD_DEBUG is not set
+# SUPPORT_LD_DEBUG_EARLY is not set
+# UCLIBC_MALLOC_DEBUGGING is not set
+# UCLIBC_HAS_BACKTRACE is not set
+WARNINGS=&quot;-Wall&quot;
+EXTRA_WARNINGS=y
+# DOMULTI is not set
+# UCLIBC_MJN3_ONLY is not set
+</pre>
+
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+         </div><!--/span-->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

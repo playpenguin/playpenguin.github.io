@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>[原创]OpenEmbedded 中文手册</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="dangbinghoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="PlayPenguin.Tech-花花企鹅.技术 ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">PlayPenguin.Tech-花花企鹅.技术 </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li class="active">
+                    <a href="/category/embedded.html">
+						<i class="icon-folder-open icon-large"></i>Embedded
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/life.html">
+						<i class="icon-folder-open icon-large"></i>Life
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/linux.html">
+						<i class="icon-folder-open icon-large"></i>Linux
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/misc.html">
+						<i class="icon-folder-open icon-large"></i>misc
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/qi-ta.html">
+						<i class="icon-folder-open icon-large"></i>其他
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/thoughts.html">
+						<i class="icon-folder-open icon-large"></i>thoughts
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/unixwen-dang-gong-ju.html">
+						<i class="icon-folder-open icon-large"></i>Unix文档工具
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+         <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>分类</h4></li>
+<li>
+<a href="/category/embedded.html">
+    <i class="icon-folder-open icon-large"></i>Embedded
+</a>
+</li>
+<li>
+<a href="/category/life.html">
+    <i class="icon-folder-open icon-large"></i>Life
+</a>
+</li>
+<li>
+<a href="/category/linux.html">
+    <i class="icon-folder-open icon-large"></i>Linux
+</a>
+</li>
+<li>
+<a href="/category/misc.html">
+    <i class="icon-folder-open icon-large"></i>misc
+</a>
+</li>
+<li>
+<a href="/category/qi-ta.html">
+    <i class="icon-folder-open icon-large"></i>其他
+</a>
+</li>
+<li>
+<a href="/category/thoughts.html">
+    <i class="icon-folder-open icon-large"></i>thoughts
+</a>
+</li>
+<li>
+<a href="/category/unixwen-dang-gong-ju.html">
+    <i class="icon-folder-open icon-large"></i>Unix文档工具
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<!-- <li class="tag-4">
+    <a href="/tag/embedded.html">
+        <i class="icon-tag icon-large"></i>embedded
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/seascope.html">
+        <i class="icon-tag icon-large"></i>seascope
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/oezhong-wen.html">
+        <i class="icon-tag icon-large"></i>OE中文
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/programming.html">
+        <i class="icon-tag icon-large"></i>programming
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pdf.html">
+        <i class="icon-tag icon-large"></i>pdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/jin-cheng-id.html">
+        <i class="icon-tag icon-large"></i>进程ID
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/jiao-cha-bian-yi.html">
+        <i class="icon-tag icon-large"></i>交叉编译
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/mips.html">
+        <i class="icon-tag icon-large"></i>mips
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/asoundrc.html">
+        <i class="icon-tag icon-large"></i>asound.rc
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/4560g.html">
+        <i class="icon-tag icon-large"></i>4560g
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pidof.html">
+        <i class="icon-tag icon-large"></i>pidof
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/openembedded.html">
+        <i class="icon-tag icon-large"></i>OpenEmbedded
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/txt2tags.html">
+        <i class="icon-tag icon-large"></i>txt2tags
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/parrot.html">
+        <i class="icon-tag icon-large"></i>parrot
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/shell.html">
+        <i class="icon-tag icon-large"></i>shell
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/ostinato.html">
+        <i class="icon-tag icon-large"></i>ostinato
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/life.html">
+        <i class="icon-tag icon-large"></i>Life
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/sync.html">
+        <i class="icon-tag icon-large"></i>sync
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/gong-ju-lian.html">
+        <i class="icon-tag icon-large"></i>工具链
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pgrep.html">
+        <i class="icon-tag icon-large"></i>pgrep
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/exvim.html">
+        <i class="icon-tag icon-large"></i>exvim
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/acer.html">
+        <i class="icon-tag icon-large"></i>acer
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/wen-dang-gong-ju.html">
+        <i class="icon-tag icon-large"></i>文档工具
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/wen-jian-xi-tong.html">
+        <i class="icon-tag icon-large"></i>文件系统
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/biao-ji.html">
+        <i class="icon-tag icon-large"></i>标记
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/markup.html">
+        <i class="icon-tag icon-large"></i>markup
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/ctex.html">
+        <i class="icon-tag icon-large"></i>ctex
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/libevent.html">
+        <i class="icon-tag icon-large"></i>libevent
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+ -->
+
+<li class="nav-header"><h4><i class="icon-external-link"></i>链接</h4></li>
+    <li><a href="http://elinux.org"><i class="icon-external-link"></i>elinux</a></li>
+    <li><a href="wiki.osdev.org"><i class="icon-external-link"></i>osdev</a></li>
+    <li><a href="http://sourceforge.net/p/nanorc"><i class="icon-external-link"></i>nanoRC</a></li>
+    <li><a href="http://sourceforge.net/projects/otob"><i class="icon-external-link"></i>otob</a></li>
+
+
+
+</ul>         </div><!--/.well -->
+
+         <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to [原创]OpenEmbedded 中文手册">
+                                        [原创]OpenEmbedded 中文手册
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2011-12-22T01:41:00+08:00">
+        <i class="icon-calendar"></i>四 22 十二月 2011
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/linux.html"><i class="icon-tag"></i>Linux</a>
+	<a href="/tag/oezhong-wen.html"><i class="icon-tag"></i>OE中文</a>
+	<a href="/tag/openembedded.html"><i class="icon-tag"></i>OpenEmbedded</a>
+</footer><!-- /.post-info -->                </div>
+                <div><p>8.11 打包:定义包类及其内容</p>
+</div><div></div><div><p>一个bitbake&quot;配方&quot;就是一组创建一个或者多个在目标设备上安装的包的命令集合.典型的包就是</p>
+</div><div><p>.ipkg或者.deb包(尽管bitbake本身并没有跟任何特殊的包格式相关联).</p>
+</div><div></div><div><p>默认情况下会自动生成一些包,这些包并没有包含任何&quot;配方&quot;作者要求的特定动作.上面的helloworld</p>
+</div><div><p>例子的包输出信息就说明了这些:</p>
+</div><div></div><div><p>[NOTE: package helloworld-0.1-r0: task do_package_write: started</p>
+</div><div><p>NOTE: Not creating empty archive for helloworld-dbg-0.1-r0</p>
+</div><div><p>Packaged contents of helloworld into
+/home/lenehan/devel/oe/build/titan-glibc-25/tmp/deploy/ipk/sh4/helloworld_0.1-r0_sh4.ipk</p>
+</div><div><p>Packaged contents of helloworld-doc into
+/home/lenehan/devel/oe/build/titan-glibc-25/tmp/deploy/ipk/sh4/helloworld-doc_0.1-r0_sh4.ipk</p>
+</div><div><p>NOTE: Not creating empty archive for helloworld-dev-0.1-r0</p>
+</div><div><p>NOTE: Not creating empty archive for helloworld-locale-0.1-r0</p>
+</div><div><p>NOTE: package helloworld-0.1-r0: task do_package_write: completed</p>
+</div><div></div><div><p>我们可以看到上面的打包动作做了如下事情:</p>
+</div><div><p>*
+创建主包,helloworld_0.1-r0_sh4.ipk.这个包包含了helloworld的二进制文件</p>
+</div><div><p>/usr/bin/helloworld.</p>
+</div><div><p>*创建了文档包, helloworld-doc_0.1-r0_sh4.ipk.这个包包含了readme文件</p>
+</div><div><p>/usr/share/doc/helloworld/README.txt.</p>
+</div><div><p>*尝试创建调试包,helloworld-dbg-0.1-r0_sh4.ipk,一个开发包helloworld-dev-0.1-r0_sh4.ipk</p>
+</div><div><p>和一个本地化(locale)包helloworld-locale-0.1-r0_sh4.ipk.但是这些包最终并没有创建,因为没有找到任何</p>
+</div><div><p>应该属于该包的文件.</p>
+</div><div></div><div><p>这里发生了几件需要重点理解的事情:</p>
+</div><div><p>1.有一类默认的包会被尝试去创建.这些包在变量PAKAGES里控制.</p>
+</div><div><p>2.对于每个包会默认认为有些文件是属于它的.比如文档包就会包含任何在/usr/share/doc里面的文件.这些文件和目录</p>
+</div><div><p>在变量FILES_&lt;packge-name&gt;里控制.</p>
+</div><div><p>3.默认情况下,不包含任何文件的空包是不会被创建的,也不会产生错误.要不要产生空包可以在变量ALLOW_EMPTY里来设置.</p>
+</div><div></div><div><p>8.11.1 基本规则</p>
+</div><div></div><div><p>&nbsp;尽可能的分离包是OE的设计的一个高明之处.许多设备的内存和存储空间是有限的,对于发行者和用户来说可以选择不安装一个包的</p>
+</div><div><p>&nbsp;不需要的部分可以节省可观的存贮空间.</p>
+</div><div></div><div><p>&nbsp;比如没有哪个PC发行版会包含用户不需要使用的文档和开发库包(译者注:当然这个不怎么正确,文档包一般都有,lfs还默认安装开发库),</p>
+</div><div><p>&nbsp;因为用户的日常使用根本用不到这些东西.特别的,如果你的包提供多种二进制格式,用户可能一般会只选择其中一种,所以你应该分离这些包.</p>
+</div><div></div><div><p>&nbsp;默认情况下文件将会被自动分组而分离,包括:</p>
+</div><div></div><div><p>&nbsp;开发包(dev)</p>
+</div><div></div><div><p>&nbsp;任何开发才会需要的文件.这会包含头文件,静态链接库,动态链接库等.这些只会是想要在设备上编译程序的人才需要的.</p>
+</div><div><p>&nbsp;但是通常情况这种需要并不多,所以这些文件就会自动移动到分离的包(开发包).</p>
+</div><div></div><div><p>&nbsp;文档包(doc)</p>
+</div><div></div><div><p>&nbsp;任何文档相关文件,包括man手册页.这些文件只是处于提供帮助信息的目的.对于大多数嵌入式设备并没有让用户去查看文档</p>
+</div><div><p>&nbsp;的方式或者需要.不过文档文件比较占用空间.分离出来这些就可以节省空间,如果用户需要查看也可以选择自己安装.</p>
+</div><div></div><div><p>&nbsp;本地化包(locale)</p>
+</div><div></div><div><p>&nbsp;本地化信息是软件包的翻译信息.许多用户不需要这些翻译,许多设备只是想提供用户界面相关的组件的翻译信息但不是系统</p>
+</div><div><p>&nbsp;程序的,分离这部分出来然后用户可以选择他们到底需不需要.</p>
+</div><div></div><div><p>&nbsp;8.11.2.默认包类和文件</p>
+</div><div></div><div><p>默认的打包设置在conf/bitbake.conf里面定义,而且对于大多数&quot;配方&quot;来说这些设置是很合适的,下面的列表展示了一些默认的</p>
+</div><div><p>&nbsp;&nbsp; 打包相关变量的值:</p>
+</div><div></div><div><p>&nbsp;&nbsp; PACKAGES</p>
+</div><div></div><div><p>&nbsp;&nbsp;这个变量列出了每个软件包都需要创建那些包:</p>
+</div><div><p>&nbsp;&nbsp;PACKAGES = &quot;${PN}-dbg ${PN} ${PN}-doc ${PN}-dev ${PN}-locale&quot;</p>
+</div><div></div><div><p>&nbsp;&nbsp;注意,包的顺序是很重要的:这些包是按照数序来创建的,所以如果两种包同时指定了一个文件,那么按照顺序的第一种包将包含这个文件.</p>
+</div><div><p>&nbsp;&nbsp;这在使用通配符来指定包内容的时候就很重要了.</p>
+</div><div></div><div><p>&nbsp;&nbsp;例如,如果主包${PN}包含了/usr/bin/*(/usr/bin下面的所有文件),但是你又希望/usr/bin/tprogram到一个独立的包</p>
+</div><div><p>&nbsp;&nbsp;${PN}-tpackage里面,你需要把在PACKAGES变量里设置的${PN}-tpackage安排在${PN}的前面,或者编辑FILES_${PN}</p>
+</div><div><p>&nbsp;&nbsp;的通配符叫它不要匹配到/usr/bin/tprogram文件.</p>
+</div><div></div><div><p>&nbsp;&nbsp;注意-dbg包包含了从二进制和库文件里过滤出来的调试信息.这个类型的包应该永远设置优先与其他的包以保证调试信息能正确的</p>
+</div><div><p>&nbsp;&nbsp;提取出来.</p>
+</div><div></div><div><p>&nbsp;&nbsp; FILES_${PN}</p>
+</div><div></div><div><p>&nbsp;&nbsp;主包,包含了一切在设备上运行程序需要的东西.</p>
+</div><div></div><div><p>&nbsp;&nbsp;FILES_${PN} = &quot;\</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${bindir}/* \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${sbindir}/* \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${libexecdir}/* \</p>
+</div><div><p>${libdir}/lib*.so.* \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${sysconfdir} \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${sharedstatedir} \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${localstatedir} \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;/bin/* \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;/sbin/* \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;/lib/*.so* \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${datadir}/${PN} \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${libdir}/${PN}/* \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${datadir}/pixmaps \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${datadir}/applications \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${datadir}/idl \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${datadir}/omf \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${datadir}/sounds \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${libdir}/bonobo/servers&quot;</p>
+</div><div></div><div><p>&nbsp;&nbsp; &nbsp;FILES_${PN}-dbg</p>
+</div><div></div><div><p>&nbsp;从为过滤的库和可执行文件里提取的调试信息.OE会自动的提取调试信息到.debug文件夹里然后过滤原文件.</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;FILES_${PN}-dbg = &quot;\</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${bindir}/.debug \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${sbindir}/.debug \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${libexecdir}/.debug \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${libdir}/.debug \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;/bin/.debug \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;/sbin/.debug \</p>
+</div><div><p>&nbsp;&nbsp;/lib/.debug \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${libdir}/${PN}/.debug&quot;</p>
+</div><div></div><div><p>&nbsp;&nbsp; &nbsp;FILES_${PN}-doc</p>
+</div><div></div><div><p>&nbsp;文档相关文件.所有文档将会自动的被分离到它自己的文档包里,除非需要,文档默认将不会被安装.</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;FILES_${PN}-doc = &quot;\</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${docdir} \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${mandir} \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${infodir} \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${datadir}/gtk-doc \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${datadir}/gnome/help&quot;</p>
+</div><div></div><div><p>&nbsp;&nbsp; &nbsp;FILES_${PN}-dev</p>
+</div><div></div><div><p>&nbsp;&nbsp; &nbsp;开发相关的文件.任何头文件,库文件或者支持开发用的文件.</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;FILES_${PN}-dev = &quot;\</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${includedir} \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${libdir}/lib*.so \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${libdir}/*.la \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${libdir}/*.a \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${libdir}/*.o \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${libdir}/pkgconfig \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;/lib/*.a \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;/lib/*.o \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;${datadir}/aclocal&quot;</p>
+</div><div></div><div><p>&nbsp;&nbsp; &nbsp;FILES_${PN}-locale</p>
+</div><div></div><div><p>&nbsp;&nbsp; &nbsp;本地化相关文件.</p>
+</div><div></div><div><p>&nbsp;&nbsp; &nbsp;FILES_${PN}-locale = &quot;${datadir}/locale&quot;</p>
+</div><div></div><div><p>8.11.3.通配符</p>
+</div><div><p>&nbsp;FILES变量的通配符是通过python的fnmatch函数来处理的.下面是这个函数的一些相关注意事项:</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;* /&lt;dir&gt;/*: 这个会匹配到所有在dir下面的目录和文件.</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;* /&lt;dir&gt;/a*: 这个只会匹配到文件,不包含目录.</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;* /dir: 这个会包含dir目录,当然会包含dir下面的一切子目录和文件.</p>
+</div><div></div><div><p>注意,包类的前后顺序将会影响通配符的匹配效果,假设我们有三个二进制文件在/usr/bin/目录下面,</p>
+</div><div><p>&nbsp;&nbsp; 然后我们想要test程序到一个单独的包里面:</p>
+</div><div></div><div><p>&nbsp;&nbsp; /usr/bin/programa /usr/bin/programb /usr/bin/test</p>
+</div><div></div><div><p>&nbsp;&nbsp; 所以,我们定义一个新的包然后告诉bitbake在这个包里包含/usr/bin/test.</p>
+</div><div><p>&nbsp;&nbsp; FILES-${PN}-test = &quot;${bindir}/test&quot;</p>
+</div><div><p>&nbsp;&nbsp; PACKAGES += &quot;FILES-${PN}-test&quot;</p>
+</div><div></div><div><p>&nbsp;&nbsp; 这样打包时其实${PN}-test 包不会产生,原因是
+PACKAGES变量现在看起来是这样了:</p>
+</div><div><p>&nbsp;&nbsp; {PN}-dbg ${PN} ${PN}-doc ${PN}-dev ${PN}-locale ${PN}-test</p>
+</div><div></div><div><p>注意到${PN}在${PN}-test的前面,然后我们看到FILES-${PN}里面定义了${bindir}/*通配符,</p>
+</div><div><p>所以,${PN}会第一个匹配到它然后它会被移动到${PN}包里而不是${PN}-test包.</p>
+</div><div></div><div><p>&nbsp;&nbsp; 想要做到预期的效果我们有两种选择:</p>
+</div><div></div><div><p>&nbsp;&nbsp;1.编辑${PN}的设置不让它匹配到test程序.</p>
+</div><div><p>&nbsp;&nbsp;&nbsp;比如我们可以这样做</p>
+</div><div><p>&nbsp;&nbsp;&nbsp;FILES-${PN} = &quot;${bindir}/p*&quot;</p>
+</div><div></div><div><p>&nbsp;&nbsp;&nbsp;所以,现在这将只会匹配到p开头的文件,不会包含test程序.注意,FILES-${PN}通常</p>
+</div><div><p>&nbsp;&nbsp;&nbsp;会包含很多通配符的设置项,然后会包含很多其他的文件进来,这个例子里我们并没有其</p>
+</div><div><p>&nbsp;&nbsp;&nbsp;他文件,所以这么简单的定义是可行的.</p>
+</div><div></div><div><p>&nbsp;&nbsp;2. 编辑${PN}-test包以使它在前面.</p>
+</div><div></div><div><p>&nbsp;&nbsp;&nbsp;最显而易见的办法是把${PN}-test包&quot;前加&quot;(作为前缀)到PACKAGES变量里面:</p>
+</div><div><p>&nbsp;&nbsp;&nbsp;PACKAGES =+ &quot;FILES-${PN}-test&quot;</p>
+</div><div></div><div><p>&nbsp;&nbsp;&nbsp;有时候这样会工作的很好,但是这里有了一个问题,这个包现在处于-dbg包的前面,这将</p>
+</div><div><p>&nbsp;&nbsp;&nbsp;导致.debug目录包含进包里面(译者注:官方文档这里貌似弄错了,其实test包如果在前面,</p>
+</div><div><p>&nbsp;&nbsp;&nbsp;意味着在过来debug信息之前test程序已经被移动了,所以只会导致对应的.debug目录没有</p>
+</div><div><p>&nbsp;&nbsp;&nbsp;被创建而不是包含到了里面,可能是exclude被误写为include了.)</p>
+</div><div></div><div><p>&nbsp;&nbsp;&nbsp;通常情况下最常用的办法可能是重新定义PACKAGES变量了:</p>
+</div><div><p>&nbsp;&nbsp;&nbsp;PACKAGES = &quot;${PN}-dbg ${PN}-test ${PN} ${PN}-doc ${PN}-dev
+${PN}-locale&quot;</p>
+</div><div></div><div></div><div><p>8.11.4.查看包</p>
+</div><div><p>在开发&quot;配方&quot;的过程中如果能检查和确认那个文件进了那个包,或者那个包没有创建,那个包里没有文件之类的应该</p>
+</div><div><p>是非常之有用的.</p>
+</div><div></div><div><p>其中之一最简单的办法就是在install目录里面运行find命令.在install目录里面每个包都会有一个子目录,然后</p>
+</div><div><p>文件也被移动到了相关匹配的包里.下面的例子展示了这些:</p>
+</div><div></div><div><p>$ find tmp/work/helloworld-0.1-r0/install</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/install</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/install/helloworld-locale</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/install/helloworld-dbg</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/install/helloworld-dev</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/install/helloworld-doc</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/install/helloworld-doc/usr</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/install/helloworld-doc/usr/share</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/install/helloworld-doc/usr/share/doc</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/install/helloworld-doc/usr/share/doc/helloworld</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/install/helloworld-doc/usr/share/doc/helloworld/README.txt</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/install/helloworld</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/install/helloworld/usr</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/install/helloworld/usr/bin</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/install/helloworld/usr/bin/helloworld</p>
+</div><div><p>$</p>
+</div><div></div><div><p>上面的信息说明-local,-dbg,-dev包是空包,然后-doc和主包都各自包含了一个文件.使用&quot;-type
+f&quot;选项</p>
+</div><div><p>可以只显示文件,这样看起来更清晰.</p>
+</div><div></div><div><p>相比较之下,image目录(也就是所谓的目标目录D)将会包含任何没有打包的文件:</p>
+</div><div><p>$ find tmp/work/helloworld-0.1-r0/image</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/image</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/image/usr</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/image/usr/bin</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/image/usr/share</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/image/usr/share/doc</p>
+</div><div><p>tmp/work/helloworld-0.1-r0/image/usr/share/doc/helloworld</p>
+</div><div><p>$</p>
+</div><div></div><div><p>这样一来,所有被打包了的文件都不会留到这里,使用&quot;-type f&quot;更清晰些:</p>
+</div><div><p>$ find tmp/work/helloworld-0.1-r0/image -type f</p>
+</div><div><p>$</p>
+</div><div></div><div><p>bitbake也会在打包过程中警示没有被打包进的文件:</p>
+</div><div><p>NOTE: package helloworld-0.1-r0: task do_package: started</p>
+</div><div><p>NOTE: the following files were installed but not shipped in any package:</p>
+</div><div><p>NOTE: &nbsp; /usualdir/README.txt</p>
+</div><div><p>NOTE: package helloworld-0.1-r0: task do_package: completed</p>
+</div><div></div><div><p>除非是不正常的情况,否则,一个&quot;配方&quot;应该不留下任何没有被打包的文件.</p>
+</div><div></div><div><p>8.11.5.不需要的文件</p>
+</div><div></div><div><p>OE里没有明确的支持不包含文件的方法.你可以简单的留到包外,但是你会得到警告或者错误(如果</p>
+</div><div><p>你做完整的包检查的话),而且其他人或许会知道你存心没有打包某个文件.</p>
+</div><div></div><div><p>在某些时候或许在安装任务结束后手动删除不需要的文件要相对容易些.下面从samba配方里截取的例子</p>
+</div><div><p>显示了在用autotools类安装任务完成之后删除一些文件.这里是在autotools产生的install任务之后</p>
+</div><div><p>运行do_install_append命令:</p>
+</div><div><p>do_install_append() {</p>
+</div><div><p>&nbsp; &nbsp;...</p>
+</div><div><p>&nbsp; &nbsp;rm -f ${D}${bindir}/*.old</p>
+</div><div><p>&nbsp; &nbsp;rm -f ${D}${sbindir}/*.old</p>
+</div><div><p>&nbsp; &nbsp;...</p>
+</div><div><p>}</p>
+</div><div></div><div><p>8.11.6.debian命名机制</p>
+</div><div></div><div><p>打包的时候应用一种特殊的debian库命名规则.如果启用了,包会被按照debian的习惯重新命名.</p>
+</div><div></div><div><p>debian命名方式可以通过在local.conf文件或者您的发行版的配置文件里包含debian类来实现:</p>
+</div><div><p>INHERIT += &quot;debian&quot;</p>
+</div><div></div><div><p>根据规则,包会被根据查看共享库的名字和版本自动重命名为&lt;libname&gt;&lt;lib-major-version&gt;</p>
+</div><div><p>的样子.比如,包名为foo,然后这个包里包含了一个libfoo.so.1.2.3这样的文件,那么包将会被</p>
+</div><div><p>自动重命名为libfoo1.</p>
+</div><div></div><div><p>如果我们查看lzo_1.08.bb的配方,当前的发布号14,它产生了一个单个共享库文件:</p>
+</div><div><p>$ find tmp/work/lzo-1.08-r14/install/</p>
+</div><div><p>tmp/work/lzo-1.08-r14/install/lzo</p>
+</div><div><p>tmp/work/lzo-1.08-r14/install/lzo/usr</p>
+</div><div><p>tmp/work/lzo-1.08-r14/install/lzo/usr/lib</p>
+</div><div><p>tmp/work/lzo-1.08-r14/install/lzo/usr/lib/liblzo.so.1</p>
+</div><div><p>tmp/work/lzo-1.08-r14/install/lzo/usr/lib/liblzo.so.1.0.0</p>
+</div><div></div><div><p>如果不使用debian命名方式,包名字会叫做lzo_1.08-r14_sh4.ipk(然后对应的dev和dbg包就会</p>
+</div><div><p>是lzo-dbg_1.08-r14_sh4.ipk 和
+lzo-dev_1.08-r14_sh4.ipk),但是,如果使用了debian</p>
+</div><div><p>命名机制,根据liblzo.so.1.0.0包就lzo会被重命名为liblzo1:</p>
+</div><div><p>$ find tmp/deploy/ipk/ -name '*lzo*'</p>
+</div><div><p>tmp/deploy/ipk/sh4/liblzo1_1.08-r14_sh4.ipk</p>
+</div><div><p>tmp/deploy/ipk/sh4/liblzo-dev_1.08-r14_sh4.ipk</p>
+</div><div><p>tmp/deploy/ipk/sh4/liblzo-dbg_1.08-r14_sh4.ipk</p>
+</div><div></div><div><p>这里有一些变量会影响debian重命名类的具体操作:</p>
+</div><div></div><div><p>LEAD_SONAME</p>
+</div><div></div><div><p>如果一个包实际包含了多重共享库,那么其中一个会被自动选择,然后产生一个警告.</p>
+</div><div><p>这个变量是一个正则表达式,用来选择那些共享库是debian重命名可用的.</p>
+</div><div></div><div><p>DEBIAN_NOAUTONAME_&lt;pkgname&gt;</p>
+</div><div></div><div><p>如果这个变量的值设置为1,那么该包就不会自动使用debian命名机制.</p>
+</div><div></div><div><p>AUTO_LIBNAME_PKGS</p>
+</div><div></div><div><p>设置那些包会应用debian命名机制.这个选项用来设置不需要所有包都使用debian</p>
+</div><div><p>命名机制的情况.</p>
+</div><div></div><div><p>8.11.7.空包</p>
+</div><div><p>默认情况下空包是被忽略的.或许您可能希望去创建空包,典型的应用就是你可能需要创建一个虚拟包</p>
+</div><div><p>然后里面只有依赖关系的情况.ALLOW_EMPTY变量是用来控制产不产生空包的:</p>
+</div><div></div><div><p>ALLOW_EMPTY</p>
+</div><div></div><div><p>控制产不产生空包.默认这个设置是0,空包不会被创建,设置为1就允许创建不包含文件的空包.</p>
+</div><div></div><div></div><div><div><p>8.12任务：用“任务“工作</p>
+</div><div></div><div><p>bitbake构建(运行)&quot;配方&quot;的时候是一系列的&quot;任务&quot;.有时候你需要明确地定义一个类到底做什么,</p>
+</div><div><p>比如提供do_install函数来替换&quot;配方&quot;里默认的install&quot;任务&quot;,有时候这些由最常用的类来提供,比如,</p>
+</div><div><p>autotools类就会有configure,compile,install&quot;任务&quot;的默认替代实现.</p>
+</div><div></div><div><p>有几种方式可以改写要运行的任务:</p>
+</div><div></div><div><p>重载默认的任务实现:</p>
+</div><div><p>定义你自己的任务实现会覆盖(重载)任何默认的或者类里面的原有实现.</p>
+</div><div><p>比如,你可以定义你自己的compile任务实现来重载默认的:</p>
+</div><div></div><div><p>do_compile() {</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp;oe_runmake DESTDIR=${D}</p>
+</div><div><p>}</p>
+</div><div></div><div><p>如果你是希望阻止一个任务的执行,你可以定义你自己的空的实现,通常就是定义一个</p>
+</div><div><p>使用冒号的任务:</p>
+</div><div><p>do_configure() {</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;:</p>
+</div><div><p>}</p>
+</div><div></div><div><p>前加或者追加到任务:</p>
+</div><div></div><div><p>有时候你需要默认的实现,不过你需要一些额外的功能.这个就可以通过在任务的实现上</p>
+</div><div><p>前加或者追加你附加的功能来达到.</p>
+</div><div></div><div><p>下面的例子是想在autotool默认install任务后安装一个可能因为什么原因没有安装的附加文件的情况:</p>
+</div><div><p>do_install_append() {</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; install -d ${D}${datadir}</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; install -m 0655 units.dat ${D}${datadir}</p>
+</div><div><p>}</p>
+</div><div></div><div><p>下面的这个从cherokee配方里提取的例子说明了如何在install任务之前增加某个功能的情况.在这个例子</p>
+</div><div><p>中它编译了一个一个在主机(host)上运行的本地测试程序.如果没有这个程序,后面autotools类里的install</p>
+</div><div><p>任务会失败,因为默认的安装会在主机上运行原本给目标(target)机器编译的程序.</p>
+</div><div></div><div><p>do_install_prepend () {</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;# It only needs this app during the install, so compile it
+natively</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;$BUILD_CC -DHAVE_SYS_STAT_H -o cherokee_replace
+cherokee_replace.c</p>
+</div><div><p>}</p>
+</div><div></div><div><p>定义一个新的任务:</p>
+</div><div></div><div><p>另外一个选择是定义一个全新的任务,然后用bitbake注册这个任务,把它放到两个已存在的任务之间.</p>
+</div><div></div><div><p>下面的示例情况是需要从一个解压的目录拷贝cvs的树,然后这个必须在添加任何本地补丁之前完成,</p>
+</div><div><p>所以我们定义了一个新的任务来完成这件事情,然后这个任务被注册到了已存在的unpack和patch任务之间.</p>
+</div><div></div><div><p>do_unpack_extra(){</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;cp -pPR ${WORKDIR}/linux/* ${S}</p>
+</div><div><p>}</p>
+</div><div><p>addtask unpack_extra after do_unpack before do_patch</p>
+</div><div></div><div><p>注意:</p>
+</div><div><p>addtask里面并没有在unpack_extra前面加do,但是任务名称一定要加do,如果addtask里的也加了</p>
+</div><div><p>do或者错了,不会产生任何错误,然后也不会实际运行.</p>
+</div><div></div><div><p>使用重载:</p>
+</div><div><p>重载在上面已经讲述过了.不过重载还允许对于特定的目标机器,发行版,平台来实现.</p>
+</div><div></div><div><p>这个不怎么常用.下面从udev里来的例子是想要只针对h2200机器来给install任务追加一个附加安装的文件:</p>
+</div><div><p>do_install_append_h2200() {</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;install -m 0644 ${WORKDIR}/50-hostap_cs.rules
+${D}${sysconfdir}/udev/rules.d/50-hostap_cs.rules</p>
+</div><div><p>}</p>
+</div></div><div></div><div></div><div><div><p>8.13类：分离常用的功能</p>
+</div><div></div><div><p>通常一个特定的模式会在不止一个&quot;配方&quot;里使用,或者有时候需要用基于python的复杂的函数功能来达到某种需要.通常</p>
+</div><div><p>这就是通过类来实现的.类是的实现可以在OE代码的classes子目录里找到.</p>
+</div><div></div><div><p>对类及其功能要引起足够的重视,因为类可以:</p>
+</div><div><p>* 节省开发者的时间,要不然这些事情就需要自己来做了;</p>
+</div><div><p>*
+因为太多的东西在后台执行,好多配方就理解起来很困难了,除非你自己很清楚类也知道它们如何工作;</p>
+</div><div><p>* 更多事情是如何继续的细节可以通过了解类的实现来理解.</p>
+</div><div></div><div><p>类是通过继承(inherit)方法使用的.下面从curl&quot;配方&quot;来的例子就使用了3个类:</p>
+</div><div></div><div><p>inherit autotools pkgconfig binconfig</p>
+</div><div></div><div><p>这里使用了三个单独的类服务:</p>
+</div><div></div><div><p>autotools</p>
+</div><div><p>autotools 类用于使用GNU配置(autoconf)工具来进行配置和编译的软件.</p>
+</div><div></div><div><p>pkgconfig</p>
+</div><div><p>pkgconfig
+类用于处理.pc文件,这些程序会使用pkg-config来为想要链接它的软件提供信息.</p>
+</div><div></div><div><p>binconfig</p>
+</div><div><p>binconfig
+类用于处理&lt;name&gt;-config文件,这些程序使用这个程序来对要链接它的软件提供信息.</p>
+</div><div></div><div><p>每个类都是在classes子目录里实现的,名字为&lt;classname&gt;.bbclass,这些类的特定细节需要进一步讨论,不过</p>
+</div><div><p>有时候想要理解整个类并不那么容易.一些类的细节在本手册中有讲述.</p>
+</div><div></div><div><p>8.14暂存：为编译配置头文件和库</p>
+</div><div></div><div><p>暂存是对是对一些文件的中间处理以让它们对于其他&quot;配方&quot;来说可用,比如头文件和库.这个跟安装不同,因为安装是为了</p>
+</div><div><p>打包准备的.暂存是为了在主机上准备好东西以备后面编译程序之用.</p>
+</div><div></div><div><p>这里以bzip2为例,你可以看到它暂存了头文件和库:</p>
+</div><div><p>do_stage () {</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;install -m 0644 bzlib.h ${STAGING_INCDIR}/</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;oe_libinstall -a -so libbz2 ${STAGING_LIBDIR}</p>
+</div><div><p>}</p>
+</div><div></div><div><p>oe_libinstall方法在方法一节来描述.它用来安装库文件(这里是到暂存目录).暂存相关的变量会自动定义为正确的</p>
+</div><div><p>暂存位置.这里我们使用的是主暂存变量:</p>
+</div><div></div><div><p>STAGING_INCDIR</p>
+</div><div><p>这里是暂存头文件要安装到的位置.这相当于标准的/usr/include目录.</p>
+</div><div></div><div><p>STAGING_LIBDIR</p>
+</div><div><p>这个是暂存库文件安装的位置.相当于标准的/usr/lib目录.</p>
+</div><div></div><div><p>其他的暂存相关变量在 9章的暂存目录一节里有描述.</p>
+</div><div></div><div><p>在tmp下面查看staging目录你可以看到bzip2配方执行后的效果:</p>
+</div><div><p>$ find tmp/staging -name '*bzlib*'</p>
+</div><div><p>tmp/staging/sh4-linux/include/bzlib.h</p>
+</div><div><p>$ find tmp/staging -name '*libbz*'</p>
+</div><div><p>tmp/staging/sh4-linux/lib/libbz2.so</p>
+</div><div><p>tmp/staging/sh4-linux/lib/libbz2.so.1.0</p>
+</div><div><p>tmp/staging/sh4-linux/lib/libbz2.so.1</p>
+</div><div><p>tmp/staging/sh4-linux/lib/libbz2.so.1.0.2</p>
+</div><div><p>tmp/staging/sh4-linux/lib/libbz2.a</p>
+</div><div></div><div><p>stage(暂存)的相关变量在编译其他软件包的时候也会使用,我们来看看gnupg配方历史用bzip2的相关项.</p>
+</div><div><p>DEPENDS = &quot;zlib bzip2&quot;</p>
+</div><div><p>...</p>
+</div><div><p>EXTRA_OECONF = &quot;--disable-ldap \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;--with-zlib=${STAGING_LIBDIR}/.. \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;--with-bzip2=${STAGING_LIBDIR}/.. \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;--disable-selinux-support&quot;</p>
+</div><div></div><div><p>bzip2在这里两处都有涉及:</p>
+</div><div></div><div><p>DEPENDS</p>
+</div><div><p>你应该还记得DEPENDS定义的是构建时依赖.这里bzip2暂存的头文件和库在编译gnupg时就要用到.</p>
+</div><div><p>因此我们就需要确保bzip2配方运行过了而且相关文件也进了暂存目录,在DEPENDS里添加bzip2依赖</p>
+</div><div><p>就会让这些事情就绪.</p>
+</div><div></div><div><p>EXTRA_OECONF</p>
+</div><div></div><div><p>这个变量会被autotools
+类使用给configure脚本提供额外的配置参数.在gnupg里就是告诉bzip2</p>
+</div><div><p>的头文件和目录在哪里.这个是通过--with-bzip2来实现的.这里就是指向头文件和库所在的目录.如果</p>
+</div><div><p>没有这个选项,编译的时候gnupg的配置脚本就会尝试搜寻主机目录了.</p>
+</div><div></div><div><p>记住,暂存是用来准备头文件,库给其他配方使用的,库和头文件是最常见的要暂存的东西了,有时候pkgconfig文件也要</p>
+</div><div><p>暂存,对于本地包,二进制文件也需要暂存.</p>
+</div><div></div><div></div><div><p>8.15自动配置：autotools主题</p>
+</div><div></div><div><p>这一节需要等待完成:</p>
+</div><div><p>* 关于构建autoconf软件包</p>
+</div><div><p>* EXTRA_OECONF</p>
+</div><div><p>* /usr/include,/usr/lib的问题.</p>
+</div><div><p>* 配置以搜寻暂存区域.</p>
+</div><div><p>* -L${STAGING_LIBDIR} vs ${TARGET_LDFLAGS}</p>
+</div><div><p>* 网络资源</p>
+</div></div><div></div><div><p>8.16安装脚本：运行脚本安装和移除包</p>
+</div><div></div><div><div><p>打包系统比如.ipkg和.deb支持在软件安装或者移除的时候执行安装前和安装后,移除前和移除后脚本.</p>
+</div><div></div><div><p>定义这些脚本就可以在合适的时间执行一些动作或者任务.通常的用法有:在安装的时候启动守护进程,</p>
+</div><div><p>卸载的时候停止进程,在安装的时候创建用户和组.registering and
+unregistering</p>
+</div><div><p>alternative implementations of commands and registering the need for
+volatiles.</p>
+</div><div></div><div><p>支持的脚本包括:</p>
+</div><div></div><div><p>preinst (安装前)</p>
+</div><div><p>preinstall脚本是在安装包的内容前安装东西.在安装前包里的内容显然是不可用的.</p>
+</div><div><p>安装前脚本通常不怎么使用.</p>
+</div><div></div><div><p>postinst (安装后)</p>
+</div><div><p>postinst脚本在安装了包的内容之后执行.在postinst期间,包的内容是可用的.通常</p>
+</div><div><p>安装后脚本用来创建目录,注册守护进程,启动守护进程,修正SUID二进制文件等.</p>
+</div><div></div><div><p>prerm</p>
+</div><div><p>prerm在卸载安装包之前执行.这个时候包的内容仍然是可用的.</p>
+</div><div></div><div><p>postrm</p>
+</div><div><p>postrm在卸载包之后执行.这个时候包的内容已经不存在了,所以不能在脚本里面使用.postrm</p>
+</div><div><p>通常用来做升级或者替换.(告知升级替换系统这个包不可用了,应该选择另外的包).</p>
+</div><div></div><div><p>脚本的注册使用如下形式的函数:</p>
+</div><div><p>pkg_&lt;脚本名&gt;_&lt;包名&gt;</p>
+</div><div></div><div><p>在下面ndisc6的例子中,为ndisc6创建的三个包注册了posinst脚本:</p>
+</div><div><p># Enable SUID bit for applications that need it</p>
+</div><div><p>pkg_postinst_${PN}-rltraceroute6 () {</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;chmod 4555 ${bindir}/rltraceroute6</p>
+</div><div><p>}</p>
+</div><div><p>pkg_postinst_${PN}-ndisc6 () {</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;chmod 4555 ${bindir}/ndisc6</p>
+</div><div><p>}</p>
+</div><div><p>pkg_postinst_${PN}-rdisc6 () {</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;chmod 4555 ${bindir}/rdisc6</p>
+</div><div><p>}</p>
+</div><div></div><div><p>注意:</p>
+</div><div><p>这些脚本是通过目标设备上的/bin/sh来执行的,通常就是典型的busybox
+sh,但是也可以是</p>
+</div><div><p>bash或者其他sh兼容的shell.无论何时你都不应该在你的脚本里使用bash扩展特性.</p>
+</div><div></div><div><p>注意有些类也会注册脚本.你声明的任何脚本都会在前面包含已经在类里面定义了的脚本.下面的类会产生</p>
+</div><div><p>特殊的脚本内容:</p>
+</div><div><p>update-rc.d</p>
+</div><div><p>这个类是守护程序用来注册他们的启动和初始化脚本的.</p>
+</div><div><p>具体细节在initscipts一节介绍.</p>
+</div><div></div><div><p>module</p>
+</div><div><p>这个类由linux内核模块使用.这个类在安装和卸载内核模块的时候调用depmod和update-modules</p>
+</div><div><p>命令.</p>
+</div><div></div><div><p>kernel</p>
+</div><div><p>这个类由linux内核使用.在安装和卸载内核的时候有很多事情要做.这个类正是产生这些脚本的.</p>
+</div><div></div><div><p>qpf</p>
+</div><div><p>这个类用两个安装和卸载qpf字体.这个类注册了一些在安装和卸载字体时候升级字体路径和字体缓存信息的脚本.</p>
+</div><div></div><div><p>update-alternatives</p>
+</div><div><p>这个类在一个文件可以由几个包来提供的时候使用.它告诉系统有另外的一个包可以用.替换系统将会建立一个到</p>
+</div><div><p>已有的正确替代品的链接.</p>
+</div><div></div><div><p>gtk-icon-cache</p>
+</div><div><p>这个类用来安装新的gtk图标.在安装和卸载包之后需要更新图标缓存.</p>
+</div><div></div><div><p>gconf</p>
+</div><div><p>&lt;官方文档空白&gt;</p>
+</div><div></div><div><p>package</p>
+</div><div><p>这个基础类由打包(packaging)类,比如.ipkg和.deb使用.这个类可能创建一些更新</p>
+</div><div><p>动态链接缓存的脚本.</p>
+</div><div></div><div><p>下面p3scan的示例说明了postinst脚本的用法.脚本创建了需要的用户和组,然后创建了一些临时目录.</p>
+</div><div><p>最后脚本使用了update-rc.d类注册了一个启动脚本.然后启动对应的守护进程.(调用update-rc.d的</p>
+</div><div><p>方法在alternatives一节里有描述)</p>
+</div><div></div><div><p>inherit autotools update-rc.d</p>
+</div><div></div><div><p>...</p>
+</div><div></div><div><p># Add havp's user and groups</p>
+</div><div><p>pkg_postinst_${PN} () {</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;grep -q mail: /etc/group || addgroup --system havp</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;grep -q mail: /etc/passwd || \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;adduser --disabled-password --home=${localstatedir}/mail
+--system \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;--ingroup mail --no-create-home -g &quot;Mail&quot; mail</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;/etc/init.d/populate-volatile.sh update</p>
+</div><div><p>}</p>
+</div><div></div><div><p>一些脚本有如下的形式:</p>
+</div><div><p>if [ x&quot;$D&quot; = &quot;x&quot; ]; then</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;...</p>
+</div><div><p>fi</p>
+</div><div></div><div><p>这是在测试安装目录D有没有定义,如果没有定义那么任何动作都不会执行.这种状况下安装目录就不会</p>
+</div><div><p>创建.这个用法的主要目的是阻止程序在生成根文件系统的时候被安装.这种情况下脚本就不能运行因为</p>
+</div><div><p>生成根文件系统是在主机上进行而不是在目标机器上进行的.如果一个包在安装根文件系统开始时候进行</p>
+</div><div><p>那么就需要使用alterntive方法来执行一些特定的动作(比如在passwd和group文件里面包含</p>
+</div><div><p>需要的用户和组).</p>
+</div></div><div></div><div></div><div><div><p>8.17配置文件</p>
+</div><div><p>作为包的一部分被安装的配置文件需要特殊的对待和处理.如果不做处理的话,一个包的新版本安装的时候会</p>
+</div><div><p>覆盖原来的配置文件,这样原来用户自己做的配置将会丢失.</p>
+</div><div></div><div><p>如果不希望发生这样的事情你需要告知包管理系统那些文件是配置文件.这些文件在安装覆盖的时候将会</p>
+</div><div><p>询问用户做处理,比如下面的例子:</p>
+</div><div></div><div><p>Downloading
+<a class="reference external" href="http://nynaeve.twibble.org/ipkg-titan-glibc//./p3scan_2.9.05d-r1_sh4.ipk">http://nynaeve.twibble.org/ipkg-titan-glibc//./p3scan_2.9.05d-r1_sh4.ipk</a></p>
+</div><div><p>&nbsp;&nbsp; &nbsp;Configuration file '/etc/p3scan/p3scan.conf'</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;==&gt; File on system created by you or by a script.</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;==&gt; File also in package provided by package maintainer.</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; What would you like to do about it ? &nbsp;Your options are:</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;Y or I &nbsp;: install the package maintainer's version</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;N or O &nbsp;: keep your currently-installed version</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;D &nbsp; &nbsp; : show the differences between the versions (if diff is
+installed)</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; The default action is to keep your current version.</p>
+</div><div><p>&nbsp;&nbsp; &nbsp;*** p3scan.conf (Y/I/N/O/D) [default=N] ?</p>
+</div><div></div><div><p>为了声明一个文件是配置文件.你需要在CONFFILES_&lt;包名&gt;变量里面用空格作为间隔列出那些配置文件.下面的clamav例子</p>
+</div><div><p>里有两个文件被标记为配置文件.</p>
+</div><div><p>CONFFILES_${PN}-daemon = &quot;${sysconfdir}/clamd.conf \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;${sysconfdir}/default/clamav-daemon&quot;</p>
+</div><div></div><div></div><div><p>注意${PN}-daemon包名的用法.${PN}这里会展开为clamav,所以这些配置文件是在clamav-daemon包里面的.</p>
+</div></div><div></div><div></div><div><p>8.18包之间的关系</p>
+</div><div></div><div><div><p>软件包格式ipkg,deb支持显式的包依赖关系.这包括冲突的包和需要的包.</p>
+</div><div></div><div><p>RRECOMMENDS</p>
+</div><div><p>用来指定其他那些包都需要在安装这个包之前安装.Generally this means while
+the recommended</p>
+</div><div><p>packages are not required they provide some sort of functionality which
+users would usually want.</p>
+</div><div></div><div><p>RCONFLICTS</p>
+</div><div><p>用来指定冲突于该包的软件包.两个冲突的包不可能被同时安装的上.</p>
+</div><div></div><div><p>RREPLACES</p>
+</div><div><p>用来指定当前包替换了一个使用不同名称的旧包.在安装包的时候被替换的包会被卸载掉,因为那个包</p>
+</div><div><p>不会再有用了.</p>
+</div><div></div><div><p>RSUGGESTS</p>
+</div><div><p>指定建议安装的包.这些包会跟要安装的包有些关系或者比较有用,但是并不强制安装.</p>
+</div><div></div><div><p>RPROVIDES</p>
+</div><div><p>用来指定一个包为运行时提供了什么.比如热插拔的支持由几个包支持的,例如udev,linux-hotplug.</p>
+</div><div><p>两者都为运行时提供了&quot;hotplug&quot;.所以任何需要&quot;hotplug&quot;支持的包简单的在它的RDEPENDS里声明</p>
+</div><div><p>&quot;hotplug&quot;即可.这项特性通常在发行版级别提供&quot;virtual/hotplug&quot;虚拟包的支持.</p>
+</div><div></div><div><p>PROVIDES</p>
+</div><div><p>用来显式的指定这个包在编译时提供了什么.这个通常在两个或者更多包提供相同功能的时候使用.</p>
+</div><div><p>比如在OE里我们有几个不同的X
+server,然后每个都声明提供&quot;virtual/xserver&quot;功能.因此,</p>
+</div><div><p>一个依赖于X
+server的包可以简单的在DEPENDS里声明&quot;virtual/xserver&quot;.这个在发行版级别</p>
+</div><div><p>指定了那个&quot;virtual/xserver&quot;的实现会被使用.</p>
+</div></div><div></div><div><p>8.19 Fakeroot: 需要 &quot;root&quot;身份</p>
+</div><div></div><div><div><p>有些时候包需要root权限来做一些事情,比如改变用户和组或者创建节点设备.Since
+OpenEmbedded will</p>
+</div><div><p>not keep the user and group information it's usually preferable to
+remove that</p>
+</div><div><p>from the makefiles. For device nodes it's usually preferable to create
+them from</p>
+</div><div><p>the initial device node lists or via udev configuration.</p>
+</div><div></div><div><p>不过你如果确实需要root身份才能做事情,那么你可以使用fakeroot来模拟一个root环境.</p>
+</div><div><p>使用fakeroot执行动作可以在任务之前加上fakeroot:</p>
+</div><div><p>fakeroot do_install() {</p>
+</div><div></div><div><p>因为这需要fakeroot首先存在,所以你应该添加一个fakeroot-native依赖:</p>
+</div><div><p>DEPENDS = &quot;fakeroot-native&quot;</p>
+</div><div></div><div><p>你可以参考fuse的配方.关于fakeroot的进一步信息你可以参照参考手册:fackeroot.</p>
+</div><div></div><div><p>8.20本地：为主机编译的包</p>
+</div><div></div><div><p>这节还需要完成:</p>
+</div><div><p>* 什么是一个本地包</p>
+</div><div><p>* 使用所需的非本地包</p>
+</div><div></div><div><p>8.21开发：开发“配方”的方法策略</p>
+</div><div></div><div><p>这节还需要完成:</p>
+</div><div><p>* 如何开发配方</p>
+</div><div><p>* 如何处理繁多的补丁</p>
+</div><div><p>* 如何处理网络文件的事宜</p>
+</div><div><p>* autotools事宜</p>
+</div></div><div></div><div></div><div></div><div><div><p>8.22高级的版本号：如何处理rc和per版本</p>
+</div><div></div><div><p>在指定一个包的rc和pre版本的时候需要注意一些事情.</p>
+</div><div><p>假设我们已经有了一个软件的1.5版本,然后你想添加一个新的1.6-rc1.</p>
+</div><div><p>* 1.5 : 已有版本</p>
+</div><div><p>* 1.6-rc1 : 新版本.</p>
+</div><div><p>如果新包被命名为1.6-rc1,开始可能一切ok,不过最后这个包正式发布的时候版本会是1.6.现在</p>
+</div><div><p>如果你创建包的1.6版本你会发现包的顺序是这样的:</p>
+</div><div><ol class="arabic simple">
+<li>1.5</li>
+</ol>
+</div><div></div><div><ol class="arabic simple" start="2">
+<li>1.6</li>
+</ol>
+</div><div></div><div><ol class="arabic simple" start="3">
+<li>1.6-rc</li>
+</ol>
+</div><div></div><div><p>这会导致一些包管理器比如ipkg认为1.6是老于rc的版本.在OE里正确命名一个包的pre和rc版本的</p>
+</div><div><p>方式是在先前的版本号后面用+加上新的版本号.所以1.6-rc1发布版将会是这样的版本号:</p>
+</div><div><p>* 1.5+1.6-rc1</p>
+</div><div></div><div><p>这样顺序就会变为:</p>
+</div><div><ol class="arabic simple">
+<li>1.5</li>
+</ol>
+</div><div></div><div><ol class="arabic simple" start="2">
+<li>1.5+1.6-rc1</li>
+</ol>
+</div><div></div><div><ol class="arabic simple" start="3">
+<li>1.6</li>
+</ol>
+</div><div></div><div><p>这是包管理系统所期待的正确的版本号.</p>
+</div><div></div><div><p>8.23 require/include：重用“配方”的内容</p>
+</div><div></div><div><p>在很多包里你都需要维护包的多个版本,不过这些配方经常是相同的或者只有一些少量的地方不同.</p>
+</div><div></div><div><p>require和include宏可以用来在一个文件中包含另外一个文件的内容.你应该多注意和尝试使用这种</p>
+</div><div><p>方式来添加一个配方的新版本.</p>
+</div><div></div><div><p>注意:</p>
+</div><div><p>require和include具有相同的功能--包含另外一个文件的内容到配方中来.这两个命令</p>
+</div><div><p>的不同之处在于require在要包含的文件不存在的时候将会产生一个错误.因此include</p>
+</div><div><p>不应该在新的配方里使用.</p>
+</div><div></div><div><p>例如 clamav配方:</p>
+</div><div><p>require clamav.inc</p>
+</div><div></div><div><p>PR = &quot;r0&quot;</p>
+</div><div></div><div><p>注意,所有配方功能都在clamav.inc文件里提供.仅仅配方的发布号在配方里定义.每个配方都包含</p>
+</div><div><p>了clamav.inc文件以免重复编写那些功能.这也意味着一个新版本的发布仅仅是拷贝了配方的内容</p>
+</div><div><p>然后把发布号重改了.</p>
+</div><div></div><div><p>下面的iproute2例子里,配方添加了一个附加的补丁文件.这个并没有在include的文件里定义.</p>
+</div><div><p>这些补丁仅仅是针对新版本软件的,所以只在它自己的配方里添加:</p>
+</div><div><p>PR = &quot;r1&quot;</p>
+</div><div></div><div><p>SRC_URI += &quot;<a class="reference external" href="file://iproute2-2.6.15_no_strip.diff;striplevel=0">file://iproute2-2.6.15_no_strip.diff;striplevel=0</a> \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a class="reference external" href="file://new-flex-fix.patch">file://new-flex-fix.patch</a>&quot;</p>
+</div><div></div><div><p>require iproute2.inc</p>
+</div><div></div><div><p>DATE = &quot;060323&quot;</p>
+</div><div></div><div><p>下面从cherokee来的例子里,同样也有为此版本添加的补丁,不过这个还示例了为这个版本定义了</p>
+</div><div><p>一个configure任务.这样这个任务就会重载include文件里的.</p>
+</div><div><p>PR = &quot;r7&quot;</p>
+</div><div></div><div><p>SRC_URI_append = &quot;<a class="reference external" href="file://configure.patch">file://configure.patch</a> \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a class="reference external" href="file://Makefile.in.patch">file://Makefile.in.patch</a> \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a class="reference external" href="file://Makefile.cget.patch">file://Makefile.cget.patch</a> \</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a class="reference external" href="file://util.patch">file://util.patch</a>&quot;</p>
+</div><div></div><div><p>require cherokee.inc</p>
+</div><div></div><div><p>do_configure() {</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;gnu-configize</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;oe_runconf</p>
+</div><div><p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;sed -i 's:-L\$:-L${STAGING_LIBDIR} -L\$:' ${S}/*libtool</p>
+</div><div><p>}</p>
+</div></div><div></div><div></div><div><p>8.24Python语言：python的高级功能</p>
+</div><div><p>8.25初始化脚本:怎么处理守护进程</p>
+</div><div><p>8.26两者选一:怎样处理多个包使用相同的命令</p>
+</div><div><p>8.26.1.例子</p>
+</div><div><p>8.26.2.使用新的</p>
+</div><div><p>8.27转瞬即逝：如何处理/var目录</p>
+</div><div><p>8.27.1.声明</p>
+</div><div><p>8.27.2.写日志和日志文件</p>
+</div><div><p>8.27.3.摘要</p>
+</div><div><p>8.28其他杂项</p>
+</div><div></div><div><p>剩余章节翻译中。。。。。。。。。</p>
+</div><div></div>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+         </div><!--/span-->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

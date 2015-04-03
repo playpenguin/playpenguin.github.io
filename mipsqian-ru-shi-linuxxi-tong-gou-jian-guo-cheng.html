@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>mips嵌入式linux系统构建过程</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="dangbinghoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="PlayPenguin.Tech-花花企鹅.技术 ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">PlayPenguin.Tech-花花企鹅.技术 </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li class="active">
+                    <a href="/category/embedded.html">
+						<i class="icon-folder-open icon-large"></i>Embedded
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/life.html">
+						<i class="icon-folder-open icon-large"></i>Life
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/linux.html">
+						<i class="icon-folder-open icon-large"></i>Linux
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/misc.html">
+						<i class="icon-folder-open icon-large"></i>misc
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/qi-ta.html">
+						<i class="icon-folder-open icon-large"></i>其他
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/thoughts.html">
+						<i class="icon-folder-open icon-large"></i>thoughts
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/unixwen-dang-gong-ju.html">
+						<i class="icon-folder-open icon-large"></i>Unix文档工具
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+         <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>分类</h4></li>
+<li>
+<a href="/category/embedded.html">
+    <i class="icon-folder-open icon-large"></i>Embedded
+</a>
+</li>
+<li>
+<a href="/category/life.html">
+    <i class="icon-folder-open icon-large"></i>Life
+</a>
+</li>
+<li>
+<a href="/category/linux.html">
+    <i class="icon-folder-open icon-large"></i>Linux
+</a>
+</li>
+<li>
+<a href="/category/misc.html">
+    <i class="icon-folder-open icon-large"></i>misc
+</a>
+</li>
+<li>
+<a href="/category/qi-ta.html">
+    <i class="icon-folder-open icon-large"></i>其他
+</a>
+</li>
+<li>
+<a href="/category/thoughts.html">
+    <i class="icon-folder-open icon-large"></i>thoughts
+</a>
+</li>
+<li>
+<a href="/category/unixwen-dang-gong-ju.html">
+    <i class="icon-folder-open icon-large"></i>Unix文档工具
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<!-- <li class="tag-4">
+    <a href="/tag/embedded.html">
+        <i class="icon-tag icon-large"></i>embedded
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/seascope.html">
+        <i class="icon-tag icon-large"></i>seascope
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/oezhong-wen.html">
+        <i class="icon-tag icon-large"></i>OE中文
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/programming.html">
+        <i class="icon-tag icon-large"></i>programming
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pdf.html">
+        <i class="icon-tag icon-large"></i>pdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/jin-cheng-id.html">
+        <i class="icon-tag icon-large"></i>进程ID
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/jiao-cha-bian-yi.html">
+        <i class="icon-tag icon-large"></i>交叉编译
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/mips.html">
+        <i class="icon-tag icon-large"></i>mips
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/asoundrc.html">
+        <i class="icon-tag icon-large"></i>asound.rc
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/4560g.html">
+        <i class="icon-tag icon-large"></i>4560g
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pidof.html">
+        <i class="icon-tag icon-large"></i>pidof
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/openembedded.html">
+        <i class="icon-tag icon-large"></i>OpenEmbedded
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/txt2tags.html">
+        <i class="icon-tag icon-large"></i>txt2tags
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/parrot.html">
+        <i class="icon-tag icon-large"></i>parrot
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/shell.html">
+        <i class="icon-tag icon-large"></i>shell
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/ostinato.html">
+        <i class="icon-tag icon-large"></i>ostinato
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/life.html">
+        <i class="icon-tag icon-large"></i>Life
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/sync.html">
+        <i class="icon-tag icon-large"></i>sync
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/gong-ju-lian.html">
+        <i class="icon-tag icon-large"></i>工具链
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pgrep.html">
+        <i class="icon-tag icon-large"></i>pgrep
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/exvim.html">
+        <i class="icon-tag icon-large"></i>exvim
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/acer.html">
+        <i class="icon-tag icon-large"></i>acer
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/wen-dang-gong-ju.html">
+        <i class="icon-tag icon-large"></i>文档工具
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/wen-jian-xi-tong.html">
+        <i class="icon-tag icon-large"></i>文件系统
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/biao-ji.html">
+        <i class="icon-tag icon-large"></i>标记
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/markup.html">
+        <i class="icon-tag icon-large"></i>markup
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/ctex.html">
+        <i class="icon-tag icon-large"></i>ctex
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/libevent.html">
+        <i class="icon-tag icon-large"></i>libevent
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+ -->
+
+<li class="nav-header"><h4><i class="icon-external-link"></i>链接</h4></li>
+    <li><a href="http://elinux.org"><i class="icon-external-link"></i>elinux</a></li>
+    <li><a href="wiki.osdev.org"><i class="icon-external-link"></i>osdev</a></li>
+    <li><a href="http://sourceforge.net/p/nanorc"><i class="icon-external-link"></i>nanoRC</a></li>
+    <li><a href="http://sourceforge.net/projects/otob"><i class="icon-external-link"></i>otob</a></li>
+
+
+
+</ul>         </div><!--/.well -->
+
+         <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to mips嵌入式linux系统构建过程">
+                                        mips嵌入式linux系统构建过程
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2012-01-11T08:18:00+08:00">
+        <i class="icon-calendar"></i>三 11 一月 2012
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/embedded.html"><i class="icon-tag"></i>embedded</a>
+	<a href="/tag/linux.html"><i class="icon-tag"></i>Linux</a>
+	<a href="/tag/mips.html"><i class="icon-tag"></i>mips</a>
+</footer><!-- /.post-info -->                </div>
+                <p>mips平台的嵌入式linux构建，比较简明的步骤，包括nanoRC的使用，根文件系统的制作，不包括mips工具链的制作。</p>
+<div class="section" id="mips">
+<h2>&nbsp;1. mips交叉编译环境搭建</h2>
+<p>编译环境需要选择mips-2007-01-21,从
+&quot;这里&quot;:<a class="reference external" href="ftp://ftp.denx.de/pub">ftp://ftp.denx.de/pub</a>/eldk下载光盘iso,然后解压提取出整个环境,然后安装就可以了,安装指令:</p>
+<pre class="literal-block">
+install -d /your/toochain/path
+</pre>
+<p>然后设置path环境变量.</p>
+<pre class="literal-block">
+export PATH=/your/toochain/path/usr/bin:${PATH}
+</pre>
+<pre class="literal-block">
+对于gentoo 系统,可以
+
+&nbsp; &nbsp;  $ cat &gt; /etc/env.d/50mipstoolchain &lt;&lt; &quot;EOF&quot;
+&nbsp; &nbsp; &nbsp; &nbsp;PATH=&quot;/media/workspace/tools/eldk-mips-x.x/usr/bin&quot;
+</pre>
+<pre class="literal-block">
+然后
+&nbsp; &nbsp; &nbsp; &nbsp; sudo update-env
+
+并且重新login的你shell会话
+</pre>
+</div>
+<div class="section" id="id1">
+<h2>2. 内核编译</h2>
+<pre class="literal-block">
+从 www.kernel.org 下载标准内核linux-2.6.27.18.tar.bz2( or gz),
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tar xvf linux-2.6.27.18.tar.bz2; cd linux-2.6.27.18
+</pre>
+<p>接着,编译内核</p>
+<pre class="literal-block">
+ make ARCH=mips CROSS_COMPILE=mips_4KC- menuconfig
+ make ARCH=mips CROSS_COMPILE=mips_4KC- vmlinux
+ 或者编译内核bin文件
+ make ARCH=mips CROSS_COMPILE=mips_4KC- vmlinux.bin
+
+&nbsp;需要注意的是:
+跟ARM不同的是mips内核的二进制文件不称为zImage,bzImage,uImage之类.
+</pre>
+</div>
+<div class="section" id="cfe">
+<h2>3. CFE编译及其使用</h2>
+<pre class="literal-block">
+CFE的编译和使用 BRCM有相关详细的手册, 不过需要注意的是 CFE的编译必须使用BRCM 提供的 sb1-elf的工具链
+
+     cd cfe-ntsw-5.1.3/build/broadcom/xxx/
+     TOOLPREFIX=/media/workspace/tools/broadcom_2006a_410/i686-pc-linux-gnu/bin/sb1-elf- CFG_LITTLE=0 make
+</pre>
+<div class="section" id="cfelinux">
+<h3>3.1 CFE启动linux</h3>
+<p>mips的内核镜像跟ARM不同,不是zImage,内核里面标准的make
+vmlinux.bin是objcopy出来的bin文件,用CFE貌似无法启动bin格式的,我们只能用elf的,但是默认处理的vmlinx差不多40M,太大,需要先strip,可以得到4M左右的elf内核,如果还嫌大,可以再gzip压缩,CFE可以用boot
+-z -elf来解压elf压缩的内核并运行然后, +*启动mips里面必须用 go 到
+制定的entry*+ (这个可以用启动elf的方式看提示信息得到,或者内核代码)</p>
+<p>网络配置</p>
+<pre class="literal-block">
+CFE&gt; setenv -p netconf &quot;ifconfig eth1 -addr=192.168.0.121 -mask=255.255.255.0 -gw=192.168.0.1 -dns=192.168.0.1&quot;
+CFE&gt; netconf
+linux内核cmdline参数设置
+CFE&gt; setenv -p 'cmdlNFS setenv LINUX_CMDLINE &quot;console=ttyS0,115200 root=/dev/nfs
+rw ip=192.168.0.121:::255.255.255.0:jz-CMC:eth1:off
+nfsroot=192.168.0.100:/home/workArea/mips/target&quot;'
+CFE&gt; load -z -elf -tftp 192.168.0.140:vmlinuz
+CFE&gt; go 800056e0 &nbsp;( kernel entry)
+或者
+CFE&gt; boot -z -elf -tftp 192.168.0.140:vmlinuz
+</pre>
+</div>
+<div class="section" id="id2">
+<h3>3.2 CFE的使用注意</h3>
+<div class="line-block">
+<div class="line"># 使用ctrl+C组合键结束CFE的自动启动可以进入命令行模式.</div>
+<div class="line"># 在CFE里面环境变量本身就是命令,所以没有run 这个命令</div>
+<div class="line"># 变量的设置使用setenv 来设置, 在CFE里面'',&quot;&quot;的作用跟linux bash相同, ''不会把其中的变量扩展,&quot;&quot;会扩展</div>
+<div class="line"># clearenv会立马清除掉所有加载到内存的和NVRAM的变量,所以小心点用.</div>
+<div class="line"># CFE的自动启动是用的变量STARTUP.</div>
+</div>
+</div>
+<div class="section" id="vmlinuz">
+<h3>3.3 vmlinuz内核制作步骤</h3>
+<p>在内核编译完成之后,到内核顶层目录下面得到vmlinux,然后用下面的命令来得到vmlinuz</p>
+<pre class="literal-block">
+mips_4KC-strip vmlinux -o vmlinux.strip
+gzip -c vmlinux.strip &gt; vmlinuz
+</pre>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>4. 基础系统</h2>
+</div>
+<div class="section" id="target-root">
+<h2>4.0 创建target root 目录结构</h2>
+<pre class="literal-block">
+$ cat create-root.sh
+# target_root
+</pre>
+<pre class="literal-block">
+TARGET_ROOT_DIR=&quot;./target&quot;
+</pre>
+<pre class="literal-block">
+mkdir -pv ${TARGET_ROOT_DIR}/{bin,boot,dev,{etc/,}opt,home,lib,mnt}
+mkdir -pv ${TARGET_ROOT_DIR}/{proc,media/{floppy,cdrom},sbin,srv,sys}
+mkdir -pv ${TARGET_ROOT_DIR}/var/{lock,log,mail,run,spool}
+mkdir -pv ${TARGET_ROOT_DIR}/var/{opt,cache,lib/{misc,locate},local}
+install -dv -m 0750 ${TARGET_ROOT_DIR}/root
+install -dv -m 1777 ${TARGET_ROOT_DIR}{/var,}/tmp
+mkdir -pv ${TARGET_ROOT_DIR}/usr/{,local/}{bin,include,lib,sbin,src}
+mkdir -pv ${TARGET_ROOT_DIR}/usr/{,local/}share/{doc,info,locale,man}
+mkdir -pv ${TARGET_ROOT_DIR}/usr/{,local/}share/{misc,terminfo,zoneinfo}
+mkdir -pv ${TARGET_ROOT_DIR}/usr/{,local/}share/man/man{1,2,3,4,5,6,7,8}
+for dir in ${TARGET_ROOT_DIR}/usr{,/local}; do
+ln -sfnv share/{man,doc,info} ${dir}
+done
+</pre>
+<pre class="literal-block">
+touch ${TARGET_ROOT_DIR}/var/run/utmp \
+ ${TARGET_ROOT_DIR}/var/log/{btmp,lastlog,wtmp}
+ chmod -v 664 ${TARGET_ROOT_DIR}/var/run/utmp \
+ ${TARGET_ROOT_DIR}/var/log/lastlog
+</pre>
+<pre class="literal-block">
+# neccesery file
+cat &gt; ${TARGET_ROOT_DIR}/etc/passwd &lt;&lt; &quot;EOF&quot;
+root::0:0:root:/root:/bin/sh
+EOF
+</pre>
+<pre class="literal-block">
+cat &gt; ${TARGET_ROOT_DIR}/etc/group &lt;&lt; &quot;EOF&quot;
+root:x:0:
+bin:x:1:
+sys:x:2:
+kmem:x:3:
+tty:x:4:
+tape:x:5:
+daemon:x:6:
+floppy:x:7:
+disk:x:8:
+lp:x:9:
+dialout:x:10:
+audio:x:11:
+video:x:12:
+utmp:x:13:
+usb:x:14:
+cdrom:x:15:
+EOF
+</pre>
+<div class="section" id="busybox">
+<h3>&nbsp;4.1 busybox编译</h3>
+<div class="line-block">
+<div class="line">busybox的编译和配置请参看底层系统与驱动项目wiki,跟ARM过程类似, 只是编译的时候由于mips结构基本都是bigendian的,所以链接库的时候可能要遇到一些麻烦.</div>
+<div class="line">经过测试,使用eldk mips 2007-01-21工具链编译busybox不能编译busybox为共享库模式,编译busybox共享库会出现链接错误</div>
+</div>
+<pre class="literal-block">
+make ARCH=mips CROSS_COMPILE=mips_4KC- menuconfig
+</pre>
+<pre class="literal-block">
+如果内核比较老 不支持ubi等， 去掉nand ubi ,mtd相关命令,保存就可以编译了
+</pre>
+<pre class="literal-block">
+make ARCH=mips CROSS_COMPILE=mips_4KC-
+安装
+make ARCH=mips CROSS_COMPILE=mips_4KC- CONFIG_PREIFX=/your/path/ install
+</pre>
+</div>
+<div class="section" id="id4">
+<h3>&nbsp;4.2 创建设备节点</h3>
+<pre class="literal-block">
+创建必要的两个节点，确保init的时候shell脚本可以执行。
+
+ sudo mknod -m 0666 target/dev/null c 1 3
+ sudo mknod -m 0600 target/dev/console c 5 1
+</pre>
+</div>
+<div class="section" id="rc">
+<h3>4.3 安装rc系统</h3>
+<div class="line-block">
+<div class="line">一般的linux系统我们都需要使用一个rc系统，通过shell脚本的形式来初始化系统，一步步运行一些基本的程序或者服务，</div>
+<div class="line-block">
+<div class="line">如果你的系统要求不是很高，并且你不喜欢把问题搞的很复杂，那么你可以简单写个shell脚本来处理这些事情，当然，前提是</div>
+<div class="line">你知道系统是如何启动的。</div>
+<div class="line">如果你倾向于使用rc系统，那么可以选择你自己中意的rc来做，不过这里我们就无法一一讨论了，这里我们安装nanoRC，</div>
+<div class="line">安装nanoRC， 从 <a class="reference external" href="http://sourceforge.net/p/nanorc/">http://sourceforge.net/p/nanorc/</a> 下载nanoRC源码，解压之后按照readme安装到etc的目录里面。</div>
+</div>
+</div>
+<p><strong>需要注意的是：</strong></p>
+<ul class="simple">
+<li>&nbsp;由于此内核版本比较低，并不能支持devtmpfs，所以设备节点的创建需要使用busybox的mdev来进行。</li>
+<li>&nbsp;因为<em>mips的tty设备命名有所不同，你需要将etc/inittab里面的tty1,2之类的名称做更正。</em></li>
+<li>去掉etc/init.d/boot里面的mdev的操作步骤,使能mdev操作</li>
+</ul>
+<pre class="literal-block">
+/bin/mount -t tmpfs -o mode=0755 none /dev
+        /bin/mkdir /dev/shm
+        /bin/mount -t tmpfs -o mode=0755 /var /var
+        /bin/echo &quot;/sbin/mdev&quot; &amp;gt; /proc/sys/kernel/hotplug
+        rc_do_msg &quot;Starting mdev... &quot;
+        /sbin/mdev -s
+        rc_status &quot;${DE_msg}&quot;
+</pre>
+</div>
+<div class="section" id="id5">
+<h3>4.4 启动基本系统</h3>
+<p>4.4.1 NFS启动</p>
+<p>一般情况下，
+我们在开发的过程中会选择使用NFS-root的方式启动linux，方便调试，节省烧写制作镜像所耗费的大量时间，在CFE中</p>
+<pre class="literal-block">
+tftplinux boot -noclose -elf 192.168.0.100:vmlinux
+netconf ifconfig eth1 -addr=192.168.0.101 -mask=255.255.255.0 -gw=192.168.0.1 -dns=192.168.0.1
+STARTUP sleep 2;nfsboot
+nfsboot netconf;cmdlNFS&amp;&amp;tftplinux
+cmdlNFS setenv LINUX_CMDLINE &quot;console=ttyS0,115200 root=/dev/nfs rw ip=192.168.0.101:192.168.0.100:192.168.0.1:255.255.255.0:jzCMC:eth1 nfsroot=/home/workArea/cmc/target&quot;
+</pre>
+<p>设置类似的环境变量来从NFS启动linux。</p>
+<p>NFS-root经常会遇到一些麻烦，比如出现</p>
+<pre class="literal-block">
+Looking up port of RPC 100003/2 on 192.168.0.100
+rpcbind: server 192.168.0.100 not responding, timed out
+Root-NFS: Unable to get nfsd port number from server, using default
+Looking up port of RPC 100005/1 on 192.168.0.100
+rpcbind: server 192.168.0.100 not responding, timed out
+Root-NFS: Unable to get mountd port number from server, using default
+Root-NFS: Server returned error -5 while mounting /home/workspace/mips/target
+VFS: Unable to mount root fs via NFS, trying floppy.
+VFS: Cannot open root device &quot;nfs&quot; or unknown-block(2,0)
+Please append a correct &quot;root=&quot; boot option; here are the available partitions:
+1f00 1024 mtdblock0 (driver?)
+1f01 128 mtdblock1 (driver?)
+1f02 60288 mtdblock2 (driver?)
+Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(2,0)
+</pre>
+<div class="line-block">
+<div class="line">类似的错误， RPC timeout，这种错误一般是NFS服务器配置有问题，不过如果你确定NFS可以在其他机器上挂载，那么请检查内核里NFS的配置选项，</div>
+<div class="line">如果是NFS-root，不需要启用nfsserver，也不需要v4的功能，secure-RPC也不需要，如果这样还是不行的话，你可以试试ping下你的目标板，</div>
+<div class="line">如果网络ping不通那就检查你的kernel参数里的网络配置，我开始一直都是这样的错误，但是其实不是我的RP有问题，发现是局域网的问题，在100上</div>
+<div class="line">arp -d ip 之后就立马挂载成功了。</div>
+</div>
+<p>如果一切顺利，那么你应该可以得到一个支持login的系统了</p>
+</div>
+</div>
+
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+         </div><!--/span-->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

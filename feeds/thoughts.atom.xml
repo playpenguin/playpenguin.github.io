@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术</title><link href="/" rel="alternate"></link><link href="/feeds/thoughts.atom.xml" rel="self"></link><id>/</id><updated>2012-03-14T08:24:00+08:00</updated><entry><title>学习-资源</title><link href="/xue-xi-zi-yuan.html" rel="alternate"></link><updated>2012-03-14T08:24:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-03-14:xue-xi-zi-yuan.html</id><summary type="html">&lt;div class="section" id="linux"&gt;
+&lt;h2&gt;Linux下的工作&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;IDE&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;python -- eric&lt;/p&gt;
+&lt;p&gt;perl&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; -- padre&lt;/p&gt;
+&lt;p&gt;cpp/c,&amp;nbsp; -- codeblocks, Eclips CDT, codelite, anjuta, Geany, medit as
+IDE, gedit with plugins.&lt;/p&gt;
+&lt;p&gt;C#&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp; -- mono develop&lt;/p&gt;
+&lt;p&gt;exVim&amp;nbsp;&amp;nbsp; -- Vim IDE&lt;/p&gt;
+&lt;ol class="arabic simple" start="2"&gt;
+&lt;li&gt;Libs&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;glib for c (unix, mingw).&lt;/p&gt;
+&lt;p&gt;libevent : event driven software desgin lib for C/C++&lt;/p&gt;
+&lt;p&gt;libsig++: event lib for C++&lt;/p&gt;
+&lt;ol class="arabic simple" start="3"&gt;
+&lt;li&gt;debug&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;DDD/ Nemiver , gui for GDB.&lt;/p&gt;
+&lt;p&gt;4 . hex editor : ghex.&lt;/p&gt;
+&lt;ol class="arabic simple" start="5"&gt;
+&lt;li&gt;calculator : galculator.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;6 . sqlite database man. view : sqliteman.&lt;/p&gt;
+&lt;ol class="arabic simple" start="7"&gt;
+&lt;li&gt;network: wireshark, ostinato.&lt;/li&gt;
+&lt;li&gt;diff: meld.&lt;/li&gt;
+&lt;li&gt;mind:&amp;nbsp; freemind.&lt;/li&gt;
+&lt;li&gt;ui embedded : disko, directfb, efl, clutter.&lt;/li&gt;
+&lt;li&gt;photo import management: darktable. gimp, inkscape.&lt;/li&gt;
+&lt;li&gt;html editing : kompozer&lt;/li&gt;
+&lt;li&gt;term: terminator, sreen.&lt;/li&gt;
+&lt;li&gt;code analy : seascope.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;15. enginer: kicad, fritzing, spice-ng,&amp;nbsp; scilab, R, maxima. python as a
+tool.&lt;/p&gt;
+&lt;ol class="arabic simple" start="16"&gt;
+&lt;li&gt;web : webtoolkit : Wt.&lt;/li&gt;
+&lt;li&gt;Code Generation:&amp;nbsp; GNU autogen; CodeSmith Generator&lt;/li&gt;
+&lt;li&gt;数模与仿真: Scilab &amp;amp;&amp;amp; &lt;strong&gt;Scicos&lt;/strong&gt;: Block diagram modeler/simulator&lt;/li&gt;
+&lt;li&gt;RPC/CORBA (远程过程调用与分布式编程)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;libevent, Gnome Orbit2 (&lt;a class="reference external" href="http://projects.gnome.org/ORBit2/"&gt;http://projects.gnome.org/ORBit2/&lt;/a&gt;)， Sun
+RPC(common unix).&lt;/p&gt;
+&lt;p&gt;CORBA:
+&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture"&gt;http://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture&lt;/a&gt;&lt;/p&gt;
+&lt;ol class="arabic simple" start="20"&gt;
+&lt;li&gt;SWIG 语言之间接口转换： &lt;a class="reference external" href="http://www.swig.org/"&gt;http://www.swig.org/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;h2&gt;数学工具&lt;/h2&gt;
+&lt;p&gt;sclilab数值计算, maxima代数系统, Rstudio(R)统计学,
+octave画图的,gnuplot,genius, Sage(python
+集合所有c，cpp等写的数学系统·「我喜欢，嘿嘿！」号称是matlab,
+mapple等的替代品), GNU texmacs&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id3"&gt;
+&lt;h2&gt;设计模式&lt;/h2&gt;
+&lt;p&gt;MDA, DDD, SOA&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="sites"&gt;
+&lt;h2&gt;Sites&lt;/h2&gt;
+&lt;p&gt;wikibooks:&amp;nbsp; &lt;a class="reference external" href="http://www.wikibooks.org"&gt;http://www.wikibooks.org&lt;/a&gt;&lt;/p&gt;
+&lt;div class="section" id="ebooks"&gt;
+&lt;h3&gt;eBooks&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.flazx.us/"&gt;http://www.flazx.us/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://worldebookfair.com/Collections.aspx"&gt;http://worldebookfair.com/Collections.aspx&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://asiaing.com/ebooks/20.html"&gt;http://asiaing.com/ebooks/20.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.pdfshu.org"&gt;http://www.pdfshu.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.olezu.com/Ebooks/"&gt;http://www.olezu.com/Ebooks/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Linux-Unix设计思想 Linux嵌入式系统高级程序设计&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Think what programming (languages) really do ? &gt; translations.</title><link href="/think-what-programming-languages-really-do-translations.html" rel="alternate"></link><updated>2011-12-27T01:53:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-12-27:think-what-programming-languages-really-do-translations.html</id><summary type="html">&lt;p&gt;We write programs everyday, and then compile or &amp;quot;run&amp;quot; directly,
+&lt;strong&gt;think what really programming doing&lt;/strong&gt; ?&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt; Translations.
+&lt;/pre&gt;
+&lt;p&gt;yes, a Cpp program might be 1st translated into C, and then &amp;nbsp;AS, and
+then machine code. A shell script can be &amp;quot;run&amp;quot; directly, but it need
+bash to translate. so, everything on computer might be translations.&lt;/p&gt;
+&lt;p&gt;And, What would it be if we use parrot for the translation ? Imaging a
+whole system based on parrot, you write C or Cpp programs, or Python3,
+or Perl 6, and&lt;/p&gt;
+&lt;p&gt;then directly &amp;quot;run&amp;quot; on parrot, and you can even write a doc in markdown
+and then&lt;/p&gt;
+&lt;p&gt;make parrot to translate for you to html or pdf. this is crazy !&lt;/p&gt;
+&lt;p&gt;OK, I'm imaging this... &amp;nbsp;what about you ?&lt;/p&gt;
+</summary><category term="parrot"></category><category term="programming"></category></entry></feed>

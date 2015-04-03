@@ -1,0 +1,3194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>[原创]OpenEmbedded 中文手册-第一部分</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="dangbinghoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="PlayPenguin.Tech-花花企鹅.技术 ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">PlayPenguin.Tech-花花企鹅.技术 </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li class="active">
+                    <a href="/category/embedded.html">
+						<i class="icon-folder-open icon-large"></i>Embedded
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/life.html">
+						<i class="icon-folder-open icon-large"></i>Life
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/linux.html">
+						<i class="icon-folder-open icon-large"></i>Linux
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/misc.html">
+						<i class="icon-folder-open icon-large"></i>misc
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/qi-ta.html">
+						<i class="icon-folder-open icon-large"></i>其他
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/thoughts.html">
+						<i class="icon-folder-open icon-large"></i>thoughts
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/unixwen-dang-gong-ju.html">
+						<i class="icon-folder-open icon-large"></i>Unix文档工具
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+         <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>分类</h4></li>
+<li>
+<a href="/category/embedded.html">
+    <i class="icon-folder-open icon-large"></i>Embedded
+</a>
+</li>
+<li>
+<a href="/category/life.html">
+    <i class="icon-folder-open icon-large"></i>Life
+</a>
+</li>
+<li>
+<a href="/category/linux.html">
+    <i class="icon-folder-open icon-large"></i>Linux
+</a>
+</li>
+<li>
+<a href="/category/misc.html">
+    <i class="icon-folder-open icon-large"></i>misc
+</a>
+</li>
+<li>
+<a href="/category/qi-ta.html">
+    <i class="icon-folder-open icon-large"></i>其他
+</a>
+</li>
+<li>
+<a href="/category/thoughts.html">
+    <i class="icon-folder-open icon-large"></i>thoughts
+</a>
+</li>
+<li>
+<a href="/category/unixwen-dang-gong-ju.html">
+    <i class="icon-folder-open icon-large"></i>Unix文档工具
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<!-- <li class="tag-4">
+    <a href="/tag/embedded.html">
+        <i class="icon-tag icon-large"></i>embedded
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/seascope.html">
+        <i class="icon-tag icon-large"></i>seascope
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/oezhong-wen.html">
+        <i class="icon-tag icon-large"></i>OE中文
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/programming.html">
+        <i class="icon-tag icon-large"></i>programming
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pdf.html">
+        <i class="icon-tag icon-large"></i>pdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/jin-cheng-id.html">
+        <i class="icon-tag icon-large"></i>进程ID
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/jiao-cha-bian-yi.html">
+        <i class="icon-tag icon-large"></i>交叉编译
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/mips.html">
+        <i class="icon-tag icon-large"></i>mips
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/asoundrc.html">
+        <i class="icon-tag icon-large"></i>asound.rc
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/4560g.html">
+        <i class="icon-tag icon-large"></i>4560g
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pidof.html">
+        <i class="icon-tag icon-large"></i>pidof
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/openembedded.html">
+        <i class="icon-tag icon-large"></i>OpenEmbedded
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/txt2tags.html">
+        <i class="icon-tag icon-large"></i>txt2tags
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/parrot.html">
+        <i class="icon-tag icon-large"></i>parrot
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/shell.html">
+        <i class="icon-tag icon-large"></i>shell
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/ostinato.html">
+        <i class="icon-tag icon-large"></i>ostinato
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/life.html">
+        <i class="icon-tag icon-large"></i>Life
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/sync.html">
+        <i class="icon-tag icon-large"></i>sync
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/gong-ju-lian.html">
+        <i class="icon-tag icon-large"></i>工具链
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pgrep.html">
+        <i class="icon-tag icon-large"></i>pgrep
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/exvim.html">
+        <i class="icon-tag icon-large"></i>exvim
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/acer.html">
+        <i class="icon-tag icon-large"></i>acer
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/wen-dang-gong-ju.html">
+        <i class="icon-tag icon-large"></i>文档工具
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/wen-jian-xi-tong.html">
+        <i class="icon-tag icon-large"></i>文件系统
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/biao-ji.html">
+        <i class="icon-tag icon-large"></i>标记
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/markup.html">
+        <i class="icon-tag icon-large"></i>markup
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/ctex.html">
+        <i class="icon-tag icon-large"></i>ctex
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/libevent.html">
+        <i class="icon-tag icon-large"></i>libevent
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+ -->
+
+<li class="nav-header"><h4><i class="icon-external-link"></i>链接</h4></li>
+    <li><a href="http://elinux.org"><i class="icon-external-link"></i>elinux</a></li>
+    <li><a href="wiki.osdev.org"><i class="icon-external-link"></i>osdev</a></li>
+    <li><a href="http://sourceforge.net/p/nanorc"><i class="icon-external-link"></i>nanoRC</a></li>
+    <li><a href="http://sourceforge.net/projects/otob"><i class="icon-external-link"></i>otob</a></li>
+
+
+
+</ul>         </div><!--/.well -->
+
+         <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to [原创]OpenEmbedded 中文手册-第一部分">
+                                        [原创]OpenEmbedded 中文手册-第一部分
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2011-12-22T01:39:00+08:00">
+        <i class="icon-calendar"></i>四 22 十二月 2011
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/linux.html"><i class="icon-tag"></i>Linux</a>
+	<a href="/tag/oezhong-wen.html"><i class="icon-tag"></i>OE中文</a>
+	<a href="/tag/openembedded.html"><i class="icon-tag"></i>OpenEmbedded</a>
+</footer><!-- /.post-info -->                </div>
+                <div align="center"><p>声&nbsp;&nbsp; 明：</p>
+</div><div style="text-align: justify;"><p>本文章为openembedded英文手册的中文翻译版。手册版权归OE所有。本文档只供技术和学习交流之用，不得用于商业用途，使用本文档如造成损失,译者一概不负任何责任。</p>
+</div><p>转载请注明出处和作者！</p>
+<p>作者: <a class="reference external" href="mailto:dangbinghoo&#64;gmail.com">dangbinghoo&#64;gmail.com</a></p>
+<div style="text-align: right;"><div class="line-block">
+<div class="line">特此声明!</div>
+<div class="line"><br /></div>
+</div>
+</div><div class="line-block">
+<div class="line">更新日志：</div>
+<div class="line-block">
+<div class="line">2008年12月03日 改正笔误</div>
+<div class="line">2008年12月21日 更新到8.11</div>
+</div>
+</div>
+<div><div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</div><div><div class="line-block">
+<div class="line">2010年07月28日&nbsp;更新到8.12</div>
+<div class="line"><br /></div>
+</div>
+</div><div class="line-block">
+<div class="line">第一章 .简介</div>
+<div class="line-block">
+<div class="line">本章内容</div>
+<div class="line">*预览</div>
+<div class="line">*历史回顾</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">1.1 预览</div>
+<div class="line-block">
+<div class="line">oe bitbake像所有的build工具一样（比如make，ant，jam）控制如何去构建系统并且解决构建依赖，但是</div>
+</div>
+<div class="line">不像那些功能单一的工程管理工具（比如make），bitbake不是基于把依赖写死了的makefile，而是</div>
+<div class="line">收集和管理大量之间没有依赖关系的描述文件（这里我们称为包的配方），然后自动按照正确的顺序进行</div>
+<div class="line">构建。（包的配方下文除非特殊说明都将简称为“配方”；oe都代表OpenEmbedded）</div>
+</div>
+<div class="line-block">
+<div class="line">更确切的说：openembedded是一些用来交叉编译，安装和打包的metadata（元数据）。oe已经被用</div>
+<div class="line">来构建和管理很多的嵌入式发行版，包括OpenZaurus,Angstrom,Familiar和SlugOS.</div>
+</div>
+<p>OE主要的功能是：</p>
+<div class="line-block">
+<div class="line">*解决交叉编译</div>
+<div class="line-block">
+<div class="line">*解决包之间的依赖关系</div>
+<div class="line">*必须支持包的管理（tar,rpm,ipk）</div>
+<div class="line">*必须支持将包作成镜像</div>
+<div class="line">*必须支持高度的可定制性，以满足不同的机器，主机发行版和架构需求</div>
+<div class="line">*编写元数据必须是容易的，并且可重用性要好</div>
+</div>
+</div>
+<p>基于bitbake，OE可以满足以上所有要求，并且还支持更多。灵活性和强大的功能一直是OE的开发原则。</p>
+<div class="line-block">
+<div class="line">1.2 OE的历史</div>
+<div class="line">OE起源于OpenZaurus项目的建立和buildroot。buildroot支持ipk包格式，镜像的创建还有非常多的</div>
+<div class="line">机器，但是它却不能在不同的机器上和主机发行版使用不同的补丁和文件，为了改进这些，OE项目就诞生了。</div>
+</div>
+<div class="line-block">
+<div class="line">几个月后就有其他的项目开始使用OE并且发回了反馈信息。2004年10月7日ChrisLarson把OE分成了</div>
+<div class="line">两个项目。一个是bitbake（构建任务的执行者），一个是openembedded（实际上是为bitbake提供元数据）。</div>
+</div>
+<div class="line-block">
+<div class="line">第二章：使用bitbake</div>
+<div class="line-block">
+<div class="line">本章内容</div>
+<div class="line">*获取bitbake</div>
+<div class="line">*获取openembedded</div>
+<div class="line">*配置oe</div>
+<div class="line">*编译</div>
+</div>
+</div>
+<p>2.1 获取bitbake</p>
+<p>bitbake的更新很快。在写这篇文章的时候（2007年末），oe需要使用bitbake1.8或者更新的版本。</p>
+<p>一个比较安全的获取bitbake的方式是从svn主分支上下载。（需要添加主版本号）</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>CODE:&nbsp;&nbsp; &nbsp;svn co <a class="reference external" href="http://svn.berlios.de/svnroot/repos/bitbake/branches/bitbake-1.8">http://svn.berlios.de/svnroot/repos/bitbake/branches/bitbake-1.8</a></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line">这样就可以检出bitbake svn上的1.8版，使用svn up将把你的bitbake更新到最新的稳定版本。但是</div>
+<div class="line">通常情况下应该使用已经被知道可以正常运行的版本，除非oe告诉你需要升级了。</div>
+</div>
+<p>2.2 获取oe</p>
+<div class="line-block">
+<div class="line">OE元数据的更新速度很快，所以你应当随时保持更新。为了获取oe，你要使用monotone工具0.28版本</div>
+<div class="line">来获得metadata（元数据）。大部分的发行版应该包含了该工具，你还可以在monotone主页获得它。</div>
+</div>
+<p>接下来我们要下载数据库的快照：</p>
+<div class="line-block">
+<div class="line">wget <a class="reference external" href="http://openembedded.org/snapshots/OE.mtn.bz2">http://openembedded.org/snapshots/OE.mtn.bz2</a></div>
+<div class="line"><a class="reference external" href="http://openembedded.org/">http://openembedded.org/</a></div>
+<div class="line">snapshots/OE.mtn.bz2.md5</div>
+<div class="line-block">
+<div class="line">或者如果您使用monotone 0.30或者以上的版本，那么使用下面的命令</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">wget <a class="reference external" href="http://www.openembedded.org/snapshots/OE-this-is-for-mtn-0.30.mtn.bz2">http://www.openembedded.org/snapshots/OE-this-is-for-mtn-0.30.mtn.bz2</a></div>
+<div class="line">wget <a class="reference external" href="http://www.openembedded.org/snapshots/OE-this-is-for-mtn-0.30.mtn.bz2.md5">http://www.openembedded.org/snapshots/OE-this-is-for-mtn-0.30.mtn.bz2.md5</a></div>
+</div>
+<p>然后使用md5sum来校验包的完整性：</p>
+<p>md5sum -c OE.mtn.bz2.md5sum</p>
+<p>然后解压数据包：</p>
+<p>bunzip OE.mtn.bz2</p>
+<div class="line-block">
+<div class="line">最后检出oe的开发分支：</div>
+<div class="line-block">
+<div class="line">mtn --db=OE.mtn co -b org.openembedded.dev</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">*****译者注：</div>
+<div class="line">注意：现在（至少在翻译本文档的时候）OpenEmbedded官方已经把monotone版本控制工具换成了git，</div>
+<div class="line">所以你应该使用git来获取OE树。</div>
+</div>
+<p>*使用git获取OpenEmbedded</p>
+<div class="line-block">
+<div class="line">注意：在以前的一段时间OE是使用monotone作版本控制的，所以如果在你的计算机中还是用Monotone</div>
+<div class="line-block">
+<div class="line">源的话你应该换成git源。</div>
+</div>
+</div>
+<p>注意：这里仅仅是一些简单的示例，如果想要更详细的使用git的说明，你应该查看git的手册。</p>
+<p>OE项目现在有git源，源的地址是：git://git.openembedded.net/org.openembedded.dev.git</p>
+<div class="line-block">
+<div class="line">为了获取OE，你需要作：</div>
+<div class="line-block">
+<div class="line">1. 安装git</div>
+<div class="line">2. 进入你的OE目录</div>
+</div>
+</div>
+<p>可以建立一个stuff文件夹，然后cd进去</p>
+<p>$ cd stuff</p>
+<p>下面用git检出源</p>
+<p>$ git clone git://git.openembedded.net/openembedded</p>
+<p>或者您设置了防火墙的话，用http的</p>
+<p>$ git clone <a class="reference external" href="http://repo.or.cz/r/openembedded.git">http://repo.or.cz/r/openembedded.git</a></p>
+<p>这样你就得到了你工作所需要的所有数据。</p>
+<div class="line-block">
+<div class="line">OE的.dev分支（开发分支）更新速度是很快的，通常情况下几小时就会更新一次。发行版的更新也是很</div>
+<div class="line-block">
+<div class="line">快的，所以最好你应该至少每天更新一次OE树。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">使用下面的命令更新你的oe树：</div>
+<div class="line-block">
+<div class="line">$ git pull --rebase</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">(注意你必须在你的OE目录里执行此命令。本文的例子中，这个目录应该是/stuff/org.openembedded.dev,如果你在当初检出OE树的时候设置了别的目录名字，那么你应该使用你自己</div>
+<div class="line-block">
+<div class="line">设置的。)</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">2.3 配置</div>
+<div class="line-block">
+<div class="line">-_- 这部分官方手册还没有完成！！！</div>
+</div>
+</div>
+<p>2.4 构建软件包</p>
+<p>bitbake和OE被正确安装和配置之后，我们就可以像这样来构建软件包和镜像：</p>
+<p>bitbake &lt;配方名&gt;</p>
+<p>((以下官方手册还没有完成))</p>
+<p>第三章 元数据(metadata)</p>
+<p>本章内容：</p>
+<div class="line-block">
+<div class="line">*文件和目录布局说明</div>
+<div class="line-block">
+<div class="line">*符号</div>
+<div class="line">*类</div>
+<div class="line">*编写metadata（也即添加包）</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">3.1 文件和目录布局说明</div>
+<div class="line-block">
+<div class="line">OE使用6个目录来存放bitbake元数据</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">conf 目录用来保存bitbake.conf，机器和发行版的配置。bitbake启动的时候将会读取bitbake.conf</div>
+<div class="line">文件并且还会包含其他的local.conf 机器和发行版的配置文件。bitbake会在BBPATH变量里搜寻这些</div>
+<div class="line-block">
+<div class="line">文件。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">classes 目录包含了bitbake bb类（bbclass）。这些类可以被.bb文件继承和使用（译者注：这个源</div>
+<div class="line">于bitbake使用的python语言的类特性，可以提高代码的重用性和便于管理）。bitbake使用BBPATH</div>
+<div class="line">变量搜寻这些类文件。</div>
+</div>
+<div class="line-block">
+<div class="line">packages 目录存放的bitbake bb 文件。每个软件包和任务我们给它分配一个目录。.bb文件是每个</div>
+<div class="line-block">
+<div class="line">包的元数据信息，每个包的每个版本都会有一个独立的bb文件。</div>
+</div>
+</div>
+<p>3.2 符号</p>
+<div class="line-block">
+<div class="line">OE 使用了.conf .inc .bb .bbclass这些扩展名的文件。符号和这些文件的含义在bitbake手册页</div>
+<div class="line">中有详细的说明。</div>
+</div>
+<p>3.3 类</p>
+<p>OE 提供了一些特殊的类来服务和支持包的编译，打包以及其他的动作。</p>
+<p>（（官方文档还没有完成！！！））</p>
+<p>3.4 编写 meta data</p>
+<p>本节将指导您编写.bb文件,或者用bitbake的话来说叫做“配方”</p>
+<p>让我们首先从一些简单的开始，比如包的描述啊，协议啊：</p>
+<div class="line-block">
+<div class="line">DESCRIPTION = &quot;My first application, a really cool app containing lots of foo and bar&quot;</div>
+<div class="line">LICENSE = &quot;GPLv2&quot;</div>
+<div class="line">HOMEPAGE = &quot;<a class="reference external" href="http://www.host.com/foo/">http://www.host.com/foo/</a>&quot;</div>
+</div>
+<p>这些选项所使用的选项名词是规定好了的，所以要多检查几次。</p>
+<div class="line-block">
+<div class="line">下面就是指定包的依赖关系了，包括编译时（或者构建时依赖）：</div>
+<div class="line-block">
+<div class="line">DEPENDS = &quot;gtk+&quot;</div>
+<div class="line">RDEPENDS = &quot;cool-ttf-fonts&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">DEPENDS 就是构建时依赖了，这里这个包依赖于gtk+，然后cool-ttf-fonts就是运行时依赖。OE在</div>
+<div class="line">shlibs-code里把运行时依赖会添加上。根据你所添加包的实际情况来替换例子中使用的名字。</div>
+</div>
+<div class="line-block">
+<div class="line">有了这些信息，OE就知道了在编译此包之前应该编译好哪些包。但是从那下包呢？下面我们就来指定包</div>
+<div class="line-block">
+<div class="line">的下载地址：</div>
+</div>
+</div>
+<p>SRC_URI = &quot;<a class="reference external" href="http://www.host.com/foo/files">http://www.host.com/foo/files</a>/${P}.tar.bz2;md5sum=yoursum&quot;</p>
+<div class="line-block">
+<div class="line">这将告诉OE的下载程序到哪里去下载源码包，而且它还会使用您指定的yoursum 数据作md5sum校验。</div>
+<div class="line-block">
+<div class="line">yoursum 的生成可以使用如下方式：</div>
+</div>
+</div>
+<p>md5sum foo-1.9.tar.bz2</p>
+<div class="line-block">
+<div class="line">然后你会得到类似这样的数据</div>
+<div class="line-block">
+<div class="line">a6434b0fc8a54c3dec3d6875bf3be8</div>
+<div class="line">在这段数据的后面添上mtn就是合法的yoursum了。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">注意:${P}变量代表包。${PN} 是包的名字，${PV}就是包的版本了。使用这些标记的话，下次如果你</div>
+<div class="line">把这个包的一个版本升级的话，直接拷贝这个文件就可以了，而不用你再重新写上具体的值。当然实际</div>
+<div class="line">上不会这么简单，因为一个新的版本可能将会面临新的问题。</div>
+</div>
+<div class="line-block">
+<div class="line">当我们执行实际的编译动作之前我们必须了解一个包在编译时依赖于那些包。如果幸运的话，我们可以</div>
+<div class="line">在一个包的源码包里发现configure脚本，这时候我们可以使用bitbake的类autotools来解决包的编译。</div>
+<div class="line">如果源码包里还有.pro文件的就要包含qmake类。</div>
+</div>
+<p>使用这些类需要按照这样的格式： inherit autotools pkgconfig qmake</p>
+<p>好在我们是幸运的，大部分的程序都使用 autotool.</p>
+<p>We are in luck!这将是一个很好的bb配方。这样这个包就可以被自动化的配置和编译了。</p>
+<p>让我们开始编译吧：</p>
+<p>bitbake foo</p>
+<div class="line-block">
+<div class="line">根据您的包的不同和您之前已经编译过了哪些包以及您的计算机的速度，这将会耗费一段时间。所以不要</div>
+<div class="line-block">
+<div class="line">着急。</div>
+</div>
+</div>
+<p>.....过了一段时间之后.....</p>
+<p>您的计算机屏幕上应该有类似这样的信息：</p>
+<div class="line-block">
+<div class="line">NOTE: package foo-1.9-r0: task do_build: completed</div>
+<div class="line-block">
+<div class="line">NOTE: package foo-1.9: completed</div>
+<div class="line">NOTE: build 200605052219: completed</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">一切似乎看起来都很好，但是请等等，回滚屏幕：</div>
+<div class="line-block">
+<div class="line">NOTE: the following files where installed but not shipped:</div>
+<div class="line">/usr/weirdpath/importantfile.foo</div>
+<div class="line">OE包含了一些标准的路径和文件，但是它不一定能找到所有的东西。所以让我们告诉它这个文件的位置：</div>
+</div>
+</div>
+<p>FILES_${PN} += &quot;/usr/weirdpath/importantfile.foo&quot;</p>
+<p>这里一定要使用+= ，这告诉OE是添加一个文件而不是覆盖原来的设置。</p>
+<p>第4章 特殊功能</p>
+<div class="line-block">
+<div class="line">本章内容</div>
+<div class="line-block">
+<div class="line">*debian 包命名方式</div>
+<div class="line">*共享库的处理</div>
+<div class="line">*BitBake 的特性说明</div>
+<div class="line">*基于任务</div>
+<div class="line">*覆盖和重写</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">4.1 debian 包命名方式</div>
+<div class="line-block">
+<div class="line">INHERIT +=&quot;debian&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">将上面这句添加到你的${DISTRO}.conf或者local.conf中该包产生的库文件将被重命名。假设一个包</div>
+<div class="line">的名字是foo，然后这个包编译时产生了一个（并且只有一个）libfoo.so.1.2.3库文件，那么根据</div>
+<div class="line">debian包命名机制这个包将被重命名为libfoo1。</div>
+</div>
+<p>4.2 共享库处理(shlibs)</p>
+<div class="line-block">
+<div class="line">打包一个软件的时候，此包运行时依赖的其他包必须被添加。而且运行时依赖的包应当是最小化依赖的。</div>
+<div class="line">OE会自己分析一个包的所有二进制文件的最小依赖库，这就是SO_NEEDED库。然后OE会根据这个库来搜寻</div>
+<div class="line">安装这些库的其他包。这些包将被自动添加到RDEPENDS。这样，构建包的人就不需要担心共享库的问</div>
+<div class="line">题了，因为这些会被自动添加上。</div>
+</div>
+<p>注意：这个机制并不会添加该包的插件。</p>
+<p>4.3 BitBake</p>
+<div class="line-block">
+<div class="line">（（这部分官方原版文档还没有完成！！！））</div>
+<div class="line-block">
+<div class="line">BBFILES := &quot;${OEDIR}/openembedded/packages/*/*.bb ${LOCALDIR}/packages/*/*.bb&quot;</div>
+<div class="line">BBFILE_COLLECTIONS = &quot;upstream local&quot;</div>
+<div class="line">BBFILE_PATTERN_upstream = &quot;^${OEDIR}/openembedded/packages/&quot;</div>
+<div class="line">BBFILE_PATTERN_local = &quot;^${LOCALDIR}/packages/&quot;</div>
+<div class="line">BBFILE_PRIORITY_upstream = &quot;5&quot;</div>
+<div class="line">BBFILE_PRIORITY_local = &quot;10&quot;</div>
+</div>
+</div>
+<p>4.4 bb基于任务的特性</p>
+<div class="line-block">
+<div class="line">“基于任务“是一种新的构建基本根文件系统的思想方法。task-base(基于任务) 允许你指定一个机器</div>
+<div class="line-block">
+<div class="line">的特性，然后“基于任务“ 的方法就可以根据机器特性来构建此发行版（oe里的发行版）支持的特性功能。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">举个例子，假如一个oe发行版的配置文件里有这样的配置：</div>
+<div class="line-block">
+<div class="line">DISTRO_FEATURES = &quot;nfs smbfs ipsec wifi ppp alsa bluetooth ext2 irda pcmcia</div>
+<div class="line">usbgadget usbhost&quot;</div>
+<div class="line">机器特定的配置文件里这么写：</div>
+<div class="line">MACHINE_FEATURES = &quot;kernel26 apm alsa pcmcia bluetooth irda usbgadget&quot;</div>
+</div>
+</div>
+<p>这样，“基于任务”的构建将支持pcmcia,但是却不会支持usbhost</p>
+<p>((译者注：可以理解为功能集合，机器没有的功能当然是编译不了的了。))</p>
+<div class="line-block">
+<div class="line">“基于任务”确切指明了哪个选项是机器特定的，哪个是oe发行版特定的。机器相关的配置选项反映了机</div>
+<div class="line">器的能力和功能。然后oe发行版相关的选项反映了发行版维护者想要添加和删除的功能。</div>
+</div>
+<p>4.5 重写和覆盖</p>
+<p>((此部分官方文档尚未完成！！！))</p>
+<p>第5章 常规操作</p>
+<div class="line-block">
+<div class="line">本章内容：</div>
+<div class="line-block">
+<div class="line">*创建一个新的发行版</div>
+<div class="line">*添加一个新的机器硬件</div>
+<div class="line">*添加一个新的包</div>
+<div class="line">1.使用不稳定版本的源码包编译</div>
+<div class="line">*创建你自己的镜像</div>
+<div class="line">*使用一个预编译的工具链编译包</div>
+<div class="line">1.工具链</div>
+<div class="line">2.预编译库</div>
+<div class="line">3.设置安装oe</div>
+<div class="line">4.有用的提示</div>
+<div class="line">5.重点提醒</div>
+<div class="line">*使用新的包格式</div>
+</div>
+</div>
+<p>5.1 创建一个新的发行版</p>
+<div class="line-block">
+<div class="line">尽管创建一个新的发行版并不是非常复杂，但是我们还是建议您先使用oe现在已有的版本，因为做错一</div>
+<div class="line">件事情也是很容易的。要创建一个新的发行版，你需要添加一个配置文件到/conf/distro目录里，配置</div>
+<div class="line">文件需要包含以下内容：</div>
+</div>
+<div class="line-block">
+<div class="line">*DISTRO_VERSION这样用户就知道了他在用哪个版本的发行版</div>
+<div class="line-block">
+<div class="line">*DISTRO_TYPE(release/debug)用来在各个包的“配方”里启用或者禁止某些特性：</div>
+<div class="line">比如打开内核输出信息的&quot;debug&quot;选项。</div>
+<div class="line">*libc的类型是使用glibc（TARGET_OS=“linux”）呢？还是使用uclibc</div>
+<div class="line">（TARGET_OS=“linux-uclibc”）呢？</div>
+<div class="line">*工具链版本 例如：基于gcc 3.4.4的版本应该有下面的配置：</div>
+<div class="line">PREFERRED_PROVIDERS+= &quot; virtual/${TARGER_PREFIX}gcc-initial:gcc-cross-initial&quot;</div>
+<div class="line">PREFERRED_PROVIDERS+= &quot; virtual/${TARGET_PREFIX}gcc:gcc-cross&quot;</div>
+<div class="line">PREFERRED_PROVIDERS+= &quot; virtual/${TARGET_PREFIX}g++:gcc-cross&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">PREFERRED_VERSION_binutils = &quot;2.16&quot;</div>
+<div class="line">PREFERRED_VERSION_binutils-cross = &quot;2.16&quot;</div>
+<div class="line">REFERRED_VERSION_gcc = &quot;3.4.4&quot;</div>
+<div class="line">PREFERRED_VERSION_gcc-cross = &quot;3.4.4&quot;</div>
+<div class="line">PREFERRED_VERSION_gcc-initial-cross = &quot;3.4.4&quot;</div>
+</div>
+<div class="line-block">
+<div class="line">*DISTRO_FEATURES 描述该发行版有什么特性。更多的内容请参考task-base(</div>
+<div class="line-block">
+<div class="line">“基于任务“)章节</div>
+<div class="line">*内核版本号支持的设备</div>
+<div class="line">PREFERRED_VERSION_linux-omap1_omap5912osk ?= &quot;2.6.18+git&quot;</div>
+<div class="line">PREFERRED_VERSION_linux-openzaurus ?= &quot;2.6.17&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">*为了更稳定的构建，最好包含sane-srcdates.inc 文件，这个文件里包含了SRCDATE描述信息，</div>
+<div class="line-block">
+<div class="line">描述了meta库里面哪些“配方”是可以工作的。</div>
+<div class="line">require conf/distro/include/sane-srcdates.inc</div>
+</div>
+</div>
+<p>同时你应该在配置文件里包含全局的SRCDATE设置(格式是 iso 日期:年月日)</p>
+<p>SRCDATE = &quot;20061014&quot;</p>
+<p>5.2 添加一个新的硬件平台</p>
+<div class="line-block">
+<div class="line">为一个机器编译，oe当然先要知道这是被支持的，所以要写一个机器的配置文件。这些文件都应该放在</div>
+<div class="line-block">
+<div class="line">/conf/machine目录。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">通常还需要一些变量：</div>
+<div class="line-block">
+<div class="line">*TARGET_ARCH 描述该机器使用什么架构的CPU</div>
+<div class="line">*MACHINE_FEATURES 描述该机器有什么功能特性。具体参考“基于任务”一节。</div>
+<div class="line">*PREFERRED_PROVIDER_virtual/kernel 指出该机器的正确的内核“配方”（就是内核bb文件）。</div>
+</div>
+</div>
+<p>接下来您还要添加内核的“配方”。</p>
+<p>5.3 添加一个新的包</p>
+<p>5.3.1 使用不稳定版本的源码包编译</p>
+<div class="line-block">
+<div class="line">构建一个很新的包往往会造成很多混乱。为了不会对OE造成随机的损坏，弄清楚一个包的修正方案是值得的。</div>
+<div class="line-block">
+<div class="line">下面我们来告诉您如何正确的作这些：</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">* svn :添加'PV = &quot;1.1+svnr${SRCREV}&quot;'到你的bb文件。</div>
+<div class="line-block">
+<div class="line">* cvs :添加'PV = &quot;1.1+cvs${SRCREV}&quot;'到你的bb文件。</div>
+</div>
+</div>
+<p>您可以在conf/distro/include/sane-srcrevs.inc追踪一个已知构建成功的修正。</p>
+<div class="line-block">
+<div class="line">如果你是真的想从最新的源码来构建，那么请把类似这样的语句</div>
+<div class="line-block">
+<div class="line">'SRCREV_pn-linux-davinci ?= ${AUTOREV}'</div>
+</div>
+<div class="line">添加到local.conf里。按照本例中的配置，你将必须为pn-linux-davinci从最新的源码构建包。</div>
+</div>
+<p>5.4 创建你自己的镜像</p>
+<p>创建你自己的镜像是很容易的，只需要设置几个变量就可以了。</p>
+<div class="line-block">
+<div class="line">*IMAGE_BASENAME 你的镜像的名字</div>
+<div class="line-block">
+<div class="line">*PACKAGE_INSTALL 该镜像所包含的包列表</div>
+<div class="line">*RDEPENDS 该镜像所依赖的运行时依赖包列表</div>
+<div class="line">*IMAGE_LINGUAS 该包所支持的语言列表</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">然后添上image类</div>
+<div class="line-block">
+<div class="line">inherit image</div>
+</div>
+</div>
+<p>好了，image配方就可以用了。</p>
+<p>5.5 使用一个预编译的工具链编译包</p>
+<p>在oe中使用预编译的工具链是可行的。下面讨论了很多这方面的话题：</p>
+<p>5.5.1.工具链</p>
+<div class="line-block">
+<div class="line">我们假定您有一个工具链并且包含了c,c++编译器，汇编器以及其他的工具。下面的列表展示了ARM架构</div>
+<div class="line-block">
+<div class="line">的3.4.4版本的gcc工具链。我们还假定工具链在您的PATH路径里。</div>
+</div>
+</div>
+<p>ls pre-built/cross/bin</p>
+<div class="line-block">
+<div class="line">arm-linux-g++</div>
+<div class="line-block">
+<div class="line">arm-linux-ld</div>
+<div class="line">arm-linux-ranlib</div>
+<div class="line">arm-linux-ar</div>
+<div class="line">arm-linux-g77</div>
+<div class="line">arm-linux-readelf</div>
+<div class="line">arm-linux-as</div>
+<div class="line">arm-linux-gcc</div>
+<div class="line">arm-linux-gcc-3.4.4</div>
+<div class="line">arm-linux-c++</div>
+<div class="line">arm-linux-size</div>
+<div class="line">arm-linux-c++filt</div>
+<div class="line">arm-linux-nm</div>
+<div class="line">arm-linux-strings</div>
+<div class="line">arm-linux-cpp</div>
+<div class="line">arm-linux-objcopy</div>
+<div class="line">arm-linux-strip</div>
+<div class="line">arm-linux-objdump</div>
+</div>
+</div>
+<p>5.5.2.预编译库</p>
+<div class="line-block">
+<div class="line">我们需要库头文件和库本身。下面的目录结构是假设的。PRE_BUILT（预编译的库）通常包含两个子目录：</div>
+<div class="line">一个是include，里面是头文件，另外一个是lib目录，里面是静态的和动态的链接库文件。另外，Qt2</div>
+<div class="line">目录页会有各include和lib子目录。</div>
+</div>
+<div class="line-block">
+<div class="line">ls $PRE_BUILT</div>
+<div class="line-block">
+<div class="line">include</div>
+<div class="line">lib</div>
+<div class="line">qt2</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">5.5.3.设置安装oe</div>
+<div class="line"><br /></div>
+<div class="line">这里我们将进行oe的设置。我们假定你的机器和发行版还不被oe所支持，所以就会在local.conf产生</div>
+<div class="line-block">
+<div class="line">相应的记录。你需要准备bitbake和oe的一个版本。</div>
+</div>
+</div>
+<p>5.5.3.1创建环境变量脚本</p>
+<div class="line-block">
+<div class="line">为了简便起见，我们建议你创建一个可以加载的脚本，写上一些变量以便于使用。这里我们命名为</div>
+<div class="line-block">
+<div class="line">build_source，然后使用source命令加载它。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">BITBAKE_PATH=/where/is/bitbake/bin</div>
+<div class="line-block">
+<div class="line">TOOLCHAIN=/where/is/toolchain/bin</div>
+<div class="line">HOST_TOOLS=/where/is/hosttools/bin</div>
+<div class="line">export PRE_BUILT=/where/is/pre-built</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">export PATH=$BITBAKE_PATH:$TOOLCHAIN:$HOST_TOOLS:$PATH</div>
+<div class="line-block">
+<div class="line">export OEDIR=$PWD</div>
+<div class="line">export LOCALDIR=$PWD/secret-isv</div>
+</div>
+</div>
+<p>使用source build_source 加载这个脚本，使用env命令检查你的设置是否正确。</p>
+<div class="line-block">
+<div class="line">5.5.3.2 创建local.conf文件</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">现在设置oe，跟上一步的操作类似。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">DL_DIR = &quot;${OEDIR}/sources&quot;</div>
+<div class="line-block">
+<div class="line">BBFILES := &quot;${OEDIR}/openembedded/packages/*/*.bb ${LOCALDIR}/packages/*/*.bb&quot;</div>
+<div class="line">BBFILE_COLLECTIONS = &quot;upstream local&quot;</div>
+<div class="line">BBFILE_PATTERN_upstream = &quot;^${OEDIR}/openembedded/packages/&quot;</div>
+<div class="line">BBFILE_PATTERN_local = &quot;^${LOCALDIR}/packages/&quot;</div>
+<div class="line">BBFILE_PRIORITY_upstream = &quot;5&quot;</div>
+<div class="line">BBFILE_PRIORITY_local = &quot;10&quot;</div>
+<div class="line">BBMASK = &quot;&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">${OEDIR}/openembedded或许将会是一个前卫的发布，以上我们设置它在当前的工作目录里。另外我们有</div>
+<div class="line-block">
+<div class="line">个变量${LOCALDIR},我们把这两各目录合并到BBFILE_COLLECTION。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">#</div>
+<div class="line-block">
+<div class="line"># machine stuff</div>
+<div class="line">#</div>
+<div class="line">MACHINE = &quot;secret-killer&quot;</div>
+<div class="line">PACKAGE_EXTRA_ARCHS = &quot;armv4 armv4t armv5te iwmmxt xscale&quot;&quot;</div>
+<div class="line">TARGET_CC_ARCH = &quot;-mcpu=xscale -mtune=iwmmxt&quot;</div>
+<div class="line">TARGET_ARCH = &quot;arm&quot;</div>
+<div class="line">PACKAGE_ARCH=&quot;xscale&quot;</div>
+</div>
+</div>
+<p>以上我们告诉oe我们将为ARM平台构建，并且为xscale和iwmmxt作了优化。</p>
+<div class="line-block">
+<div class="line">INHERIT += &quot; package_ipk debian&quot;</div>
+<div class="line-block">
+<div class="line">TARGET_OS&nbsp; = &quot;linux&quot;</div>
+<div class="line">TARGET_FPU = &quot;soft&quot;</div>
+<div class="line">DISTRO = &quot;secret-disro&quot;</div>
+<div class="line">DISTRO_NAME = &quot;secret-distro&quot;</div>
+<div class="line">DISTRO_VERSION = &quot;x.y.z&quot;</div>
+<div class="line">DISTRO_TYPE = &quot;release&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">创建一个发行版版本号。以上代码告诉oe我们将构建linux和glibc，使用软件的浮点数运算支持。如果</div>
+<div class="line-block">
+<div class="line">您的工具链是uclibc的，你还需要设置TARGET_OS为linux-uclibc</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">export CC=&quot;${CCACHE}arm-linux-gcc-3.4.4 ${HOST_CC_ARCH}&quot;</div>
+<div class="line-block">
+<div class="line">export CXX=&quot;${CCACHE}arm-linux-g++ ${HOST_CC_ARCH}&quot;</div>
+<div class="line">export CPP=&quot;arm-linux-gcc-3.4.4 -E&quot;</div>
+<div class="line">export LD=&quot;arm-linux-ld&quot;</div>
+<div class="line">export AR=&quot;arm-linux-ar&quot;</div>
+<div class="line">export AS=&quot;arm-linux-as&quot;</div>
+<div class="line">export RANLIB=&quot;arm-linux-ranlib&quot;</div>
+<div class="line">export STRIP=&quot;arm-linux-strip&quot;</div>
+</div>
+</div>
+<p>上面这些设置覆盖了bitbake.conf里的设置，这就会让oe使用预编译的工具链。</p>
+<div class="line-block">
+<div class="line">#</div>
+<div class="line-block">
+<div class="line"># point OE to the lib and include directory</div>
+<div class="line">#</div>
+<div class="line">TARGET_CPPFLAGS_append = &quot; -I${PRE_BUILT}/include &quot;</div>
+<div class="line">TARGET_LDFLAGS_prepend = &quot; -L${PRE_BUILT}/qt2/lib-L${PRE_BUILT}/lib \</div>
+<div class="line">-Wl,-rpath-link,${PRE_BUILT}/lib -Wl,-rpath-link,${PRE_BUILT}/qt2/lib &quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"># special to Qt/Qtopia</div>
+<div class="line-block">
+<div class="line">QTDIR&nbsp; = &quot;${PRE_BUILT}/qt2&quot;</div>
+<div class="line">QPEDIR = &quot;${PRE_BUILT}&quot;</div>
+<div class="line">palmtopdir = &quot;/opt/Qtopia&quot;</div>
+<div class="line">palmqtdir&nbsp; = &quot;/opt/Qtopia&quot;</div>
+</div>
+</div>
+<p>这个设置把PRE_BUILT预编译工具链的库和头文件添加了进来。Qt也一样。</p>
+<div class="line-block">
+<div class="line">ASSUME_PROVIDED += &quot; virtual/${TARGET_PREFIX}gcc &quot;</div>
+<div class="line-block">
+<div class="line">ASSUME_PROVIDED += &quot; virtual/libc &quot;</div>
+<div class="line">ASSUME_PROVIDED += &quot; virtual/qte &quot;</div>
+<div class="line">ASSUME_PROVIDED += &quot; virtual/libqpe &quot;</div>
+<div class="line">ASSUME_PROVIDED += &quot; libqpe-opie &quot;</div>
+</div>
+</div>
+<p>现在我们已经告诉了bitbake
+c库，编译器，Qtopia已经是准备好的了，oe不会再自己编译一份了。</p>
+<div class="line-block">
+<div class="line">source build_source</div>
+<div class="line-block">
+<div class="line">bitbake your-killer-app</div>
+</div>
+</div>
+<p>哈哈，现在你应该可以成功用你的预编译工具链来构建系统了。</p>
+<p>5.5.4.有用的提示</p>
+<div class="line-block">
+<div class="line">如果你有更多的预编译的库，你还可以添加进来，在local.conf里适当设置ASSUME_PROVIDED变量就</div>
+<div class="line-block">
+<div class="line">可以了。使用bitbake -vvv PACKAGE命令你可以很容易的查看你添加的预编译的库。</div>
+</div>
+</div>
+<p>5.5.5.重点提醒</p>
+<div class="line-block">
+<div class="line">NOTE: Couldn't find shared library provider for libqtopia.so.1</div>
+<div class="line-block">
+<div class="line">NOTE: Couldn't find shared library provider for libqtopia2.so.2</div>
+<div class="line">NOTE: Couldn't find shared library provider for libqpe.so.1</div>
+<div class="line">NOTE: Couldn't find shared library provider for libpthread.so.0</div>
+<div class="line">NOTE: Couldn't find shared library provider for libstdc++.so.6</div>
+<div class="line">NOTE: Couldn't find shared library provider for libqte.so.2</div>
+<div class="line">NOTE: Couldn't find shared library provider for libgcc_s.so.1</div>
+<div class="line">NOTE: Couldn't find shared library provider for libc.so.6</div>
+<div class="line">NOTE: Couldn't find shared library provider for libm.so.6</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">OE在构建包时会自动搜寻那些运行时依赖的包。oe使用shlibs来添加它们。照此推理，预编译的库将不会被</div>
+<div class="line">找到。这意味着，oe构建包的时候不会把预编译库添加到RDEPENDS（运行时依赖）。这会导致严重的错</div>
+<div class="line">误，这样oe创建的镜像里也会丢掉那些预编译的库，这肯定是行不通的。为了解决这个问题，你应该创建</div>
+<div class="line">一个metadata（配方）把这些库都安装上，然后使用${BOOTSTRAP_EXTRA_RDEPENDS}以确保这些库会</div>
+<div class="line-block">
+<div class="line">被在创建包的时候安装上。</div>
+</div>
+</div>
+<p>但是，这里有个更好的方法： 设置
+ASSUME_SHLIBS变量。例如上文提到的包就可以这样设置：</p>
+<p>ASSUME_SHLIBS = &quot;libqtopia2.so.2:qtopia2_2.4 libc.so.6:libc&quot;</p>
+<div class="line-block">
+<div class="line">格式是：shlib文件名:包版本 (shlib_file_name:package[_version].).如果指定了特定的版本，</div>
+<div class="line">那么oe将认为这是版本依赖里最小的依赖版本。（译者注：也即至少要安装这个版本）。</div>
+</div>
+<p>5.6使用新的包格式</p>
+<p>（（官方文档尚未完成））</p>
+<p>第6章 与其他的build工具比较</p>
+<div class="line-block">
+<div class="line">本章内容:</div>
+<div class="line-block">
+<div class="line">*buildroot</div>
+<div class="line">*crosstool</div>
+<div class="line">*handmade</div>
+</div>
+</div>
+<p>6.1 buildroot</p>
+<div class="line-block">
+<div class="line">Bitbake的“配方“文件相比较makefile而言是很简单和直观的，并且可以提供更好的扩展性。这样你</div>
+<div class="line">就可以很快的编写适合您的需求的“配方“。使用OE你可以构建工具链，软件发行版开发包，完整的发行</div>
+<div class="line">版以及单个软件包。OE弹性的设计可以让你很好的重用你之前写好的“配方“。OE提供了所有buildroot</div>
+<div class="line">的功能，但是跟buildroot相比较，oe可以让你实现任何你想实现的，你可以添加新的打包方式支持，新</div>
+<div class="line-block">
+<div class="line">的文件系统，新的输出类型等等。总之，OE会非常适合你的口味！</div>
+</div>
+</div>
+<p>6.2 crosstool</p>
+<div class="line-block">
+<div class="line">crosstool可以帮助你构建工具链。但是，它只是能够构建工具链，它不能构建除工具链之外的其他库和</div>
+<div class="line">应用程序，它不能正确的解决包依赖，也不支持打包，但OE支持所有crosstool有的功能。</div>
+</div>
+<p>6.3 handmade (自己动手)</p>
+<div class="line-block">
+<div class="line">交叉编译是一个很头疼的问题。这并不是说交叉编译本身怎么样，而是大多数人误用他们的主机系统去直</div>
+<div class="line">接编译他们的软件。这会许会让你惹上大麻烦。这样的话在软件编译之前的配置阶段你就会失败，因为交</div>
+<div class="line">叉编译的二进制程序是不能在主机上直接运行的。使用OE你不用忙着到处去找补丁，OE会帮你搞定这些。</div>
+<div class="line-block">
+<div class="line">OE可以让你直接选择使用软件包。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">OE可以生成直接用于烧写的flash镜像，并且支持很多种格式和文件系统。OE允许你非常容易的构建完整</div>
+<div class="line-block">
+<div class="line">的和定制的发行版。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">（（译者注：除了这些工具之外，T2 SDE也是一个支持定制和各种特性的构建工具，它还支持BSD等其他</div>
+<div class="line">的系统内核。））</div>
+</div>
+<p>第7章 如何使用bitbake和OpenEmbedded</p>
+<div class="line-block">
+<div class="line">本章内容</div>
+<div class="line-block">
+<div class="line">*简介</div>
+<div class="line">*配置</div>
+<div class="line">*工作空间</div>
+<div class="line">*任务</div>
+<div class="line">*单个“配方”相关的工作</div>
+<div class="line">*交互式的bitbake</div>
+<div class="line">*Devshell</div>
+<div class="line">*.继承devshell类</div>
+<div class="line">*.devshell附加特性</div>
+<div class="line">*.使用devshell</div>
+<div class="line">*补丁和补丁管理</div>
+</div>
+</div>
+<p>7.1 简介</p>
+<div class="line-block">
+<div class="line">阅读手册到这里您应该对于oe是什么应该比较清楚了，OE有很多的软件包可供选择，可以帮助你构建在</div>
+<div class="line">你的目标机器上运行的系统。这包括下载源码包，编译，打包或者生成可以烧到flash的镜像等。由于需</div>
+<div class="line">要进行令人头疼的交叉编译，还要支持各种类型的设备，所以，基于oe的发行版将比你知道的典型的桌面</div>
+<div class="line-block">
+<div class="line">发行版要复杂的多。</div>
+</div>
+</div>
+<p>OE的主要功能是为各种工程项目的需要编译源码。不管是什么工程，以下任务都是要作的：</p>
+<div class="line-block">
+<div class="line">1. 下载源码包，还有其他的系统支持文件（比如初始化脚本）；</div>
+<div class="line-block">
+<div class="line">2. 解压源码包，然后打上需要的补丁；</div>
+<div class="line">3. 如果需要的话就进行软件包配置（比如运行configure脚本）；</div>
+<div class="line">4. 编译所有的东西；</div>
+<div class="line">5. 把所有编译好的文件打成各种格式的包，然后准备安装。</div>
+</div>
+</div>
+<p>其实这些并没有什么非常不寻常的。困难的是：</p>
+<div class="line-block">
+<div class="line">1.交叉编译：交叉编译是困难的，大部分软件包根本不支持交叉编译，OE里包含的都是支持交叉</div>
+<div class="line-block">
+<div class="line">编译的。</div>
+<div class="line">2. 目标系统和主机是不同的：这意味着你不能编译一个程序就直接运行它---那是给在目标板上</div>
+</div>
+<div class="line">运行的。有很多的软件包在编译的时候会编译并且运行一些帮助或者测试程序，这在交叉编译的时</div>
+<div class="line-block">
+<div class="line">候会导致失败。</div>
+</div>
+<div class="line">3.工具链总是很难编译的。交叉工具链更是如此。通常情况下你可能会选择去下载一个别人做好的，</div>
+<div class="line">但是使用OE你就不需要如此。在OE里整个工具链在编译系统的时候都会被创建。OE的这种方式或许</div>
+<div class="line">在开始的时候会带来一些困难和不便。但是如果你需要打上补丁或者对工具链做些调整就会很容易。</div>
+</div>
+<p>当然，除了这些之外，oe还有很多的功能，其中包括：</p>
+<div class="line-block">
+<div class="line">* 同时支持glibc和uclibc;</div>
+<div class="line">* 只使用oe一个工具你就可以为多种目标机器构建系统；</div>
+<div class="line">* 自动编译一切构建时和编译时依赖的包；</div>
+<div class="line">* 直接创建各种可以在目标机器上直接运行的镜像(包括jffs2,ext2.gz,squashfs等等)；</div>
+<div class="line">* 支持各种打包格式；</div>
+<div class="line">* 自动构建交叉工具链；</div>
+<div class="line">* 支持构建“本地包”。本地包指为了完成编译给主机编译的包，最终不会用到目标板上。</div>
+</div>
+<div class="line-block">
+<div class="line">本章以下内容假设你已经掌握了OE的Getting Start guides（新手指南）,并且已经能够正确安装和</div>
+<div class="line">配置oe，而且你也成功的构建了交叉工具链。本章节将告诉你OE的内幕以帮助你调式和开发oe。</div>
+</div>
+<div class="line-block">
+<div class="line">下面的内容里也不会提到诸如变量设置和指定目录这样的主题，如果需要你应该参照第8章：&quot;包'配方'&quot;</div>
+<div class="line-block">
+<div class="line">的内容.</div>
+</div>
+</div>
+<p>7.2 配置</p>
+<div class="line-block">
+<div class="line">配置涵盖的内容包括在哪里可以找到各种文件，输出或者生成的东西应该放在哪里，还有指定一些配置</div>
+<div class="line">选项：比如在最终的镜像中你想让它包括那些功能和特性。OE里主要的配置区域有：</div>
+</div>
+<p>conf/machine</p>
+<div class="line-block">
+<div class="line">此目录包含了目标机器的配置信息。每个平台设备都有一个专属的配置文件用来描述诸如：设备的</div>
+<div class="line">架构体系，硬件特性（该设备有usb吗，有键盘吗等等）,以及该机器需要什么类型的flash和磁盘</div>
+<div class="line">镜像，串口设置啊等等信息。如果你要添加一个新的目标板，你应该为这个目标板创建一个单独的</div>
+<div class="line">配置文件。</div>
+</div>
+<p>conf/distro</p>
+<div class="line-block">
+<div class="line">这个目录包含了oe发行版相关的配置文件，定义了一个发行版在最终的镜像里会包含那些东西。比</div>
+<div class="line">如：网络如何配置，是否支持usb，使用那种打包方式，使用什么样的libc(uclibc或者glibc?)</div>
+</div>
+<p>conf/bitbake.conf</p>
+<div class="line-block">
+<div class="line">这是bitbake的主配置文件。这个文件我们不会编辑它，但是我们可以看看文件里包含的大量oe使用</div>
+<div class="line">的变量设置，以及bitbake如何控制那么多oe提供的功能。</div>
+</div>
+<p>conf/local.conf</p>
+<div class="line-block">
+<div class="line">这是面向最终用户（或者说普通用户）的配置文件.用户需要复制和编辑这个文件，配置各种工作目</div>
+<div class="line">录，将要使用的机器，还有发行版等等。</div>
+</div>
+<p>7.3 工作空间</p>
+<div class="line-block">
+<div class="line">让我们先看看一个典型的工作空间设置吧。这里的可能会跟你的大不一样，但是看看这个我们可以了解</div>
+<div class="line">事情是怎么样进行的。这里我们看看tmp目录(tmp目录是在你的local.conf里的变量TMPDIR里设置的)：</div>
+</div>
+<div class="line-block">
+<div class="line">~%&gt; find tmp -maxdepth 2 -type d</div>
+<div class="line-block">
+<div class="line">tmp</div>
+<div class="line">tmp/stamps</div>
+<div class="line">tmp/cross</div>
+<div class="line">tmp/cross/bin</div>
+<div class="line">tmp/cross/libexec</div>
+<div class="line">tmp/cross/lib</div>
+<div class="line">tmp/cross/share</div>
+<div class="line">tmp/cross/sh4-linux</div>
+<div class="line">tmp/cache</div>
+<div class="line">tmp/cache/titan</div>
+<div class="line">tmp/work</div>
+<div class="line">tmp/work/busybox-1.2.1-r13</div>
+<div class="line">tmp/work/libice-1_1.0.3-r0</div>
+<div class="line">tmp/work/arpwatch-2.1a15-r2</div>
+<div class="line">...</div>
+<div class="line">tmp/rootfs</div>
+<div class="line">tmp/rootfs/bin</div>
+<div class="line">tmp/rootfs/usr</div>
+<div class="line">tmp/rootfs/media</div>
+<div class="line">tmp/rootfs/dev</div>
+<div class="line">tmp/rootfs/var</div>
+<div class="line">tmp/rootfs/lib</div>
+<div class="line">tmp/rootfs/sbin</div>
+<div class="line">tmp/rootfs/mnt</div>
+<div class="line">tmp/rootfs/boot</div>
+<div class="line">tmp/rootfs/sys</div>
+<div class="line">tmp/rootfs/proc</div>
+<div class="line">tmp/rootfs/etc</div>
+<div class="line">tmp/rootfs/home</div>
+<div class="line">tmp/rootfs/tmp</div>
+<div class="line">tmp/staging</div>
+<div class="line">tmp/staging/man</div>
+<div class="line">tmp/staging/x86_64-linux</div>
+<div class="line">tmp/staging/pkgdata</div>
+<div class="line">tmp/staging/pkgmaps</div>
+<div class="line">tmp/staging/var</div>
+<div class="line">tmp/staging/sh4-linux</div>
+<div class="line">tmp/staging/local</div>
+<div class="line">tmp/staging/etc</div>
+<div class="line">tmp/deploy</div>
+<div class="line">tmp/deploy/addons</div>
+<div class="line">tmp/deploy/ipk</div>
+<div class="line">tmp/deploy/sources</div>
+<div class="line">tmp/deploy/images</div>
+</div>
+</div>
+<p>tmp目录下的第一级目录包括:</p>
+<p>stamps</p>
+<div class="line-block">
+<div class="line">用户不需要关心这个目录。这里是bitbake放置的时间戳，用来标记和追踪什么任务已经完成了，</div>
+<div class="line">什么任务还在等待处理。这样bitbake就会知道什么事情已经做过了，而不用再重做一边。</div>
+</div>
+<p>cross</p>
+<p>这里放置的是交叉工具链。包括运行在主机上但给目标机器产生程序的gcc和binutils。</p>
+<p>cache</p>
+<div class="line-block">
+<div class="line">用户不需要关心这个目录。bitbake在这里缓冲数据，这样可以加速bitbake的运行，bitbake在</div>
+<div class="line">第2次之后运行的时候就不用再去从“配方“文件里读取数据了。</div>
+</div>
+<p>work</p>
+<div class="line-block">
+<div class="line">工作目录。这就是所有包被构建的地方。包在这里被解压，打补丁，配置，编译，安装和打包。这</div>
+<div class="line">将是你运行oe的时候大部分时间要查看的地方。</div>
+</div>
+<p>rootfs</p>
+<div class="line-block">
+<div class="line">oe为你的目标板生成的根文件系统镜像就放在这里。就是根文件系统的内容（注意：这是没有正确</div>
+<div class="line">的设备节点的虚拟根目录。）</div>
+</div>
+<p>staging</p>
+<p>stage目录，用来存放一些中途编译的用于主机的临时工具。</p>
+<p>deploy</p>
+<div class="line-block">
+<div class="line">包含了oe最终产生的东西。包括：打包了的程序，flash或者磁盘镜像。这是你最终用到你产品上</div>
+<div class="line">的东西。</div>
+</div>
+<p>当人们说起&quot;临时目录&quot;的时候就说的这个tmp目录。</p>
+<div class="line-block">
+<div class="line">当你需要重新构建系统的时候，你或许应该重新命名这个目录或者删除它。我建议你保留老的tmp目录以</div>
+<div class="line">便后面比对看看究竟问题出在哪里。给个例子：</div>
+<div class="line">%&gt; rm -fr tmp.OLD</div>
+<div class="line">$&gt; mv tmp tmp.OLD</div>
+<div class="line">%&gt; bitbake bootstrap-image</div>
+</div>
+<p>工作目录(temp/work)</p>
+<div class="line-block">
+<div class="line">就像上面说的，work目录才是包被解压，打补丁，编译和打包的地方。换句话说，这里才是所有事情发</div>
+<div class="line">生的地方。在这里，每个“配方“都会产生一个单独的子目录，里面包含了“配方“名，版本号，发布号等。</div>
+</div>
+<p>这里给个例子，仅仅列出了一些文件：</p>
+<div class="line-block">
+<div class="line">~%&gt; find tmp/work -maxdepth 1 -type d | head -4</div>
+<div class="line-block">
+<div class="line">tmp/work</div>
+<div class="line">tmp/work/busybox-1.2.1-r13</div>
+<div class="line">tmp/work/libice-1_1.0.3-r0</div>
+<div class="line">tmp/work/arpwatch-2.1a15-r2</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">你看到的是几百个里的前三个，分别是busybox1.2.1的第13个发布版，libice的1.1.0.3的0版和</div>
+<div class="line">arpwath的2.1a15的2版。你也可以把这里的目录放在一个为你的机器和发行准备的特性目录里，就像下面</div>
+<div class="line-block">
+<div class="line">的这样：</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">~%&gt; find tmp/work -maxdepth 2 -type d | head -4</div>
+<div class="line-block">
+<div class="line">tmp/work</div>
+<div class="line">tmp/work/sh4-linux</div>
+<div class="line">tmp/work/sh4-linux/busybox-1.2.1-r13</div>
+<div class="line">tmp/work/sh4-linux/libice-1_1.0.3-r0</div>
+<div class="line">tmp/work/sh4-linux/arpwatch-2.1a15-r2</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">上面例子中的sh4-linux目录说明这个发行版是为sh4机器准备的linux系统。oe对这个特性的支持就</div>
+<div class="line">保证了它可以同时为多平台目标构建系统。这样做可以让拥有不同内核的构建版本在构建过程中共享一些</div>
+<div class="line">库和机器不相关的包以节省编译时间和空间。文中下面的内容会假设你并没有使用多平台编译这个功能。</div>
+<div class="line-block">
+<div class="line">如果你要使用请记得自己添加一个目录。</div>
+</div>
+</div>
+<p>下面使用lzo
+1.08作为例子，我们来看看一个典型的“配方“的工作目录的内容是怎样的：</p>
+<div class="line-block">
+<div class="line">~%&gt; find tmp/work/lzo-1.08-r14 -maxdepth 1</div>
+<div class="line-block">
+<div class="line">tmp/work/lzo-1.08-r14</div>
+<div class="line">tmp/work/lzo-1.08-r14/temp</div>
+<div class="line">tmp/work/lzo-1.08-r14/lzo-1.08</div>
+<div class="line">tmp/work/lzo-1.08-r14/install</div>
+<div class="line">tmp/work/lzo-1.08-r14/image</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">tmp/work/lzo-1.08-r14就是配方lzo-1.08-r14的工作目录，这个是在bitbake的WORKDIR变量里</div>
+<div class="line-block">
+<div class="line">设置的。1.08是lzo的版本,r14是发布号，是在“配方“里的PR变量里设置的。</div>
+</div>
+</div>
+<p>**译者注:
+这里的WORKDIR实际上变动的，当每编译一个包的时候，WORKDIR就会是当前包的工作目录。</p>
+<p>在WORKDIR下面有4个子目录：</p>
+<p>temp</p>
+<p>temp目录包含了日志和一些特殊用途的脚本，比如用于配置和编译源码的脚本。</p>
+<div class="line-block">
+<div class="line">你可以在这个目录里查看日志以了解到底哪些做了，哪些还没有。这是在你报告bug之前首先应该</div>
+<div class="line-block">
+<div class="line">查看和收集的。</div>
+</div>
+</div>
+<p>这里的脚本实际上是oe编译包的时候执行的，你可以看看那些究竟是怎么完成的。</p>
+<p>lzo-1.08</p>
+<div class="line-block">
+<div class="line">这个就是lzo的源码目录。目录的名字由两部分构成 &quot;&lt;包名&gt;-&lt;版本&gt;&quot; ,在“配方“用变量S来代</div>
+<div class="line">表，如果源码包是被解压在其他什么地方的话，那么就应该在“配方“里的S变量里设定一下。</div>
+</div>
+<p>image</p>
+<div class="line-block">
+<div class="line">这是镜像目录（没有打包的）或者叫目标板根文件系统目录。在配方里用变量D代替，所以一个包</div>
+<div class="line">里的程序安装到/usr/bin的实际要安装在${D}/usr/bin里，所以一定不要忘了${D}，我想你也</div>
+<div class="line-block">
+<div class="line">不想让oe把你主机上的程序换成交叉编译了的！</div>
+</div>
+</div>
+<p>install</p>
+<div class="line-block">
+<div class="line">install目录是用来存放打包了的程序的。每个程序安装到image目录里的文件将被建一个目录</div>
+<div class="line">然后安装在image里的目录结构来存放（同时还包括-doc,-dbg,-dev目录），然后打包。</div>
+<div class="line-block">
+<div class="line">（译者注：实际上几乎所有的打包都是这样的方式，包括rpm和deb）。配方里的FILES_</div>
+<div class="line">和PACKAGES变量记录了如何控制从image里取出属于该包的文件到单独的目录。</div>
+</div>
+</div>
+<p>（看这个真无聊！活跃下气氛吧！）让我们来看看一些你会用到的信息吧：</p>
+<div class="line-block">
+<div class="line">怎么知道lzo包的配置阶段究竟发生了什么呢？</div>
+<div class="line-block">
+<div class="line">答案当然是检查temp目录里的日志文件了：</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">~%&gt; less tmp/work/lzo-1.08-r14/temp/log.do_configure.*</div>
+<div class="line-block">
+<div class="line">...</div>
+<div class="line">checking whether ccache sh4-linux-gcc -ml -m4 suffers the -fschedule-insns bug...  unknown</div>
+<div class="line">checking whether ccache sh4-linux-gcc -ml -m4 suffers the -fstrength-reduce bug... unknown</div>
+<div class="line">checking whether ccache sh4-linux-gcc -ml -m4 accepts -fstrict-aliasing... yes</div>
+<div class="line">checking the alignment of the assembler... 0</div>
+<div class="line">checking whether to build assembler versions... no</div>
+<div class="line">configure: creating ./config.status</div>
+<div class="line">config.status: creating Makefile</div>
+<div class="line">config.status: creating examples/Makefile</div>
+<div class="line">config.status: creating include/Makefile</div>
+<div class="line">config.status: creating ltest/Makefile</div>
+<div class="line">config.status: creating minilzo/Makefile</div>
+<div class="line">config.status: creating src/Makefile</div>
+<div class="line">config.status: creating tests/Makefile</div>
+<div class="line">config.status: creating config.h</div>
+<div class="line">config.status: executing depfiles commands</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">哦，或者你想看看到底oe怎么从image镜像里的一堆文件里找出这个包的文件然后放到一起打包的呢？</div>
+<div class="line-block">
+<div class="line">对了！看看install目录不就知道了么：</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">~%&gt; find tmp/work/lzo-1.08-r14/install</div>
+<div class="line-block">
+<div class="line">tmp/work/lzo-1.08-r14/install</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-doc</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dbg</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dbg/usr</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dbg/usr/lib</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dbg/usr/lib/.debug</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dbg/usr/lib/.debug/liblzo.so.1.0.0</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/include</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/include/lzo2a.h</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/include/lzo1y.h</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/include/lzo1.h</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/include/lzo1b.h</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/include/lzo1f.h</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/include/lzoconf.h</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/include/lzo1x.h</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/include/lzo16bit.h</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/include/lzo1a.h</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/include/lzo1z.h</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/include/lzoutil.h</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/include/lzo1c.h</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/lib</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/lib/liblzo.a</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/lib/liblzo.so</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-dev/usr/lib/liblzo.la</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo.shlibdeps</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo-locale</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo/usr</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo/usr/lib</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo/usr/lib/liblzo.so.1</div>
+<div class="line">tmp/work/lzo-1.08-r14/install/lzo/usr/lib/liblzo.so.1.0.0</div>
+</div>
+</div>
+<p>7.4 &quot;任务&quot;</p>
+<div class="line-block">
+<div class="line">当你要编译安装一个软件包时，就会有很多任务要执行，并且对于绝大多数软件包来说都是这样的。你</div>
+<div class="line">可能会从下载源码包开始，然后解压源码包。或许你会因为一些原因打上一些补丁，然后，你会运行包</div>
+<div class="line">的configure脚本，或许你还会根据你的喜好给它传递一些参数，然后你会运行“make install”来</div>
+<div class="line">安装这个软件。如果实际上你是想构建二进制包，比如.deb或者.rpm的话你或许还会再做一些事情。</div>
+</div>
+<div class="line-block">
+<div class="line">你会发现实际上OpenEmbedded的工作与这个类似。这里将会有一大堆要执行的“任务“，顺序取决于</div>
+<div class="line">每个“配方“里的定义和配置。这些任务里的许多都跟&quot;下载源码&quot;这样任务的都是类似的。实际上你都已</div>
+<div class="line-block">
+<div class="line">经见过这里的一些任务了--bitbake在运行任务的时候会显示它们的：</div>
+<div class="line">~%&gt; bitbake lzo</div>
+<div class="line">NOTE: Psyco JIT Compiler (<a class="reference external" href="http://psyco.sf.net">http://psyco.sf.net</a>) not available. Install it to increase performance.</div>
+<div class="line">NOTE: Handling BitBake files: \ (4541/4541) [100 %]</div>
+<div class="line">NOTE: Parsing finished. 4325 cached, 0 parsed, 216 skipped, 0 masked.</div>
+<div class="line">NOTE: build 200705041709: started</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">OE Build Configuration:</div>
+<div class="line-block">
+<div class="line">BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp; = &quot;1.8.2&quot;</div>
+<div class="line">OE_REVISION&nbsp;&nbsp;&nbsp; = &quot;&lt;unknown&gt;&quot;</div>
+<div class="line">TARGET_ARCH&nbsp;&nbsp;&nbsp; = &quot;sh4&quot;</div>
+<div class="line">TARGET_OS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &quot;linux&quot;</div>
+<div class="line">MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &quot;titan&quot;</div>
+<div class="line">DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &quot;erouter&quot;</div>
+<div class="line">DISTRO_VERSION = &quot;0.1-20070504&quot;</div>
+<div class="line">TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp; = &quot;&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">NOTE: Resolving missing task queue dependencies</div>
+<div class="line-block">
+<div class="line">NOTE: preferred version 2.5 of glibc not available (for item virtual/sh4-linux-libc-for-gcc)</div>
+<div class="line">NOTE: Preparing Runqueue</div>
+<div class="line">NOTE: Executing runqueue</div>
+<div class="line">NOTE: Running task 208 of 226 (ID: 11, /home/lenehan/devel/oe/build/titan-glibc-25/packages/lzo/lzo_1.08.bb, do_fetch)</div>
+<div class="line">NOTE: package lzo-1.08: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_fetch: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_fetch: completed</div>
+<div class="line">NOTE: package lzo-1.08: completed</div>
+<div class="line">NOTE: Running task 209 of 226 (ID: 2, /home/lenehan/devel/oe/build/titan-glibc-25/packages/lzo/lzo_1.08.bb, do_unpack)</div>
+<div class="line">NOTE: package lzo-1.08: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_unpack: started</div>
+<div class="line">NOTE: Unpacking /home/lenehan/devel/oe/sources/lzo-1.08.tar.gz to /home/lenehan/&nbsp;&nbsp;&nbsp; devel/oe/build/titan-glibc-25/tmp/work/lzo-1.08-r14/</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_unpack: completed</div>
+<div class="line">NOTE: package lzo-1.08: completed</div>
+<div class="line">NOTE: Running task 216 of 226 (ID: 3, /home/lenehan/devel/oe/build/titan-glibc-25/packages/lzo/lzo_1.08.bb, do_patch)</div>
+<div class="line">NOTE: package lzo-1.08: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_patch: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_patch: completed</div>
+<div class="line">NOTE: package lzo-1.08: completed</div>
+<div class="line">NOTE: Running task 217 of 226 (ID: 4, /home/lenehan/devel/oe/build/titan-glibc-25/packages/lzo/lzo_1.08.bb, do_configure)</div>
+<div class="line">NOTE: package lzo-1.08: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_configure: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_configure: completed</div>
+<div class="line">NOTE: package lzo-1.08: completed</div>
+<div class="line">NOTE: Running task 218 of 226 (ID: 12, /home/lenehan/devel/oe/build/titan-glibc-25/packages/lzo/lzo_1.08.bb, do_qa_configure)</div>
+<div class="line">NOTE: package lzo-1.08: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_qa_configure: started</div>
+<div class="line">NOTE: Checking sanity of the config.log file</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_qa_configure: completed</div>
+<div class="line">NOTE: package lzo-1.08: completed</div>
+<div class="line">NOTE: Running task 219 of 226 (ID: 0, /home/lenehan/devel/oe/build/titan-glibc-25/packages/lzo/lzo_1.08.bb, do_compile)</div>
+<div class="line">NOTE: package lzo-1.08: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_compile: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_compile: completed</div>
+<div class="line">NOTE: package lzo-1.08: completed</div>
+<div class="line">NOTE: Running task 220 of 226 (ID: 1, /home/lenehan/devel/oe/build/titan-glibc-25/packages/lzo/lzo_1.08.bb, do_install)</div>
+<div class="line">NOTE: package lzo-1.08: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_install: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_install: completed</div>
+<div class="line">NOTE: package lzo-1.08: completed</div>
+<div class="line">NOTE: Running task 221 of 226 (ID: 5, /home/lenehan/devel/oe/build/titan-glibc-25/packages/lzo/lzo_1.08.bb, do_package)</div>
+<div class="line">NOTE: package lzo-1.08: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_package: started</div>
+<div class="line">NOTE: DO PACKAGE QA</div>
+<div class="line">NOTE: Checking Package: lzo-dbg</div>
+<div class="line">NOTE: Checking Package: lzo</div>
+<div class="line">NOTE: Checking Package: lzo-doc</div>
+<div class="line">NOTE: Checking Package: lzo-dev</div>
+<div class="line">NOTE: Checking Package: lzo-locale</div>
+<div class="line">NOTE: DONE with PACKAGE QA</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_package: completed</div>
+<div class="line">NOTE: package lzo-1.08: completed</div>
+<div class="line">NOTE: Running task 222 of 226 (ID: 8, /home/lenehan/devel/oe/build/titan-glibc-25/packages/lzo/lzo_1.08.bb, do_package_write)</div>
+<div class="line">NOTE: package lzo-1.08: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_package_write: started</div>
+<div class="line">Packaged contents of lzo-dbg into /home/lenehan/devel/oe/build/titan-glibc-25/tmp/deploy/ipk/sh4/liblzo-dbg_1.08-r14_sh4.ipk</div>
+<div class="line">Packaged contents of lzo into /home/lenehan/devel/oe/build/titan-glibc-25/tmp/deploy/ipk/sh4/liblzo1_1.08-r14_sh4.ipk</div>
+<div class="line">NOTE: Not creating empty archive for lzo-doc-1.08-r14</div>
+<div class="line">Packaged contents of lzo-dev into /home/lenehan/devel/oe/build/titan-glibc-25/tmp/deploy/ipk/sh4/liblzo-dev_1.08-r14_sh4.ipk</div>
+<div class="line">NOTE: Not creating empty archive for lzo-locale-1.08-r14</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_package_write: completed</div>
+<div class="line">NOTE: package lzo-1.08: completed</div>
+<div class="line">NOTE: Running task 223 of 226 (ID: 6, /home/lenehan/devel/oe/build/titan-glibc-25/packages/lzo/lzo_1.08.bb, do_populate_staging)</div>
+<div class="line">NOTE: package lzo-1.08: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_populate_staging: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_populate_staging: completed</div>
+<div class="line">NOTE: package lzo-1.08: completed</div>
+<div class="line">NOTE: Running task 224 of 226 (ID: 9, /home/lenehan/devel/oe/build/titan-glibc-25/packages/lzo/lzo_1.08.bb, do_qa_staging)</div>
+<div class="line">NOTE: package lzo-1.08: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_qa_staging: started</div>
+<div class="line">NOTE: QA checking staging</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_qa_staging: completed</div>
+<div class="line">NOTE: package lzo-1.08: completed</div>
+<div class="line">NOTE: Running task 225 of 226 (ID: 7, /home/lenehan/devel/oe/build/titan-glibc-25/packages/lzo/lzo_1.08.bb, do_distribute_sources)</div>
+<div class="line">NOTE: package lzo-1.08: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_distribute_sources: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_distribute_sources: completed</div>
+<div class="line">NOTE: package lzo-1.08: completed</div>
+<div class="line">NOTE: Running task 226 of 226 (ID: 10, /home/lenehan/devel/oe/build/titan-glibc-25/packages/lzo/lzo_1.08.bb, do_build)</div>
+<div class="line">NOTE: package lzo-1.08: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_build: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_build: completed</div>
+<div class="line">NOTE: package lzo-1.08: completed</div>
+<div class="line">NOTE: Tasks Summary: Attempted 226 tasks of which 213 didn't need to be rerun and 0 failed.</div>
+<div class="line">NOTE: build 200705041709: completed</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">注意：输出信息根据你的实际情况可能跟这个是不同的。重点是看看各种任务怎么被执行的，</div>
+<div class="line-block">
+<div class="line">bitbake显示了它什么时候开始一个任务，然后什么时候完成了这个任务。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">所以说，为了生成一个最终的包将有一大堆的任务需要执行。你看到了每个配方都运行了一组相同的任</div>
+<div class="line">务（当然一个配方亦可以运行另外的任务，这个我们后面会谈到的）。那些任务大都跟下面的类似：</div>
+</div>
+<p>获取源码(fetch)</p>
+<div class="line-block">
+<div class="line">获取源码任务对于获取任何源码都是很重要的。这里说的包括下载文件和从一些版本控制的软件仓</div>
+<div class="line-block">
+<div class="line">库里获取源码，比如git和svn</div>
+</div>
+</div>
+<p>解压(unpack)</p>
+<div class="line-block">
+<div class="line">解压任务对于从一些压缩格式中解压出文件是至关重要的，比如.tar.gz，解压任务会把文件解压到</div>
+<div class="line-block">
+<div class="line">工作空间，然后还会拷贝些附加的文件，比如初始化脚本。</div>
+</div>
+</div>
+<p>打补丁(patch)</p>
+<p>此任务可以给解压了的包打上任何补丁。</p>
+<p>配置(configure)</p>
+<div class="line-block">
+<div class="line">配置任务 执行包的配置阶段。通常是运行configure脚本(&quot;./configure &lt;选项&gt;&quot;),configure</div>
+<div class="line-block">
+<div class="line">不是唯一存在的软件配置系统(译者注：有些软件会使用其他类型的配置系统)</div>
+</div>
+</div>
+<p>编译(compile)</p>
+<p>编译任务 才实际上编译软件。这可能会很简单，有时就是运行make</p>
+<p>中间处理环节(populate_staging (stage) )</p>
+<div class="line-block">
+<div class="line">中间处理任务用来作一些库和头文件的设置。比如，你编译了zlib，然后你就应当设置一下以便</div>
+<div class="line-block">
+<div class="line">其他的软件编译的时候可以找到头文件和库文件。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">注意：</div>
+<div class="line">这里的中间处理设置库和头文件跟设置主机上的是不同的，因此，下文说的“安装”任务里的设置</div>
+<div class="line-block">
+<div class="line">是为了目标系统最终使用的，而这里的仅仅是为了编译过程。</div>
+</div>
+</div>
+<p>安装(install)</p>
+<div class="line-block">
+<div class="line">安装任务实际上安装所有的东西。软件被安装到目标目录（D变量）。D目录最终并不会成为软件的</div>
+<div class="line-block">
+<div class="line">一部分，一个软件被安装到${D}/bin，但在目标机器上就会是/bin.</div>
+</div>
+</div>
+<p>装包(package)</p>
+<div class="line-block">
+<div class="line">装包任务为每个包把已安装上的文件从${WORKDIR}/install目录里分离出来到单独的目录，然后</div>
+<div class="line">移动到该包的目标目录($D)以便打包.通常一个主包将会有一个独立的-doc,-dev和-dbg目录。</div>
+</div>
+<p>打包(package_write)</p>
+<div class="line-block">
+<div class="line">打包 任务把“装包“环节产生的每个软件的目录打包成各种格式，比如.ipk,.deb,.rpm等。目前</div>
+<div class="line">.ipk是唯一被完全支持的包格式，.dev现在也能工作了。对于有经验的oe开发者来说添加一个其他</div>
+<div class="line-block">
+<div class="line">的包格式是很容易的（如果需要的话）。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">注意：</div>
+<div class="line">或许你已经注意到bitbake在任务输出里加了前缀“do_”，比如install为do_install.这会令</div>
+<div class="line">人有点迷惑，因为在“配方“和一些类里有很多函数也有&quot;do_&quot;前缀。你应该只关注do_前缀后面的</div>
+<div class="line">信息。（译者注:那仅仅是bitbake的很随便的一个输出而已，表示它作“做“什么，跟那些函数</div>
+<div class="line-block">
+<div class="line">没有直接的联系）。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">你应该注意下面的这个内容：在一个“任务“队列里添加附加的任务有很多种方式。比如类insane.bbclass</div>
+<div class="line">，它可以作各种QA检查（工程质量验证），你可以在配置(configure)和编译(compile)任务中间添加一个新的</div>
+<div class="line">任务叫做&quot;qa_configure&quot;,在中间处理环节任务和安装任务中间添加&quot;qa_staging&quot;的任务.这样就会</div>
+<div class="line-block">
+<div class="line">在实际执行的时候验证配置和中间处理环节的执行结果。</div>
+</div>
+</div>
+<p>想看看一个包配方都支持哪些任务，你可以用bitbake来完成，运行类似下面的命令：</p>
+<div class="line-block">
+<div class="line">~%&gt; bitbake -b packages/perl/perl_5.8.8.bb -c listtasks</div>
+<div class="line-block">
+<div class="line">NOTE: package perl-5.8.8: started</div>
+<div class="line">NOTE: package perl-5.8.8-r11: task do_listtasks: started</div>
+<div class="line">do_fetchall</div>
+<div class="line">do_listtasks</div>
+<div class="line">do_rebuild</div>
+<div class="line">do_compile</div>
+<div class="line">do_build</div>
+<div class="line">do_populate_staging</div>
+<div class="line">do_mrproper</div>
+<div class="line">do_fetch</div>
+<div class="line">do_configure</div>
+<div class="line">do_clean</div>
+<div class="line">do_package</div>
+<div class="line">do_unpack</div>
+<div class="line">do_install</div>
+<div class="line">do_package_write</div>
+<div class="line">do_distribute_sources</div>
+<div class="line">do_showdata</div>
+<div class="line">do_qa_configure</div>
+<div class="line">do_qa_staging</div>
+<div class="line">do_patch</div>
+<div class="line">NOTE: package perl-5.8.8-r11: task do_listtasks: completed</div>
+<div class="line">NOTE: package perl-5.8.8: completed</div>
+<div class="line">~%&gt;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">如果你是个细心的读者，你或许会注意到listtasks本身就是一个任务，-c选项让bitbake执行了listtasks</div>
+<div class="line-block">
+<div class="line">任务。在下一节中我们会用到这个。</div>
+</div>
+</div>
+<p>7.5 单个“配方”相关的工作</p>
+<div class="line-block">
+<div class="line">在开发过程中，你会发现你大多数时间都在跟一个bitbake“配方“打交道，要么是修复什么，要么就是</div>
+<div class="line">添加一个新的版本，或者是写一个全新的配方。现在你已经有了所有关于“任务”的知识，这可以帮助加</div>
+<div class="line-block">
+<div class="line">速你的开发和调试过程。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">Bitbake可以被指定直接的处理一个单个“配方”文件，使用-b参数就可以了，这个选项把“配方”作为</div>
+<div class="line">一个参数传递给bitbake，bitbake将只会处理这个名字的“配方”。注意，这种方式忽略了依赖关系，</div>
+<div class="line-block">
+<div class="line">所以你需要在这之前装好所有它依赖的包。</div>
+</div>
+</div>
+<p>下面给出一个典型的例子，本例使用&quot;清理&quot;任务来清理包，然后打开bitbake的debug输出来重新构建：</p>
+<div class="line-block">
+<div class="line">~%&gt; bitbake -b &lt;bb-file&gt; -c clean</div>
+<div class="line-block">
+<div class="line">~%&gt; bitbake -b &lt;bb-file&gt; -D</div>
+</div>
+</div>
+<p>下面是bitbake的一些最常用的选项介绍：</p>
+<div class="line-block">
+<div class="line">-b &lt;bb文件&gt;</div>
+<div class="line-block">
+<div class="line">要处理的“配方”；</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">-c &lt;动作(或者说“任务”)&gt;</div>
+<div class="line-block">
+<div class="line">要执行的动作，通常是配方所支持的“任务“</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">-D</div>
+<div class="line-block">
+<div class="line">显示调试信息，使用两个-D会打开附加调试信息。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">-f</div>
+<div class="line">强制执行某个操作。这个在处理bitbake正常模式下不会执行的操作时很有用。举个例子，如果你</div>
+<div class="line">把相同的任务写了两边，那么bitbake在第二次的时候会什么也不做--因为之前已经作过了。使用-f</div>
+<div class="line-block">
+<div class="line">可以强制它执行。</div>
+</div>
+</div>
+<p>最常用的动作包括(和-c选项一起使用):</p>
+<div class="line-block">
+<div class="line">fetch &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; (获取源码)</div>
+<div class="line-block">
+<div class="line">下载所有需要的源码文件，但是不干其他的事情。</div>
+<div class="line">unpack&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; (解压)</div>
+</div>
+<div class="line">解压源码，但不打补丁。有时候你需要看看刚解压的源码，而不是已经打上补丁的(有时候你</div>
+<div class="line-block">
+<div class="line">需要手动使用干净的源码来生成一个包的补丁)</div>
+<div class="line">patch&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; (打补丁)</div>
+<div class="line">打上所有的补丁</div>
+<div class="line">configure&nbsp;&nbsp;&nbsp; (配置)</div>
+<div class="line">配置软件包。</div>
+<div class="line">compile</div>
+<div class="line">编译软件包。</div>
+<div class="line">stage&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; (中间环节)</div>
+<div class="line">任何被另一个包需要的文件比如头文件和库文件都会被安装。</div>
+<div class="line">install</div>
+<div class="line">安装软件，为后面的打包准备。</div>
+<div class="line">package</div>
+</div>
+<div class="line">产生软件包，把文件从安装目录移动到打包安装目录。如果要重新产生的话得首先重新执行</div>
+<div class="line-block">
+<div class="line">安装动作。</div>
+<div class="line">clean</div>
+<div class="line">清理这个版本的软件的整个目录。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">注意，任何和“任务“相对应动作的都会执行在它之前还没有执行过的“任务“，所以执行编译</div>
+<div class="line-block">
+<div class="line">（compile）也将会执行获取源码，解压，打补丁，和配置动作。</div>
+</div>
+</div>
+<p>通常情况下一个开发过程伴随着编辑文件和重新构建一直到它可以正常工作：</p>
+<div class="line-block">
+<div class="line">[... 测试 ...]</div>
+<div class="line-block">
+<div class="line">~%&gt; bitbake -b packages/testapp/testapp_4.3.bb -c compile -D</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">[... 复制一份 main.c 然后做些修改 ...]</div>
+<div class="line-block">
+<div class="line">~%&gt; vi tmp/work/testapp-4.3-r0/main.c</div>
+<div class="line">~%&gt; bitbake -b packages/testapp/testapp_4.3.bb -c compile -D -f</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">[... 建了一个补丁文件，然后写到包“配方”里 ...]</div>
+<div class="line-block">
+<div class="line">~%&gt; vi packages/testapp/testapp_4.3.bb</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">[... 清理了重新测试 ...]</div>
+<div class="line-block">
+<div class="line">~%&gt; bitbake -b packages/testapp/testapp_4.3.bb -c clean</div>
+<div class="line">~%&gt; bitbake -b packages/testapp/testapp_4.3.bb</div>
+</div>
+</div>
+<p>[... 注意这里没有讨论怎么去生成一个补丁文件 ...]</p>
+<p>7.6 交互式bitbake</p>
+<div class="line-block">
+<div class="line">要做交互式测试时使用：</div>
+<div class="line-block">
+<div class="line">~%&gt; bitbake -i</div>
+</div>
+</div>
+<p>这样会打开一个bitbake 命令行（bitbake
+shell），这里面有很多命令（使用help查看）。</p>
+<div class="line-block">
+<div class="line">你需要知道的第一件事情是解析“配方”文件(最新的bitbake版本可以自动的做这些，所以你不需要</div>
+<div class="line-block">
+<div class="line">手动来)：</div>
+<div class="line">BB&gt;&gt; parse</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">你可以构建指定的“配方“</div>
+<div class="line-block">
+<div class="line">BB&gt;&gt; build net-snmp</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">如果这个失败了你可以清理它，然后重试：</div>
+<div class="line-block">
+<div class="line">BB&gt;&gt; clean net-snmp</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">如果你编辑了.bb文件修正了某些东西，你或许想清理包，重新解析“配方”，然后构建：</div>
+<div class="line-block">
+<div class="line">BB&gt;&gt; clean net-snmp</div>
+<div class="line">BB&gt;&gt; reparse net-snmp</div>
+<div class="line">BB&gt;&gt; build net-snmp</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">注意在bitbake命令行里是可以使用通配符的：</div>
+<div class="line-block">
+<div class="line">BB&gt;&gt; build t*</div>
+</div>
+</div>
+<p>7.7 Devshell</p>
+<div class="line-block">
+<div class="line">在oe里，有一个内容是设置各种环境变量（比如像CC,PATH等等）为合适的值以便进行交叉编译。如果你</div>
+<div class="line">希望在开发过程中手动运行configure脚本，编译文件，那么设置好这些变量会很有利。devshell提供</div>
+<div class="line-block">
+<div class="line">给你一个交互式的命令行来设置合适的变量以便后面的交叉编译工作。</div>
+</div>
+</div>
+<p>7.7.1 继承devshell类</p>
+<div class="line-block">
+<div class="line">这是一种新的使用devshell的方式，也是推荐用户使用的方式。新的方式需要在配置文件里继承</div>
+<div class="line-block">
+<div class="line">devshell类，通常这是在你的local.conf或者你的发行版配置文件里设置的：</div>
+</div>
+</div>
+<p>INHERIT += &quot;src_distribute_local insane multimachine devshell&quot;</p>
+<p>包含这个类之后你会发现devshell已经被作为一个新的“任务”可以在配方中使用了：</p>
+<div class="line-block">
+<div class="line">~%&gt; bitbake -b packages/lzo/lzo_1.08.bb -c listtasks</div>
+<div class="line-block">
+<div class="line">NOTE: package lzo-1.08: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_listtasks: started</div>
+<div class="line">do_devshell</div>
+<div class="line">do_fetchall</div>
+<div class="line">do_listtasks</div>
+<div class="line">do_rebuild</div>
+<div class="line">do_compile</div>
+<div class="line">do_build</div>
+<div class="line">do_mrproper</div>
+<div class="line">do_fetch</div>
+<div class="line">do_configure</div>
+<div class="line">do_clean</div>
+<div class="line">do_populate_staging</div>
+<div class="line">do_package</div>
+<div class="line">do_unpack</div>
+<div class="line">do_install</div>
+<div class="line">do_package_write</div>
+<div class="line">do_distribute_sources</div>
+<div class="line">do_showdata</div>
+<div class="line">do_qa_staging</div>
+<div class="line">do_qa_configure</div>
+<div class="line">do_patch</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_listtasks: completed</div>
+<div class="line">NOTE: package lzo-1.08: completed</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">要呼出devshell你可以在处理一个“配方“的时候给bitbake传递 -c devshell参数：</div>
+<div class="line-block">
+<div class="line">~%&gt; ./bb -b packages/lzo/lzo_1.08.bb -c devshell</div>
+<div class="line">NOTE: package lzo-1.08: started</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_devshell: started</div>
+<div class="line">[... devshell 将在这里显示 ...]</div>
+<div class="line">NOTE: package lzo-1.08-r14: task do_devshell: completed</div>
+<div class="line">NOTE: package lzo-1.08: completed</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">devshell怎么样显示取决于TERMCMD变量的设置，你可以在conf/bitbake.conf文件查看默认设</div>
+<div class="line">置以及其他相关的值。如果愿意你可以在你的local.conf里设置。通常情况下你会看到打开了一个</div>
+<div class="line-block">
+<div class="line">你的终端窗口，这就是devshell窗口。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">devshell“任务“是插在打补丁(patch)“任务“之后的，所以如果你是在用bitbake处理的一个</div>
+<div class="line-block">
+<div class="line">“配方“的话，在打开shell之前它会先下载源码和添加补丁。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">注意：这种打开devshel的方式在你使用bash shell的时候才能工作。zsh已知是不能工作的，其</div>
+<div class="line-block">
+<div class="line">他可能也可能不能工作。</div>
+</div>
+</div>
+<blockquote>
+7.7.2 devshell附加特性</blockquote>
+<p>devshell附加特性就是以前打开devshell的方式。</p>
+<p>这种方式不需要你改变配置文件，而是首先你构建devshell配方(devshell被作为一个包来处理)。</p>
+<p>bitbake devshell</p>
+<div class="line-block">
+<div class="line">然后，手动运行devshell。一旦在devshell里，你通常需要进入工作目录：</div>
+<div class="line-block">
+<div class="line">~%&gt; ./tmp/deploy/addons/sh4-linux-erouter-titan-devshell</div>
+<div class="line">bash: alias: `./configure': invalid alias name</div>
+<div class="line">[OE::sh4-linux-erouter-titan]:~$ cd tmp/work/lzo-1.08-r14/lzo-1.08</div>
+<div class="line">[OE::sh4-linux-erouter-titan]:~tmp/work/lzo-1.08-r14/lzo-1.08$</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">注意devshell是依赖于目标机器和系统的，所以你用的名字可能与此不同，看看以-devshell结尾</div>
+<div class="line-block">
+<div class="line">的名字。</div>
+</div>
+</div>
+<blockquote>
+7.7.3 使用devshell</blockquote>
+<p>（（官方文章尚未完成！））</p>
+<p>7.8 补丁和补丁管理</p>
+<p>（（官方文章尚未完成！））</p>
+<div class="line-block">
+<div class="line">第8章 “配方”</div>
+<div class="line-block">
+<div class="line">本章内容：</div>
+<div class="line">*简介</div>
+<div class="line">*“配方”符号</div>
+<div class="line">*“配方”的命名：名称，版本，和发布</div>
+<div class="line">*变量</div>
+<div class="line">*头文件</div>
+<div class="line">*源码：下载，打补丁和附加文件</div>
+<div class="line">*目录：是什么目录？在哪？</div>
+<div class="line">*.WORKDIR：工作目录</div>
+<div class="line">*.S：解压了的源码所在目录</div>
+<div class="line">*.D：目标目录</div>
+<div class="line">*.中间目录</div>
+<div class="line">*.FILESPATH/FILESDIR：寻找本地文件</div>
+<div class="line">*Hello World 示例</div>
+<div class="line">*.Hello World</div>
+<div class="line">*.使用autotools的软件包</div>
+<div class="line">*依赖关系：构建和运行软件包的时候需要哪些？</div>
+<div class="line">*方法：一些减轻你工作量的方法</div>
+<div class="line">*打包：定义包及其内容</div>
+<div class="line">*.基本原则</div>
+<div class="line">*.默认包和文件</div>
+<div class="line">*.通配符</div>
+<div class="line">*.查看包</div>
+<div class="line">*.屏蔽文件</div>
+<div class="line">*.debian命名机制</div>
+<div class="line">*.空包</div>
+<div class="line">*任务：用“任务“工作</div>
+<div class="line">*类：分离常用的功能</div>
+<div class="line">*中间处理：为编译配置头文件和库</div>
+<div class="line">*自动配置：autotools主题</div>
+<div class="line">*安装脚本：运行脚本安装和移除包</div>
+<div class="line">*配置文件</div>
+<div class="line">*包之间的关系</div>
+<div class="line">*虚拟根：处理“root”的“需要“</div>
+<div class="line">*本地：为主机编译的包</div>
+<div class="line">*开发：开发“配方”的方法策略</div>
+<div class="line">*高级的版本号：如何处理rc和per版本</div>
+<div class="line">*包含：重用“配方”的内容</div>
+<div class="line">*Python语言：python的高级功能</div>
+<div class="line">*初始化脚本:怎么处理守护进程</div>
+<div class="line">*两者选一:怎样处理多个包使用相同的命令</div>
+<div class="line">*.例子</div>
+<div class="line">*.使用新的</div>
+<div class="line">*转瞬即逝：如何处理/var目录</div>
+<div class="line">*.声明</div>
+<div class="line">*.写日志和日志文件</div>
+<div class="line">*.摘要</div>
+<div class="line">*其他杂项</div>
+</div>
+</div>
+<p>8.1简介</p>
+<div class="line-block">
+<div class="line">一个bitbake配方由一组命令构成，这些命令描述了获取源码，打补丁，添加附加的文件，编译，安装，</div>
+<div class="line">和产生二进制包的之前都必须做些什么。最终你得到的是一个二进制的软件包，还有一些中间文件，比如</div>
+<div class="line-block">
+<div class="line">库和头文件，你可以在编译其他程序的时候再使用。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">大多数情况下oe这些操作和在你的桌面系统上创建.deb或者是.rpm包是很相似的。唯一不同的是，在oe</div>
+<div class="line">里一切都是交叉编译的。这常常会带来麻烦。取决于一个软件包有多适合交叉编译，有时候对于有些软件</div>
+<div class="line">包这是不可能完成的（译者注：比如一个使用了x86汇编指令写成的音频解码器就不可能为ARM机器交叉</div>
+<div class="line-block">
+<div class="line">编译成功）。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">本章的知识将假定你已经熟悉了bitbake，包括工作流程，合乎要求的目录结构，bitbake配置以及</div>
+<div class="line-block">
+<div class="line">git的使用。如果你还不熟悉的话，那么请首先看看bitibake的用法相关章节。</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">8.2“配方”符号</div>
+</div>
+<p>构成一个“配方“文件的基本要素包括：</p>
+<p>函数</p>
+<div class="line-block">
+<div class="line">函数提供了一系列要执行的动作。函数通常用来替代一个默认的“任务“函数，或者是完善和增强。</div>
+<div class="line-block">
+<div class="line">标准的函数使用sh shell符号，可以访问oe的变量和内部方法。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">下面是一个sed“配方”里的函数示例：</div>
+<div class="line-block">
+<div class="line">do_install () {</div>
+<div class="line">autotools_do_install</div>
+<div class="line">install -d ${D}${base_bindir}</div>
+<div class="line">mv ${D}${bindir}/sed ${D}${base_bindir}/sed.${PN}</div>
+<div class="line">}</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">你也可以实现一个全新的函数，而不是已有函数的替代，函数在已有“任务“之间被调用。你也可以</div>
+<div class="line">使用python来实现一个函数替代sh的实现方式。在大多数的“配方”里你都可以看到这两种用法。</div>
+</div>
+<p>变量的赋值和操作</p>
+<div class="line-block">
+<div class="line">变量赋值允许把一个值赋予变量。变量赋值有可能是静态的文本或者是包含其他变量的值，给一个</div>
+<div class="line-block">
+<div class="line">变量追加值也是可以的。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">下面是在“配方”里使用变量的一些方式：</div>
+<div class="line-block">
+<div class="line">S = &quot;${WORKDIR}/postfix-${PV}&quot;</div>
+<div class="line">PR = &quot;r4&quot;</div>
+<div class="line">CFLAGS += &quot;-DNO_ASM&quot;</div>
+<div class="line">SRC_URI_append = &quot;<a class="reference external" href="file://fixup.patch;patch=1">file://fixup.patch;patch=1</a>&quot;</div>
+</div>
+</div>
+<p>关键字</p>
+<div class="line-block">
+<div class="line">bitbake只有极少的关键字。比如像包含一些常用函数的继承(inherit),加载一个其他的文件成为</div>
+<div class="line-block">
+<div class="line">“配方”的一部分(include和require)，还有推出全局环境变量的export。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">下面是个示例：</div>
+<div class="line-block">
+<div class="line">export POSTCONF = &quot;${STAGING_BINDIR}/postconf&quot;</div>
+<div class="line">inherit autoconf</div>
+<div class="line">require otherfile.inc</div>
+</div>
+</div>
+<p>注释</p>
+<p>任何以#开头的行将被视为注释而被忽略掉。比如：</p>
+<p>＃这是注释</p>
+<p>下面摘录了一些在“配方”中最常用的符号：</p>
+<p>续行号： &quot;\&quot;</p>
+<p>把一行的内容分开写在两行的时候你需要在行尾加上 &quot;\&quot;符号。</p>
+<div class="line-block">
+<div class="line">VAR = &quot;一个很长 \</div>
+<div class="line-block">
+<div class="line">的行&quot;</div>
+</div>
+</div>
+<p>注意：在行尾的&quot;\&quot;号后面不能有其他的符号了（包括空格和制表键）。</p>
+<p>注释:&quot;#&quot;</p>
+<p>上面已经讲述过了。</p>
+<p>访问变量:${...}</p>
+<div class="line-block">
+<div class="line">访问变量的内容时使用要把变量括起来:${变量名}:</div>
+<div class="line-block">
+<div class="line">SRC_URI = &quot;${SOURCEFORGE_MIRROR}/libpng/zlib-${PV}.tar.gz&quot;</div>
+<div class="line">变量赋值和引号:</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">所有的变量赋值时，内容要用双引号括起来。（如果不用可能现在能工作，但后面就不一定能工作</div>
+<div class="line-block">
+<div class="line">了）</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">VAR1 = &quot;${OTHERVAR}&quot;</div>
+<div class="line-block">
+<div class="line">VAR2 = &quot;The version is ${PV}&quot;</div>
+</div>
+</div>
+<p>条件赋值:</p>
+<p>条件赋值用来当一个变量还没有被赋值的时候赋值。通常用来给一个变量提供初值。</p>
+<div class="line-block">
+<div class="line">比如：</div>
+<div class="line-block">
+<div class="line">VAR1 ?= &quot;New value&quot;</div>
+<div class="line">如果VAR1当前没有赋值那么就赋给&quot;Newvalue&quot;，但是如果变量已经有值的时候就结果还是原来的</div>
+<div class="line">值：</div>
+<div class="line">VAR1 = &quot;Original value&quot;</div>
+<div class="line">VAR1 ?= &quot;New value&quot;</div>
+<div class="line">VAR1的值还是&quot;Original value&quot;</div>
+</div>
+</div>
+<p>变量值追加（有空格）:+=</p>
+<div class="line-block">
+<div class="line">你可以给已经有值的变量使用符号“+=”追加一个值。注意这个操作会在原值和你追加的值中间添</div>
+<div class="line-block">
+<div class="line">上空格：</div>
+</div>
+</div>
+<p>SRC_URI += &quot;<a class="reference external" href="file://fix-makefile.patch;patch=1">file://fix-makefile.patch;patch=1</a>&quot;</p>
+<p>变量值前加:=+</p>
+<div class="line-block">
+<div class="line">你可以给已有值的变量内容前面加上一个值，使用符号&quot;=+&quot;.注意这个操作会在原值和你追加的值中间添</div>
+<div class="line-block">
+<div class="line">上空格：</div>
+</div>
+</div>
+<p>VAR =+ &quot;Starts&quot;</p>
+<p>变量值追加：_append方式</p>
+<div class="line-block">
+<div class="line">你可以使用_append方式来给一个已经存在的变量追加值，跟+=不一样的是这种方式不会在原值和</div>
+<div class="line">你要追加的值中间加上空格。下面的例子中自己添上了空格，这样就不会跟原来的值直接合在一起。</div>
+</div>
+<p>SRC_URI_append = &quot; <a class="reference external" href="file://fix-makefile.patch;patch=1">file://fix-makefile.patch;patch=1</a>&quot;</p>
+<p>_append方式也可以用来覆盖某个值，但是仅仅是在指定目标机器和平台的时候有用：</p>
+<p>SRC_URI_append_sh4 = &quot; <a class="reference external" href="file://fix-makefile.patch;patch=1">file://fix-makefile.patch;patch=1</a>&quot;</p>
+<p>你可以把追加符理解为变量自己本身。所以+=和=+符号可以和_append一起来使用,比如：</p>
+<div class="line-block">
+<div class="line">SRC_URI_append = &quot; <a class="reference external" href="file://fix-makefile.patch;patch=1">file://fix-makefile.patch;patch=1</a>&quot;</div>
+<div class="line-block">
+<div class="line">SRC_URI_append += &quot;<a class="reference external" href="file://fix-install.patch;patch=1">file://fix-install.patch;patch=1</a>&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">变量值前加：_prepend 方式</div>
+</div>
+<div class="line-block">
+<div class="line">使用_prepend在已有的变量前面加上一个值。和_apend一样，这里_prepend和=+的区别就是没有</div>
+<div class="line-block">
+<div class="line">空格。</div>
+</div>
+</div>
+<p>例如：CFLAGS_prepend = &quot;-I${S}/myincludes &quot;</p>
+<p>同样在指定机器名的时候_prepend也是覆盖的意思。如：</p>
+<p>CFLAGS_prepend_sh4 = &quot; <a class="reference external" href="file://fix-makefile.patch;patch=1">file://fix-makefile.patch;patch=1</a>&quot;</p>
+<p>同样_prepend也可以和+=,=+一起来使用，例如:</p>
+<div class="line-block">
+<div class="line">CFLAGS_prepend = &quot;-I${S}/myincludes &quot;</div>
+<div class="line-block">
+<div class="line">CFLAGS_prepend += &quot;-I${S}/myincludes2 &quot;</div>
+</div>
+</div>
+<p>空格和制表符</p>
+<p>缩进应该使用空格，而不是制表符。所以说现在制表符也可以工作，但是OE只是承诺过支持空格。</p>
+<p>代码风格：oe-stylize.py</p>
+<div class="line-block">
+<div class="line">为了帮助你在“配方“中使用正确的（译者注：标准的可能更合适些）格式，oe在contrib目录里</div>
+<div class="line">提供了一个oe-stylize.py脚本，使用它你可以把你的“配方”格式化成标准的格式.运行脚本的</div>
+<div class="line-block">
+<div class="line">时候会输出一些警告信息，你需要手动把这些删除.</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">contrib/oe-stylize.py myrecipe.bb &gt; fixed-recipe.bb</div>
+<div class="line-block">
+<div class="line">vi fixed-recipe.bb</div>
+<div class="line">mv fixed.recipe.bb myrecipe.bb</div>
+</div>
+</div>
+<p>使用python的高级操作：${&#64;...}</p>
+<p>为了获取更高级的功能，你可以使用python语句，比如变量替换和搜索。</p>
+<p>Python语句在声明变量之前要添加&#64;符号。</p>
+<p>CXXFLAGS := &quot;<a class="reference external" href="mailto:${&#64;'${CXXFLAGS">${&#64;'${CXXFLAGS</a>}'.replace('-frename-registers', '')}&quot;</p>
+<p>更多python的主题请参照&quot;高级的python&quot;一节。</p>
+<p>Shell符号:</p>
+<div class="line-block">
+<div class="line">当描述很多动作的时候你可能会使用shell语句（就跟你写shell脚本一样了）。你应当确保你的脚本</div>
+<div class="line">可以任何sh里正常运行，而不要依赖与bash或者是其他shell的特殊功能。对于其他的工具，比如</div>
+<div class="line">sed,grep,awk等等你也应该注意这些。如果你怀疑你的脚本是否符合标准，那么你应当使用</div>
+<div class="line-block">
+<div class="line">busybox提供的这些工具.</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">“配方”相关的更详细的符号描述你应当参考bitbake用户手册。</div>
+<div class="line-block">
+<div class="line">8.3“配方”的命名：名称，版本，和发布号</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">OE里配方的命名都遵循一个规定。名字包括名称和版本两部分，还有一个可选的发布号。发布号表明了</div>
+<div class="line-block">
+<div class="line">这是这个包的第几次构建。发布号是包含在“配方”里的。</div>
+</div>
+</div>
+<p>符合规定的“配方“名字应该是这样：</p>
+<p>&lt;包名&gt;_&lt;版本&gt;.bb</p>
+<p>包名是软件包的名字（不管这个软件包是应用程序，库，模块，或者其他什么），版本部分就是版本号。</p>
+<p>所以一个典型的“配方”名应该是这样：</p>
+<p>strace_4.5.14.bb</p>
+<p>表明是strace包的4.5.14版.</p>
+<p>发布号是在PR变量里定义的，包含在“配方”文件里。正确的格式应该是:</p>
+<div class="line-block">
+<div class="line">r&lt;n&gt;</div>
+<div class="line-block">
+<div class="line">&lt;n&gt;代表一个从0开始的任意整数。</div>
+</div>
+</div>
+<p>典型的样子应该是：</p>
+<p>PR = &quot;r1&quot;</p>
+<p>如果在“配方”里没有定义PR变量那么就会使用默认值&quot;r0&quot;.</p>
+<div class="line-block">
+<div class="line">注意，在任何时候你都应该使用发布号，即便是发布号0。同时发布号应该是递增的，不允许一个</div>
+<div class="line">发布号递减，如果你因为不慎提交了一个很大的版本号，那么也不能改变它，后面这个版本还应该</div>
+<div class="line">保持递增。除非你只是做了比如升级了下载地址这样的动作才可以不改变发布号，如果你不确定那</div>
+<div class="line-block">
+<div class="line">么就递增它。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">当一个“配方”在被处理运行的时候，一些变量会被根据“配方”自动设置，所以在任何“配方”里你</div>
+<div class="line-block">
+<div class="line">都可以使用这些变量。这些变量包括：</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">PN</div>
+<div class="line">包名。由“配方”的文件名所决定。bitbake处理一个“配方”的时候会自动设置。比如对于&quot;配方&quot;</div>
+<div class="line-block">
+<div class="line">strace_4.5.14.bb对应的PN就是&quot;strace&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">PV</div>
+<div class="line">包版本。有“配方”的文件名决定。比如对于&quot;配方&quot;strace_4.5.14.bb对应的PV就是</div>
+<div class="line-block">
+<div class="line">&quot;4.5.14&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">PR</div>
+<div class="line">包的发布版本号。这个是在“配方”文件里面设置的。如果没有设置默认值是&quot;r0&quot;.</div>
+</div>
+<div class="line-block">
+<div class="line">P</div>
+<div class="line-block">
+<div class="line">软件包名。由包名和包版本两部分组成。</div>
+<div class="line">P = &quot;${PN}-${PV}&quot;</div>
+<div class="line">对于strace_4.5.14.bb,P就是&quot;strace-4.5.14&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">PF</div>
+<div class="line-block">
+<div class="line">带发布号的软件包名。</div>
+<div class="line">PF = &quot;${PN}-${PV}-${PR}&quot;</div>
+</div>
+<div class="line">对这里的starce_4.5.14.bb“配方”文件来说，PR是“r1”，所以PF就是&quot;strace-4.5.14-r1&quot;</div>
+</div>
+<p>这些变量中有一些在一般情况下用的很少，而在oe内部程序使用较多，PN和PV是使用最多的。</p>
+<div class="line-block">
+<div class="line">在下面的例子中，我们指定系统包含一个附加的目录，但是我们没有直接写出包的名字来，而是使用变量</div>
+<div class="line-block">
+<div class="line">来完成的：</div>
+<div class="line">FILES_${PN} += &quot;${sysconfdir}/myconf&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">另外一个例子：我们给它指定源码包的下载地址，使用PV变量来指定包的版本号，而不是直接写的，这样</div>
+<div class="line-block">
+<div class="line">当我们升级包的版本，重命名一个“配方”的时候就不用再改动了。</div>
+</div>
+</div>
+<p>SRC_URI = &quot;<a class="reference external" href="ftp://ftp.vim.org/pub/vim/unix/vim">ftp://ftp.vim.org/pub/vim/unix/vim</a>-${PV}.tar.bz2&quot;</p>
+<p>8.4变量</p>
+<div class="line-block">
+<div class="line">bitbake“配方”里最令人感到困惑的一件事就是这里有大量的变量都要设置和控制。有些变量是从文件</div>
+<div class="line-block">
+<div class="line">名引出的，所以含义是显然的，但是其他的就不是这么明显了。</div>
+</div>
+</div>
+<p>有很多的文件都定义了各种变量：</p>
+<div class="line-block">
+<div class="line">1.bitbake的配置文件conf/bitbake.conf里有大量的变量，所以你需要经常查看这个文件看看</div>
+<div class="line-block">
+<div class="line">变量都是什么含义。</div>
+</div>
+<div class="line">2.目标机器和发行版配置文件conf/machine,conf/distro有时会定义一些指定机器和发行版相关</div>
+<div class="line-block">
+<div class="line">的变量。你应该看看你使用的目标机器对应的文件里都定义了些什么。</div>
+</div>
+<div class="line">3.bitbake自己也会定义一些变量。比如FILE变量就是bitbake自己定义的存储“配方”文件名</div>
+<div class="line-block">
+<div class="line">的。其他的bitbake设定的变量你应该参考bitbake的手册。</div>
+</div>
+<div class="line">4.类。在“配方”里使用关键字inherit继承的类构成了一个库，其他的“配方”把它们作为“配方”</div>
+<div class="line">的一部分。为了让类可以适应很多种情况，类本身在实现的时候使用了大量的变量。</div>
+</div>
+<p>另外一个重要的方面是，二进制程序和库有三种存在形式，基于此就有很多变量与之对应。包括：</p>
+<p>目标机器</p>
+<p>很多变量都是为了让程序编译出来在目标机器上运行而设置的。</p>
+<p>本地</p>
+<p>有些程序是为主机上用的，这也有很多相关变量。</p>
+<p>交叉编译</p>
+<p>程序是在本地主机上运行的，但是是为目标机器产生代码，与之相关也是有很多变量。</p>
+<p>8.5文件头</p>
+<div class="line-block">
+<div class="line">实际上每个“配方”都会有一些文件头，这些变量描述了很多信息，而且这些信息最后会直接作为</div>
+<div class="line-block">
+<div class="line">打包的程序包的元数据信息使用。</div>
+</div>
+</div>
+<p>文件头里用的变量有：</p>
+<p>描述信息:DESCRIPTION</p>
+<p>描述这个是什么软件。用户就可以知道这是否是他想安装的软件包。</p>
+<p>默认描值是这样的&quot;Version ${PV}-${PR} of package ${PN}&quot;.</p>
+<p>主页:HOMEPAGE</p>
+<p>这个软件的项目主页。</p>
+<p>默认值是&quot;unknown&quot;</p>
+<p>属类：SECTION</p>
+<p>SECTION变量描述了此软件包的类别。通常使用图形安装的用户用它来检索软件包。</p>
+<p>默认值是&quot;base&quot;</p>
+<p>重要程度：PRIORITY</p>
+<p>软件包的重要程度。</p>
+<p>默认值是&quot;optional&quot;（可选的）</p>
+<p>许可协议:LICENSE</p>
+<div class="line-block">
+<div class="line">软件包的使用的协议类型.</div>
+<div class="line-block">
+<div class="line">默认值是&quot;unknown&quot;</div>
+</div>
+</div>
+<p>8.6源码：下载，打补丁和附加文件</p>
+<div class="line-block">
+<div class="line">“配方”文件的目的就是描述从哪获取软件包然后给你的目标机器编译。源码的下载地址是用SRC_URI</div>
+<div class="line-block">
+<div class="line">变量描述的，支持很多种类的地址信息,最常见的有:</div>
+</div>
+</div>
+<p>http,https和ftp</p>
+<p>直接可以下载的地址。</p>
+<p>cvs,svn和git</p>
+<p>使用版本控制工具发布源码的情况。</p>
+<p>file</p>
+<p><a class="reference external" href="file:/">file:/</a>/形式的地址。这样就可以使用本地的文件。</p>
+<p>补丁:patches</p>
+<p>补丁文件信息。</p>
+<p>如果下载得到的文件是压缩文件，bitbake会自动解压它到工作目录。补丁也会被应用到源码目录。</p>
+<p>下面是包havp“配方”里的信息：</p>
+<div class="line-block">
+<div class="line">SRC_URI = &quot;<a class="reference external" href="http://www.server-side.de/download/havp">http://www.server-side.de/download/havp</a>-${PV}.tar.gz \</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="file://sysconfdir-is-etc.patch;patch=1">file://sysconfdir-is-etc.patch;patch=1</a> \</div>
+<div class="line"><a class="reference external" href="file://havp.init">file://havp.init</a> \</div>
+<div class="line"><a class="reference external" href="file://doc.configure.txt">file://doc.configure.txt</a> \</div>
+<div class="line"><a class="reference external" href="file://volatiles.05_havp">file://volatiles.05_havp</a>&quot;</div>
+</div>
+</div>
+<p>这里描述了一个文件：</p>
+<p><a class="reference external" href="http://www.server-side.de/download/havp">http://www.server-side.de/download/havp</a>-${PV}.tar.gz</p>
+<div class="line-block">
+<div class="line">这是havp包的下载地址。这里使用PV变量来指定版本。因为这是一个.tar.gz压缩文件，所以后面</div>
+<div class="line-block">
+<div class="line">会被解压到工作目录。</div>
+</div>
+</div>
+<p><a class="reference external" href="file://sysconfdir-is-etc.patch;patch=1">file://sysconfdir-is-etc.patch;patch=1</a></p>
+<p>这是一个在本地存放的补丁文件。patch=1表示要打该补丁。</p>
+<p><a class="reference external" href="file://havp.init">file://havp.init</a> <a class="reference external" href="file://doc.configure.txt">file://doc.configure.txt</a> <a class="reference external" href="file://volatiles.05_havp">file://volatiles.05_havp</a></p>
+<p>这些都是些普通文件，会直接拷贝到工作目录里。init脚本一般采用都是这种方式。</p>
+<div class="line-block">
+<div class="line">详细的描述请参考第9章的SRC_URL参考信息。</div>
+<div class="line-block">
+<div class="line">8.7目录：什么目录？放在哪？</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">“配方”里的描述的工作很多时候都是跟文件纠缠。在哪可以找到文件，然后应该放到哪。有一点很重要</div>
+<div class="line">，你不要使用类似于/usr/include,/usr/lib这样的目录，因为这是主机上的，不是目标机器上的。而</div>
+<div class="line-block">
+<div class="line">且我想你也不希望目标机器的程序把你主机上的覆盖掉。所以，千万小心！</div>
+</div>
+</div>
+<p>下面是一些在“配方”里要经常使用的目录，下面给出详细描述：</p>
+<p>工作目录:WORKDIR</p>
+<div class="line-block">
+<div class="line">这是一个“配方”的源码文件被解压的地方，其他普通的文件也会拷贝到这里，然后这里还会</div>
+<div class="line-block">
+<div class="line">建立log目录，安装文件也在这里创建。</div>
+</div>
+</div>
+<p>源码目录:S</p>
+<p>这是程序的源码目录，补丁会被应用到这里，程序的编译也在这里进行。</p>
+<p>目标目录:D</p>
+<p>这是一个包的程序被编译出来安装的目标目录。打包程序的时候就是从这里获取文件的。</p>
+<p>安装目录:bin目录,doc目录等等</p>
+<p>有很多变量描述了这些路径。在配方里你应该使用变量而不是直接指定路径。</p>
+<p>中间目录:STAGING_LIBDIR, STAGING_INCDIR等</p>
+<div class="line-block">
+<div class="line">中间目录用来存放一个“配方”产生的一些其他包可能会用到的库啊、头文件之类的东西。</div>
+<div class="line-block">
+<div class="line">在“配方里”用变量描述了这些目录以便用到的时候可以找到。</div>
+</div>
+</div>
+<p>文件目录：FILE, FILE_DIRNAME, FILESDIR, FILESPATH</p>
+<p>这些描述在哪可以找到需要的文件。理解这些你就可以区分补丁目录，发布目录等等。</p>
+<p>8.7.1 WORKDIR：工作目录</p>
+<div class="line-block">
+<div class="line">这是一个“配方”的源码文件被解压的地方，其他普通的文件也会拷贝到这里，然后这里还会建立</div>
+<div class="line">log目录，安装文件也在这里创建。使用这个目录的原因之一就是处理除补丁之外的一些文件。</div>
+</div>
+<p>如果我们看看quagga&quot;配方&quot;的文件，就可以看到除补丁之外的一些普通文件。</p>
+<div class="line-block">
+<div class="line">SRC_URI = &quot;<a class="reference external" href="http://www.quagga.net/download/quagga">http://www.quagga.net/download/quagga</a>-${PV}.tar.gz \</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="file://fix-for-lib-inpath.patch;patch=1">file://fix-for-lib-inpath.patch;patch=1</a> \</div>
+<div class="line"><a class="reference external" href="file://quagga.init">file://quagga.init</a> \</div>
+<div class="line"><a class="reference external" href="file://quagga.default">file://quagga.default</a> \</div>
+<div class="line"><a class="reference external" href="file://watchquagga.init">file://watchquagga.init</a> \</div>
+<div class="line"><a class="reference external" href="file://watchquagga.default">file://watchquagga.default</a>&quot;</div>
+</div>
+<div class="line">这个配方里有两个init文件和两个配置文件(.default)，这都不是补丁文件，但的确要在建立包</div>
+<div class="line">的时候使用。Bitbake将拷贝文件到工作目录里。所以，在安装阶段我们用文件的时候就通过变量</div>
+<div class="line-block">
+<div class="line">WORKDIR来访问：</div>
+<div class="line">do_install () {</div>
+<div class="line"># Install init script and default settings</div>
+<div class="line">install -m 0755 -d ${D}${sysconfdir}/default ${D}${sysconfdir}/init.d ${D}${sysconfdir}/quagga</div>
+<div class="line">install -m 0644 ${WORKDIR}/quagga.default ${D}${sysconfdir}/default/quagga</div>
+<div class="line">install -m 0644 ${WORKDIR}/watchquagga.default ${D}${sysconfdir}/default/watchquagga</div>
+<div class="line">install -m 0755 ${WORKDIR}/quagga.init ${D}${sysconfdir}/init.d/quagga</div>
+<div class="line">install -m 0755 ${WORKDIR}/watchquagga.init ${D}${sysconfdir}/init.d/watchquagga</div>
+<div class="line">...</div>
+</div>
+</div>
+<p>8.7.2 S：解压了的源码所在目录</p>
+<div class="line-block">
+<div class="line">Bitbake希望源码包目录以&lt;包名&gt;-&lt;版本&gt;的形式在工作目录WORKDIR里存在，这是它在打补丁，</div>
+<div class="line-block">
+<div class="line">编译和安装之前要进入的目录。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">举个例子，我们有各包widgets_1.2.bb,它的源码包压缩文件是widgets-1.2.tar.gz，Bitbake</div>
+<div class="line">希望在工作目录里的源码包目录叫做widgets-1.2,如果源码包在工作目录里不是这样的名字，那么</div>
+<div class="line-block">
+<div class="line">应该直接设置变量S告诉bitbake。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">SRC_URI = &quot;<a class="reference external" href="http://www.example.com/software/widgets">http://www.example.com/software/widgets</a>-${PN}.tar.gz&quot;</div>
+<div class="line-block">
+<div class="line">S = &quot;${WORKDIR}/widgets&quot;</div>
+</div>
+</div>
+<p>8.7.3 D：目标目录</p>
+<div class="line-block">
+<div class="line">目标目录是编译完成之后程序安装到的目录，这个目录是为软件二进制打包准备的。通常一个软件</div>
+<div class="line">包会把程序安装到类似/etc,/usr/bin这样的目录里。但是这是主机上的目录，不是我们想要安装</div>
+<div class="line-block">
+<div class="line">的地方。所以就需要安装到另外的目录里。</div>
+</div>
+</div>
+<p>所以bitbake把原本安装到/usr/bin/的程序安装到${D}/usr/bin里。</p>
+<p>下面包arpwatch的例子就展示了传输${D}给DESTDIR来控制makefile的安装行为：</p>
+<div class="line-block">
+<div class="line">do_install() {</div>
+<div class="line-block">
+<div class="line">...</div>
+<div class="line">oe_runmake install DESTDIR=${D}</div>
+</div>
+</div>
+<p>下面展示arpwatch包里如何安装init脚本和配置文件到目标目录:</p>
+<div class="line-block">
+<div class="line">do_install () {</div>
+<div class="line-block">
+<div class="line"># Install init script and default settings</div>
+<div class="line">install -m 0755 -d ${D}${sysconfdir}/default ${D}${sysconfdir}/init.d ${D}${sysconfdir}/quagga</div>
+<div class="line">install -m 0644 ${WORKDIR}/quagga.default ${D}${sysconfdir}/default/quagga</div>
+<div class="line">install -m 0755 ${WORKDIR}/quagga.init ${D}${sysconfdir}/init.d/quagga</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">注意:你不能使用/etc,/usr/bin这样的主机上的路径名字，而应该变量或者文件的真正路径，</div>
+<div class="line-block">
+<div class="line">更详细的变量可以在第9章参考手册的“安装目录“一节找到。</div>
+</div>
+</div>
+<p>8.7.4.中间目录</p>
+<div class="line-block">
+<div class="line">中间目录用来存放一个“配方”产生的但其他“配方”可能会用到的库和头文件之类的东西。例如，</div>
+<div class="line">编译一个包的时候可能会需要用到另外一个包编译的一些库。这个需要在那个包编译之后把它保留</div>
+<div class="line">在主机上，而不是直接删除。这样当编译这个包的时候就到中间目录(或者叫中转目录可能更合适</div>
+<div class="line-block">
+<div class="line">些)去找就行了。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">这样编译库和头文件的过程叫做中间处理，在配方里是由&quot;中间任务&quot;(stage任务)来完成的。任何</div>
+<div class="line">包里如果包含了其他包需要的文件就应该都正确的放到中间目录。下面是clamav包放clamav库到</div>
+<div class="line-block">
+<div class="line">中间目录的示例：</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">do_stage () {</div>
+<div class="line-block">
+<div class="line">oe_libinstall -a -so libclamav ${STAGING_LIBDIR}</div>
+<div class="line">install -m 0644 libclamav/clamav.h ${STAGING_INCDIR}</div>
+<div class="line">}</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">下面就展示了p3scan包里是如何使用clamav库和头文件。给configure脚本传递参数就可以了。</div>
+<div class="line">如果没有这个参数的话，脚本就会在主机系统库和头文件路径下去找，导致失败。在配方里给变量</div>
+<div class="line-block">
+<div class="line">EXTRA_OECONF的配置选项语句里指定clamav库和头文件的路径就行了：</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">EXTRA_OECONF = &quot;--with-clamav=${STAGING_LIBDIR}/.. \</div>
+<div class="line-block">
+<div class="line">--with-openssl=${STAGING_LIBDIR}/.. \</div>
+<div class="line">--disable-ripmime&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">OE会自动把这个传递给configure脚本。这种情况一般在一些要搜索多个库和头文件的软件包里才</div>
+<div class="line-block">
+<div class="line">会出现。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">注意：一些很有用的类比如pkgconfig,autotools会自动的给“中间任务”添加一些命令。</div>
+<div class="line-block">
+<div class="line">你可以在第9章参考这些类的描述信息。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">完整的中间目录的信息请参考9章参考手册的“中间目录”小节。</div>
+<div class="line-block">
+<div class="line">8.7.5 FILESPATH/FILESDIR：寻找本地文件</div>
+</div>
+</div>
+<p>bitbake使用一些变量来帮助找到补丁和一些本地文件。</p>
+<div class="line-block">
+<div class="line">通常你并不需要编辑这些。但是看看这些变量的默认值是很有用的，比如你要找补丁和文件的时候。</div>
+<div class="line-block">
+<div class="line">默认的搜寻路径有：</div>
+</div>
+</div>
+<p>${FILE_DIRNAME}/${PF}</p>
+<div class="line-block">
+<div class="line">包含了包名，版本，发布号，比如“strace-4.5.14-r1”，这个用的不多，因为一个包的补</div>
+<div class="line-block">
+<div class="line">丁只会放在每个确定的&quot;配方&quot;那里。</div>
+</div>
+</div>
+<p>${FILE_DIRNAME}/${P}</p>
+<p>包含了包名，版本。比如&quot;strace-4.5.14&quot;。这里通常来放特定版本的补丁文件。</p>
+<p>${FILE_DIRNAME}/${PN}</p>
+<p>包名。比如&quot;strace&quot;。这个一般不用。</p>
+<p>${FILE_DIRNAME}/files</p>
+<p>files目录.通常放每个版本的包都会用到的补丁和文件。</p>
+<p>${FILE_DIRNAME}/</p>
+<p>“配方”的主目录。这个一般也不用。</p>
+<p>这些路径都是跟${FILE_DIRNAME}有关联的。</p>
+<p>完整的控制文件和补丁存放位置的变量包括：</p>
+<p>FILE</p>
+<p>当前正在处理的.bb文件的存放路径。</p>
+<p>FILE_DIRNAME</p>
+<p>当前正在处理的文件的存放路径。</p>
+<p>FILE_DIRNAME = &quot;<a class="reference external" href="mailto:${&#64;os.path">${&#64;os.path</a>.dirname(bb.data.getVar('FILE', d))}&quot;</p>
+<p>FILESPATH</p>
+<div class="line-block">
+<div class="line">默认给file://链接使用的一组目录。每个目录都会被搜索一边。所有以file://指定的文件</div>
+<div class="line-block">
+<div class="line">都会在这些目录去找。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">FILESPATH = &quot;${FILE_DIRNAME}/${PF}:${FILE_DIRNAME}/${P}:\</div>
+<div class="line-block">
+<div class="line">${FILE_DIRNAME}/${PN}:${FILE_DIRNAME}/files:${FILE_DIRNAME}&quot;</div>
+</div>
+</div>
+<p>FILESDIR</p>
+<div class="line-block">
+<div class="line"><a class="reference external" href="file:/">file:/</a>/链接的默认搜诉路径。只用来找在FILESPATH里找不到的文件。这样就不用来编辑</div>
+<div class="line">变量FILESPATH的值而灵活的添加一个找文件的目录。默认会是FILESPATH变量里的第一个</div>
+<div class="line-block">
+<div class="line">目录。</div>
+</div>
+</div>
+<p>FILESDIR = &quot;<a class="reference external" href="mailto:${&#64;bb">${&#64;bb</a>.which(bb.data.getVar('FILESPATH', d, 1), '.')}&quot;</p>
+<div class="line-block">
+<div class="line">有时，当在一个&quot;配方&quot;里包含了另外一个&quot;配方&quot;的时候，FILESPATH和FILESDIR变量会被改动以</div>
+<div class="line-block">
+<div class="line">确保被包含的“配方”使用正确的文件和路径。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">这里给个例子，加入m4-native包包含了m4包，那么m4-native就会改变FILESDIR为m4的，因为</div>
+<div class="line-block">
+<div class="line">m4包使用的路径是m4，而不是 m4-native.</div>
+</div>
+</div>
+<p>8.8 hello world示例</p>
+<div class="line-block">
+<div class="line">现在你已经具备了写一个基本的“配方”的知识了。我们将示例一个简单的单文件的“配方”，然后再</div>
+<div class="line">讲一个使用autotool管理的软件包的“配方”，看看如何为一个用使用autotool的软件包写“配方”。</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">8.8.1.Hello World</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">现在我们来创建我们的第一个&quot;配方&quot;.这个是一个最简单的“配方”：所有的代码总共就一个要编译</div>
+<div class="line">的文件和一个readme文件。这不是一个最常见的包，但是却是一个有用的示例，开始的时候你不需</div>
+<div class="line-block">
+<div class="line">要被那些复杂的的东西所迷惑。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">首先我们创建一个myhelloworld.c文件和一个readme文件。把它们放在一个子目录里，待会使用</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="file:/">file:/</a>/来定位它们。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">mkdir packages/myhelloworld</div>
+<div class="line-block">
+<div class="line">mkdir packages/myhelloworld/files</div>
+<div class="line">cat &gt; packages/myhelloworld/files/myhelloworld.c</div>
+<div class="line">#include &lt;stdio.h&gt;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">int main(int argc, char** argv)</div>
+<div class="line-block">
+<div class="line">{</div>
+<div class="line">printf(&quot;Hello world!\n&quot;);</div>
+<div class="line">return 0;</div>
+<div class="line">}</div>
+<div class="line">^D</div>
+<div class="line">cat &gt; packages/myhelloworld/files/README.txt</div>
+<div class="line">Readme file for myhelloworld.</div>
+<div class="line">^D</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">现在我们为我们的“配方”创建了一个目录：packages/myhelloworld,而且我们创建了一个</div>
+<div class="line">files目录来保存本地文件。我们创建了两个本地文件。一个是helloworld程序的c代码，一个是</div>
+<div class="line-block">
+<div class="line">readme。现在我们来编写“配方”。</div>
+</div>
+</div>
+<p>首先我们需要文件头部，包含包的描述和发布号。我们把其他的变量空起：</p>
+<div class="line-block">
+<div class="line">DESCRIPTION = &quot;My hello world program&quot;</div>
+<div class="line-block">
+<div class="line">PR = &quot;r0&quot;</div>
+</div>
+</div>
+<p>接下来，我们需要告诉oe我们想在“配方”里使用哪些文件，在SRC_URI变量里用file://来指定：</p>
+<div class="line-block">
+<div class="line">SRC_URI = &quot;<a class="reference external" href="file://myhelloworld.c">file://myhelloworld.c</a> \</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="file://README.txt">file://README.txt</a>&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">注意：这里使用续行号&quot;\&quot;，多个文件的时候就要使用它（一行写不下的时候）,其他的http://</div>
+<div class="line-block">
+<div class="line">的文件之间也可以使用。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">现在我们需要提供一个“任务”来告诉bitbake怎么编译这个程序：再定义一个do_compile函数，</div>
+<div class="line-block">
+<div class="line">然后提供适当的命令：</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">do_compile() {</div>
+<div class="line-block">
+<div class="line">${CC} ${CFLAGS} ${LDFLAGS} ${WORKDIR}/myhelloworld.c -o myhelloworld</div>
+<div class="line">}</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">注意：</div>
+<div class="line-block">
+<div class="line">*这里使用预定义的编译器变量，${CC}, ${CFLAGS}和${LDFLAGS}.这些会自动设置交叉</div>
+<div class="line">编译这个软件的信息。</div>
+</div>
+<div class="line">*这里使用了${WORKDIR}来定位文件。就像之前提到的一样，所有的文件会被拷贝的工作目录</div>
+<div class="line-block">
+<div class="line">里，然后可以使用${WORKDIR}来提取它。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">最后，我们需要安装这个程序和readme文档到目标目录以便后面它们可以被正确打包。这是通过</div>
+<div class="line">&quot;安装&quot;任务(install)完成的,所以我们需要在“配方”里定义一个do_install函数：</div>
+</div>
+<div class="line-block">
+<div class="line">do_install() {</div>
+<div class="line-block">
+<div class="line">install -m 0755 -d ${D}${bindir} ${D}${docdir}/myhelloworld</div>
+<div class="line">install -m 0644 ${S}/myhelloworld ${D}${bindir}</div>
+<div class="line">install -m 0644 ${WORKDIR}/README.txt ${D}${docdir}/myhelloworld</div>
+<div class="line">}</div>
+<div class="line">注意：</div>
+<div class="line">*使用install命令创建目录和安装文件而不是cp。（译者注：使用cp不能直接使用设置权限，</div>
+<div class="line">过滤，创建文件夹等操作，install可以很简洁的完成这些。）</div>
+<div class="line">*目录在要拷贝文件之前必须创建。install命令会自己创建子目录，所以只要给install</div>
+<div class="line">完整的路径名就行了。</div>
+<div class="line">*我们使用了${D}变量来安装所有的东西到目标目录。</div>
+<div class="line">*我们还使用了${bindir},${docdir}来定位目标目录里的bin和doc路径。</div>
+<div class="line">*使用${WORKDIR}访问README.txt文件。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">我们定义这是这个包的0发布，然后软件版本是0.1，包名为myhelloworld.所以我们命名包“配方”</div>
+<div class="line-block">
+<div class="line">为myhelloworld_0.1.bb:</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">cat &gt; packages/myhelloworld/myhelloworld_0.1.bb</div>
+<div class="line-block">
+<div class="line">DESCRIPTION = &quot;Hello world program&quot;</div>
+<div class="line">PR = &quot;r0&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">SRC_URI = &quot;<a class="reference external" href="file://myhelloworld.c">file://myhelloworld.c</a> \</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="file://README.txt">file://README.txt</a>&quot;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">do_compile() {</div>
+<div class="line-block">
+<div class="line">${CC} ${CFLAGS} ${LDFLAGS} ${WORKDIR}/myhelloworld.c -o myhelloworld</div>
+<div class="line">}</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">do_install() {</div>
+<div class="line-block">
+<div class="line">install -m 0755 -d ${D}${bindir} ${D}${docdir}/myhelloworld</div>
+<div class="line">install -m 0644 ${S}/myhelloworld ${D}${bindir}</div>
+<div class="line">install -m 0644 ${WORKDIR}/README.txt ${D}${docdir}/myhelloworld</div>
+<div class="line">}</div>
+<div class="line">^D</div>
+</div>
+</div>
+<p>现在我们已经准备好构建我们的包了。但愿它能工作正常：</p>
+<div class="line-block">
+<div class="line">~/oe%&gt; bitbake -b packages/myhelloworld/myhelloworld_0.1.bb</div>
+<div class="line-block">
+<div class="line">NOTE: package myhelloworld-0.1: started</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_fetch: started</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_fetch: completed</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_unpack: started</div>
+<div class="line">NOTE: Unpacking /home/lenehan/devel/oe/local-packages/myhelloworld/files/helloworld.c to /home/lenehan/devel/oe/build/titan-glibc-25/tmp/work/myhelloworld-0.1-r0/</div>
+<div class="line">NOTE: Unpacking /home/lenehan/devel/oe/local-packages/myhelloworld/files/README.txt to /home/lenehan/devel/oe/build/titan-glibc-25/tmp/work/myhelloworld-0.1-r0/</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_unpack: completed</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_patch: started</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_patch: completed</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_configure: started</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_configure: completed</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_compile: started</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_compile: completed</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_install: started</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_install: completed</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_package: started</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_package: completed</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_package_write: started</div>
+<div class="line">NOTE: Not creating empty archive for myhelloworld-dbg-0.1-r0</div>
+<div class="line">Packaged contents of myhelloworld into /home/lenehan/devel/oe/build/titan-glibc-25/tmp/deploy/ipk/sh4/myhelloworld_0.1-r0_sh4.ipk</div>
+<div class="line">Packaged contents of myhelloworld-doc into /home/lenehan/devel/oe/build/titan-glibc-25/tmp/deploy/ipk/sh4/myhelloworld-doc_0.1-r0_sh4.ipk</div>
+<div class="line">NOTE: Not creating empty archive for myhelloworld-dev-0.1-r0</div>
+<div class="line">NOTE: Not creating empty archive for myhelloworld-locale-0.1-r0</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_package_write: completed</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_populate_staging: started</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_populate_staging: completed</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_build: started</div>
+<div class="line">NOTE: package myhelloworld-0.1-r0: task do_build: completed</div>
+<div class="line">NOTE: package myhelloworld-0.1: completed</div>
+<div class="line">Build statistics:</div>
+<div class="line">Attempted builds: 1</div>
+<div class="line">~/oe%&gt;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">包成功构建了，产生了两个.ipkg包，可以直接给目标机器安装。一个是二进制包，一个是包含</div>
+<div class="line-block">
+<div class="line">readme文档。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">~/oe%&gt; ls -l tmp/deploy/ipk/*/myhelloworld*</div>
+<div class="line-block">
+<div class="line">-rw-r--r--&nbsp; 1 lenehan lenehan 3040 Jan 12 14:46 tmp/deploy/ipk/sh4/myhelloworld_0.1-r0_sh4.ipk</div>
+<div class="line">-rw-r--r--&nbsp; 1 lenehan lenehan&nbsp; 768 Jan 12 14:46 tmp/deploy/ipk/sh4/myhelloworld-doc_0.1-r0_sh4.ipk</div>
+<div class="line">~/oe%&gt;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">看看工作目录里都有那些文件：</div>
+<div class="line-block">
+<div class="line">~/oe%&gt; find tmp/work/myhelloworld-0.1-r0</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/myhelloworld-0.1</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/myhelloworld-0.1/patches</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/myhelloworld-0.1/myhelloworld</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/temp</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/temp/run.do_configure.21840</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/temp/log.do_stage.21840</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/temp/log.do_install.21840</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/temp/log.do_compile.21840</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/temp/run.do_stage.21840</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/temp/log.do_configure.21840</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/temp/run.do_install.21840</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/temp/run.do_compile.21840</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/install</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/install/myhelloworld-locale</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/install/myhelloworld-dbg</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/install/myhelloworld-dev</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/install/myhelloworld-doc</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/install/myhelloworld-doc/usr</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/install/myhelloworld-doc/usr/share</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/install/myhelloworld-doc/usr/share/doc</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/install/myhelloworld-doc/usr/share/doc/myhelloworld</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/install/myhelloworld-doc/usr/share/doc/myhelloworld/README.txt</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/install/myhelloworld</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/install/myhelloworld/usr</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/install/myhelloworld/usr/bin</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/install/myhelloworld/usr/bin/myhelloworld</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/image</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/image/usr</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/image/usr/bin</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/image/usr/share</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/image/usr/share/doc</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/image/usr/share/doc/myhelloworld</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/myhelloworld.c</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/README.txt</div>
+<div class="line">~/oe%&gt;</div>
+</div>
+</div>
+<p>需要注意的是：</p>
+<div class="line-block">
+<div class="line">*两个源码文件在tmp/work/myhelloworld-0.1-r0里，也即${WORKDIR}变量代表的工作</div>
+<div class="line-block">
+<div class="line">目录。</div>
+<div class="line">* 在tmp/work/myhelloworld-0.1-r0/temp目录里有各种任务的日志信息。</div>
+<div class="line">*tmp/work/myhelloworld-0.1-r0/image是镜像目录，里面包含了要打包的文件。这就是</div>
+</div>
+<div class="line">实际上的“目标目录”。这里原本是有那两个文件的，但是在进行后面的安装任务时，这两个</div>
+<div class="line-block">
+<div class="line">文件被移动到install（安装目录）了。</div>
+<div class="line">*程序是在tmp/work/myhelloworld-0.1-r0/myhelloworld-0.1目录里编译的。这就是</div>
+<div class="line">${S}变量指定的目录。</div>
+<div class="line">*tmp/work/myhelloworld-0.1-r0/install就是安装目录，包含了将被直接打包的文件。</div>
+</div>
+<div class="line">我们看到myhelloworld-doc包包含了/usr/share/doc/myhelloworld/README.txt单文</div>
+<div class="line">件，myhelloworld包包含了/usr/bin/myhelloworld单个文件，然后-dev,-dbg和-local</div>
+<div class="line-block">
+<div class="line">包都是空的。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">到现在这个阶段，我们可以校验下文件，看看是否真的是给目标机器编译了程序：</div>
+<div class="line-block">
+<div class="line">~/oe%&gt; file tmp/work/myhelloworld-0.1-r0/install/myhelloworld/usr/bin/myhelloworld</div>
+</div>
+<div class="line">tmp/work/myhelloworld-0.1-r0/install/myhelloworld/usr/bin/myhelloworld:</div>
+<div class="line">ELF 32-bit LSB executable, Hitachi SH, version 1 (SYSV), for GNU/Linux</div>
+<div class="line">2.4.0, dynamically linked (uses shared libs), for GNU/Linux 2.4.0, not  stripped</div>
+<div class="line-block">
+<div class="line">~/oe%&gt; file /bin/ls</div>
+<div class="line">/bin/ls: ELF 64-bit LSB executable, AMD x86-64, version 1 (SYSV), for  GNU/Linux 2.4.0, dynamically linked (uses shared libs), for GNU/Linux 2.4.0, stripped</div>
+<div class="line">~/oe%&gt;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">这表明helloworld程序是给SH处理器编译的，当我们检测/bin/ls的时候显示ls是给AMD X86-64</div>
+<div class="line-block">
+<div class="line">主机系统的，这就是我们想要的结果！</div>
+</div>
+</div>
+<p>8.8.2.使用autotools的软件包</p>
+<div class="line-block">
+<div class="line">现在来看一个使用autotool的软件包例子。你需要运行configure脚本，传递各种参数，然后make。</div>
+<div class="line">为了这些动作在交叉编译的时候能够执行正常，你还需要提供很多变量给configure脚本。这些困难</div>
+<div class="line">的事情oe已经给你做过了，autotool类已经为基于autotool的软件包解决了这些复杂的问题。</div>
+</div>
+<p>让我们看看一个简单的基于autotool的软件包配方tuxnes:</p>
+<div class="line-block">
+<div class="line">%~oe&gt; cat packages/tuxnes/tuxnes_0.75.bb</div>
+<div class="line-block">
+<div class="line">DESCRIPTION = &quot;Tuxnes Nintendo (8bit) Emulator&quot;</div>
+<div class="line">HOMEPAGE =&quot;<a class="reference external" href="http://prdownloads.sourceforge.net/tuxnes/tuxnes-0.75.tar.gz">http://prdownloads.sourceforge.net/tuxnes/tuxnes-0.75.tar.gz</a>&quot;</div>
+<div class="line">LICENSE = &quot;GPLv2&quot;</div>
+<div class="line">SECTION = &quot;x/games&quot;</div>
+<div class="line">PRIORITY = &quot;optional&quot;</div>
+<div class="line">PR = &quot;r1&quot;</div>
+</div>
+</div>
+<p>SRC_URI =
+&quot;<a class="reference external" href="http://heanet.dl.sourceforge.net/sourceforge/tuxnes/tuxnes-0.75.tar.gz">http://heanet.dl.sourceforge.net/sourceforge/tuxnes/tuxnes-0.75.tar.gz</a>&quot;</p>
+<p>inherit autotools</p>
+<div class="line-block">
+<div class="line">这的确是一个很简单的“配方”，有标准的文件头描述了包，下载地址信息，这里是一个http的</div>
+<div class="line-block">
+<div class="line">下载地址，然后有一个&quot;inherit autotools&quot;命令加载了autotool类。autotool类会自己产生</div>
+<div class="line">配置，编译，安装所需的一系列“任务“&nbsp;&nbsp;&nbsp; 。所以这里就不用作其他事情了。</div>
+</div>
+</div>
+<p>如果事情总是这么简单就好了。但是不幸运的是，通常我们还有很多麻烦事情，因为需要：</p>
+<div class="line-block">
+<div class="line">* 传递参数给configure打开和禁止某个功能；</div>
+<div class="line-block">
+<div class="line">* 传递参数给configure到哪去找头文件和库；</div>
+<div class="line">* 修改软件包，不让它到主机上去找头文件和库；</div>
+<div class="line">* 修改软件包，不要让它在编译的时候编译一个程序就在主机上运行它，那是给目标机器编译</div>
+<div class="line">的，不可能运行成功的；</div>
+<div class="line">* 手动作一些中间环节的事情；</div>
+<div class="line">* 处理更多其他的复杂的问题；</div>
+</div>
+</div>
+<p>这些主题的详细讨论在 8.15 autotool主题 一节里。</p>
+<p>8.9依赖关系：构建和运行软件包的时候需要哪些？</p>
+<div class="line-block">
+<div class="line">用过基于.rpm和.deb包管理的桌面发行版的读者对依赖关系这个概念应该很熟悉。依赖关系指一个包在</div>
+<div class="line-block">
+<div class="line">运行的时候（运行时依赖）或者构建的时候（构建时依赖）需要另外一个包。</div>
+</div>
+</div>
+<p>OE里有两个依赖关系相关的变量：</p>
+<p>DEPENDS：</p>
+<div class="line-block">
+<div class="line">构建时依赖。指定了一些在构建本包之前需要构建的“配方”列表,包括一些程序（有些甚至是本地的）</div>
+<div class="line-block">
+<div class="line">和库。</div>
+</div>
+</div>
+<p>RDEPENDS:</p>
+<div class="line-block">
+<div class="line">指定运行时依赖，是一组在包含运行本程序时需要的程序和库的包文件列表。注意一个程序需要动</div>
+<div class="line-block">
+<div class="line">态链接的库会被自动检测到并且加到 RDEPENDS里，所以这就不要再专门指定了。</div>
+</div>
+</div>
+<p>拿openssh作例子，它在构建和运行的时候都需要zlib和openssl。配方里这么写：</p>
+<p>DEPENDS = &quot;zlib openssl&quot;</p>
+<div class="line-block">
+<div class="line">这个告诉bitbake在构建openssh之前需要构建zlib和openssl.注意，这里并没有指定RDEPENDS。</div>
+<div class="line-block">
+<div class="line">libz1库libssl0库会被自动检测到并且添加到运行时依赖中。</div>
+</div>
+</div>
+<p>8.10方法：一些oe内建的可以减轻你工作量的方法</p>
+<div class="line-block">
+<div class="line">基本类里面已经定义了一些很有用的函数，这些函数默认都被所有“配方”所包含。有很多函数既</div>
+<div class="line-block">
+<div class="line">在“配方”里使用也在其他类里被使用。</div>
+</div>
+</div>
+<p>最常用最基本的一些函数包括：</p>
+<p>oe_runmake</p>
+<div class="line-block">
+<div class="line">这个函数是用来运行make命令的（它实际调用make）。当然这并不像你直接运行make那样，</div>
+<div class="line">实际上这个函数还给make传递了EXTRA_OEMAKE参数，而且还会在终端中给出一个NOTE注意</div>
+<div class="line-block">
+<div class="line">信息，显示关于make命令以及所有调用make所产生的错误等。</div>
+</div>
+</div>
+<p>oe_runconf(仅对autotools 有用)</p>
+<div class="line-block">
+<div class="line">这个函数运行一个使用autotools类的软件包的configure脚本（也就是说这个软件包的编译</div>
+<div class="line">管理是基于autotools的）。这个函数会传递所有正确的参数以便交叉编译和把软件安装到</div>
+<div class="line-block">
+<div class="line">适当的目标目录。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">同时此函数还会给configure脚本传递变量EXTRA_OECONF的值。对于大多数情况，设置变量</div>
+<div class="line">EXTAR_OECONF变量就足够了，而不用你自己定义一个configure任务手动运行oe_runconf。</div>
+</div>
+<div class="line-block">
+<div class="line">如果你需要自己为一个autotools管理的包编写configure任务，你可以在需要的时候手动运</div>
+<div class="line">行oe_runconf函数。下面net-snmp包的手动调用oe_runconf函数的例子，展示了指定字节序</div>
+<div class="line-block">
+<div class="line">参数是如何被计算和传递给configure脚本的。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">do_configure() {</div>
+<div class="line-block">
+<div class="line"># Additional flag based on target endiness (see siteinfo.bbclass)</div>
+<div class="line">ENDIANESS=&quot;<a class="reference external" href="mailto:${&#64;base">${&#64;base</a>_conditional('SITEINFO_ENDIANESS', 'le', '--with-&nbsp;&nbsp;&nbsp; endianness=little', '--with-endianness=big', d)}&quot;</div>
+<div class="line">oenote Determined endianess as: $ENDIANESS</div>
+<div class="line">oe_runconf $ENDIANESS</div>
+<div class="line">}</div>
+</div>
+</div>
+<p>oe_libinstall</p>
+<div class="line-block">
+<div class="line">这个函数是用来安装.so，.a已经相关的libtool库.la的。这个函数会选择安装合适的</div>
+<div class="line-block">
+<div class="line">库，以及照料.la文件需要的编辑动作。</div>
+</div>
+</div>
+<p>这个函数支持下列选项：</p>
+<p>-C &lt;目录&gt;</p>
+<div class="line-block">
+<div class="line">安装一个库之前把当前目录换为指定的目录。当库在一个包的子目录里的时候使用</div>
+<div class="line-block">
+<div class="line">这个选项。</div>
+</div>
+</div>
+<p>-s</p>
+<p>在安装一个库之前必须确保一个.so库已经存在。</p>
+<p>-a</p>
+<p>在安装一个库之前必须确保一个.a库已经存在。</p>
+<p>下面的gdbm包的例子展示了安装.so,.a（以及相关的.la）库到中间缓冲库目录的情况。</p>
+<div class="line-block">
+<div class="line">do_stage () {</div>
+<div class="line-block">
+<div class="line">oe_libinstall -so -a libgdbm ${STAGING_LIBDIR}</div>
+<div class="line">install -m 0644 ${S}/gdbm.h ${STAGING_INCDIR}/</div>
+<div class="line">}</div>
+</div>
+</div>
+<p>oenote</p>
+<p>用来给用户给出提示信息。</p>
+<div class="line-block">
+<div class="line">下面net-snmp包的例子展示了使用oenote来告诉用户为目录设备定出了什么适合的字节</div>
+<div class="line-block">
+<div class="line">序(endianess)。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">do_configure() {</div>
+<div class="line-block">
+<div class="line"># Additional flag based on target endiness (see siteinfo.bbclass)</div>
+<div class="line">ENDIANESS=&quot;<a class="reference external" href="mailto:${&#64;base">${&#64;base</a>_conditional('SITEINFO_ENDIANESS', 'le', '--with-endianness=little', '--with-ndianness=big', d)}&quot;</div>
+<div class="line">oenote Determined endianess as: $ENDIANESS</div>
+<div class="line">oe_runconf $ENDIANESS</div>
+<div class="line">}</div>
+</div>
+</div>
+<p>oewarn</p>
+<p>用来给用户给出警告信息。警示一些或许有问题或者不该发生的事情。</p>
+<p>oedebug</p>
+<p>显示调试相关的信息。只有bitbake使用-D选项运行的时候才会起作用。</p>
+<p>oefatal</p>
+<p>用来显示致命错误信息，然后终止bitbake的运行。</p>
+<div class="line-block">
+<div class="line">下面linux-libc-header包的例子展示了使用oefatal来告知用户没有找到指定的目标设</div>
+<div class="line-block">
+<div class="line">备体系的内核源码：</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">do_configure () {</div>
+<div class="line-block">
+<div class="line">case ${TARGET_ARCH} in</div>
+<div class="line">alpha*)&nbsp;&nbsp; ARCH=alpha ;;</div>
+<div class="line">arm*)&nbsp;&nbsp;&nbsp;&nbsp; ARCH=arm ;;</div>
+<div class="line">cris*)&nbsp;&nbsp;&nbsp; ARCH=cris ;;</div>
+<div class="line">hppa*)&nbsp;&nbsp;&nbsp; ARCH=parisc ;;</div>
+<div class="line">i*86*)&nbsp;&nbsp;&nbsp; ARCH=i386 ;;</div>
+<div class="line">ia64*)&nbsp;&nbsp;&nbsp; ARCH=ia64 ;;</div>
+<div class="line">mips*)&nbsp;&nbsp;&nbsp; ARCH=mips ;;</div>
+<div class="line">m68k*)&nbsp;&nbsp;&nbsp; ARCH=m68k ;;</div>
+<div class="line">powerpc*) ARCH=ppc ;;</div>
+<div class="line">s390*)&nbsp;&nbsp;&nbsp; ARCH=s390 ;;</div>
+<div class="line">sh*)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ARCH=sh ;;</div>
+<div class="line">sparc64*) ARCH=sparc64 ;;</div>
+<div class="line">sparc*)&nbsp;&nbsp; ARCH=sparc ;;</div>
+<div class="line">x86_64*)&nbsp; ARCH=x86_64 ;;</div>
+<div class="line">esac</div>
+<div class="line">if test !&nbsp; -e include/asm-$ARCH; then</div>
+<div class="line">oefatal unable to create asm symlink in kernel headers</div>
+<div class="line">fi</div>
+<div class="line">...</div>
+</div>
+</div>
+<p>base_conditional(python)</p>
+<div class="line-block">
+<div class="line">python基本条件函数用来设置一个或者两个依赖于第三个变量的定义的变量的值。通常</div>
+<div class="line-block">
+<div class="line">的用法是：</div>
+</div>
+</div>
+<p><a class="reference external" href="mailto:${&#64;base">${&#64;base</a>_conditional('&lt;variable-name&gt;', '&lt;value&gt;', '&lt;true-result&gt;',
+&lt;false-result&gt;', d)}&quot;</p>
+<p>其中：</p>
+<p>variable-name</p>
+<p>这是要检查的变量的名字。</p>
+<p>value</p>
+<p>这是要跟变量相比较的值。</p>
+<p>true-result</p>
+<p>如果变量和相比较的值相等就返回这个值。</p>
+<p>false-result</p>
+<p>如果变量和相比较的值不相等就返回这个值。</p>
+<p>注意：</p>
+<div class="line-block">
+<div class="line">${&#64;...}符号用来在“配方”和类里调用python函数。更多详细的描述请参考</div>
+<div class="line-block">
+<div class="line">“高级的python“一节。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">下面openssl包“配方”的例子中，-DL_ENDIAN和-DB_ENDIAN将取决于</div>
+<div class="line">SITEINFO_ENDIANESS是不是le，是le就是小端字节序机器，否则是大端字节序机器。</div>
+</div>
+<div class="line-block">
+<div class="line">do_compile () {</div>
+<div class="line-block">
+<div class="line">...</div>
+<div class="line"># Additional flag based on target endiness (see siteinfo.bbclass)</div>
+<div class="line">CFLAG=&quot;${CFLAG} <a class="reference external" href="mailto:${&#64;base">${&#64;base</a>_conditional('SITEINFO_ENDIANESS', 'le', '-DL_ENDIAN', '-DB_ENDIAN', d)}&quot;</div>
+<div class="line">...</div>
+</div>
+</div>
+<div><div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</p><div><p>续: OpenEmbedded 中文手册 &lt;二&gt;</p>
+</div><p><a class="reference external" href="http://blog.chinaunix.net/u1/52172/showart_2284360.html">http://www.playpenguin.net/?p=81</a></p>
+</div>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+         </div><!--/span-->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>PlayPenguin.Tech-花花企鹅.技术</title>
+    <title>PlayPenguin.Tech-花花企鹅.技术 - Life</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="dangbinghoo">
@@ -69,7 +69,7 @@
 						<i class="icon-folder-open icon-large"></i>Embedded
 					</a>
                   </li>
-                  <li >
+                  <li class="active">
                     <a href="/category/life.html">
 						<i class="icon-folder-open icon-large"></i>Life
 					</a>
@@ -323,38 +323,6 @@
 
          <div class="span9" id="content">
         <div class="article">
-                <h1><a href="/guan-yu-cyu-yan-constxiu-shi-fu-dui-zhi-zhen-bian-liang-de-xiu-shi-wen-ti.html">关于ｃ语言const修饰符对指针变量的修饰问题</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2015-04-03T09:40:00+08:00">
-        <i class="icon-calendar"></i>五 03 四月 2015
-</abbr>
-<span class="label">By</span>
-<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
-<span class="label">Category</span>
-<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
-
-
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>在看同事的jni幻灯片的时候，看到了const 指针，就顺便聊了下，一直都觉得 带 const 修饰符的都应该
-在声明的时候赋值，声明之后，再赋值是不过语法检查的。</p>
-<p>结果发现，对于指针来说，情况并不是我想的那样。</p>
-<p>对于char *来说，const 未修饰　变量名称时候，　赋值都是在可以后面随意改动的，也就是指针可以
-重新任意赋值，但是赋值后的内存区域是不能修改的，但是若　const 是在修饰　变量名称，那么跟 普通类型变量都一样，
-需要声明的时候赋值，否则，根本过不了语法检查。</p>
-<p>代码如下：</p>
-<pre class="code c literal-block">
-<span class="cp">#include &lt;stdio.h&gt;
-</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">a</span>  <span class="o">=</span> <span class="s">&quot;xxxxxx&quot;</span><span class="p">;</span>
-    <span class="kt">char</span> <span class="k">const</span>  <span class="o">*</span><span class="n">a1</span>  <span class="o">=</span> <span class="s">&quot;xxxxxx&quot;</span><span class="p">;</span>
-    <span class="kt">char</span> <span class="o">*</span> <span class="k">const</span> <span class="n">c</span> <span class="o">=</span> <span class="s">&quot;1111111 ...</span></pre>
-                        <a class="btn primary xsmall" href="/guan-yu-cyu-yan-constxiu-shi-fu-dui-zhi-zhen-bian-liang-de-xiu-shi-wen-ti.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
                 <h1><a href="/ren-li-xiang-xian-shi.html">人， 理想， 现实</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -386,79 +354,6 @@
 <div class="line-block">
 <div class="line">呵呵，摇摇头笑笑便是 ...</div></div></div>
                         <a class="btn primary xsmall" href="/ren-li-xiang-xian-shi.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/guan-yu-cyu-yan-li-de-fan-she-huo-zhe-nei-sheng-de-tao-lun.html">关于 C语言 里的 反射或者内省 的讨论</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2012-12-18T12:28:00+08:00">
-        <i class="icon-calendar"></i>二 18 十二月 2012
-</abbr>
-<span class="label">By</span>
-<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
-<span class="label">Category</span>
-<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
-
-
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>在语言里面， 根据class名字能够知道其成员的 功能叫做
-内省c语言有没有这个功能.</p>
-<p>可以想到的办法是
-通过宏，你在定义一个结构体的时候，同时生成了一个数据结构存放了这个class的成员名称，
-同时， 得到成员的类型， 比如&nbsp; struct {int a, float b};</p>
-<p>通过例子里面的宏可以得到&nbsp; int a, float b, 这样的字符串的</p>
-<p>这个其实已经解决了上次你做 sql数据库函数时想要的功能</p>
-<p>对了&nbsp; 今天开会研究nvram的意思就是以后我就不用写那个数据库的东西了？</p>
-<p>如果 再得到成员列表字串的时候把类型分立出来， 然后你可以用 &quot;int&quot;,
-sizeof(int); &quot;int&quot;, sizeof(float); 这样的东西再做映射，
-然后得到一个结构体类型的时候， 即便只有一个指向
-class的指针，我们也有办法 把里面的成员一个一个取出来</p>
-<div class="line-block">
-<div class="line">这样， 对于数据库这样，你每次存的数据结构不同，但是query，什么的这些操作相同的这些操作，完全可以只写一个组函数方法就够了，而不用每</div>
-<div class="line-block">
-<div class="line">基本上可以达到 动态语言里面的 ...</div></div></div>
-                        <a class="btn primary xsmall" href="/guan-yu-cyu-yan-li-de-fan-she-huo-zhe-nei-sheng-de-tao-lun.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/xue-xi-unixlu-zhi-yu-jian.html">学习unix路之愚见</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2012-11-27T03:03:00+08:00">
-        <i class="icon-calendar"></i>二 27 十一月 2012
-</abbr>
-<span class="label">By</span>
-<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
-<span class="label">Category</span>
-<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
-
-
-</footer><!-- /.post-info --></div>
-                <div class="summary"><div class="section" id="id1">
-<h2>前言</h2>
-<p>这段时间公司安排带领新人，
-加上公司上层软件开发者的一些做事方法和思想我不是很赞同，
-深感团队里人的重要性， 以前只是觉得技术和人都不大是问题，
-可能机遇才是最难的事情， 但是现在看来，天时地利人和中最怕的是人和了，
-一个团队做一件产品，两三年之后还拿不出东西来，做出来的东西如同大学的课程设计，只是一些能工作的代码的组合，界面使用上出现的逻辑以及错误提示达到了令所有常人难以理解的地步，以前真没有这种体会，所以才深感可怕。
-这里我并不想对代码层次， 面向对象， 抽象，
-以及做C的人根本不懂面向对象这些话题进行口舌，只是结合自己的学习路程，
-从单片机硬件到单片机软件，C语言的编程，再到嵌入式linux系统的理解（bootloader到内核以及shell和应用），和python和cpp这样的语言的使用感受来说下我的思维观点：
-因为团队很多人并不觉得软件开发都是一回事这种观点，
-抽象或者说人的整个做事情思维方式差异太大。</p>
-<p>以下是我对新人的学习建议，这里摘录出来，其中基本也是我的思路和思维方式，其实个人愚见：
-你见的多了，自然觉得都是一个道理了，大道至简，简单就是美，联系实际生活人的认知和解决问题的方法是如此之统一和简单，
-要不然怎么会有哲学的产生？</p>
-</div>
-<div class="section" id="id2">
-<h2>怎么走unix之路？</h2>
-<p>作为unix/linux程序员（有可能被逼的，但是已经是了），
-并且作为嵌入式程序员，基本的要求是C语言要掌握，并且能够很轻松的给人说明白什么是指针，什么是一板一眼的做事情（或者写程序的方法），面向对象是一个
-很好的方法，不过面向对象的本质很少有人能够真正明白 ...</p></div>
-                        <a class="btn primary xsmall" href="/xue-xi-unixlu-zhi-yu-jian.html">more ...</a>
                 </div>
         </div>
         <hr />
@@ -510,117 +405,29 @@ class的指针，我们也有办法 把里面的成员一个一个取出来</p>
         </div>
         <hr />
         <div class="article">
-                <h1><a href="/linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html">linux flash插件等程序声音不正常的原因： 笔记本多个声卡， 需要配置</a></h1>
+                <h1><a href="/wo-de-ren-sheng-mu-biao.html">我的人生目标</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2012-06-17T13:00:00+08:00">
-        <i class="icon-calendar"></i>日 17 六月 2012
+<abbr class="published" title="2012-02-07T06:24:00+08:00">
+        <i class="icon-calendar"></i>二 07 二月 2012
 </abbr>
 <span class="label">By</span>
 <a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
 <span class="label">Category</span>
-<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
+<a href="/category/life.html"><i class="icon-folder-open"></i>Life</a>.
 
 
 <span class="label">Tags</span>
-	<a href="/tag/asoundrc.html"><i class="icon-tag"></i>asound.rc</a>
+	<a href="/tag/life.html"><i class="icon-tag"></i>Life</a>
 </footer><!-- /.post-info --></div>
-                <div class="summary"><p>前段实际系统是Arch linux，
-当时什么程序都能放出声音来就是flash不行，一直无声状态， 始终没有搞定。</p>
-<p>这几天因为做嵌入式的原因，系统换成了Funtoo， 个人感觉就是改进了Gentoo 的
-emerge --sync 吧， 其他的还不怎么明显， 也没体会到，感觉根Gentoo无异了，
-不过系统装起来， 声音还是不正常， 播放mplayer说</p>
-<p>alsa-lib: pcm_dmix.c:1018:(snd_pcm_dmix_open) unable to open slave</p>
-<p>Google之发现是因为系统多个声卡， 没有配置的情况下会选择0,
-alsamixer里面我的声卡也是两个， 第一个是什么hdmi的声卡， 哎，
-感觉无奈，这个东东有用么， 不过还是自己水平低，
-真正的声卡处于第二个位置， 突然想到这也是flash无声的缘故了吧， 随即编辑
-.asoundrc 或者 /etc/asound.conf</p>
-<pre class="literal-block">
-pcm.!default {
-    type hw
-    card 1
-}
+                <div class="summary"><div class="section" id="id2">
+<h2>&nbsp;找个还不错的工作，有饭吃，工作茶余饭后，自己在书屋或者时髦点“车库”里做自己的一套自娱自乐的研究，短期阶段留一两样产品给世上，长期阶段留点自己的研究结果给世上，在某个小点上大家听过我的名字就行了！</h2>
+</div>
 
-ctl ...</pre>
-                        <a class="btn primary xsmall" href="/linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html">more ...</a>
+                        <a class="btn primary xsmall" href="/wo-de-ren-sheng-mu-biao.html">more ...</a>
                 </div>
         </div>
         <hr />
-        <div class="article">
-                <h1><a href="/shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html">使用ostinato做网络开发分析辅助工具</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2012-04-24T06:46:00+08:00">
-        <i class="icon-calendar"></i>二 24 四月 2012
-</abbr>
-<span class="label">By</span>
-<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
-<span class="label">Category</span>
-<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/ostinato.html"><i class="icon-tag"></i>ostinato</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>最近参与公司一个项目, 需要在L2工作, 封包是经常的事情,之前一直用N2X,
-需要排队, 后面搜索网络发现了ostinato工具， 虽然还在成长中,
-但是已经非常强大够用了.</p>
-<p>特淘宝淘了个双口的千兆网卡, 拿回来装起, 先跑server drone程序,
-然后开ostinato客户端, 计算机上的eth0,1,2均认的出来,
-然后drone跑对了之后就port group可用了, 点击eth,
-新建stream里面就可以选择L2, Vlan等选项, 非常强大，
-另外发现intel的网卡芯片才支持vlan, 可以抓到带vlan标签的包,
-正好淘的网卡是intel的服务器专用卡, 不错!,</p>
-<p>这里记下, 有用的同学可以参考下.</p>
-
-                        <a class="btn primary xsmall" href="/shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/acer-aspire-4560g-a6-apu-notebook-arch-linux-installation-tips.html">acer aspire 4560G A6 apu notebook arch linux installation tips</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2012-04-18T15:54:00+08:00">
-        <i class="icon-calendar"></i>三 18 四月 2012
-</abbr>
-<span class="label">By</span>
-<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
-<span class="label">Category</span>
-<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/4560g.html"><i class="icon-tag"></i>4560g</a>
-	<a href="/tag/acer.html"><i class="icon-tag"></i>acer</a>
-	<a href="/tag/linux.html"><i class="icon-tag"></i>Linux</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>arch linux or gentoo linux installtion on Acer aspire 4560G will always
-have troubles.</p>
-<div class="section" id="the-video-driver-just-note">
-<h2>the video driver. JUST <strong>NOTE</strong></h2>
-<ul class="simple">
-<li>amd catalyst driver will not works at all, I tired 1 year before, it
-failed. and failed again today.</li>
-</ul>
-<p>So, you only need the opensource driver xf86-video-ati and use radeon
-only ...</p></div>
-                        <a class="btn primary xsmall" href="/acer-aspire-4560g-a6-apu-notebook-arch-linux-installation-tips.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-
-        <div class="pagination">
-        <ul>
-                        <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-                        <li class="active"><a href="/index.html">1</a></li>
-                        <li class=""><a href="/index2.html">2</a></li>
-                        <li class=""><a href="/index3.html">3</a></li>
-                        <li class=""><a href="/index4.html">4</a></li>
-                        <li class="next"><a href="/index2.html">Next &rarr;</a></li>
-        </ul>
-        </div>
 
          </div><!--/span-->
 

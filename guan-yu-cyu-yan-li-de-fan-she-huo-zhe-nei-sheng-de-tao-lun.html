@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>关于 C语言 里的 反射或者内省 的讨论</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="dangbinghoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="PlayPenguin.Tech-花花企鹅.技术 ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">PlayPenguin.Tech-花花企鹅.技术 </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="/category/embedded.html">
+						<i class="icon-folder-open icon-large"></i>Embedded
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/life.html">
+						<i class="icon-folder-open icon-large"></i>Life
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="/category/linux.html">
+						<i class="icon-folder-open icon-large"></i>Linux
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/misc.html">
+						<i class="icon-folder-open icon-large"></i>misc
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/qi-ta.html">
+						<i class="icon-folder-open icon-large"></i>其他
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/thoughts.html">
+						<i class="icon-folder-open icon-large"></i>thoughts
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/unixwen-dang-gong-ju.html">
+						<i class="icon-folder-open icon-large"></i>Unix文档工具
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+         <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>分类</h4></li>
+<li>
+<a href="/category/embedded.html">
+    <i class="icon-folder-open icon-large"></i>Embedded
+</a>
+</li>
+<li>
+<a href="/category/life.html">
+    <i class="icon-folder-open icon-large"></i>Life
+</a>
+</li>
+<li>
+<a href="/category/linux.html">
+    <i class="icon-folder-open icon-large"></i>Linux
+</a>
+</li>
+<li>
+<a href="/category/misc.html">
+    <i class="icon-folder-open icon-large"></i>misc
+</a>
+</li>
+<li>
+<a href="/category/qi-ta.html">
+    <i class="icon-folder-open icon-large"></i>其他
+</a>
+</li>
+<li>
+<a href="/category/thoughts.html">
+    <i class="icon-folder-open icon-large"></i>thoughts
+</a>
+</li>
+<li>
+<a href="/category/unixwen-dang-gong-ju.html">
+    <i class="icon-folder-open icon-large"></i>Unix文档工具
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<!-- <li class="tag-4">
+    <a href="/tag/embedded.html">
+        <i class="icon-tag icon-large"></i>embedded
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/seascope.html">
+        <i class="icon-tag icon-large"></i>seascope
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/oezhong-wen.html">
+        <i class="icon-tag icon-large"></i>OE中文
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/programming.html">
+        <i class="icon-tag icon-large"></i>programming
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pdf.html">
+        <i class="icon-tag icon-large"></i>pdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/jin-cheng-id.html">
+        <i class="icon-tag icon-large"></i>进程ID
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/jiao-cha-bian-yi.html">
+        <i class="icon-tag icon-large"></i>交叉编译
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/mips.html">
+        <i class="icon-tag icon-large"></i>mips
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/asoundrc.html">
+        <i class="icon-tag icon-large"></i>asound.rc
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/4560g.html">
+        <i class="icon-tag icon-large"></i>4560g
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pidof.html">
+        <i class="icon-tag icon-large"></i>pidof
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/openembedded.html">
+        <i class="icon-tag icon-large"></i>OpenEmbedded
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/txt2tags.html">
+        <i class="icon-tag icon-large"></i>txt2tags
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/parrot.html">
+        <i class="icon-tag icon-large"></i>parrot
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/shell.html">
+        <i class="icon-tag icon-large"></i>shell
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/ostinato.html">
+        <i class="icon-tag icon-large"></i>ostinato
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/life.html">
+        <i class="icon-tag icon-large"></i>Life
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/sync.html">
+        <i class="icon-tag icon-large"></i>sync
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/gong-ju-lian.html">
+        <i class="icon-tag icon-large"></i>工具链
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pgrep.html">
+        <i class="icon-tag icon-large"></i>pgrep
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/exvim.html">
+        <i class="icon-tag icon-large"></i>exvim
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/acer.html">
+        <i class="icon-tag icon-large"></i>acer
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/wen-dang-gong-ju.html">
+        <i class="icon-tag icon-large"></i>文档工具
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/wen-jian-xi-tong.html">
+        <i class="icon-tag icon-large"></i>文件系统
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/biao-ji.html">
+        <i class="icon-tag icon-large"></i>标记
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/markup.html">
+        <i class="icon-tag icon-large"></i>markup
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/ctex.html">
+        <i class="icon-tag icon-large"></i>ctex
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/libevent.html">
+        <i class="icon-tag icon-large"></i>libevent
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+ -->
+
+<li class="nav-header"><h4><i class="icon-external-link"></i>链接</h4></li>
+    <li><a href="http://elinux.org"><i class="icon-external-link"></i>elinux</a></li>
+    <li><a href="wiki.osdev.org"><i class="icon-external-link"></i>osdev</a></li>
+    <li><a href="http://sourceforge.net/p/nanorc"><i class="icon-external-link"></i>nanoRC</a></li>
+    <li><a href="http://sourceforge.net/projects/otob"><i class="icon-external-link"></i>otob</a></li>
+
+
+
+</ul>         </div><!--/.well -->
+
+         <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to 关于 C语言 里的 反射或者内省 的讨论">
+                                        关于 C语言 里的 反射或者内省 的讨论
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2012-12-18T12:28:00+08:00">
+        <i class="icon-calendar"></i>二 18 十二月 2012
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
+
+
+</footer><!-- /.post-info -->                </div>
+                <p>在语言里面， 根据class名字能够知道其成员的 功能叫做
+内省c语言有没有这个功能.</p>
+<p>可以想到的办法是
+通过宏，你在定义一个结构体的时候，同时生成了一个数据结构存放了这个class的成员名称，
+同时， 得到成员的类型， 比如&nbsp; struct {int a, float b};</p>
+<p>通过例子里面的宏可以得到&nbsp; int a, float b, 这样的字符串的</p>
+<p>这个其实已经解决了上次你做 sql数据库函数时想要的功能</p>
+<p>对了&nbsp; 今天开会研究nvram的意思就是以后我就不用写那个数据库的东西了？</p>
+<p>如果 再得到成员列表字串的时候把类型分立出来， 然后你可以用 &quot;int&quot;,
+sizeof(int); &quot;int&quot;, sizeof(float); 这样的东西再做映射，
+然后得到一个结构体类型的时候， 即便只有一个指向
+class的指针，我们也有办法 把里面的成员一个一个取出来</p>
+<div class="line-block">
+<div class="line">这样， 对于数据库这样，你每次存的数据结构不同，但是query，什么的这些操作相同的这些操作，完全可以只写一个组函数方法就够了，而不用每</div>
+<div class="line-block">
+<div class="line">基本上可以达到 动态语言里面的 内省， 反射 的概念了</div>
+</div>
+</div>
+<p>这个我觉得值得研究， 因为后面不用数据库， 但是对于
+nvram这样的存储，你还是会处理各种结构，
+但是每种结构到时候的一些操作有是一致的，但是仅仅因为数据类不一样而已</p>
+<p>java， c++的这些所谓 ORM 就是依赖于这样的特性才完成的</p>
+<div class="line-block">
+<div class="line">&#64;table_a</div>
+<div class="line-block">
+<div class="line">class a {</div>
+<div class="line">int&nbsp;&nbsp;&nbsp; a;</div>
+<div class="line">float b;</div>
+<div class="line">};</div>
+</div>
+</div>
+<p>table_new(a);</p>
+<div class="line-block">
+<div class="line">a a1_obj ;</div>
+<div class="line-block">
+<div class="line">a1_obj.a = orm_db_query(a.a);</div>
+</div>
+</div>
+<p>在java 和cpp里面是这样用数据库的</p>
+<p>NVRAM 再我看来是 no-sql的非关系型 in-mem 数据库而已</p>
+<p>table_new是创建表？</p>
+<div class="line-block">
+<div class="line">table_new(a); 在java里面用</div>
+<div class="line-block">
+<div class="line">&#64;table_a</div>
+<div class="line">class a {</div>
+<div class="line">这样的标签就代替了， 你说多轻松啊</div>
+</div>
+</div>
+<p>今天下午我们讨论的是 nvram里面放数据怎么弄，
+但是从用户接口来说我希望有类似的效果</p>
+<p>刚才发给你的文件，里面用宏的方式，
+再我们声明一个数据类型的时候就扩展得到了一个类的成员和类型列表</p>
+<p>其实对于c来说得到 成员类型名称也白搭，没用，重点是得到&nbsp; struct a {int ,
+float, char, char *} ,&nbsp; 这样的信息</p>
+<div class="line-block">
+<div class="line">然后&nbsp; struct memeber_of_class_size = {</div>
+<div class="line-block">
+<div class="line">&quot;int&quot;, sizeof(int);</div>
+<div class="line">&quot;float&quot;, sizeof(float);</div>
+<div class="line">&quot;char&quot;, sizeof(char);</div>
+<div class="line">&quot;char *&quot;, sizeof(char *);</div>
+<div class="line">}</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">然后直接在 struct的地址上通过加&nbsp; sizeof(int)这样的东西来知道成员offset</div>
+<div class="line-block">
+<div class="line">同时也知道了成员的size， 那么就可以做些通用的东西出来了</div>
+</div>
+</div>
+<p>当然python或者sed或者perl等支持正则的来生成一部分代码也是个办法</p>
+<p>以前我们写个结构&nbsp; struct a { int data; void *(*opt) (void*);} ;
+这样的东西每次要&nbsp; a.opt = a_opt; 来挂载 方法成员，
+现在，在刚才的思路上我们一样可以通过宏的方式来实现这个动作</p>
+<div class="line-block">
+<div class="line">这些库 在c的层面实现了类似的东西， 可以研究下</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="http://www.nongnu.org/libunwind/">http://www.nongnu.org/libunwind/</a></div>
+<div class="line"><a class="reference external" href="https://live.gnome.org/GObjectIntrospection">https://live.gnome.org/GObjectIntrospection</a></div>
+</div>
+</div>
+<p>别人的例子：</p>
+<pre class="code c literal-block">
+<span class="cp">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+</span>
+<span class="cp">#define MEMBER(TYPE,NAME,MORE) TYPE NAME MORE
+</span>
+<span class="cp">#define TSTRUCT(NAME,MEMBERS) \
+  typedef struct NAME { \
+    MEMBERS \
+  } NAME; \
+  const char* const NAME##_Members = #MEMBERS;
+</span>
+<span class="cp">#define PRINT_STRUCT_MEMBERS(NAME) printStructMembers(NAME##_Members)
+</span>
+<span class="n">TSTRUCT</span><span class="p">(</span><span class="n">S</span><span class="p">,</span>
+  <span class="n">MEMBER</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="n">x</span><span class="p">;,</span>
+  <span class="n">MEMBER</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span><span class="n">z</span><span class="p">[</span><span class="mi">2</span><span class="p">];,</span>
+  <span class="n">MEMBER</span><span class="p">(</span><span class="kt">char</span><span class="p">,(</span><span class="o">*</span><span class="n">f</span><span class="p">)(</span><span class="kt">char</span><span class="p">,</span><span class="kt">char</span><span class="p">);,</span>
+  <span class="n">MEMBER</span><span class="p">(</span><span class="kt">char</span><span class="p">,</span><span class="n">y</span><span class="p">;,</span>
+  <span class="p">)))));</span>
+
+<span class="kt">void</span> <span class="nf">printStructMembers</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">Members</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">level</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">lastLevel</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">p</span><span class="p">;</span>
+  <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">pLastType</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">pLastTypeEnd</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="n">Members</span><span class="p">;</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span> <span class="n">p</span><span class="o">++</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">strstr</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s">&quot;MEMBER(&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">p</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">p</span> <span class="o">+=</span> <span class="mi">6</span><span class="p">;</span> <span class="c1">// strlen(&quot;MEMBER&quot;)
+</span>      <span class="n">level</span><span class="o">++</span><span class="p">;</span>
+      <span class="n">lastLevel</span> <span class="o">=</span> <span class="n">level</span><span class="p">;</span>
+      <span class="n">pLastType</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span> <span class="o">==</span> <span class="sc">'('</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">level</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span> <span class="o">==</span> <span class="sc">')'</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">level</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span> <span class="o">==</span> <span class="sc">','</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">level</span> <span class="o">==</span> <span class="n">lastLevel</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">pLastType</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">pLastTypeEnd</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">))</span>
+        <span class="p">{</span>
+          <span class="n">pLastTypeEnd</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">strstr</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s">&quot;;,&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">p</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span> <span class="p">((</span><span class="n">pLastType</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">pLastTypeEnd</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">))</span>
+      <span class="p">{</span>
+        <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">pp</span><span class="p">;</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;[&quot;</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">pp</span> <span class="o">=</span> <span class="n">pLastType</span><span class="p">;</span> <span class="n">pp</span> <span class="o">&lt;</span> <span class="n">pLastTypeEnd</span><span class="p">;</span> <span class="n">pp</span><span class="o">++</span><span class="p">)</span>
+          <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%c&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">pp</span><span class="p">);</span> <span class="c1">// print type
+</span>        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;] [&quot;</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">pp</span> <span class="o">=</span> <span class="n">pLastTypeEnd</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">pp</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">;</span> <span class="n">pp</span><span class="o">++</span><span class="p">)</span>
+          <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%c&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">pp</span><span class="p">);</span> <span class="c1">// print name
+</span>        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="n">pLastType</span> <span class="o">=</span> <span class="n">pLastTypeEnd</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">char</span> <span class="nf">fadd</span><span class="p">(</span><span class="kt">char</span> <span class="n">a</span><span class="p">,</span> <span class="kt">char</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">S</span> <span class="n">s</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="mi">1</span><span class="p">,</span>
+  <span class="p">{</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span> <span class="p">},</span>
+  <span class="o">&amp;</span><span class="n">fadd</span><span class="p">,</span>
+  <span class="sc">'a'</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">PRINT_STRUCT_MEMBERS</span><span class="p">(</span><span class="n">S</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+         </div><!--/span-->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

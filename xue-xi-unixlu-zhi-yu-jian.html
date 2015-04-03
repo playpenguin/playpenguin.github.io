@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>学习unix路之愚见</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="dangbinghoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="PlayPenguin.Tech-花花企鹅.技术 ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">PlayPenguin.Tech-花花企鹅.技术 </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="/category/embedded.html">
+						<i class="icon-folder-open icon-large"></i>Embedded
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/life.html">
+						<i class="icon-folder-open icon-large"></i>Life
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="/category/linux.html">
+						<i class="icon-folder-open icon-large"></i>Linux
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/misc.html">
+						<i class="icon-folder-open icon-large"></i>misc
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/qi-ta.html">
+						<i class="icon-folder-open icon-large"></i>其他
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/thoughts.html">
+						<i class="icon-folder-open icon-large"></i>thoughts
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/unixwen-dang-gong-ju.html">
+						<i class="icon-folder-open icon-large"></i>Unix文档工具
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+         <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>分类</h4></li>
+<li>
+<a href="/category/embedded.html">
+    <i class="icon-folder-open icon-large"></i>Embedded
+</a>
+</li>
+<li>
+<a href="/category/life.html">
+    <i class="icon-folder-open icon-large"></i>Life
+</a>
+</li>
+<li>
+<a href="/category/linux.html">
+    <i class="icon-folder-open icon-large"></i>Linux
+</a>
+</li>
+<li>
+<a href="/category/misc.html">
+    <i class="icon-folder-open icon-large"></i>misc
+</a>
+</li>
+<li>
+<a href="/category/qi-ta.html">
+    <i class="icon-folder-open icon-large"></i>其他
+</a>
+</li>
+<li>
+<a href="/category/thoughts.html">
+    <i class="icon-folder-open icon-large"></i>thoughts
+</a>
+</li>
+<li>
+<a href="/category/unixwen-dang-gong-ju.html">
+    <i class="icon-folder-open icon-large"></i>Unix文档工具
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<!-- <li class="tag-4">
+    <a href="/tag/embedded.html">
+        <i class="icon-tag icon-large"></i>embedded
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/seascope.html">
+        <i class="icon-tag icon-large"></i>seascope
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/oezhong-wen.html">
+        <i class="icon-tag icon-large"></i>OE中文
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/programming.html">
+        <i class="icon-tag icon-large"></i>programming
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pdf.html">
+        <i class="icon-tag icon-large"></i>pdf
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/jin-cheng-id.html">
+        <i class="icon-tag icon-large"></i>进程ID
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/jiao-cha-bian-yi.html">
+        <i class="icon-tag icon-large"></i>交叉编译
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/mips.html">
+        <i class="icon-tag icon-large"></i>mips
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/asoundrc.html">
+        <i class="icon-tag icon-large"></i>asound.rc
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/4560g.html">
+        <i class="icon-tag icon-large"></i>4560g
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pidof.html">
+        <i class="icon-tag icon-large"></i>pidof
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/openembedded.html">
+        <i class="icon-tag icon-large"></i>OpenEmbedded
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/txt2tags.html">
+        <i class="icon-tag icon-large"></i>txt2tags
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/parrot.html">
+        <i class="icon-tag icon-large"></i>parrot
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/shell.html">
+        <i class="icon-tag icon-large"></i>shell
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/ostinato.html">
+        <i class="icon-tag icon-large"></i>ostinato
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/life.html">
+        <i class="icon-tag icon-large"></i>Life
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/sync.html">
+        <i class="icon-tag icon-large"></i>sync
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/gong-ju-lian.html">
+        <i class="icon-tag icon-large"></i>工具链
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pgrep.html">
+        <i class="icon-tag icon-large"></i>pgrep
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/exvim.html">
+        <i class="icon-tag icon-large"></i>exvim
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/acer.html">
+        <i class="icon-tag icon-large"></i>acer
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/wen-dang-gong-ju.html">
+        <i class="icon-tag icon-large"></i>文档工具
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/wen-jian-xi-tong.html">
+        <i class="icon-tag icon-large"></i>文件系统
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/biao-ji.html">
+        <i class="icon-tag icon-large"></i>标记
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/markup.html">
+        <i class="icon-tag icon-large"></i>markup
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/ctex.html">
+        <i class="icon-tag icon-large"></i>ctex
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/libevent.html">
+        <i class="icon-tag icon-large"></i>libevent
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/linux.html">
+        <i class="icon-tag icon-large"></i>Linux
+    </a>
+</li>
+ -->
+
+<li class="nav-header"><h4><i class="icon-external-link"></i>链接</h4></li>
+    <li><a href="http://elinux.org"><i class="icon-external-link"></i>elinux</a></li>
+    <li><a href="wiki.osdev.org"><i class="icon-external-link"></i>osdev</a></li>
+    <li><a href="http://sourceforge.net/p/nanorc"><i class="icon-external-link"></i>nanoRC</a></li>
+    <li><a href="http://sourceforge.net/projects/otob"><i class="icon-external-link"></i>otob</a></li>
+
+
+
+</ul>         </div><!--/.well -->
+
+         <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to 学习unix路之愚见">
+                                        学习unix路之愚见
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2012-11-27T03:03:00+08:00">
+        <i class="icon-calendar"></i>二 27 十一月 2012
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
+
+
+</footer><!-- /.post-info -->                </div>
+                <div class="section" id="id1">
+<h2>前言</h2>
+<p>这段时间公司安排带领新人，
+加上公司上层软件开发者的一些做事方法和思想我不是很赞同，
+深感团队里人的重要性， 以前只是觉得技术和人都不大是问题，
+可能机遇才是最难的事情， 但是现在看来，天时地利人和中最怕的是人和了，
+一个团队做一件产品，两三年之后还拿不出东西来，做出来的东西如同大学的课程设计，只是一些能工作的代码的组合，界面使用上出现的逻辑以及错误提示达到了令所有常人难以理解的地步，以前真没有这种体会，所以才深感可怕。
+这里我并不想对代码层次， 面向对象， 抽象，
+以及做C的人根本不懂面向对象这些话题进行口舌，只是结合自己的学习路程，
+从单片机硬件到单片机软件，C语言的编程，再到嵌入式linux系统的理解（bootloader到内核以及shell和应用），和python和cpp这样的语言的使用感受来说下我的思维观点：
+因为团队很多人并不觉得软件开发都是一回事这种观点，
+抽象或者说人的整个做事情思维方式差异太大。</p>
+<p>以下是我对新人的学习建议，这里摘录出来，其中基本也是我的思路和思维方式，其实个人愚见：
+你见的多了，自然觉得都是一个道理了，大道至简，简单就是美，联系实际生活人的认知和解决问题的方法是如此之统一和简单，
+要不然怎么会有哲学的产生？</p>
+</div>
+<div class="section" id="id2">
+<h2>怎么走unix之路？</h2>
+<p>作为unix/linux程序员（有可能被逼的，但是已经是了），
+并且作为嵌入式程序员，基本的要求是C语言要掌握，并且能够很轻松的给人说明白什么是指针，什么是一板一眼的做事情（或者写程序的方法），面向对象是一个
+很好的方法，不过面向对象的本质很少有人能够真正明白（这个后面你们自己能够体会到，我不想跟人口水了），面向过程的方法，或者使用结构体加几个函数的方
+法就是面向对象了，
+写程序的时候要多体会这样的好处，也就是要求我们写程序只要想清楚了，你一定会写一两个结构体（数据），
+然后围绕这样的数据结构（通常，结构是就是数据结构，并且是作为你后面定义的接口的参数的，联系紧密）再写几个函数（在面向对象的世界里这个东西叫做“方
+法”），
+如果能够再保证逻辑，处理正确的情况下，你的代码能够很精简，那么你写的代码算是比较好的了，当然这个是个过程，任何时候你都会觉得你以前写的代码不好。</p>
+<p>刚才的一段话算是对unix程序员的第一要求， 第一个阶段。</p>
+<p>现在开始第二个阶段，
+在有了结构化编程的思路和习惯之后（形式上并不完美的面向对象吧，你们会慢慢体会到的），
+你需要掌握的是unix或者linux环境</p>
+<p>所谓环境：
+就是操作系统，或者某种开发包提供的api（函数接口）群，通俗点就叫做库嘛（我故弄玄虚了），
+在unix世界中，第一点： 一切是文件，所以对于读写我们通常所说的文件也好，
+设备也好，都是几个通用的函数（在unix世界里叫做系统调用
+·「其实是操作系统内核实现的」）， read, write, open/close/release.
+ioctl( io controll 简写),
+所以在了解这几个函数之后，你可以操作很多东西了。</p>
+<p>接着来</p>
+<p>同时， unix又给你提供了一些很有用的思想或者方法：</p>
+<p>进程间通迅： 管道， 消息队列， 共享内存， 乃至socket</p>
+<p>然后，你需要掌握
+线程与进程的概念，用到这两个东西的时候会理解到东西多了要打架，
+怎么互斥（同时只有一个访问者）？ 线程用锁， 进程用信号量</p>
+<p>然后在C语言与unix操作系统打交道的时候，基本的东西你了解到了吧，
+这些了解到后，很多问题就ok了，unix只所以叫做unix，unix思想只所以叫做unix思想，就是用统一，简单的方法来处理一切可以处理的问题
+（中文叫做大道至简）， 其实从软件角度来说叫做高度抽象</p>
+<p>一切皆文件，用read，write就可以读写了，
+所以李老师才说任何东西就是读或者写，你还能说个啥？</p>
+<p>当然为了适宜不同的东西，ioctl这个也少不了，不过最主要的就是读写了</p>
+<div class="line-block">
+<div class="line">”简单就是美“ unix的第二思想。</div>
+<div class="line-block">
+<div class="line">好了，这样unix就差不多了</div>
+</div>
+</div>
+<p>完了之后，
+你可以搞定很多东西了，编程的问题都能够解决了，就是想办法怎么样让自己写软件能够写的轻松，不是每次复制粘贴（复制粘贴在执行的时候没有错，错在后面要改就是一大片，很简单的道理）</p>
+<p>这个时候你需要提升思维方式， 看看别人的代码如何做到看起来很美 ？
+抽象怎么个抽象法？ 函数怎么定义不多又不少？</p>
+<p>这个时候的经典例子(我个人认为)就是 uboot代码， linux内核代码，
+为什么这么说？
+看看这两个东西如何用相同的api来控制这么多的设备的（uboot支持上百种计算机板子，内核就不说了，cpu就上百种），
+抽象是啥？ 不是用了c++，java了才有抽象</p>
+<p>这样的阶段是要花很长时间的，说实话，我在这个层是很水的，但是体会和感慨比较多，看的多点，自己就有长进，如何觉得自己写的东西不行，因为你见过别人写的很好的，
+自己永远都是觉得落后，，落后</p>
+<p>在这样的过程完了之后， 你就可以从更大的局面来看世界了，
+知道什么是架构的科学了，当然这个层面往往争议很多，没有关系，
+架构往往其实就是高度抽象， 看看uboot，内核的大架子，也能学习到。</p>
+<p>这个基本是unix环境下的学习思维吧，其实不是windows不适用，
+是因为微软的策略不一样，微软是商业公司，他们把api封装到很傻瓜的阶段，
+要你关注的是如何生产更多的软件，思想方面，微软自己比较清楚点吧。</p>
+<p>unix，linux的思想是开放的，你也从千千万万的开源代码中可以体会的。</p>
+<p>在某种程度来讲， 开源代码意味着宝藏， 你想知道什么，你就可以下载下来看，
+记着每个开源软件都有自己的官方网站（要么在sourceforge上，要么在github，google
+code上），
+你可以百度，google去看中文的资料，但是记住，要想知道到底是怎么回事，还是老老实实看官方英文（Documents,
+wiki）</p>
+<p>开源是可以利用的，在人的生存方面，这个看起来像共产主义社会</p>
+<p>如果你能够在unix环境下面经常工作，那么
+除了c语言之外，可能有三个东西很重要： shell， python， perl</p>
+<p>shell就是命令脚本，但是因为shell的灵活性，
+你可以做很多事情，掌握好了，你往往用不着立马用C去实现一个程序，写个脚本看看就行了</p>
+<p>比如用for循环来创建目录（上万个也是一瞬间的事情），比如删除上万个.txt文件，
+有了命令，你会觉得这个时候鼠标还是作用不怎么大</p>
+<p>python的好处是这个语言可以跟c写的东西，c++写的东西很容易粘接，所以python现在有非常大的资源库，如果你除了上班，还想看看图
+形界面编程，但是又觉得c++难，那么python就比较适合了，python通常还用来生成c代码，perl也是，我们这边做cli，和snmp的能够
+体会的到</p>
+<p>unix界还有两个比较牛的东西，yacc, lex,
+这两个东西在你已经觉得可以用某种你自创的标记来写一点东西的时候就很有用了，因为可以帮助你快速构建编译器</p>
+<p>如果对图形界面感兴趣，那么可以看看Qt，wxWidget，这两个东西都可以用c++，
+python语言，并且可以保证你写的东西可以运行在世界上最流行的几个系统，windows,
+Mac, unix(BSD)/linux, 而基本不用改任何代码（重新编译就是）</p>
+<p>差不多就这些吧，
+可能看起来很多的样子，其实慢慢理下就这些而已，有啥疑问或者兴趣，可以随时交流</p>
+<div class="line-block">
+<div class="line">unix学习方面书的阅读方法：</div>
+<div class="line-block">
+<div class="line">1. c 语言方面: 建议不要看谭浩强的了，直接看 c primer plus</div>
+</div>
+</div>
+<p>2. unix/linux环境方面: unix环境编程， 还有我发的 Linux programing
+interface.</p>
+<p>3.
+还是要看下算法方面的，数据结构方面的，发的里面都有，通常算法和数据结构都是一起的</p>
+<p>4. 要了解下面向对象，
+python看起来比较简单直接些，当然cpp也很不错（不过基本是最复杂的语言在perl6还没面世之前）</p>
+<p>5.
+图形界面编程的的QT，wxWidget的我发的也有吧，gtk也不错（不过不是很推荐，用c写界面累，同时gtk的表面在windows上看起来不怎么好看）</p>
+<p>通常 1. 2. 3过了就ok了， 4, 5 就看你自己的兴趣了</p>
+<p>对于我们比较专门的cli，snmp我的建议是既然是开源的软件包，用我说的看官方手册的方法看就是了，这才是深入了解的唯一途径</p>
+<p>对于代码的思维方式，软件结构，层次方面，看别人写的漂亮代码，慢慢琢磨体会。</p>
+</div>
+<div class="section" id="id3">
+<h2><strong>内核以及驱动方面的感受</strong>--- 学习不可不深入</h2>
+<div><p>接着来说下我对 <strong>内核以及驱动方面的感受</strong> ：</p>
+<div class="line-block">
+<div class="line">1. 驱动开发的确是件很难的事情;</div>
+<div class="line-block">
+<div class="line">2. 任何事情肯定有方法。</div>
+</div>
+</div>
+<p>对于内核开发（其实我不喜欢这种说法，因为很多时候，我们仅仅是利用下驱动，或者写个简单的驱动，这跟内核上游开发高手简直不一个层面，所以不喜欢随便就在说内核开发），
+往往是从驱动开始的，也最容易入手。</p>
+<p>但内核驱动本身是一件不容易的事情， 掌握驱动开发， 要看的书就是
+linux设备驱动程序（目前最新是第三版）， 在看了hello
+world的module例子之后，我的建议是看看字符驱动设备就可以停止下来明确一个概念了，
+往往很多书籍把这个事情没说透（其实不是我耍大牌，书籍往往认为我们很有灵性，一点即通），
+其实我们在用户空间操作文件用的
+read/write函数（记着叫做系统调用）是由操作系统最终给你接口的，事实上（我的理解，不一定非常准确，但是我认为能帮组你理解）
+系统调用是跟内核驱动直接挂钩的（内核做的）， <strong>当你在用户空间尝试
+read/write的时候，实际上最终执行到了内核中的代码</strong>
+，具体就是读写一个设备文件的时候， 调用到驱动里面的 read/write方法，
+只要把握这一点，你就会明白*写驱动程序其实是填空了*，
+我们需要填充内核里面对文件的几个常见操作就可以了。</p>
+<div class="line-block">
+<div class="line"><strong>为什么写驱动程序是填空？</strong></div>
+<div class="line-block">
+<div class="line">&gt;&gt;&gt;</div>
+</div>
+<div class="line">操作系统是别人开发的，你用的linux是个unix内核的实现，全部都是unix的思想，</div>
+<div class="line">内核最终是个抽象体， 内核里面抽象了所有事务的操作方式，</div>
+<div class="line">别人做的抽象，所以你就是填空了，</div>
+<div class="line">所以拿我们自己的SDK来说，开发设备也就是填空吧。</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>驱动程序往往是通用的</strong></div>
+<div class="line-block">
+<div class="line">本来体会到上面的那点就可以了，你已经比较清楚开发内核驱动的思路了，</div>
+</div>
+<div class="line">但是请注意一点（这下我要说下百度和国内技术达人blog害人之初了，你可以喷我，没关系！），</div>
+<div class="line">千万不要从国内的blog上面去看大部分抄袭的内核驱动实例（以2410,2440的最为泛滥），这些人写东西往往有个很明显的标志：</div>
+</div>
+<pre class="literal-block">
+#ifdef CPU_S3C2440 || CPU_S3C2440 .... gpio_set_output(xxxx);
+</pre>
+<p>而这样的驱动程序确是放到 driver 目录下面，
+这里的东西可以看看内核带的例子，
+几乎所有的驱动里面都是跟平台代码无关的，至少不会认cpu，
+板子的不同做不同的动作，
+在内核里面，内核对任何一类设备都有所谓的子系统，这就是内核对设备与硬件相关性的抽象，抽象过了，自然就不用在驱动里面写平台上的代码了。</p>
+<p>因为那些blog的误导（当时我对驱动不理解啊，这个影响真的很大），
+我一直搞不懂，为什么dm9000网卡驱动在我编译x86代码的时候也可以看到，但是dm9000的内核代码里面并没有x86上专门的语句呢？
+内核究竟如何处理这些问题的，
+这个问题纠结了很久，只到有天我看到内核有个机制叫做 platform 驱动机制，
+对于dm9000网口，
+不同平台的初始化代码肯定不同，但是这些跟平台相关的代码是专门做了结构体的，让你在arch/arm/xxx-board(或platform).c里
+面去实现的。 所以才最终明白， 被大家整天以大侠相称的大哥们搞错了！</p>
+<p>理解到这个地方的时候才突然意识到驱动开发那本经典书里面说的子系统的意义了，
+对于一个设备来说，
+初始化，每个cpu或者板子肯定是不同的，那么把这部分东西统一放到平台cpu相关里面去，
+后面去看，才发现，对于每个驱动，平台里面都会做统一的初始化，并且这些方法最终统一挂到内核提供的init方法列表里面，
+也有点明白内核的抽象机制了。</p>
+<p>所以， 我的建议就是看东西，
+还是看原作者给的资料最靠谱（就这个例子，应该我们买的几乎所有国产linux驱动开发，嵌入式linux里面的例子都搞错了！！），
+内核的Documents里面给了说明的， 内核带的驱动代码也是例子。</p>
+<p>所以，做事情还是要严谨， 能工作，跟写的良好还是两码事！</p>
+</div>
+<div class="section" id="id4">
+<h2>总结</h2>
+<p>个人认为，
+面向对象是一种提高代码重用的机制，同时也是使用抽象思维解决问题的一种方法，
+并不是你的java语言或者js语言内建了面向对象你用了几个class就知道了面向对象了，
+本身如何用好面向对象还是需要个人项目磨练的，随着你做的东西越多，你对世界的认识会越抽象和统一，所以个人认为你画了几个类图，基本都是平铺的联系，然后看起来“像模块”一样的东西之间还箭头乱飞，千丝万缕的，那么我就认为其实你并不懂什么叫做面向对象，本身你也缺乏逻辑层次分明的处理哪怕平常事务的能力，程序写着写着就应该是你的生活和思维方式的体现了。</p>
+<p>在c语言里，
+用struct加上函数指针和static关键字，你就可以构建一个面向对象的编程方式，至少在c的层面不用什么宏扩展，来构建一个很类似c++的面向对象编程模式也是很容易的，linux内核如何将千万种设备管理了起来的，如何把一切东西都抽象到文件操作的？
+c就不能面向对象了？ linux是c面向对象最好最好的典范了！</p>
+<p>其实，个人愚见：
+<strong>不管做什么事情</strong>，<strong>人是逻辑思维动物</strong>，<strong>有条理的做事风格是很关键的</strong>。</p>
+</div></div>
+
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+         </div><!--/span-->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
