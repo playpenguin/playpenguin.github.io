@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术</title><link href="/" rel="alternate"></link><link href="/feeds/life.atom.xml" rel="self"></link><id>/</id><updated>2013-01-02T07:40:00+08:00</updated><entry><title>人， 理想， 现实</title><link href="/ren-li-xiang-xian-shi.html" rel="alternate"></link><updated>2013-01-02T07:40:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2013-01-02:ren-li-xiang-xian-shi.html</id><summary type="html">&lt;p&gt;对，这个话题看起来挺大的，但是我先声明下，我只是把自己的心里活动胡乱的摆出来而已。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术</title><link href="/" rel="alternate"></link><link href="/feeds/life.atom.xml" rel="self"></link><id>/</id><updated>2013-01-02T07:40:00+08:00</updated><entry><title>人， 理想， 现实</title><link href="/ren-li-xiang-xian-shi.html" rel="alternate"></link><published>2013-01-02T07:40:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2013-01-02:ren-li-xiang-xian-shi.html</id><summary type="html">&lt;p&gt;对，这个话题看起来挺大的，但是我先声明下，我只是把自己的心里活动胡乱的摆出来而已。&lt;/p&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;转眼间，或者无意之中，自己已经长大了，对，应该可以算是长大了吧。窗外是呼呼的大风，有没么那么凌咧&lt;/div&gt;
 &lt;div class="line"&gt;我并不清楚， 但却让我想起来了自己幼时。&lt;/div&gt;
@@ -114,7 +114,7 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;对， 这或许就是现实吧， 现实是啥？ 我或许现在就只有一个答案：现实就是接受！&lt;/p&gt;
-</summary></entry><entry><title>其实自己原本就是个“无脑”的程序员而已！--- 溢出 与 “环”</title><link href="/qi-shi-zi-ji-yuan-ben-jiu-shi-ge-wu-nao-de-cheng-xu-yuan-er-yi-yi-chu-yu-huan.html" rel="alternate"></link><updated>2012-08-22T09:11:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-08-22:qi-shi-zi-ji-yuan-ben-jiu-shi-ge-wu-nao-de-cheng-xu-yuan-er-yi-yi-chu-yu-huan.html</id><summary type="html">&lt;p&gt;记得前两天写东西的时候还遇到一个问题，这个问题大家很熟悉，
+</summary></entry><entry><title>其实自己原本就是个“无脑”的程序员而已！--- 溢出 与 “环”</title><link href="/qi-shi-zi-ji-yuan-ben-jiu-shi-ge-wu-nao-de-cheng-xu-yuan-er-yi-yi-chu-yu-huan.html" rel="alternate"></link><published>2012-08-22T09:11:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-08-22:qi-shi-zi-ji-yuan-ben-jiu-shi-ge-wu-nao-de-cheng-xu-yuan-er-yi-yi-chu-yu-huan.html</id><summary type="html">&lt;p&gt;记得前两天写东西的时候还遇到一个问题，这个问题大家很熟悉，
 当然解决方法也很显然：&lt;/p&gt;
 &lt;p&gt;坐标需要从0-256直接循环移动， 根据常理，很容易写出来这种代码&lt;/p&gt;
 &lt;pre class="code c++ literal-block"&gt;
@@ -155,7 +155,7 @@
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;不要做把计算机当&lt;strong&gt;电脑&lt;/strong&gt; （计算机就是个计算机），不要做拥有&lt;strong&gt;计算机脑&lt;/strong&gt;的&lt;strong&gt;程序员&lt;/strong&gt;！&lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>我的人生目标</title><link href="/wo-de-ren-sheng-mu-biao.html" rel="alternate"></link><updated>2012-02-07T06:24:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-02-07:wo-de-ren-sheng-mu-biao.html</id><summary type="html">&lt;div class="section" id="id2"&gt;
+</summary></entry><entry><title>我的人生目标</title><link href="/wo-de-ren-sheng-mu-biao.html" rel="alternate"></link><published>2012-02-07T06:24:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-02-07:wo-de-ren-sheng-mu-biao.html</id><summary type="html">&lt;div class="section" id="id2"&gt;
 &lt;h2&gt;&amp;nbsp;找个还不错的工作，有饭吃，工作茶余饭后，自己在书屋或者时髦点“车库”里做自己的一套自娱自乐的研究，短期阶段留一两样产品给世上，长期阶段留点自己的研究结果给世上，在某个小点上大家听过我的名字就行了！&lt;/h2&gt;
 &lt;/div&gt;
 </summary><category term="Life"></category></entry></feed>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>关于ｃ语言位域的字节对齐问题</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="dangbinghoo">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="PlayPenguin.Tech-花花企鹅.技术 ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">PlayPenguin.Tech-花花企鹅.技术 </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="/category/embedded.html">
+						<i class="icon-folder-open icon-large"></i>Embedded
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/life.html">
+						<i class="icon-folder-open icon-large"></i>Life
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="/category/linux.html">
+						<i class="icon-folder-open icon-large"></i>Linux
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/misc.html">
+						<i class="icon-folder-open icon-large"></i>misc
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/qi-ta.html">
+						<i class="icon-folder-open icon-large"></i>其他
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/thoughts.html">
+						<i class="icon-folder-open icon-large"></i>thoughts
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/unixwen-dang-gong-ju.html">
+						<i class="icon-folder-open icon-large"></i>Unix文档工具
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/vim.html">
+						<i class="icon-folder-open icon-large"></i>Vim
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+         <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>分类</h4></li>
+<li>
+<a href="/category/embedded.html">
+    <i class="icon-folder-open icon-large"></i>Embedded
+</a>
+</li>
+<li>
+<a href="/category/life.html">
+    <i class="icon-folder-open icon-large"></i>Life
+</a>
+</li>
+<li>
+<a href="/category/linux.html">
+    <i class="icon-folder-open icon-large"></i>Linux
+</a>
+</li>
+<li>
+<a href="/category/misc.html">
+    <i class="icon-folder-open icon-large"></i>misc
+</a>
+</li>
+<li>
+<a href="/category/qi-ta.html">
+    <i class="icon-folder-open icon-large"></i>其他
+</a>
+</li>
+<li>
+<a href="/category/thoughts.html">
+    <i class="icon-folder-open icon-large"></i>thoughts
+</a>
+</li>
+<li>
+<a href="/category/unixwen-dang-gong-ju.html">
+    <i class="icon-folder-open icon-large"></i>Unix文档工具
+</a>
+</li>
+<li>
+<a href="/category/vim.html">
+    <i class="icon-folder-open icon-large"></i>Vim
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<!--  -->
+
+<li class="nav-header"><h4><i class="icon-external-link"></i>链接</h4></li>
+    <li><a href="http://elinux.org"><i class="icon-external-link"></i>elinux</a></li>
+    <li><a href="wiki.osdev.org"><i class="icon-external-link"></i>osdev</a></li>
+    <li><a href="http://sourceforge.net/p/nanorc"><i class="icon-external-link"></i>nanoRC</a></li>
+    <li><a href="http://sourceforge.net/projects/otob"><i class="icon-external-link"></i>otob</a></li>
+
+
+
+</ul>			<script type="text/javascript" src="//ra.revolvermaps.com/0/0/1.js?i=0glib6absdk&amp;s=220&amp;m=0&amp;v=false&amp;r=false&amp;b=000000&amp;n=false&amp;c=ff0000" async="async"></script>
+         </div><!--/.well -->
+
+         <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to 关于ｃ语言位域的字节对齐问题">
+                                        关于ｃ语言位域的字节对齐问题
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2016-05-20T14:04:00+08:00">
+        <i class="icon-calendar"></i>五 20 五月 2016
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/bitfield.html"><i class="icon-tag"></i>bitfield</a>
+	<a href="/tag/wei-yu.html"><i class="icon-tag"></i>位域</a>
+	<a href="/tag/c.html"><i class="icon-tag"></i>C</a>
+	<a href="/tag/gcc.html"><i class="icon-tag"></i>GCC</a>
+</footer><!-- /.post-info -->                </div>
+                <p>最近在STM32F4上面进行嵌入式开发，需要做通讯，报文规定的字段并不以字节为最小单位，好多2,3位的长度元素
+对于C语言，我们一般用位域来解决。</p>
+<p>可是，C教科书上给我们讲的位域不占用很多空间的前提没有讲述清楚，经查证，默认情况下C语言并没有规定统一
+的字节对齐策略，导致用sizeof计算结构大小的时候结果在不同的平台上结果五花八门。下面代码的结构体，按理是
+4个字节，结果默认情况下gcc计算结果为6。</p>
+<dl class="docutils">
+<dt>网络资料显示需要对结构体加pack属性， 这下GCC是对了，但是在win平台下面的MinGW结构居然是5</dt>
+<dd>???</dd>
+</dl>
+<p>玩我呢？ 后面搜索MinGW 位域对齐问题，发现MinGW并不像我想象的就是GCC，跟linux平台和cygwin并不完全相同，
+至少这个地方表现跟VC++平台一致。</p>
+<p>好了，用pragma来指定按字节对齐的方式，按1字节对齐，这样位域才能正确。</p>
+<p>代码如下：</p>
+<pre class="code c literal-block">
+<span class="cp">#include</span> <span class="cpf">&lt;QCoreApplication&gt;</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp">
+</span>
+<span class="cp">#if defined WIN32 || defined _WIN64 || defined WINNT
+</span>    <span class="cp">#pragma pack(push,1)
+#endif
+</span>
+<span class="k">struct</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">packed</span><span class="p">))</span> <span class="n">rds_head_s</span>
+<span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="nl">data_id</span><span class="p">:</span><span class="mi">5</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="nl">level</span><span class="p">:</span><span class="mi">3</span><span class="p">;</span>
+    <span class="c1">//struct
+</span>    <span class="c1">//{
+</span>    <span class="kt">unsigned</span> <span class="kt">short</span> <span class="nl">data_len</span> <span class="p">:</span><span class="mi">11</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">short</span>  <span class="nl">data_type</span><span class="p">:</span><span class="mi">5</span><span class="p">;</span>
+    <span class="c1">//}head;
+</span>    <span class="kt">unsigned</span> <span class="kt">char</span>  <span class="n">area_num</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">QCoreApplication</span> <span class="n">a</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+
+    <span class="n">qDebug</span><span class="p">(</span><span class="s">&quot;hello Qt</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">qDebug</span><span class="p">(</span><span class="s">&quot;size: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">rds_head_s</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">exec</span><span class="p">();</span>
+<span class="p">}</span>
+</pre>
+<div class="section" id="gcc">
+<h2>网络上关于GCC的位域详细的讨论</h2>
+<p>1、位域对齐</p>
+<p>3.7版本之后GCC都默认使用了-mms-bitfields，此选项意义为使用Microsoft的方式进行对齐操作，其对齐策略为将对所有类型相同的位域合并到一起。与之相对的是GCC对其方式，其对齐策略为将所有位域合并到一起，并不区分位域类型。</p>
+<p>如下例：</p>
+<pre class="code c literal-block">
+<span class="k">struct</span> <span class="p">{</span>
+<span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="nl">c</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">a</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">b</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+<p>Mircrosoft对齐方式将合并类型相同的a、b，为之分配8个字节，而对于c，则单独分配8个字节，所以上述结构体在此对齐方式下大小为16.</p>
+<p>GCC对齐方式将不区分类型合并所有的位域，并根据原类型中最大尺寸分配位域保存所需的字节数。譬如对于上述结构，最大尺寸为long long，所以上述结构体大小为8.</p>
+<p>此结论可以通过为struct添加不同的GCC结构属性测试得到。</p>
+<pre class="code c literal-block">
+<span class="k">struct</span> <span class="n">fields</span> <span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="nl">c</span> <span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">a</span> <span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">b</span> <span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+<span class="c1">//}__attribute__ ((__ms_struct__)); //用于测试Microsoft对齐方式。得到sizeof(fields)结果为16。
+//}__attribute__ ((__gcc_struct__));//用于测试GCC对齐方式。得到sizeof(fields)结果为8。</span>
+</pre>
+<p>从gcc与ms（Microsoft）的对齐策略可见，gcc的对齐方式相对更加节约存储空间。</p>
+<p>2、结构对齐</p>
+<p>先看一个结构体：</p>
+<pre class="code c literal-block">
+<span class="k">struct</span> <span class="n">struct_</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">first</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="kt">long</span> <span class="kt">int</span> <span class="n">second</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">third</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="p">};</span>
+</pre>
+<p>此结构体使用默认的GCC选项编译后，既默认使用-mms-bitfields选项的情况下，将得到大小为9字节的存储空间。</p>
+<p>这是因为对于32位操作系统，GCC默认对齐字节为4字节，在使用MS结构对齐策略的情况下，GCC在处理第一个变量时保持其尺寸不变，既为1字节，在处理第二个变量时同样保持其尺寸不变，既为4字节，在处理第三个也是最后一个变量时，扩展其尺寸至对齐尺寸4字节。因此最后得到的总结构大小为1+4+4=9字节。</p>
+<p>总而言之，MS的对齐策略仅对结构中最后一个变量起作用。</p>
+<p>如果关闭默认的MS对齐策略（通过为GCC添加-mno-ms-bitfields参数），转而使用GCC的对齐策略，上述结构的尺寸将会是多少？</p>
+<p>测试的结果是：12。为何？这是因为GCC将对齐策略应用在了结构体中的每个变量上，对于非4字节的整数倍的char类型变量first[1]、third[2]，GCC都将其扩展为4个字节，对于second，由于其类型大小为4字节，所以GCC保持其大小不变。扩展完成后，结构体的大小为：4+4+4=12字节。</p>
+<p>3、强制设定对齐方式</p>
+<p>字节对齐有利于整块读取数据，提高数据吞吐量，但是这是在牺牲存空间的情况下得到的，而在实际应用中，比如网络环境下，为了减少数据传输量，我们并不希望使用字节对齐方式，这时需要关闭字节对齐。</p>
+<p>在程序的移植过程中，比如将32bit系统下的程序移植到64bit系统下，原有的字节对齐方式可能无法达到提高数据吞吐的目的，因此，我们需要更改字节对齐方式。</p>
+<p>如何关闭？如何更改？</p>
+<p>GCC提供了几种方式：</p>
+<p>3.1、通过属性方式改变：</p>
+<blockquote>
+<ul class="simple">
+<li>__attribute__ ((__ms_struct__)) 指定使用MS对齐策略</li>
+<li>__attribute__ ((__gcc_struct__)) 指定使用GCC对齐策略</li>
+<li>__attribute__ ((__packed__)) 指定使用最少存储空间对齐策略：合并所有位、对变量使用单字节方式对齐。</li>
+</ul>
+</blockquote>
+<p>3.2、通过标识符声明方式：</p>
+<blockquote>
+<ul class="simple">
+<li>#pragma pack(N) 设定对齐方式为N字节。</li>
+<li>#pragma pack() 设定对齐方式为上一次对齐方式。</li>
+<li>#pragma pack(push[, n]) 保存当前对齐方式并设置对齐方式为N字节。</li>
+<li>#pragma pack(pop) 恢复最近一次保存的对齐方式。</li>
+</ul>
+</blockquote>
+<p>对于i386构架，GCC专门提供了如下3个声明控制对齐方式：</p>
+<blockquote>
+<ul class="simple">
+<li>#pragma ms_struct on 启用MS对齐方式。</li>
+<li>#pragma ms_struct off 关闭MS对齐方式。</li>
+<li>#pragma ms_struct reset 重置当前对齐方式为默认对齐方式。</li>
+</ul>
+</blockquote>
+<p>3.3 通过设置GCC编译参数方式：</p>
+<p>-fpack-struct[=N] 设定对齐方式为N字节对齐，不带”=N“时默认为4字节对齐。
+-mno-ms-bitfields 关闭MS对齐策略，使用GCC对齐策略。</p>
+</div>
+
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+         </div><!--/span-->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

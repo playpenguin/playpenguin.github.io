@@ -1,5 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术</title><link href="/" rel="alternate"></link><link href="/feeds/linux.atom.xml" rel="self"></link><id>/</id><updated>2015-04-03T09:40:00+08:00</updated><entry><title>关于ｃ语言const修饰符对指针变量的修饰问题</title><link href="/guan-yu-cyu-yan-constxiu-shi-fu-dui-zhi-zhen-bian-liang-de-xiu-shi-wen-ti.html" rel="alternate"></link><updated>2015-04-03T09:40:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2015-04-03:guan-yu-cyu-yan-constxiu-shi-fu-dui-zhi-zhen-bian-liang-de-xiu-shi-wen-ti.html</id><summary type="html">&lt;p&gt;在看同事的jni幻灯片的时候，看到了const 指针，就顺便聊了下，一直都觉得 带 const 修饰符的都应该
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术</title><link href="/" rel="alternate"></link><link href="/feeds/linux.atom.xml" rel="self"></link><id>/</id><updated>2016-05-20T14:04:00+08:00</updated><entry><title>关于ｃ语言位域的字节对齐问题</title><link href="/guan-yu-cyu-yan-wei-yu-de-zi-jie-dui-qi-wen-ti.html" rel="alternate"></link><published>2016-05-20T14:04:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2016-05-20:guan-yu-cyu-yan-wei-yu-de-zi-jie-dui-qi-wen-ti.html</id><summary type="html">&lt;p&gt;最近在STM32F4上面进行嵌入式开发，需要做通讯，报文规定的字段并不以字节为最小单位，好多2,3位的长度元素
+对于C语言，我们一般用位域来解决。&lt;/p&gt;
+&lt;p&gt;可是，C教科书上给我们讲的位域不占用很多空间的前提没有讲述清楚，经查证，默认情况下C语言并没有规定统一
+的字节对齐策略，导致用sizeof计算结构大小的时候结果在不同的平台上结果五花八门。下面代码的结构体，按理是
+4个字节，结果默认情况下gcc计算结果为6。&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;网络资料显示需要对结构体加pack属性， 这下GCC是对了，但是在win平台下面的MinGW结构居然是5&lt;/dt&gt;
+&lt;dd&gt;???&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;玩我呢？ 后面搜索MinGW 位域对齐问题，发现MinGW并不像我想象的就是GCC，跟linux平台和cygwin并不完全相同，
+至少这个地方表现跟VC++平台一致。&lt;/p&gt;
+&lt;p&gt;好了，用pragma来指定按字节对齐的方式，按1字节对齐，这样位域才能正确。&lt;/p&gt;
+&lt;p&gt;代码如下：&lt;/p&gt;
+&lt;pre class="code c literal-block"&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;QCoreApplication&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdint.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;
+&lt;span class="cp"&gt;#if defined WIN32 || defined _WIN64 || defined WINNT
+&lt;/span&gt;    &lt;span class="cp"&gt;#pragma pack(push,1)
+#endif
+&lt;/span&gt;
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nf"&gt;__attribute__&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;packed&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="n"&gt;rds_head_s&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="nl"&gt;data_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="nl"&gt;level&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="c1"&gt;//struct
+&lt;/span&gt;    &lt;span class="c1"&gt;//{
+&lt;/span&gt;    &lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;short&lt;/span&gt; &lt;span class="nl"&gt;data_len&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;short&lt;/span&gt;  &lt;span class="nl"&gt;data_type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="c1"&gt;//}head;
+&lt;/span&gt;    &lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;  &lt;span class="n"&gt;area_num&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;QCoreApplication&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;qDebug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hello Qt&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;qDebug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;size: %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rds_head_s&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exec&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="section" id="gcc"&gt;
+&lt;h2&gt;网络上关于GCC的位域详细的讨论&lt;/h2&gt;
+&lt;p&gt;1、位域对齐&lt;/p&gt;
+&lt;p&gt;3.7版本之后GCC都默认使用了-mms-bitfields，此选项意义为使用Microsoft的方式进行对齐操作，其对齐策略为将对所有类型相同的位域合并到一起。与之相对的是GCC对其方式，其对齐策略为将所有位域合并到一起，并不区分位域类型。&lt;/p&gt;
+&lt;p&gt;如下例：&lt;/p&gt;
+&lt;pre class="code c literal-block"&gt;
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="nl"&gt;c&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nl"&gt;a&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nl"&gt;b&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Mircrosoft对齐方式将合并类型相同的a、b，为之分配8个字节，而对于c，则单独分配8个字节，所以上述结构体在此对齐方式下大小为16.&lt;/p&gt;
+&lt;p&gt;GCC对齐方式将不区分类型合并所有的位域，并根据原类型中最大尺寸分配位域保存所需的字节数。譬如对于上述结构，最大尺寸为long long，所以上述结构体大小为8.&lt;/p&gt;
+&lt;p&gt;此结论可以通过为struct添加不同的GCC结构属性测试得到。&lt;/p&gt;
+&lt;pre class="code c literal-block"&gt;
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="nl"&gt;c&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nl"&gt;a&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nl"&gt;b&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="c1"&gt;//}__attribute__ ((__ms_struct__)); //用于测试Microsoft对齐方式。得到sizeof(fields)结果为16。
+//}__attribute__ ((__gcc_struct__));//用于测试GCC对齐方式。得到sizeof(fields)结果为8。&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;从gcc与ms（Microsoft）的对齐策略可见，gcc的对齐方式相对更加节约存储空间。&lt;/p&gt;
+&lt;p&gt;2、结构对齐&lt;/p&gt;
+&lt;p&gt;先看一个结构体：&lt;/p&gt;
+&lt;pre class="code c literal-block"&gt;
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;struct_&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+    &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;second&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;third&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;此结构体使用默认的GCC选项编译后，既默认使用-mms-bitfields选项的情况下，将得到大小为9字节的存储空间。&lt;/p&gt;
+&lt;p&gt;这是因为对于32位操作系统，GCC默认对齐字节为4字节，在使用MS结构对齐策略的情况下，GCC在处理第一个变量时保持其尺寸不变，既为1字节，在处理第二个变量时同样保持其尺寸不变，既为4字节，在处理第三个也是最后一个变量时，扩展其尺寸至对齐尺寸4字节。因此最后得到的总结构大小为1+4+4=9字节。&lt;/p&gt;
+&lt;p&gt;总而言之，MS的对齐策略仅对结构中最后一个变量起作用。&lt;/p&gt;
+&lt;p&gt;如果关闭默认的MS对齐策略（通过为GCC添加-mno-ms-bitfields参数），转而使用GCC的对齐策略，上述结构的尺寸将会是多少？&lt;/p&gt;
+&lt;p&gt;测试的结果是：12。为何？这是因为GCC将对齐策略应用在了结构体中的每个变量上，对于非4字节的整数倍的char类型变量first[1]、third[2]，GCC都将其扩展为4个字节，对于second，由于其类型大小为4字节，所以GCC保持其大小不变。扩展完成后，结构体的大小为：4+4+4=12字节。&lt;/p&gt;
+&lt;p&gt;3、强制设定对齐方式&lt;/p&gt;
+&lt;p&gt;字节对齐有利于整块读取数据，提高数据吞吐量，但是这是在牺牲存空间的情况下得到的，而在实际应用中，比如网络环境下，为了减少数据传输量，我们并不希望使用字节对齐方式，这时需要关闭字节对齐。&lt;/p&gt;
+&lt;p&gt;在程序的移植过程中，比如将32bit系统下的程序移植到64bit系统下，原有的字节对齐方式可能无法达到提高数据吞吐的目的，因此，我们需要更改字节对齐方式。&lt;/p&gt;
+&lt;p&gt;如何关闭？如何更改？&lt;/p&gt;
+&lt;p&gt;GCC提供了几种方式：&lt;/p&gt;
+&lt;p&gt;3.1、通过属性方式改变：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;__attribute__ ((__ms_struct__)) 指定使用MS对齐策略&lt;/li&gt;
+&lt;li&gt;__attribute__ ((__gcc_struct__)) 指定使用GCC对齐策略&lt;/li&gt;
+&lt;li&gt;__attribute__ ((__packed__)) 指定使用最少存储空间对齐策略：合并所有位、对变量使用单字节方式对齐。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;3.2、通过标识符声明方式：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;#pragma pack(N) 设定对齐方式为N字节。&lt;/li&gt;
+&lt;li&gt;#pragma pack() 设定对齐方式为上一次对齐方式。&lt;/li&gt;
+&lt;li&gt;#pragma pack(push[, n]) 保存当前对齐方式并设置对齐方式为N字节。&lt;/li&gt;
+&lt;li&gt;#pragma pack(pop) 恢复最近一次保存的对齐方式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;对于i386构架，GCC专门提供了如下3个声明控制对齐方式：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;#pragma ms_struct on 启用MS对齐方式。&lt;/li&gt;
+&lt;li&gt;#pragma ms_struct off 关闭MS对齐方式。&lt;/li&gt;
+&lt;li&gt;#pragma ms_struct reset 重置当前对齐方式为默认对齐方式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;3.3 通过设置GCC编译参数方式：&lt;/p&gt;
+&lt;p&gt;-fpack-struct[=N] 设定对齐方式为N字节对齐，不带”=N“时默认为4字节对齐。
+-mno-ms-bitfields 关闭MS对齐策略，使用GCC对齐策略。&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="bitfield"></category><category term="位域"></category><category term="C"></category><category term="GCC"></category></entry><entry><title>关于ｃ语言const修饰符对指针变量的修饰问题</title><link href="/guan-yu-cyu-yan-constxiu-shi-fu-dui-zhi-zhen-bian-liang-de-xiu-shi-wen-ti.html" rel="alternate"></link><published>2015-04-03T09:40:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2015-04-03:guan-yu-cyu-yan-constxiu-shi-fu-dui-zhi-zhen-bian-liang-de-xiu-shi-wen-ti.html</id><summary type="html">&lt;p&gt;在看同事的jni幻灯片的时候，看到了const 指针，就顺便聊了下，一直都觉得 带 const 修饰符的都应该
 在声明的时候赋值，声明之后，再赋值是不过语法检查的。&lt;/p&gt;
 &lt;p&gt;结果发现，对于指针来说，情况并不是我想的那样。&lt;/p&gt;
 &lt;p&gt;对于char *来说，const 未修饰　变量名称时候，　赋值都是在可以后面随意改动的，也就是指针可以
@@ -7,7 +124,7 @@
 需要声明的时候赋值，否则，根本过不了语法检查。&lt;/p&gt;
 &lt;p&gt;代码如下：&lt;/p&gt;
 &lt;pre class="code c literal-block"&gt;
-&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
 &lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;xxxxxx&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -28,7 +145,7 @@
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;。&lt;/p&gt;
-</summary></entry><entry><title>关于 C语言 里的 反射或者内省 的讨论</title><link href="/guan-yu-cyu-yan-li-de-fan-she-huo-zhe-nei-sheng-de-tao-lun.html" rel="alternate"></link><updated>2012-12-18T12:28:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-12-18:guan-yu-cyu-yan-li-de-fan-she-huo-zhe-nei-sheng-de-tao-lun.html</id><summary type="html">&lt;p&gt;在语言里面， 根据class名字能够知道其成员的 功能叫做
+</summary></entry><entry><title>关于 C语言 里的 反射或者内省 的讨论</title><link href="/guan-yu-cyu-yan-li-de-fan-she-huo-zhe-nei-sheng-de-tao-lun.html" rel="alternate"></link><published>2012-12-18T12:28:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-12-18:guan-yu-cyu-yan-li-de-fan-she-huo-zhe-nei-sheng-de-tao-lun.html</id><summary type="html">&lt;p&gt;在语言里面， 根据class名字能够知道其成员的 功能叫做
 内省c语言有没有这个功能.&lt;/p&gt;
 &lt;p&gt;可以想到的办法是
 通过宏，你在定义一个结构体的时候，同时生成了一个数据结构存放了这个class的成员名称，
@@ -112,8 +229,8 @@ float, char, char *} ,&amp;nbsp; 这样的信息&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;别人的例子：&lt;/p&gt;
 &lt;pre class="code c literal-block"&gt;
-&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;
-#include &amp;lt;string.h&amp;gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;string.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
 &lt;/span&gt;
 &lt;span class="cp"&gt;#define MEMBER(TYPE,NAME,MORE) TYPE NAME MORE
 &lt;/span&gt;
@@ -204,7 +321,7 @@ float, char, char *} ,&amp;nbsp; 这样的信息&lt;/p&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;
-</summary></entry><entry><title>学习unix路之愚见</title><link href="/xue-xi-unixlu-zhi-yu-jian.html" rel="alternate"></link><updated>2012-11-27T03:03:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-11-27:xue-xi-unixlu-zhi-yu-jian.html</id><summary type="html">&lt;div class="section" id="id1"&gt;
+</summary></entry><entry><title>学习unix路之愚见</title><link href="/xue-xi-unixlu-zhi-yu-jian.html" rel="alternate"></link><published>2012-11-27T03:03:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-11-27:xue-xi-unixlu-zhi-yu-jian.html</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;这段时间公司安排带领新人，
 加上公司上层软件开发者的一些做事方法和思想我不是很赞同，
@@ -393,7 +510,7 @@ c就不能面向对象了？ linux是c面向对象最好最好的典范了！&lt
 &lt;p&gt;其实，个人愚见：
 &lt;strong&gt;不管做什么事情&lt;/strong&gt;，&lt;strong&gt;人是逻辑思维动物&lt;/strong&gt;，&lt;strong&gt;有条理的做事风格是很关键的&lt;/strong&gt;。&lt;/p&gt;
 &lt;/div&gt;&lt;/div&gt;
-</summary></entry><entry><title>linux flash插件等程序声音不正常的原因： 笔记本多个声卡， 需要配置</title><link href="/linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html" rel="alternate"></link><updated>2012-06-17T13:00:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-06-17:linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html</id><summary type="html">&lt;p&gt;前段实际系统是Arch linux，
+</summary></entry><entry><title>linux flash插件等程序声音不正常的原因： 笔记本多个声卡， 需要配置</title><link href="/linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html" rel="alternate"></link><published>2012-06-17T13:00:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-06-17:linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html</id><summary type="html">&lt;p&gt;前段实际系统是Arch linux，
 当时什么程序都能放出声音来就是flash不行，一直无声状态， 始终没有搞定。&lt;/p&gt;
 &lt;p&gt;这几天因为做嵌入式的原因，系统换成了Funtoo， 个人感觉就是改进了Gentoo 的
 emerge --sync 吧， 其他的还不怎么明显， 也没体会到，感觉根Gentoo无异了，
@@ -417,7 +534,7 @@ ctl.!default {
 &lt;/pre&gt;
 &lt;p&gt;立马试验果真mplayer和flash都有声音了。&lt;/p&gt;
 &lt;p&gt;突然觉得很久时间没有做LFS，用Gentoo，linux水平降低太多了。&lt;/p&gt;
-</summary><category term="asound.rc"></category></entry><entry><title>使用ostinato做网络开发分析辅助工具</title><link href="/shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html" rel="alternate"></link><updated>2012-04-24T06:46:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-04-24:shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html</id><summary type="html">&lt;p&gt;最近参与公司一个项目, 需要在L2工作, 封包是经常的事情,之前一直用N2X,
+</summary><category term="asound.rc"></category></entry><entry><title>使用ostinato做网络开发分析辅助工具</title><link href="/shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html" rel="alternate"></link><published>2012-04-24T06:46:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-04-24:shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html</id><summary type="html">&lt;p&gt;最近参与公司一个项目, 需要在L2工作, 封包是经常的事情,之前一直用N2X,
 需要排队, 后面搜索网络发现了ostinato工具， 虽然还在成长中,
 但是已经非常强大够用了.&lt;/p&gt;
 &lt;p&gt;特淘宝淘了个双口的千兆网卡, 拿回来装起, 先跑server drone程序,
@@ -427,7 +544,7 @@ ctl.!default {
 另外发现intel的网卡芯片才支持vlan, 可以抓到带vlan标签的包,
 正好淘的网卡是intel的服务器专用卡, 不错!,&lt;/p&gt;
 &lt;p&gt;这里记下, 有用的同学可以参考下.&lt;/p&gt;
-</summary><category term="ostinato"></category></entry><entry><title>acer aspire 4560G A6 apu notebook arch linux installation tips</title><link href="/acer-aspire-4560g-a6-apu-notebook-arch-linux-installation-tips.html" rel="alternate"></link><updated>2012-04-18T15:54:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-04-18:acer-aspire-4560g-a6-apu-notebook-arch-linux-installation-tips.html</id><summary type="html">&lt;p&gt;arch linux or gentoo linux installtion on Acer aspire 4560G will always
+</summary><category term="ostinato"></category></entry><entry><title>acer aspire 4560G A6 apu notebook arch linux installation tips</title><link href="/acer-aspire-4560g-a6-apu-notebook-arch-linux-installation-tips.html" rel="alternate"></link><published>2012-04-18T15:54:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-04-18:acer-aspire-4560g-a6-apu-notebook-arch-linux-installation-tips.html</id><summary type="html">&lt;p&gt;arch linux or gentoo linux installtion on Acer aspire 4560G will always
 have troubles.&lt;/p&gt;
 &lt;div class="section" id="the-video-driver-just-note"&gt;
 &lt;h2&gt;the video driver. JUST &lt;strong&gt;NOTE&lt;/strong&gt;&lt;/h2&gt;
@@ -465,7 +582,7 @@ sudo modprobe wl
 &lt;h2&gt;audio card:&lt;/h2&gt;
 &lt;p&gt;blacklist snd_hda_codec_hdmi&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="4560g"></category><category term="acer"></category><category term="Linux"></category></entry><entry><title>如何恢复mysql inno db 损毁的数据库表内容 ?</title><link href="/ru-he-hui-fu-mysql-inno-db-sun-hui-de-shu-ju-ku-biao-nei-rong.html" rel="alternate"></link><updated>2012-03-31T09:01:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-03-31:ru-he-hui-fu-mysql-inno-db-sun-hui-de-shu-ju-ku-biao-nei-rong.html</id><summary type="html">&lt;p&gt;一次机器的强制关机,导致了服务器mysql数据库启动失败,
+</summary><category term="4560g"></category><category term="acer"></category><category term="Linux"></category></entry><entry><title>如何恢复mysql inno db 损毁的数据库表内容 ?</title><link href="/ru-he-hui-fu-mysql-inno-db-sun-hui-de-shu-ju-ku-biao-nei-rong.html" rel="alternate"></link><published>2012-03-31T09:01:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-03-31:ru-he-hui-fu-mysql-inno-db-sun-hui-de-shu-ju-ku-biao-nei-rong.html</id><summary type="html">&lt;p&gt;一次机器的强制关机,导致了服务器mysql数据库启动失败,
 说是数据库因为关机问题,数据写入不正常, 无法启动,
 使用mysql的数据库恢复功能没能成功&lt;/p&gt;
 &lt;p&gt;因为自己当时不知道数据库自己恢复的条件,只拷贝备份了数据库目录,
@@ -514,7 +631,7 @@ idb里面是表的具体内容, 只要idb文件在, 一般都是可以恢复的&
 &lt;p&gt;另外.我把这个繁琐的过程写了个临时的脚本, 基本都可以工作:
 需要者下载下来自己根据情况调整, 脚本的内容反应了整个完整过程:&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="http://www.playpenguin.net/blog/wp-content/uploads/2012/03/recovery_data.txt"&gt;recovery_data&lt;/a&gt;.sh&lt;/p&gt;
-</summary></entry><entry><title>seascope代码阅读器支持编辑补丁</title><link href="/seascopedai-ma-yue-du-qi-zhi-chi-bian-ji-bu-ding.html" rel="alternate"></link><updated>2012-02-18T14:22:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-02-18:seascopedai-ma-yue-du-qi-zhi-chi-bian-ji-bu-ding.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://code.google.com/p/seascope/"&gt;Seascope&lt;/a&gt;
+</summary></entry><entry><title>seascope代码阅读器支持编辑补丁</title><link href="/seascopedai-ma-yue-du-qi-zhi-chi-bian-ji-bu-ding.html" rel="alternate"></link><published>2012-02-18T14:22:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-02-18:seascopedai-ma-yue-du-qi-zhi-chi-bian-ji-bu-ding.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://code.google.com/p/seascope/"&gt;Seascope&lt;/a&gt;
 是一个pyQt写的代码阅读工具，在linux原来的kscope其实功能很强大，绝对可比source
 Insight，不过，kde到4之后就没维护了，后来偶遇seascope，不过当时是0.3版本，代码显示的时候字体不能改变，文件也是只读，没法编辑，不过函数定义，引用等搜索功能确是完整的，但是下下来用了用不是很方便编辑就不了了之了。&lt;/p&gt;
 &lt;p&gt;前两天同事又问linux下面代码阅读工具，就又去看了看，发现出0.4版本了，下载来看了下变化比较大，不过编辑功能还是没有啊，看了看是pyQt，正好自己还是想深入学习下python，那看看能不能自己改改呢
@@ -790,8 +907,8 @@ diff -purN seascope-0.4/src/view/EdView.py seascope-0.4-dbh/src/view/EdView.py
 &lt;/pre&gt;
 &lt;p&gt;顺便上张图：&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Seascope修改" src="http://www.playpenguin.net/blog/wp-content/uploads/2012/02/seascope.png" /&gt;&lt;/p&gt;
-</summary><category term="seascope"></category></entry><entry><title>关于linux文件系统的sync,async, sync/fsync 命令</title><link href="/guan-yu-linuxwen-jian-xi-tong-de-syncasync-syncfsync-ming-ling.html" rel="alternate"></link><updated>2011-11-18T11:15:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-11-18:guan-yu-linuxwen-jian-xi-tong-de-syncasync-syncfsync-ming-ling.html</id><summary type="html">&lt;p&gt;linux默认情况下几乎所有应用场合都是不会将文件立马保存入磁盘的，在嵌入式上也是同样的表现，如果mount时候加上sync选项就可以保证数据立马写入，但是这种会造成系统较多的写入磁盘，磁盘的寿命就不会太长了，如果是需要保存数据，可以显式调用命令sync来写入所有文件，或者fsync来保存某个文件。&lt;/p&gt;
-</summary><category term="Linux"></category><category term="sync"></category><category term="文件系统"></category></entry><entry><title>shell获取进程ID的方法： pidof | pgrep | ps-A+grep+awk</title><link href="/shellhuo-qu-jin-cheng-idde-fang-fa-pidof-pgrep-ps-agrepawk.html" rel="alternate"></link><updated>2011-11-18T11:08:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-11-18:shellhuo-qu-jin-cheng-idde-fang-fa-pidof-pgrep-ps-agrepawk.html</id><summary type="html">&lt;p&gt;shell获取进程ID的方法：&lt;/p&gt;
+</summary><category term="seascope"></category></entry><entry><title>关于linux文件系统的sync,async, sync/fsync 命令</title><link href="/guan-yu-linuxwen-jian-xi-tong-de-syncasync-syncfsync-ming-ling.html" rel="alternate"></link><published>2011-11-18T11:15:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-11-18:guan-yu-linuxwen-jian-xi-tong-de-syncasync-syncfsync-ming-ling.html</id><summary type="html">&lt;p&gt;linux默认情况下几乎所有应用场合都是不会将文件立马保存入磁盘的，在嵌入式上也是同样的表现，如果mount时候加上sync选项就可以保证数据立马写入，但是这种会造成系统较多的写入磁盘，磁盘的寿命就不会太长了，如果是需要保存数据，可以显式调用命令sync来写入所有文件，或者fsync来保存某个文件。&lt;/p&gt;
+</summary><category term="Linux"></category><category term="sync"></category><category term="文件系统"></category></entry><entry><title>shell获取进程ID的方法： pidof | pgrep | ps-A+grep+awk</title><link href="/shellhuo-qu-jin-cheng-idde-fang-fa-pidof-pgrep-ps-agrepawk.html" rel="alternate"></link><published>2011-11-18T11:08:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-11-18:shellhuo-qu-jin-cheng-idde-fang-fa-pidof-pgrep-ps-agrepawk.html</id><summary type="html">&lt;p&gt;shell获取进程ID的方法：&lt;/p&gt;
 &lt;p&gt;我知道和实践过的有这么三种：&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;&amp;nbsp;ps -A |grep &amp;quot;cmdname&amp;quot;| awk '{print $1}'&lt;/li&gt;
@@ -805,7 +922,7 @@ diff -purN seascope-0.4/src/view/EdView.py seascope-0.4-dbh/src/view/EdView.py
 前一种结果为空，但是在bash中执行两者一样。&lt;/p&gt;
 &lt;p&gt;第三种： pgrep跟1的效果相同，因为是单一命令，比第一种性能要好得多。&lt;/p&gt;
 &lt;p&gt;所以nanoRC就改进为pgrep。&lt;/p&gt;
-</summary><category term="pgrep"></category><category term="pidof"></category><category term="shell"></category><category term="进程ID"></category></entry><entry><title>linux编程库libevent</title><link href="/linuxbian-cheng-ku-libevent.html" rel="alternate"></link><updated>2011-11-16T11:27:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-11-16:linuxbian-cheng-ku-libevent.html</id><summary type="html">&lt;div class="section" id="libevent-an-event-notification-library"&gt;
+</summary><category term="pgrep"></category><category term="pidof"></category><category term="shell"></category><category term="进程ID"></category></entry><entry><title>linux编程库libevent</title><link href="/linuxbian-cheng-ku-libevent.html" rel="alternate"></link><published>2011-11-16T11:27:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-11-16:linuxbian-cheng-ku-libevent.html</id><summary type="html">&lt;div class="section" id="libevent-an-event-notification-library"&gt;
 &lt;h2&gt;libevent – an event notification library&lt;/h2&gt;
 &lt;p&gt;发现一个跨平台的event库：&lt;/p&gt;
 &lt;p&gt;The &lt;em&gt;libevent&lt;/em&gt; API provides a mechanism to execute a callback function

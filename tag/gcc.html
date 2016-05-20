@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>关于ｃ语言const修饰符对指针变量的修饰问题</title>
+    <title>PlayPenguin.Tech-花花企鹅.技术 - GCC</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="dangbinghoo">
@@ -74,7 +74,7 @@
 						<i class="icon-folder-open icon-large"></i>Life
 					</a>
                   </li>
-                  <li class="active">
+                  <li >
                     <a href="/category/linux.html">
 						<i class="icon-folder-open icon-large"></i>Linux
 					</a>
@@ -178,23 +178,12 @@
          </div><!--/.well -->
 
          <div class="span9" id="content">
-<section id="content">
-        <article>
-                <header>
-                        <h1>
-                                <a href=""
-                                        rel="bookmark"
-                                        title="Permalink to 关于ｃ语言const修饰符对指针变量的修饰问题">
-                                        关于ｃ语言const修饰符对指针变量的修饰问题
-                                </a>
-                        </h1>
-                </header>
-                <div class="entry-content">
-                <div class="well">
-<footer class="post-info">
+        <div class="article">
+                <h1><a href="/guan-yu-cyu-yan-wei-yu-de-zi-jie-dui-qi-wen-ti.html">关于ｃ语言位域的字节对齐问题</a></h1>
+                <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2015-04-03T09:40:00+08:00">
-        <i class="icon-calendar"></i>五 03 四月 2015
+<abbr class="published" title="2016-05-20T14:04:00+08:00">
+        <i class="icon-calendar"></i>五 20 五月 2016
 </abbr>
 <span class="label">By</span>
 <a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
@@ -202,40 +191,40 @@
 <a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
 
 
-</footer><!-- /.post-info -->                </div>
-                <p>在看同事的jni幻灯片的时候，看到了const 指针，就顺便聊了下，一直都觉得 带 const 修饰符的都应该
-在声明的时候赋值，声明之后，再赋值是不过语法检查的。</p>
-<p>结果发现，对于指针来说，情况并不是我想的那样。</p>
-<p>对于char *来说，const 未修饰　变量名称时候，　赋值都是在可以后面随意改动的，也就是指针可以
-重新任意赋值，但是赋值后的内存区域是不能修改的，但是若　const 是在修饰　变量名称，那么跟 普通类型变量都一样，
-需要声明的时候赋值，否则，根本过不了语法检查。</p>
+<span class="label">Tags</span>
+	<a href="/tag/bitfield.html"><i class="icon-tag"></i>bitfield</a>
+	<a href="/tag/wei-yu.html"><i class="icon-tag"></i>位域</a>
+	<a href="/tag/c.html"><i class="icon-tag"></i>C</a>
+	<a href="/tag/gcc.html"><i class="icon-tag"></i>GCC</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>最近在STM32F4上面进行嵌入式开发，需要做通讯，报文规定的字段并不以字节为最小单位，好多2,3位的长度元素
+对于C语言，我们一般用位域来解决。</p>
+<p>可是，C教科书上给我们讲的位域不占用很多空间的前提没有讲述清楚，经查证，默认情况下C语言并没有规定统一
+的字节对齐策略，导致用sizeof计算结构大小的时候结果在不同的平台上结果五花八门。下面代码的结构体，按理是
+4个字节，结果默认情况下gcc计算结果为6。</p>
+<dl class="docutils">
+<dt>网络资料显示需要对结构体加pack属性， 这下GCC是对了，但是在win平台下面的MinGW结构居然是5</dt>
+<dd>???</dd>
+</dl>
+<p>玩我呢？ 后面搜索MinGW 位域对齐问题，发现MinGW并不像我想象的就是GCC，跟linux平台和cygwin并不完全相同，
+至少这个地方表现跟VC++平台一致。</p>
+<p>好了，用pragma来指定按字节对齐的方式，按1字节对齐，这样位域才能正确。</p>
 <p>代码如下：</p>
 <pre class="code c literal-block">
-<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">a</span>  <span class="o">=</span> <span class="s">&quot;xxxxxx&quot;</span><span class="p">;</span>
-    <span class="kt">char</span> <span class="k">const</span>  <span class="o">*</span><span class="n">a1</span>  <span class="o">=</span> <span class="s">&quot;xxxxxx&quot;</span><span class="p">;</span>
-    <span class="kt">char</span> <span class="o">*</span> <span class="k">const</span> <span class="n">c</span> <span class="o">=</span> <span class="s">&quot;1111111&quot;</span><span class="p">;</span>
-    <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="cp">#include</span> <span class="cpf">&lt;QCoreApplication&gt;</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp">
+</span>
+<span class="cp">#if defined WIN32 || defined _WIN64 || defined WINNT
+</span>    <span class="cp">#pragma pack(push,1)
+#endif
+</span>
+<span class="k">struct ...</span></pre>
+                        <a class="btn primary xsmall" href="/guan-yu-cyu-yan-wei-yu-de-zi-jie-dui-qi-wen-ti.html">more ...</a>
+                </div>
+        </div>
+        <hr />
 
-    <span class="n">a</span> <span class="o">=</span> <span class="s">&quot;aXXXXX&quot;</span><span class="p">;</span>
-    <span class="c1">//c = &quot;yyyyyy&quot;;
-</span>    <span class="o">*</span><span class="n">a1</span> <span class="o">=</span> <span class="sc">'1'</span><span class="p">;</span>
-    <span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="sc">'2'</span><span class="p">;</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;str a = %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;str a1 = %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">a1</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;str c = %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;b = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre>
-<p>。</p>
-
-                </div><!-- /.entry-content -->
-        </article>
-</section>
          </div><!--/span-->
 
       </div><!--/row-->

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术</title><link href="/" rel="alternate"></link><link href="/feeds/unixwen-dang-gong-ju.atom.xml" rel="self"></link><id>/</id><updated>2011-12-21T11:42:00+08:00</updated><entry><title>再记轻量标记驱动的文档工具与系统</title><link href="/zai-ji-qing-liang-biao-ji-qu-dong-de-wen-dang-gong-ju-yu-xi-tong.html" rel="alternate"></link><updated>2011-12-21T11:42:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-12-21:zai-ji-qing-liang-biao-ji-qu-dong-de-wen-dang-gong-ju-yu-xi-tong.html</id><summary type="html">&lt;p&gt;经过一段时间的学习与查阅资料，发现 unix下面实现的各种 轻量标记
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术</title><link href="/" rel="alternate"></link><link href="/feeds/unixwen-dang-gong-ju.atom.xml" rel="self"></link><id>/</id><updated>2011-12-21T11:42:00+08:00</updated><entry><title>再记轻量标记驱动的文档工具与系统</title><link href="/zai-ji-qing-liang-biao-ji-qu-dong-de-wen-dang-gong-ju-yu-xi-tong.html" rel="alternate"></link><published>2011-12-21T11:42:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-12-21:zai-ji-qing-liang-biao-ji-qu-dong-de-wen-dang-gong-ju-yu-xi-tong.html</id><summary type="html">&lt;p&gt;经过一段时间的学习与查阅资料，发现 unix下面实现的各种 轻量标记
 文档系统很多，而且格式花样， 在sytax上 有&lt;/p&gt;
 &lt;div class="section" id="id2"&gt;
 &lt;h2&gt;可选的轻量文档标记系统有：&lt;/h2&gt;
@@ -23,7 +23,7 @@ Docbook 和&amp;nbsp;TeX 系统了，Asciidoc感觉是&amp;nbsp;Docbook的轻量
 asciidoc驱动，支持比较多的常见格式输出，但是貌似pdf的路径可以通过docbook或者latex，但是都不怎么成熟。但由于syntax的丰富程度最高，所以到docbook之后可以输出比较复杂的文档，如果写大型文档就比较适合了。&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;空的时候研究下 pandoc和asciidoc，Sphinx，看看哪种将是自己的alternate.&lt;/em&gt;&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="markup"></category><category term="pdf"></category><category term="文档工具"></category><category term="标记"></category></entry><entry><title>txt2tags 与 xelatex输出pdf</title><link href="/txt2tags-yu-xelatexshu-chu-pdf.html" rel="alternate"></link><updated>2011-12-12T11:30:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-12-12:txt2tags-yu-xelatexshu-chu-pdf.html</id><summary type="html">&lt;p&gt;txt2tags由于输出target比较多，支持pdf，html，docbook，redmine
+</summary><category term="markup"></category><category term="pdf"></category><category term="文档工具"></category><category term="标记"></category></entry><entry><title>txt2tags 与 xelatex输出pdf</title><link href="/txt2tags-yu-xelatexshu-chu-pdf.html" rel="alternate"></link><published>2011-12-12T11:30:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-12-12:txt2tags-yu-xelatexshu-chu-pdf.html</id><summary type="html">&lt;p&gt;txt2tags由于输出target比较多，支持pdf，html，docbook，redmine
 wiki，所以基本被我“相中”。&lt;/p&gt;
 &lt;p&gt;公司要求写个需求文档，就试着写了下，用自己的写的格式输出tex，再转换xelatex-ctex格式，就发现生成pdf没有问题了，编译完全通过，只不过为了pdf有更好的脸面：
 支持标签目录，目录颜色，页眉页脚样式修正就做了个脚本对txt2tags输出的格式做了简单调整，现在一个make，html，pdf就ready了，哈哈！&lt;/p&gt;
@@ -72,7 +72,7 @@ fancyhdr页眉页脚宏包， 加线。
 &lt;pre class="literal-block"&gt;
 t2t-template.zip
 &lt;/pre&gt;
-</summary><category term="ctex"></category><category term="pdf"></category><category term="txt2tags"></category></entry><entry><title>各种用来写wiki和文档的light-weight markup 工具</title><link href="/ge-chong-yong-lai-xie-wikihe-wen-dang-de-light-weight-markup-gong-ju.html" rel="alternate"></link><updated>2011-12-06T16:58:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-12-06:ge-chong-yong-lai-xie-wikihe-wen-dang-de-light-weight-markup-gong-ju.html</id><summary type="html">&lt;p&gt;&lt;em&gt;wordpress，redmine，wikipedia&lt;/em&gt;
+</summary><category term="ctex"></category><category term="pdf"></category><category term="txt2tags"></category></entry><entry><title>各种用来写wiki和文档的light-weight markup 工具</title><link href="/ge-chong-yong-lai-xie-wikihe-wen-dang-de-light-weight-markup-gong-ju.html" rel="alternate"></link><published>2011-12-06T16:58:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-12-06:ge-chong-yong-lai-xie-wikihe-wen-dang-de-light-weight-markup-gong-ju.html</id><summary type="html">&lt;p&gt;&lt;em&gt;wordpress，redmine，wikipedia&lt;/em&gt;
 等都支持使用一些标记语言来写wiki页面，其实这些东西都是一种
 &lt;strong&gt;&amp;quot;Lightweight_markup_language &amp;quot;&lt;/strong&gt;
 ,搜索了下发现跟redmine使用的textile类似的东西包括: markdown,
