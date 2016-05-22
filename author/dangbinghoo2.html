@@ -179,6 +179,37 @@
 
          <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html">使用ostinato做网络开发分析辅助工具</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2012-04-24T06:46:00+08:00">
+        <i class="icon-calendar"></i>二 24 四月 2012
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/ostinato.html"><i class="icon-tag"></i>ostinato</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>最近参与公司一个项目, 需要在L2工作, 封包是经常的事情,之前一直用N2X,
+需要排队, 后面搜索网络发现了ostinato工具， 虽然还在成长中,
+但是已经非常强大够用了.</p>
+<p>特淘宝淘了个双口的千兆网卡, 拿回来装起, 先跑server drone程序,
+然后开ostinato客户端, 计算机上的eth0,1,2均认的出来,
+然后drone跑对了之后就port group可用了, 点击eth,
+新建stream里面就可以选择L2, Vlan等选项, 非常强大，
+另外发现intel的网卡芯片才支持vlan, 可以抓到带vlan标签的包,
+正好淘的网卡是intel的服务器专用卡, 不错!,</p>
+<p>这里记下, 有用的同学可以参考下.</p>
+
+                        <a class="btn primary xsmall" href="/shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/acer-aspire-4560g-a6-apu-notebook-arch-linux-installation-tips.html">acer aspire 4560G A6 apu notebook arch linux installation tips</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -418,45 +449,6 @@ strange，我是不太受的了一行很长很长了，所以还是打开，另�
 </div>
 
                         <a class="btn primary xsmall" href="/wo-de-ren-sheng-mu-biao.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html">mips嵌入式linux系统构建过程</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2012-01-11T08:18:00+08:00">
-        <i class="icon-calendar"></i>三 11 一月 2012
-</abbr>
-<span class="label">By</span>
-<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
-<span class="label">Category</span>
-<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/embedded.html"><i class="icon-tag"></i>embedded</a>
-	<a href="/tag/linux.html"><i class="icon-tag"></i>Linux</a>
-	<a href="/tag/mips.html"><i class="icon-tag"></i>mips</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>mips平台的嵌入式linux构建，比较简明的步骤，包括nanoRC的使用，根文件系统的制作，不包括mips工具链的制作。</p>
-<div class="section" id="mips">
-<h2>&nbsp;1. mips交叉编译环境搭建</h2>
-<p>编译环境需要选择mips-2007-01-21,从
-&quot;这里&quot;:<a class="reference external" href="ftp://ftp.denx.de/pub">ftp://ftp.denx.de/pub</a>/eldk下载光盘iso,然后解压提取出整个环境,然后安装就可以了,安装指令:</p>
-<pre class="literal-block">
-install -d /your/toochain/path
-</pre>
-<p>然后设置path环境变量.</p>
-<pre class="literal-block">
-export PATH=/your/toochain/path/usr/bin:${PATH}
-</pre>
-<pre class="literal-block">
-对于gentoo 系统,可以
-
-&nbsp; &nbsp;  $ cat &gt; /etc/env.d/50mipstoolchain &lt;&lt; &quot;EOF&quot;
-&nbsp; &nbsp; &nbsp; &nbsp;PATH=&quot;/media/workspace/tools/eldk-mips-x.x/usr/bin ...</pre></div>
-                        <a class="btn primary xsmall" href="/mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html">more ...</a>
                 </div>
         </div>
         <hr />

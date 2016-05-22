@@ -47,6 +47,7 @@
     <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
 
     <link href="/" type="application/atom+xml" rel="alternate" title="PlayPenguin.Tech-花花企鹅.技术 ATOM Feed" />
+
   </head>
 
   <body>
@@ -177,6 +178,42 @@
          </div><!--/.well -->
 
          <div class="span9" id="content">
+        <div class="article">
+                <h1><a href="/an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html">安卓内核编译错误  kernel/timeconst.h defined(&#64;val)</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2016-05-22T22:12:00+08:00">
+        <i class="icon-calendar"></i>日 22 五月 2016
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/android.html"><i class="icon-tag"></i>android</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="section" id="id1">
+<h2>错误情况</h2>
+<p>今天编译安卓内核出现错误，</p>
+<pre class="code sh literal-block">
+$ ./mk -k
+<span class="c1">#
+# configuration written to .config
+#
+</span>scripts/kconfig/conf --silentoldconfig Kconfig
+  CHK     include/linux/version.h
+  CHK     include/generated/utsrelease.h
+make<span class="o">[</span>1<span class="o">]</span>: <span class="s1">'include/generated/mach-types.h'</span> is up to date.
+  CALL    scripts/checksyscalls.sh
+  CHK     include/generated/compile.h
+  TIMEC   kernel/timeconst.h
+Can<span class="s1">'t use '</span>defined ...</pre></div>
+                        <a class="btn primary xsmall" href="/an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html">more ...</a>
+                </div>
+        </div>
+        <hr />
         <div class="article">
                 <h1><a href="/guan-yu-cyu-yan-wei-yu-de-zi-jie-dui-qi-wen-ti.html">关于ｃ语言位域的字节对齐问题</a></h1>
                 <div class="well small"><footer class="post-info">
@@ -445,37 +482,6 @@ pcm.!default {
 
 ctl ...</pre>
                         <a class="btn primary xsmall" href="/linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html">使用ostinato做网络开发分析辅助工具</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2012-04-24T06:46:00+08:00">
-        <i class="icon-calendar"></i>二 24 四月 2012
-</abbr>
-<span class="label">By</span>
-<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
-<span class="label">Category</span>
-<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/ostinato.html"><i class="icon-tag"></i>ostinato</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>最近参与公司一个项目, 需要在L2工作, 封包是经常的事情,之前一直用N2X,
-需要排队, 后面搜索网络发现了ostinato工具， 虽然还在成长中,
-但是已经非常强大够用了.</p>
-<p>特淘宝淘了个双口的千兆网卡, 拿回来装起, 先跑server drone程序,
-然后开ostinato客户端, 计算机上的eth0,1,2均认的出来,
-然后drone跑对了之后就port group可用了, 点击eth,
-新建stream里面就可以选择L2, Vlan等选项, 非常强大，
-另外发现intel的网卡芯片才支持vlan, 可以抓到带vlan标签的包,
-正好淘的网卡是intel的服务器专用卡, 不错!,</p>
-<p>这里记下, 有用的同学可以参考下.</p>
-
-                        <a class="btn primary xsmall" href="/shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html">more ...</a>
                 </div>
         </div>
         <hr />

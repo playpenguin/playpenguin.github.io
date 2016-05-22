@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>PlayPenguin.Tech-花花企鹅.技术 - dangbinghoo</title>
+    <title>PlayPenguin.Tech-花花企鹅.技术 - android</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="dangbinghoo">
@@ -179,11 +179,11 @@
 
          <div class="span9" id="content">
         <div class="article">
-                <h1><a href="/guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html">关于工具链的编译uclibc/gcc</a></h1>
+                <h1><a href="/an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html">安卓内核编译错误  kernel/timeconst.h defined(&#64;val)</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2011-11-23T15:12:00+08:00">
-        <i class="icon-calendar"></i>三 23 十一月 2011
+<abbr class="published" title="2016-05-22T22:12:00+08:00">
+        <i class="icon-calendar"></i>日 22 五月 2016
 </abbr>
 <span class="label">By</span>
 <a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
@@ -192,131 +192,28 @@
 
 
 <span class="label">Tags</span>
-	<a href="/tag/gong-ju-lian.html"><i class="icon-tag"></i>工具链</a>
+	<a href="/tag/android.html"><i class="icon-tag"></i>android</a>
 </footer><!-- /.post-info --></div>
-                <div class="summary"><p>使用之前弄的脚本编译工具链其实还是比较轻松的，脚本也是比较稳定的，不过重点在于配置上，包括target名称的选择，uclibc的配置</p>
-<p>一直困扰的nfs挂载不正常的问题最终发现还是uclibc配置不对，另外，对于thread的支持，一般需要使用nptl，然后如果要用gdb的话，gdbserver的编译必须要在uclibc里面启用thread
-debug，要不然会缺少东西：</p>
-<blockquote>
-<pre class="literal-block">
-#error No uintptr_t available; your C library is too old.
-</pre>
-</blockquote>
-<p>接着还会说thread_db.h 造成的某结构体的成员th不存在。</p>
-<p>新的uclibc
-0.9.32编译时需要链接libgcc_eh库文件，这个库文件在static阶段是不编译的，如果要让编译，需要硬性打patch实现。</p>
-<p>这里贴一个正确的uclibc配置</p>
-<pre class="literal-block">
+                <div class="summary"><div class="section" id="id1">
+<h2>错误情况</h2>
+<p>今天编译安卓内核出现错误，</p>
+<pre class="code sh literal-block">
+$ ./mk -k
+<span class="c1">#
+# configuration written to .config
 #
-# Automatically generated make config: don't edit
-# Version: 0.9.32
-# Wed Nov 23 14:53 ...</pre>
-                        <a class="btn primary xsmall" href="/guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html">more ...</a>
+</span>scripts/kconfig/conf --silentoldconfig Kconfig
+  CHK     include/linux/version.h
+  CHK     include/generated/utsrelease.h
+make<span class="o">[</span>1<span class="o">]</span>: <span class="s1">'include/generated/mach-types.h'</span> is up to date.
+  CALL    scripts/checksyscalls.sh
+  CHK     include/generated/compile.h
+  TIMEC   kernel/timeconst.h
+Can<span class="s1">'t use '</span>defined ...</pre></div>
+                        <a class="btn primary xsmall" href="/an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html">more ...</a>
                 </div>
         </div>
         <hr />
-        <div class="article">
-                <h1><a href="/guan-yu-linuxwen-jian-xi-tong-de-syncasync-syncfsync-ming-ling.html">关于linux文件系统的sync,async, sync/fsync 命令</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2011-11-18T11:15:00+08:00">
-        <i class="icon-calendar"></i>五 18 十一月 2011
-</abbr>
-<span class="label">By</span>
-<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
-<span class="label">Category</span>
-<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/linux.html"><i class="icon-tag"></i>Linux</a>
-	<a href="/tag/sync.html"><i class="icon-tag"></i>sync</a>
-	<a href="/tag/wen-jian-xi-tong.html"><i class="icon-tag"></i>文件系统</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>linux默认情况下几乎所有应用场合都是不会将文件立马保存入磁盘的，在嵌入式上也是同样的表现，如果mount时候加上sync选项就可以保证数据立马写入，但是这种会造成系统较多的写入磁盘，磁盘的寿命就不会太长了，如果是需要保存数据，可以显式调用命令sync来写入所有文件，或者fsync来保存某个文件。</p>
-
-                        <a class="btn primary xsmall" href="/guan-yu-linuxwen-jian-xi-tong-de-syncasync-syncfsync-ming-ling.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/shellhuo-qu-jin-cheng-idde-fang-fa-pidof-pgrep-ps-agrepawk.html">shell获取进程ID的方法： pidof | pgrep | ps-A+grep+awk</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2011-11-18T11:08:00+08:00">
-        <i class="icon-calendar"></i>五 18 十一月 2011
-</abbr>
-<span class="label">By</span>
-<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
-<span class="label">Category</span>
-<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/pgrep.html"><i class="icon-tag"></i>pgrep</a>
-	<a href="/tag/pidof.html"><i class="icon-tag"></i>pidof</a>
-	<a href="/tag/shell.html"><i class="icon-tag"></i>shell</a>
-	<a href="/tag/jin-cheng-id.html"><i class="icon-tag"></i>进程ID</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>shell获取进程ID的方法：</p>
-<p>我知道和实践过的有这么三种：</p>
-<ol class="arabic simple">
-<li>&nbsp;ps -A |grep &quot;cmdname&quot;| awk '{print $1}'</li>
-<li>&nbsp;pidof &quot;cmdname&quot;</li>
-<li>&nbsp;pgrep &quot;cmdname&quot;</li>
-</ol>
-<p>这三种在bash和busybox ash里面的运行结果稍有不同，</p>
-<p>第一种完全相同，但是因为调用命令次数较多，性能上是不行的。</p>
-<p>第二种： pidof 只能获取程序的文件名匹配到的进程号，在ash中 比如 pidof
-&quot;usr/bin/telnetd&quot; 和 pidof &quot;telnetd&quot;中结果不一样，
-前一种结果为空，但是在bash中执行两者一样。</p>
-<p>第三种： pgrep跟1的效果相同，因为是单一命令，比第一种性能要好得多。</p>
-<p>所以nanoRC就改进为pgrep。</p>
-
-                        <a class="btn primary xsmall" href="/shellhuo-qu-jin-cheng-idde-fang-fa-pidof-pgrep-ps-agrepawk.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/linuxbian-cheng-ku-libevent.html">linux编程库libevent</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2011-11-16T11:27:00+08:00">
-        <i class="icon-calendar"></i>三 16 十一月 2011
-</abbr>
-<span class="label">By</span>
-<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
-<span class="label">Category</span>
-<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/libevent.html"><i class="icon-tag"></i>libevent</a>
-	<a href="/tag/linux.html"><i class="icon-tag"></i>Linux</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><div class="section" id="libevent-an-event-notification-library">
-<h2>libevent – an event notification library</h2>
-<p>发现一个跨平台的event库：</p>
-<p>The <em>libevent</em> API provides a mechanism to execute a callback function
-when a specific event occurs on a file descriptor or after a timeout has
-been reached. Furthermore, <em>libevent</em> also support callbacks due to
-<strong>signals</strong> or regular <strong>timeouts</strong>.</p>
-<p>Libevent additionally provides a sophisticated framework ...</p></div>
-                        <a class="btn primary xsmall" href="/linuxbian-cheng-ku-libevent.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-
-        <div class="pagination">
-        <ul>
-                        <li class="prev"><a href="/author/dangbinghoo3.html">&larr; Previous</a></li>
-                        <li class=""><a href="/author/dangbinghoo.html">1</a></li>
-                        <li class=""><a href="/author/dangbinghoo2.html">2</a></li>
-                        <li class=""><a href="/author/dangbinghoo3.html">3</a></li>
-                        <li class="active"><a href="/author/dangbinghoo4.html">4</a></li>
-                        <li class="next disabled"><a href="#">&rarr; Next</a></li>
-        </ul>
-        </div>
 
          </div><!--/span-->
 

@@ -179,6 +179,42 @@
 
          <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html">安卓内核编译错误  kernel/timeconst.h defined(&#64;val)</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2016-05-22T22:12:00+08:00">
+        <i class="icon-calendar"></i>日 22 五月 2016
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/android.html"><i class="icon-tag"></i>android</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="section" id="id1">
+<h2>错误情况</h2>
+<p>今天编译安卓内核出现错误，</p>
+<pre class="code sh literal-block">
+$ ./mk -k
+<span class="c1">#
+# configuration written to .config
+#
+</span>scripts/kconfig/conf --silentoldconfig Kconfig
+  CHK     include/linux/version.h
+  CHK     include/generated/utsrelease.h
+make<span class="o">[</span>1<span class="o">]</span>: <span class="s1">'include/generated/mach-types.h'</span> is up to date.
+  CALL    scripts/checksyscalls.sh
+  CHK     include/generated/compile.h
+  TIMEC   kernel/timeconst.h
+Can<span class="s1">'t use '</span>defined ...</pre></div>
+                        <a class="btn primary xsmall" href="/an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html">mips嵌入式linux系统构建过程</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>

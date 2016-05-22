@@ -179,6 +179,45 @@
 
          <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html">mips嵌入式linux系统构建过程</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2012-01-11T08:18:00+08:00">
+        <i class="icon-calendar"></i>三 11 一月 2012
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/embedded.html"><i class="icon-tag"></i>embedded</a>
+	<a href="/tag/linux.html"><i class="icon-tag"></i>Linux</a>
+	<a href="/tag/mips.html"><i class="icon-tag"></i>mips</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>mips平台的嵌入式linux构建，比较简明的步骤，包括nanoRC的使用，根文件系统的制作，不包括mips工具链的制作。</p>
+<div class="section" id="mips">
+<h2>&nbsp;1. mips交叉编译环境搭建</h2>
+<p>编译环境需要选择mips-2007-01-21,从
+&quot;这里&quot;:<a class="reference external" href="ftp://ftp.denx.de/pub">ftp://ftp.denx.de/pub</a>/eldk下载光盘iso,然后解压提取出整个环境,然后安装就可以了,安装指令:</p>
+<pre class="literal-block">
+install -d /your/toochain/path
+</pre>
+<p>然后设置path环境变量.</p>
+<pre class="literal-block">
+export PATH=/your/toochain/path/usr/bin:${PATH}
+</pre>
+<pre class="literal-block">
+对于gentoo 系统,可以
+
+&nbsp; &nbsp;  $ cat &gt; /etc/env.d/50mipstoolchain &lt;&lt; &quot;EOF&quot;
+&nbsp; &nbsp; &nbsp; &nbsp;PATH=&quot;/media/workspace/tools/eldk-mips-x.x/usr/bin ...</pre></div>
+                        <a class="btn primary xsmall" href="/mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/think-what-programming-languages-really-do-translations.html">Think what programming (languages) really do ? &gt; translations.</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -472,43 +511,6 @@ ppc上运行的交叉工具链，然后这个交叉工具链为arm生产程序�
 <h2>续：三平台交叉编译实验</h2>
 <p>对binutils源码解压 ...</p></div>
                         <a class="btn primary xsmall" href="/-host-build-targetdao-di-shi-yao-yi-si.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html">关于工具链的编译uclibc/gcc</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2011-11-23T15:12:00+08:00">
-        <i class="icon-calendar"></i>三 23 十一月 2011
-</abbr>
-<span class="label">By</span>
-<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
-<span class="label">Category</span>
-<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/gong-ju-lian.html"><i class="icon-tag"></i>工具链</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>使用之前弄的脚本编译工具链其实还是比较轻松的，脚本也是比较稳定的，不过重点在于配置上，包括target名称的选择，uclibc的配置</p>
-<p>一直困扰的nfs挂载不正常的问题最终发现还是uclibc配置不对，另外，对于thread的支持，一般需要使用nptl，然后如果要用gdb的话，gdbserver的编译必须要在uclibc里面启用thread
-debug，要不然会缺少东西：</p>
-<blockquote>
-<pre class="literal-block">
-#error No uintptr_t available; your C library is too old.
-</pre>
-</blockquote>
-<p>接着还会说thread_db.h 造成的某结构体的成员th不存在。</p>
-<p>新的uclibc
-0.9.32编译时需要链接libgcc_eh库文件，这个库文件在static阶段是不编译的，如果要让编译，需要硬性打patch实现。</p>
-<p>这里贴一个正确的uclibc配置</p>
-<pre class="literal-block">
-#
-# Automatically generated make config: don't edit
-# Version: 0.9.32
-# Wed Nov 23 14:53 ...</pre>
-                        <a class="btn primary xsmall" href="/guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html">more ...</a>
                 </div>
         </div>
         <hr />
