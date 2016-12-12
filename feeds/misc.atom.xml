@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2011-12-21T15:45:00+08:00</updated><entry><title>About</title><link href="/about.html" rel="alternate"></link><published>2011-12-21T15:45:00+08:00</published><author><name>playpengroot</name></author><id>tag:,2011-12-21:about.html</id><summary type="html">&lt;div class="section" id="playpenguin-net"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2011-12-21T15:45:00+08:00</updated><entry><title>About</title><link href="/about.html" rel="alternate"></link><published>2011-12-21T15:45:00+08:00</published><updated>2011-12-21T15:45:00+08:00</updated><author><name>playpengroot</name></author><id>tag:,2011-12-21:about.html</id><summary type="html">&lt;div class="section" id="playpenguin-net"&gt;
 &lt;h2&gt;Playpenguin.net&lt;/h2&gt;
 &lt;p&gt;A right place to playing and study with Linux, opensource, embedded
 systems !&lt;/p&gt;

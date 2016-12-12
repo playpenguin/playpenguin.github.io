@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>PlayPenguin.Tech-花花企鹅.技术</title><link>/</link><description></description><lastBuildDate>Sun, 22 May 2016 22:12:00 +0800</lastBuildDate><item><title>安卓内核编译错误 kernel/timeconst.h defined(@val)</title><link>/an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html</link><description>&lt;div class="section" id="id1"&gt;
+<rss version="2.0"><channel><title>PlayPenguin.Tech-花花企鹅.技术</title><link>/</link><description></description><lastBuildDate>Thu, 08 Dec 2016 14:18:00 +0800</lastBuildDate><item><title>小众又新颖的GUI</title><link>/xiao-zhong-you-xin-ying-de-gui.html</link><description>&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;小众的新GUI框架记录&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;ugfx, C语言 STM32等MCU可使用的嵌入式GUI，商业级但免费无任何版权限制，可为创客，商业等任何用途。且包含一个The µGFX-Studio GUI构建程序可用。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;网址： &lt;a class="reference external" href="http://ugfx.io/"&gt;http://ugfx.io/&lt;/a&gt;
+下载连接 &lt;a class="reference external" href="https://community.ugfx.io/index.php?/files/"&gt;https://community.ugfx.io/index.php?/files/&lt;/a&gt;&lt;/p&gt;
+&lt;ol class="arabic simple" start="2"&gt;
+&lt;li&gt;ilixi 基于DFB的C++嵌入式Linux平台GUI，完全开源 &lt;a class="reference external" href="http://www.ilixi.org/"&gt;http://www.ilixi.org/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;基于DirectFB,libsigc++等平台组件构建，看官网有个行车电脑的ui demo，API粗看了下跟WxWidget比较接近，从类列表看，3D等支持都是有的。支持buildroot构建工具，支持yocto，挺不错，值得尝试。&lt;/p&gt;
+&lt;ol class="arabic simple" start="3"&gt;
+&lt;li&gt;libui， C语言的桌面跨平台，本地UI风格的库，居然拥有10多种语言的binding了。&lt;a class="reference external" href="https://github.com/andlabs/libui"&gt;https://github.com/andlabs/libui&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;此库非常小，之前一直想找一个很小巧，又本地化ui风格，跨平台，纯c语言，并且c语言风格比较正常的（本人对于MFC的风格一点都接受不了），现在看来，这个就是了，archlinux可以从AUR安装，linux下面使用gtk+为本地化支持端。&lt;/p&gt;
+&lt;ol class="arabic simple" start="4"&gt;
+&lt;li&gt;Agar 硬件加速的支持CSS定义UI的框架，看样子并没有使用本地化ui风格（有硬件加速当然不行了） &lt;a class="reference external" href="http://libagar.org/"&gt;http://libagar.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Nana 是一个用现代 C++11 编写的跨平台界面库，国人项目，貌似还在初期开发中。 &lt;a class="reference external" href="http://nanapro.org/zh-cn/"&gt;http://nanapro.org/zh-cn/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;kivy, python的跨平台嵌入式，硬件加速的框架，已经很成熟了。 &lt;a class="reference external" href="https://kivy.org/#home"&gt;https://kivy.org/#home&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;FoxToolkit. 大名鼎鼎的也是，C++的ui框架，不过有了wx，这个试试的欲望就不太强了。 &lt;a class="reference external" href="http://www.fox-toolkit.org/"&gt;http://www.fox-toolkit.org/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dangbinghoo</dc:creator><pubDate>Thu, 08 Dec 2016 14:18:00 +0800</pubDate><guid isPermaLink="false">tag:,2016-12-08:xiao-zhong-you-xin-ying-de-gui.html</guid><category>GUI</category></item><item><title>安卓内核编译错误 kernel/timeconst.h defined(@val)</title><link>/an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html</link><description>&lt;div class="section" id="id1"&gt;
 &lt;h2&gt;错误情况&lt;/h2&gt;
 &lt;p&gt;今天编译安卓内核出现错误，&lt;/p&gt;
 &lt;pre class="code sh literal-block"&gt;

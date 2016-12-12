@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术</title><link href="/" rel="alternate"></link><link href="/feeds/dangbinghoo.atom.xml" rel="self"></link><id>/</id><updated>2016-05-22T22:12:00+08:00</updated><entry><title>安卓内核编译错误 kernel/timeconst.h defined(@val)</title><link href="/an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html" rel="alternate"></link><published>2016-05-22T22:12:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2016-05-22:an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html</id><summary type="html">&lt;div class="section" id="id1"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术</title><link href="/" rel="alternate"></link><link href="/feeds/dangbinghoo.atom.xml" rel="self"></link><id>/</id><updated>2016-12-08T14:18:00+08:00</updated><entry><title>小众又新颖的GUI</title><link href="/xiao-zhong-you-xin-ying-de-gui.html" rel="alternate"></link><published>2016-12-08T14:18:00+08:00</published><updated>2016-12-08T14:18:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2016-12-08:xiao-zhong-you-xin-ying-de-gui.html</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;小众的新GUI框架记录&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;ugfx, C语言 STM32等MCU可使用的嵌入式GUI，商业级但免费无任何版权限制，可为创客，商业等任何用途。且包含一个The µGFX-Studio GUI构建程序可用。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;网址： &lt;a class="reference external" href="http://ugfx.io/"&gt;http://ugfx.io/&lt;/a&gt;
+下载连接 &lt;a class="reference external" href="https://community.ugfx.io/index.php?/files/"&gt;https://community.ugfx.io/index.php?/files/&lt;/a&gt;&lt;/p&gt;
+&lt;ol class="arabic simple" start="2"&gt;
+&lt;li&gt;ilixi 基于DFB的C++嵌入式Linux平台GUI，完全开源 &lt;a class="reference external" href="http://www.ilixi.org/"&gt;http://www.ilixi.org/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;基于DirectFB,libsigc++等平台组件构建，看官网有个行车电脑的ui demo，API粗看了下跟WxWidget比较接近，从类列表看，3D等支持都是有的。支持buildroot构建工具，支持yocto，挺不错，值得尝试。&lt;/p&gt;
+&lt;ol class="arabic simple" start="3"&gt;
+&lt;li&gt;libui， C语言的桌面跨平台，本地UI风格的库，居然拥有10多种语言的binding了。&lt;a class="reference external" href="https://github.com/andlabs/libui"&gt;https://github.com/andlabs/libui&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;此库非常小，之前一直想找一个很小巧，又本地化ui风格，跨平台，纯c语言，并且c语言风格比较正常的（本人对于MFC的风格一点都接受不了），现在看来，这个就是了，archlinux可以从AUR安装，linux下面使用gtk+为本地化支持端。&lt;/p&gt;
+&lt;ol class="arabic simple" start="4"&gt;
+&lt;li&gt;Agar 硬件加速的支持CSS定义UI的框架，看样子并没有使用本地化ui风格（有硬件加速当然不行了） &lt;a class="reference external" href="http://libagar.org/"&gt;http://libagar.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Nana 是一个用现代 C++11 编写的跨平台界面库，国人项目，貌似还在初期开发中。 &lt;a class="reference external" href="http://nanapro.org/zh-cn/"&gt;http://nanapro.org/zh-cn/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;kivy, python的跨平台嵌入式，硬件加速的框架，已经很成熟了。 &lt;a class="reference external" href="https://kivy.org/#home"&gt;https://kivy.org/#home&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;FoxToolkit. 大名鼎鼎的也是，C++的ui框架，不过有了wx，这个试试的欲望就不太强了。 &lt;a class="reference external" href="http://www.fox-toolkit.org/"&gt;http://www.fox-toolkit.org/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</summary><category term="GUI"></category></entry><entry><title>安卓内核编译错误 kernel/timeconst.h defined(@val)</title><link href="/an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html" rel="alternate"></link><published>2016-05-22T22:12:00+08:00</published><updated>2016-05-22T22:12:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2016-05-22:an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;h2&gt;错误情况&lt;/h2&gt;
 &lt;p&gt;今天编译安卓内核出现错误，&lt;/p&gt;
 &lt;pre class="code sh literal-block"&gt;
@@ -43,7 +65,7 @@ index eb51d76..0461239 100644
 &lt;span class="gd"&gt;--&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary><category term="android"></category></entry><entry><title>关于ｃ语言位域的字节对齐问题</title><link href="/guan-yu-cyu-yan-wei-yu-de-zi-jie-dui-qi-wen-ti.html" rel="alternate"></link><published>2016-05-20T14:04:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2016-05-20:guan-yu-cyu-yan-wei-yu-de-zi-jie-dui-qi-wen-ti.html</id><summary type="html">&lt;p&gt;最近在STM32F4上面进行嵌入式开发，需要做通讯，报文规定的字段并不以字节为最小单位，好多2,3位的长度元素
+</summary><category term="android"></category></entry><entry><title>关于ｃ语言位域的字节对齐问题</title><link href="/guan-yu-cyu-yan-wei-yu-de-zi-jie-dui-qi-wen-ti.html" rel="alternate"></link><published>2016-05-20T14:04:00+08:00</published><updated>2016-05-20T14:04:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2016-05-20:guan-yu-cyu-yan-wei-yu-de-zi-jie-dui-qi-wen-ti.html</id><summary type="html">&lt;p&gt;最近在STM32F4上面进行嵌入式开发，需要做通讯，报文规定的字段并不以字节为最小单位，好多2,3位的长度元素
 对于C语言，我们一般用位域来解决。&lt;/p&gt;
 &lt;p&gt;可是，C教科书上给我们讲的位域不占用很多空间的前提没有讲述清楚，经查证，默认情况下C语言并没有规定统一
 的字节对齐策略，导致用sizeof计算结构大小的时候结果在不同的平台上结果五花八门。下面代码的结构体，按理是
@@ -160,7 +182,7 @@ index eb51d76..0461239 100644
 &lt;p&gt;-fpack-struct[=N] 设定对齐方式为N字节对齐，不带”=N“时默认为4字节对齐。
 -mno-ms-bitfields 关闭MS对齐策略，使用GCC对齐策略。&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="bitfield"></category><category term="位域"></category><category term="C"></category><category term="GCC"></category></entry><entry><title>关于ｃ语言const修饰符对指针变量的修饰问题</title><link href="/guan-yu-cyu-yan-constxiu-shi-fu-dui-zhi-zhen-bian-liang-de-xiu-shi-wen-ti.html" rel="alternate"></link><published>2015-04-03T09:40:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2015-04-03:guan-yu-cyu-yan-constxiu-shi-fu-dui-zhi-zhen-bian-liang-de-xiu-shi-wen-ti.html</id><summary type="html">&lt;p&gt;在看同事的jni幻灯片的时候，看到了const 指针，就顺便聊了下，一直都觉得 带 const 修饰符的都应该
+</summary><category term="bitfield"></category><category term="位域"></category><category term="C"></category><category term="GCC"></category></entry><entry><title>关于ｃ语言const修饰符对指针变量的修饰问题</title><link href="/guan-yu-cyu-yan-constxiu-shi-fu-dui-zhi-zhen-bian-liang-de-xiu-shi-wen-ti.html" rel="alternate"></link><published>2015-04-03T09:40:00+08:00</published><updated>2015-04-03T09:40:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2015-04-03:guan-yu-cyu-yan-constxiu-shi-fu-dui-zhi-zhen-bian-liang-de-xiu-shi-wen-ti.html</id><summary type="html">&lt;p&gt;在看同事的jni幻灯片的时候，看到了const 指针，就顺便聊了下，一直都觉得 带 const 修饰符的都应该
 在声明的时候赋值，声明之后，再赋值是不过语法检查的。&lt;/p&gt;
 &lt;p&gt;结果发现，对于指针来说，情况并不是我想的那样。&lt;/p&gt;
 &lt;p&gt;对于char *来说，const 未修饰　变量名称时候，　赋值都是在可以后面随意改动的，也就是指针可以
@@ -189,7 +211,7 @@ index eb51d76..0461239 100644
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;。&lt;/p&gt;
-</summary></entry><entry><title>人， 理想， 现实</title><link href="/ren-li-xiang-xian-shi.html" rel="alternate"></link><published>2013-01-02T07:40:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2013-01-02:ren-li-xiang-xian-shi.html</id><summary type="html">&lt;p&gt;对，这个话题看起来挺大的，但是我先声明下，我只是把自己的心里活动胡乱的摆出来而已。&lt;/p&gt;
+</summary></entry><entry><title>人， 理想， 现实</title><link href="/ren-li-xiang-xian-shi.html" rel="alternate"></link><published>2013-01-02T07:40:00+08:00</published><updated>2013-01-02T07:40:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2013-01-02:ren-li-xiang-xian-shi.html</id><summary type="html">&lt;p&gt;对，这个话题看起来挺大的，但是我先声明下，我只是把自己的心里活动胡乱的摆出来而已。&lt;/p&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;转眼间，或者无意之中，自己已经长大了，对，应该可以算是长大了吧。窗外是呼呼的大风，有没么那么凌咧&lt;/div&gt;
 &lt;div class="line"&gt;我并不清楚， 但却让我想起来了自己幼时。&lt;/div&gt;
@@ -304,7 +326,7 @@ index eb51d76..0461239 100644
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;对， 这或许就是现实吧， 现实是啥？ 我或许现在就只有一个答案：现实就是接受！&lt;/p&gt;
-</summary></entry><entry><title>关于 C语言 里的 反射或者内省 的讨论</title><link href="/guan-yu-cyu-yan-li-de-fan-she-huo-zhe-nei-sheng-de-tao-lun.html" rel="alternate"></link><published>2012-12-18T12:28:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-12-18:guan-yu-cyu-yan-li-de-fan-she-huo-zhe-nei-sheng-de-tao-lun.html</id><summary type="html">&lt;p&gt;在语言里面， 根据class名字能够知道其成员的 功能叫做
+</summary></entry><entry><title>关于 C语言 里的 反射或者内省 的讨论</title><link href="/guan-yu-cyu-yan-li-de-fan-she-huo-zhe-nei-sheng-de-tao-lun.html" rel="alternate"></link><published>2012-12-18T12:28:00+08:00</published><updated>2012-12-18T12:28:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-12-18:guan-yu-cyu-yan-li-de-fan-she-huo-zhe-nei-sheng-de-tao-lun.html</id><summary type="html">&lt;p&gt;在语言里面， 根据class名字能够知道其成员的 功能叫做
 内省c语言有没有这个功能.&lt;/p&gt;
 &lt;p&gt;可以想到的办法是
 通过宏，你在定义一个结构体的时候，同时生成了一个数据结构存放了这个class的成员名称，
@@ -480,7 +502,7 @@ float, char, char *} ,&amp;nbsp; 这样的信息&lt;/p&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;
-</summary></entry><entry><title>学习unix路之愚见</title><link href="/xue-xi-unixlu-zhi-yu-jian.html" rel="alternate"></link><published>2012-11-27T03:03:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-11-27:xue-xi-unixlu-zhi-yu-jian.html</id><summary type="html">&lt;div class="section" id="id1"&gt;
+</summary></entry><entry><title>学习unix路之愚见</title><link href="/xue-xi-unixlu-zhi-yu-jian.html" rel="alternate"></link><published>2012-11-27T03:03:00+08:00</published><updated>2012-11-27T03:03:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-11-27:xue-xi-unixlu-zhi-yu-jian.html</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;这段时间公司安排带领新人，
 加上公司上层软件开发者的一些做事方法和思想我不是很赞同，
@@ -669,7 +691,7 @@ c就不能面向对象了？ linux是c面向对象最好最好的典范了！&lt
 &lt;p&gt;其实，个人愚见：
 &lt;strong&gt;不管做什么事情&lt;/strong&gt;，&lt;strong&gt;人是逻辑思维动物&lt;/strong&gt;，&lt;strong&gt;有条理的做事风格是很关键的&lt;/strong&gt;。&lt;/p&gt;
 &lt;/div&gt;&lt;/div&gt;
-</summary></entry><entry><title>其实自己原本就是个“无脑”的程序员而已！--- 溢出 与 “环”</title><link href="/qi-shi-zi-ji-yuan-ben-jiu-shi-ge-wu-nao-de-cheng-xu-yuan-er-yi-yi-chu-yu-huan.html" rel="alternate"></link><published>2012-08-22T09:11:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-08-22:qi-shi-zi-ji-yuan-ben-jiu-shi-ge-wu-nao-de-cheng-xu-yuan-er-yi-yi-chu-yu-huan.html</id><summary type="html">&lt;p&gt;记得前两天写东西的时候还遇到一个问题，这个问题大家很熟悉，
+</summary></entry><entry><title>其实自己原本就是个“无脑”的程序员而已！--- 溢出 与 “环”</title><link href="/qi-shi-zi-ji-yuan-ben-jiu-shi-ge-wu-nao-de-cheng-xu-yuan-er-yi-yi-chu-yu-huan.html" rel="alternate"></link><published>2012-08-22T09:11:00+08:00</published><updated>2012-08-22T09:11:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-08-22:qi-shi-zi-ji-yuan-ben-jiu-shi-ge-wu-nao-de-cheng-xu-yuan-er-yi-yi-chu-yu-huan.html</id><summary type="html">&lt;p&gt;记得前两天写东西的时候还遇到一个问题，这个问题大家很熟悉，
 当然解决方法也很显然：&lt;/p&gt;
 &lt;p&gt;坐标需要从0-256直接循环移动， 根据常理，很容易写出来这种代码&lt;/p&gt;
 &lt;pre class="code c++ literal-block"&gt;
@@ -710,7 +732,7 @@ c就不能面向对象了？ linux是c面向对象最好最好的典范了！&lt
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;不要做把计算机当&lt;strong&gt;电脑&lt;/strong&gt; （计算机就是个计算机），不要做拥有&lt;strong&gt;计算机脑&lt;/strong&gt;的&lt;strong&gt;程序员&lt;/strong&gt;！&lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>linux flash插件等程序声音不正常的原因： 笔记本多个声卡， 需要配置</title><link href="/linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html" rel="alternate"></link><published>2012-06-17T13:00:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-06-17:linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html</id><summary type="html">&lt;p&gt;前段实际系统是Arch linux，
+</summary></entry><entry><title>linux flash插件等程序声音不正常的原因： 笔记本多个声卡， 需要配置</title><link href="/linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html" rel="alternate"></link><published>2012-06-17T13:00:00+08:00</published><updated>2012-06-17T13:00:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-06-17:linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html</id><summary type="html">&lt;p&gt;前段实际系统是Arch linux，
 当时什么程序都能放出声音来就是flash不行，一直无声状态， 始终没有搞定。&lt;/p&gt;
 &lt;p&gt;这几天因为做嵌入式的原因，系统换成了Funtoo， 个人感觉就是改进了Gentoo 的
 emerge --sync 吧， 其他的还不怎么明显， 也没体会到，感觉根Gentoo无异了，
@@ -734,7 +756,7 @@ ctl.!default {
 &lt;/pre&gt;
 &lt;p&gt;立马试验果真mplayer和flash都有声音了。&lt;/p&gt;
 &lt;p&gt;突然觉得很久时间没有做LFS，用Gentoo，linux水平降低太多了。&lt;/p&gt;
-</summary><category term="asound.rc"></category></entry><entry><title>使用ostinato做网络开发分析辅助工具</title><link href="/shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html" rel="alternate"></link><published>2012-04-24T06:46:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-04-24:shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html</id><summary type="html">&lt;p&gt;最近参与公司一个项目, 需要在L2工作, 封包是经常的事情,之前一直用N2X,
+</summary><category term="asound.rc"></category></entry><entry><title>使用ostinato做网络开发分析辅助工具</title><link href="/shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html" rel="alternate"></link><published>2012-04-24T06:46:00+08:00</published><updated>2012-04-24T06:46:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-04-24:shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html</id><summary type="html">&lt;p&gt;最近参与公司一个项目, 需要在L2工作, 封包是经常的事情,之前一直用N2X,
 需要排队, 后面搜索网络发现了ostinato工具， 虽然还在成长中,
 但是已经非常强大够用了.&lt;/p&gt;
 &lt;p&gt;特淘宝淘了个双口的千兆网卡, 拿回来装起, 先跑server drone程序,
@@ -744,7 +766,7 @@ ctl.!default {
 另外发现intel的网卡芯片才支持vlan, 可以抓到带vlan标签的包,
 正好淘的网卡是intel的服务器专用卡, 不错!,&lt;/p&gt;
 &lt;p&gt;这里记下, 有用的同学可以参考下.&lt;/p&gt;
-</summary><category term="ostinato"></category></entry><entry><title>acer aspire 4560G A6 apu notebook arch linux installation tips</title><link href="/acer-aspire-4560g-a6-apu-notebook-arch-linux-installation-tips.html" rel="alternate"></link><published>2012-04-18T15:54:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-04-18:acer-aspire-4560g-a6-apu-notebook-arch-linux-installation-tips.html</id><summary type="html">&lt;p&gt;arch linux or gentoo linux installtion on Acer aspire 4560G will always
+</summary><category term="ostinato"></category></entry><entry><title>acer aspire 4560G A6 apu notebook arch linux installation tips</title><link href="/acer-aspire-4560g-a6-apu-notebook-arch-linux-installation-tips.html" rel="alternate"></link><published>2012-04-18T15:54:00+08:00</published><updated>2012-04-18T15:54:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-04-18:acer-aspire-4560g-a6-apu-notebook-arch-linux-installation-tips.html</id><summary type="html">&lt;p&gt;arch linux or gentoo linux installtion on Acer aspire 4560G will always
 have troubles.&lt;/p&gt;
 &lt;div class="section" id="the-video-driver-just-note"&gt;
 &lt;h2&gt;the video driver. JUST &lt;strong&gt;NOTE&lt;/strong&gt;&lt;/h2&gt;
@@ -782,7 +804,7 @@ sudo modprobe wl
 &lt;h2&gt;audio card:&lt;/h2&gt;
 &lt;p&gt;blacklist snd_hda_codec_hdmi&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="4560g"></category><category term="acer"></category><category term="Linux"></category></entry><entry><title>如何恢复mysql inno db 损毁的数据库表内容 ?</title><link href="/ru-he-hui-fu-mysql-inno-db-sun-hui-de-shu-ju-ku-biao-nei-rong.html" rel="alternate"></link><published>2012-03-31T09:01:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-03-31:ru-he-hui-fu-mysql-inno-db-sun-hui-de-shu-ju-ku-biao-nei-rong.html</id><summary type="html">&lt;p&gt;一次机器的强制关机,导致了服务器mysql数据库启动失败,
+</summary><category term="4560g"></category><category term="acer"></category><category term="Linux"></category></entry><entry><title>如何恢复mysql inno db 损毁的数据库表内容 ?</title><link href="/ru-he-hui-fu-mysql-inno-db-sun-hui-de-shu-ju-ku-biao-nei-rong.html" rel="alternate"></link><published>2012-03-31T09:01:00+08:00</published><updated>2012-03-31T09:01:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-03-31:ru-he-hui-fu-mysql-inno-db-sun-hui-de-shu-ju-ku-biao-nei-rong.html</id><summary type="html">&lt;p&gt;一次机器的强制关机,导致了服务器mysql数据库启动失败,
 说是数据库因为关机问题,数据写入不正常, 无法启动,
 使用mysql的数据库恢复功能没能成功&lt;/p&gt;
 &lt;p&gt;因为自己当时不知道数据库自己恢复的条件,只拷贝备份了数据库目录,
@@ -831,7 +853,7 @@ idb里面是表的具体内容, 只要idb文件在, 一般都是可以恢复的&
 &lt;p&gt;另外.我把这个繁琐的过程写了个临时的脚本, 基本都可以工作:
 需要者下载下来自己根据情况调整, 脚本的内容反应了整个完整过程:&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="http://www.playpenguin.net/blog/wp-content/uploads/2012/03/recovery_data.txt"&gt;recovery_data&lt;/a&gt;.sh&lt;/p&gt;
-</summary></entry><entry><title>学习-资源</title><link href="/xue-xi-zi-yuan.html" rel="alternate"></link><published>2012-03-14T08:24:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-03-14:xue-xi-zi-yuan.html</id><summary type="html">&lt;div class="section" id="linux"&gt;
+</summary></entry><entry><title>学习-资源</title><link href="/xue-xi-zi-yuan.html" rel="alternate"></link><published>2012-03-14T08:24:00+08:00</published><updated>2012-03-14T08:24:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-03-14:xue-xi-zi-yuan.html</id><summary type="html">&lt;div class="section" id="linux"&gt;
 &lt;h2&gt;Linux下的工作&lt;/h2&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;IDE&lt;/li&gt;
@@ -905,7 +927,7 @@ mapple等的替代品), GNU texmacs&lt;/p&gt;
 &lt;p&gt;Linux-Unix设计思想 Linux嵌入式系统高级程序设计&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>MinGW/Codelite 如何生成正确的dll文件</title><link href="/mingwcodelite-ru-he-sheng-cheng-zheng-que-de-dllwen-jian.html" rel="alternate"></link><published>2012-03-04T05:15:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-03-04:mingwcodelite-ru-he-sheng-cheng-zheng-que-de-dllwen-jian.html</id><summary type="html">&lt;p&gt;dll文件里面包括了函数的实现二进制代码段，
+</summary></entry><entry><title>MinGW/Codelite 如何生成正确的dll文件</title><link href="/mingwcodelite-ru-he-sheng-cheng-zheng-que-de-dllwen-jian.html" rel="alternate"></link><published>2012-03-04T05:15:00+08:00</published><updated>2012-03-04T05:15:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-03-04:mingwcodelite-ru-he-sheng-cheng-zheng-que-de-dllwen-jian.html</id><summary type="html">&lt;p&gt;dll文件里面包括了函数的实现二进制代码段，
 在linker输出的时候，通常Cpp会对函数改名，所以名为writestr的函数可能在dll里面表示为writestr&amp;#64;0
 这样的名称，所以在输出dll的时候需要使用def文件来处理这些输出的问题&lt;/p&gt;
 &lt;p&gt;下面是def文件示例&lt;/p&gt;
@@ -948,7 +970,7 @@ exp.dll Release/exp.dll -d exp.def&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;扩起你的c代码&lt;/p&gt;
-</summary></entry><entry><title>seascope代码阅读器支持编辑补丁</title><link href="/seascopedai-ma-yue-du-qi-zhi-chi-bian-ji-bu-ding.html" rel="alternate"></link><published>2012-02-18T14:22:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-02-18:seascopedai-ma-yue-du-qi-zhi-chi-bian-ji-bu-ding.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://code.google.com/p/seascope/"&gt;Seascope&lt;/a&gt;
+</summary></entry><entry><title>seascope代码阅读器支持编辑补丁</title><link href="/seascopedai-ma-yue-du-qi-zhi-chi-bian-ji-bu-ding.html" rel="alternate"></link><published>2012-02-18T14:22:00+08:00</published><updated>2012-02-18T14:22:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-02-18:seascopedai-ma-yue-du-qi-zhi-chi-bian-ji-bu-ding.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://code.google.com/p/seascope/"&gt;Seascope&lt;/a&gt;
 是一个pyQt写的代码阅读工具，在linux原来的kscope其实功能很强大，绝对可比source
 Insight，不过，kde到4之后就没维护了，后来偶遇seascope，不过当时是0.3版本，代码显示的时候字体不能改变，文件也是只读，没法编辑，不过函数定义，引用等搜索功能确是完整的，但是下下来用了用不是很方便编辑就不了了之了。&lt;/p&gt;
 &lt;p&gt;前两天同事又问linux下面代码阅读工具，就又去看了看，发现出0.4版本了，下载来看了下变化比较大，不过编辑功能还是没有啊，看了看是pyQt，正好自己还是想深入学习下python，那看看能不能自己改改呢
@@ -1224,7 +1246,7 @@ diff -purN seascope-0.4/src/view/EdView.py seascope-0.4-dbh/src/view/EdView.py
 &lt;/pre&gt;
 &lt;p&gt;顺便上张图：&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Seascope修改" src="http://www.playpenguin.net/blog/wp-content/uploads/2012/02/seascope.png" /&gt;&lt;/p&gt;
-</summary><category term="seascope"></category></entry><entry><title>exVim 小修改，解决右键菜单问题</title><link href="/exvim-xiao-xiu-gai-jie-jue-you-jian-cai-dan-wen-ti.html" rel="alternate"></link><published>2012-02-14T02:18:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-02-14:exvim-xiao-xiu-gai-jie-jue-you-jian-cai-dan-wen-ti.html</id><summary type="html">&lt;p&gt;在安装了exVim插件之后，发现几个很不合我意的地方，exvim默认关闭折行line
+</summary><category term="seascope"></category></entry><entry><title>exVim 小修改，解决右键菜单问题</title><link href="/exvim-xiao-xiu-gai-jie-jue-you-jian-cai-dan-wen-ti.html" rel="alternate"></link><published>2012-02-14T02:18:00+08:00</published><updated>2012-02-14T02:18:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-02-14:exvim-xiao-xiu-gai-jie-jue-you-jian-cai-dan-wen-ti.html</id><summary type="html">&lt;p&gt;在安装了exVim插件之后，发现几个很不合我意的地方，exvim默认关闭折行line
 wrap功能,理由是多窗口的时候Look
 strange，我是不太受的了一行很长很长了，所以还是打开，另外exvim对xterm模式下设置了鼠标模式=a，这样在终端里居然没法右键菜单来复制了，对我来说这个有时候还是很不方便的，毕竟在窗口之间的复制粘贴快捷键不一定管用。&lt;/p&gt;
 &lt;p&gt;修改vimrc_ex：&lt;/p&gt;
@@ -1236,10 +1258,10 @@ strange，我是不太受的了一行很长很长了，所以还是打开，另�
 &amp;quot;endif
 &lt;/pre&gt;
 &lt;p&gt;另外exvim工程模式下的一些目录没有隐藏，我修改了做了修改让其功能文件统一放到隐藏的目录下面，并且exvim的vimrc设置也比较乱，修改，让从vimrc调用vimrc_ex，然后其他的目录和文件统统进入.vim下面，比较清晰一致些。&lt;/p&gt;
-</summary><category term="exvim"></category><category term="Linux"></category></entry><entry><title>我的人生目标</title><link href="/wo-de-ren-sheng-mu-biao.html" rel="alternate"></link><published>2012-02-07T06:24:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-02-07:wo-de-ren-sheng-mu-biao.html</id><summary type="html">&lt;div class="section" id="id2"&gt;
+</summary><category term="exvim"></category><category term="Linux"></category></entry><entry><title>我的人生目标</title><link href="/wo-de-ren-sheng-mu-biao.html" rel="alternate"></link><published>2012-02-07T06:24:00+08:00</published><updated>2012-02-07T06:24:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-02-07:wo-de-ren-sheng-mu-biao.html</id><summary type="html">&lt;div class="section" id="id2"&gt;
 &lt;h2&gt;&amp;nbsp;找个还不错的工作，有饭吃，工作茶余饭后，自己在书屋或者时髦点“车库”里做自己的一套自娱自乐的研究，短期阶段留一两样产品给世上，长期阶段留点自己的研究结果给世上，在某个小点上大家听过我的名字就行了！&lt;/h2&gt;
 &lt;/div&gt;
-</summary><category term="Life"></category></entry><entry><title>mips嵌入式linux系统构建过程</title><link href="/mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html" rel="alternate"></link><published>2012-01-11T08:18:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2012-01-11:mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html</id><summary type="html">&lt;p&gt;mips平台的嵌入式linux构建，比较简明的步骤，包括nanoRC的使用，根文件系统的制作，不包括mips工具链的制作。&lt;/p&gt;
+</summary><category term="Life"></category></entry><entry><title>mips嵌入式linux系统构建过程</title><link href="/mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html" rel="alternate"></link><published>2012-01-11T08:18:00+08:00</published><updated>2012-01-11T08:18:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-01-11:mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html</id><summary type="html">&lt;p&gt;mips平台的嵌入式linux构建，比较简明的步骤，包括nanoRC的使用，根文件系统的制作，不包括mips工具链的制作。&lt;/p&gt;
 &lt;div class="section" id="mips"&gt;
 &lt;h2&gt;&amp;nbsp;1. mips交叉编译环境搭建&lt;/h2&gt;
 &lt;p&gt;编译环境需要选择mips-2007-01-21,从
@@ -1480,7 +1502,7 @@ Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(2,0)
 &lt;p&gt;如果一切顺利，那么你应该可以得到一个支持login的系统了&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary><category term="embedded"></category><category term="Linux"></category><category term="mips"></category></entry><entry><title>Think what programming (languages) really do ? &gt; translations.</title><link href="/think-what-programming-languages-really-do-translations.html" rel="alternate"></link><published>2011-12-27T01:53:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-12-27:think-what-programming-languages-really-do-translations.html</id><summary type="html">&lt;p&gt;We write programs everyday, and then compile or &amp;quot;run&amp;quot; directly,
+</summary><category term="embedded"></category><category term="Linux"></category><category term="mips"></category></entry><entry><title>Think what programming (languages) really do ? &gt; translations.</title><link href="/think-what-programming-languages-really-do-translations.html" rel="alternate"></link><published>2011-12-27T01:53:00+08:00</published><updated>2011-12-27T01:53:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-12-27:think-what-programming-languages-really-do-translations.html</id><summary type="html">&lt;p&gt;We write programs everyday, and then compile or &amp;quot;run&amp;quot; directly,
 &lt;strong&gt;think what really programming doing&lt;/strong&gt; ?&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 &amp;gt; Translations.
@@ -1495,7 +1517,7 @@ or Perl 6, and&lt;/p&gt;
 and then&lt;/p&gt;
 &lt;p&gt;make parrot to translate for you to html or pdf. this is crazy !&lt;/p&gt;
 &lt;p&gt;OK, I'm imaging this... &amp;nbsp;what about you ?&lt;/p&gt;
-</summary><category term="parrot"></category><category term="programming"></category></entry><entry><title>[原创]OpenEmbedded 中文手册</title><link href="/yuan-chuang-openembedded-zhong-wen-shou-ce.html" rel="alternate"></link><published>2011-12-22T01:41:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-12-22:yuan-chuang-openembedded-zhong-wen-shou-ce.html</id><summary type="html">&lt;div&gt;&lt;p&gt;8.11 打包:定义包类及其内容&lt;/p&gt;
+</summary><category term="parrot"></category><category term="programming"></category></entry><entry><title>[原创]OpenEmbedded 中文手册</title><link href="/yuan-chuang-openembedded-zhong-wen-shou-ce.html" rel="alternate"></link><published>2011-12-22T01:41:00+08:00</published><updated>2011-12-22T01:41:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-12-22:yuan-chuang-openembedded-zhong-wen-shou-ce.html</id><summary type="html">&lt;div&gt;&lt;p&gt;8.11 打包:定义包类及其内容&lt;/p&gt;
 &lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;一个bitbake&amp;quot;配方&amp;quot;就是一组创建一个或者多个在目标设备上安装的包的命令集合.典型的包就是&lt;/p&gt;
 &lt;/div&gt;&lt;div&gt;&lt;p&gt;.ipkg或者.deb包(尽管bitbake本身并没有跟任何特殊的包格式相关联).&lt;/p&gt;
 &lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;默认情况下会自动生成一些包,这些包并没有包含任何&amp;quot;配方&amp;quot;作者要求的特定动作.上面的helloworld&lt;/p&gt;
@@ -2079,7 +2101,7 @@ them from&lt;/p&gt;
 &lt;/div&gt;&lt;div&gt;&lt;p&gt;8.27.3.摘要&lt;/p&gt;
 &lt;/div&gt;&lt;div&gt;&lt;p&gt;8.28其他杂项&lt;/p&gt;
 &lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;剩余章节翻译中。。。。。。。。。&lt;/p&gt;
-&lt;/div&gt;&lt;div&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="OE中文"></category><category term="OpenEmbedded"></category></entry><entry><title>[原创]OpenEmbedded 中文手册-第一部分</title><link href="/yuan-chuang-openembedded-zhong-wen-shou-ce-di-yi-bu-fen.html" rel="alternate"></link><published>2011-12-22T01:39:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-12-22:yuan-chuang-openembedded-zhong-wen-shou-ce-di-yi-bu-fen.html</id><summary type="html">&lt;div align="center"&gt;&lt;p&gt;声&amp;nbsp;&amp;nbsp; 明：&lt;/p&gt;
+&lt;/div&gt;&lt;div&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="OE中文"></category><category term="OpenEmbedded"></category></entry><entry><title>[原创]OpenEmbedded 中文手册-第一部分</title><link href="/yuan-chuang-openembedded-zhong-wen-shou-ce-di-yi-bu-fen.html" rel="alternate"></link><published>2011-12-22T01:39:00+08:00</published><updated>2011-12-22T01:39:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-12-22:yuan-chuang-openembedded-zhong-wen-shou-ce-di-yi-bu-fen.html</id><summary type="html">&lt;div align="center"&gt;&lt;p&gt;声&amp;nbsp;&amp;nbsp; 明：&lt;/p&gt;
 &lt;/div&gt;&lt;div style="text-align: justify;"&gt;&lt;p&gt;本文章为openembedded英文手册的中文翻译版。手册版权归OE所有。本文档只供技术和学习交流之用，不得用于商业用途，使用本文档如造成损失,译者一概不负任何责任。&lt;/p&gt;
 &lt;/div&gt;&lt;p&gt;转载请注明出处和作者！&lt;/p&gt;
 &lt;p&gt;作者: &lt;a class="reference external" href="mailto:dangbinghoo&amp;#64;gmail.com"&gt;dangbinghoo&amp;#64;gmail.com&lt;/a&gt;&lt;/p&gt;
@@ -4890,7 +4912,7 @@ shell），这里面有很多命令（使用help查看）。&lt;/p&gt;
 &lt;/div&gt;
 &lt;/p&gt;&lt;div&gt;&lt;p&gt;续: OpenEmbedded 中文手册 &amp;lt;二&amp;gt;&lt;/p&gt;
 &lt;/div&gt;&lt;p&gt;&lt;a class="reference external" href="http://blog.chinaunix.net/u1/52172/showart_2284360.html"&gt;http://www.playpenguin.net/?p=81&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;</summary><category term="Linux"></category><category term="OE中文"></category><category term="OpenEmbedded"></category></entry><entry><title>再记轻量标记驱动的文档工具与系统</title><link href="/zai-ji-qing-liang-biao-ji-qu-dong-de-wen-dang-gong-ju-yu-xi-tong.html" rel="alternate"></link><published>2011-12-21T11:42:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-12-21:zai-ji-qing-liang-biao-ji-qu-dong-de-wen-dang-gong-ju-yu-xi-tong.html</id><summary type="html">&lt;p&gt;经过一段时间的学习与查阅资料，发现 unix下面实现的各种 轻量标记
+&lt;/div&gt;</summary><category term="Linux"></category><category term="OE中文"></category><category term="OpenEmbedded"></category></entry><entry><title>再记轻量标记驱动的文档工具与系统</title><link href="/zai-ji-qing-liang-biao-ji-qu-dong-de-wen-dang-gong-ju-yu-xi-tong.html" rel="alternate"></link><published>2011-12-21T11:42:00+08:00</published><updated>2011-12-21T11:42:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-12-21:zai-ji-qing-liang-biao-ji-qu-dong-de-wen-dang-gong-ju-yu-xi-tong.html</id><summary type="html">&lt;p&gt;经过一段时间的学习与查阅资料，发现 unix下面实现的各种 轻量标记
 文档系统很多，而且格式花样， 在sytax上 有&lt;/p&gt;
 &lt;div class="section" id="id2"&gt;
 &lt;h2&gt;可选的轻量文档标记系统有：&lt;/h2&gt;
@@ -4914,7 +4936,7 @@ Docbook 和&amp;nbsp;TeX 系统了，Asciidoc感觉是&amp;nbsp;Docbook的轻量
 asciidoc驱动，支持比较多的常见格式输出，但是貌似pdf的路径可以通过docbook或者latex，但是都不怎么成熟。但由于syntax的丰富程度最高，所以到docbook之后可以输出比较复杂的文档，如果写大型文档就比较适合了。&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;空的时候研究下 pandoc和asciidoc，Sphinx，看看哪种将是自己的alternate.&lt;/em&gt;&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="markup"></category><category term="pdf"></category><category term="文档工具"></category><category term="标记"></category></entry><entry><title>txt2tags 与 xelatex输出pdf</title><link href="/txt2tags-yu-xelatexshu-chu-pdf.html" rel="alternate"></link><published>2011-12-12T11:30:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-12-12:txt2tags-yu-xelatexshu-chu-pdf.html</id><summary type="html">&lt;p&gt;txt2tags由于输出target比较多，支持pdf，html，docbook，redmine
+</summary><category term="markup"></category><category term="pdf"></category><category term="文档工具"></category><category term="标记"></category></entry><entry><title>txt2tags 与 xelatex输出pdf</title><link href="/txt2tags-yu-xelatexshu-chu-pdf.html" rel="alternate"></link><published>2011-12-12T11:30:00+08:00</published><updated>2011-12-12T11:30:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-12-12:txt2tags-yu-xelatexshu-chu-pdf.html</id><summary type="html">&lt;p&gt;txt2tags由于输出target比较多，支持pdf，html，docbook，redmine
 wiki，所以基本被我“相中”。&lt;/p&gt;
 &lt;p&gt;公司要求写个需求文档，就试着写了下，用自己的写的格式输出tex，再转换xelatex-ctex格式，就发现生成pdf没有问题了，编译完全通过，只不过为了pdf有更好的脸面：
 支持标签目录，目录颜色，页眉页脚样式修正就做了个脚本对txt2tags输出的格式做了简单调整，现在一个make，html，pdf就ready了，哈哈！&lt;/p&gt;
@@ -4963,7 +4985,7 @@ fancyhdr页眉页脚宏包， 加线。
 &lt;pre class="literal-block"&gt;
 t2t-template.zip
 &lt;/pre&gt;
-</summary><category term="ctex"></category><category term="pdf"></category><category term="txt2tags"></category></entry><entry><title>各种用来写wiki和文档的light-weight markup 工具</title><link href="/ge-chong-yong-lai-xie-wikihe-wen-dang-de-light-weight-markup-gong-ju.html" rel="alternate"></link><published>2011-12-06T16:58:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-12-06:ge-chong-yong-lai-xie-wikihe-wen-dang-de-light-weight-markup-gong-ju.html</id><summary type="html">&lt;p&gt;&lt;em&gt;wordpress，redmine，wikipedia&lt;/em&gt;
+</summary><category term="ctex"></category><category term="pdf"></category><category term="txt2tags"></category></entry><entry><title>各种用来写wiki和文档的light-weight markup 工具</title><link href="/ge-chong-yong-lai-xie-wikihe-wen-dang-de-light-weight-markup-gong-ju.html" rel="alternate"></link><published>2011-12-06T16:58:00+08:00</published><updated>2011-12-06T16:58:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-12-06:ge-chong-yong-lai-xie-wikihe-wen-dang-de-light-weight-markup-gong-ju.html</id><summary type="html">&lt;p&gt;&lt;em&gt;wordpress，redmine，wikipedia&lt;/em&gt;
 等都支持使用一些标记语言来写wiki页面，其实这些东西都是一种
 &lt;strong&gt;&amp;quot;Lightweight_markup_language &amp;quot;&lt;/strong&gt;
 ,搜索了下发现跟redmine使用的textile类似的东西包括: markdown,
@@ -4997,7 +5019,7 @@ markdown2(extra), txt2tags, AsciiDoc, texy!
 
  所以，以后写文档或者书籍应该尽可能用这些工具了，不过选择一个通吃所有格式，又简单易用的不是那么容易，
  最好能有个比较好的gui编辑器，支持常见的格式，并且可以预览，然后如果能够直接发布到redmine，wordpress
- wiki那就再好不过了，如果能够转换到docbook，那么再输出成word，pdf等格式也是比较容易的了。</summary><category term="markup"></category><category term="文档工具"></category><category term="标记"></category></entry><entry><title>--host --build --target到底什么意思？</title><link href="/-host-build-targetdao-di-shi-yao-yi-si.html" rel="alternate"></link><published>2011-11-25T16:04:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-11-25:-host-build-targetdao-di-shi-yao-yi-si.html</id><summary type="html">&lt;p&gt;老是在做交叉编译，其实有时候对这三个东西的理解并不是那么清楚&lt;/p&gt;
+ wiki那就再好不过了，如果能够转换到docbook，那么再输出成word，pdf等格式也是比较容易的了。</summary><category term="markup"></category><category term="文档工具"></category><category term="标记"></category></entry><entry><title>--host --build --target到底什么意思？</title><link href="/-host-build-targetdao-di-shi-yao-yi-si.html" rel="alternate"></link><published>2011-11-25T16:04:00+08:00</published><updated>2011-11-25T16:04:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-11-25:-host-build-targetdao-di-shi-yao-yi-si.html</id><summary type="html">&lt;p&gt;老是在做交叉编译，其实有时候对这三个东西的理解并不是那么清楚&lt;/p&gt;
 &lt;p&gt;从交叉工具链的情况来看，可以总结如下&lt;/p&gt;
 &lt;p&gt;--build= 谁在这里编译？ 意思说你目前的编译动作在哪里跑的 ？
 如果是编译一个arm工具链，虽然工具链为为arm弄的，但是构建工具链的时候是在主机上进行的。所以
@@ -5039,7 +5061,7 @@ ppc上运行的交叉工具链，然后这个交叉工具链为arm生产程序�
 来调用合适的gcc来做事情，可以看出来，在三个平台的时候，--build平台是跑编译脚本或者说make的，会调用
 host的编译器，而且显而易见的是 host指定的一定是个交叉编译器。&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="交叉编译"></category></entry><entry><title>关于工具链的编译uclibc/gcc</title><link href="/guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html" rel="alternate"></link><published>2011-11-23T15:12:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-11-23:guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html</id><summary type="html">&lt;p&gt;使用之前弄的脚本编译工具链其实还是比较轻松的，脚本也是比较稳定的，不过重点在于配置上，包括target名称的选择，uclibc的配置&lt;/p&gt;
+</summary><category term="交叉编译"></category></entry><entry><title>关于工具链的编译uclibc/gcc</title><link href="/guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html" rel="alternate"></link><published>2011-11-23T15:12:00+08:00</published><updated>2011-11-23T15:12:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-11-23:guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html</id><summary type="html">&lt;p&gt;使用之前弄的脚本编译工具链其实还是比较轻松的，脚本也是比较稳定的，不过重点在于配置上，包括target名称的选择，uclibc的配置&lt;/p&gt;
 &lt;p&gt;一直困扰的nfs挂载不正常的问题最终发现还是uclibc配置不对，另外，对于thread的支持，一般需要使用nptl，然后如果要用gdb的话，gdbserver的编译必须要在uclibc里面启用thread
 debug，要不然会缺少东西：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -5316,8 +5338,8 @@ EXTRA_WARNINGS=y
 # DOMULTI is not set
 # UCLIBC_MJN3_ONLY is not set
 &lt;/pre&gt;
-</summary><category term="工具链"></category></entry><entry><title>关于linux文件系统的sync,async, sync/fsync 命令</title><link href="/guan-yu-linuxwen-jian-xi-tong-de-syncasync-syncfsync-ming-ling.html" rel="alternate"></link><published>2011-11-18T11:15:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-11-18:guan-yu-linuxwen-jian-xi-tong-de-syncasync-syncfsync-ming-ling.html</id><summary type="html">&lt;p&gt;linux默认情况下几乎所有应用场合都是不会将文件立马保存入磁盘的，在嵌入式上也是同样的表现，如果mount时候加上sync选项就可以保证数据立马写入，但是这种会造成系统较多的写入磁盘，磁盘的寿命就不会太长了，如果是需要保存数据，可以显式调用命令sync来写入所有文件，或者fsync来保存某个文件。&lt;/p&gt;
-</summary><category term="Linux"></category><category term="sync"></category><category term="文件系统"></category></entry><entry><title>shell获取进程ID的方法： pidof | pgrep | ps-A+grep+awk</title><link href="/shellhuo-qu-jin-cheng-idde-fang-fa-pidof-pgrep-ps-agrepawk.html" rel="alternate"></link><published>2011-11-18T11:08:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-11-18:shellhuo-qu-jin-cheng-idde-fang-fa-pidof-pgrep-ps-agrepawk.html</id><summary type="html">&lt;p&gt;shell获取进程ID的方法：&lt;/p&gt;
+</summary><category term="工具链"></category></entry><entry><title>关于linux文件系统的sync,async, sync/fsync 命令</title><link href="/guan-yu-linuxwen-jian-xi-tong-de-syncasync-syncfsync-ming-ling.html" rel="alternate"></link><published>2011-11-18T11:15:00+08:00</published><updated>2011-11-18T11:15:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-11-18:guan-yu-linuxwen-jian-xi-tong-de-syncasync-syncfsync-ming-ling.html</id><summary type="html">&lt;p&gt;linux默认情况下几乎所有应用场合都是不会将文件立马保存入磁盘的，在嵌入式上也是同样的表现，如果mount时候加上sync选项就可以保证数据立马写入，但是这种会造成系统较多的写入磁盘，磁盘的寿命就不会太长了，如果是需要保存数据，可以显式调用命令sync来写入所有文件，或者fsync来保存某个文件。&lt;/p&gt;
+</summary><category term="Linux"></category><category term="sync"></category><category term="文件系统"></category></entry><entry><title>shell获取进程ID的方法： pidof | pgrep | ps-A+grep+awk</title><link href="/shellhuo-qu-jin-cheng-idde-fang-fa-pidof-pgrep-ps-agrepawk.html" rel="alternate"></link><published>2011-11-18T11:08:00+08:00</published><updated>2011-11-18T11:08:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-11-18:shellhuo-qu-jin-cheng-idde-fang-fa-pidof-pgrep-ps-agrepawk.html</id><summary type="html">&lt;p&gt;shell获取进程ID的方法：&lt;/p&gt;
 &lt;p&gt;我知道和实践过的有这么三种：&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;&amp;nbsp;ps -A |grep &amp;quot;cmdname&amp;quot;| awk '{print $1}'&lt;/li&gt;
@@ -5331,7 +5353,7 @@ EXTRA_WARNINGS=y
 前一种结果为空，但是在bash中执行两者一样。&lt;/p&gt;
 &lt;p&gt;第三种： pgrep跟1的效果相同，因为是单一命令，比第一种性能要好得多。&lt;/p&gt;
 &lt;p&gt;所以nanoRC就改进为pgrep。&lt;/p&gt;
-</summary><category term="pgrep"></category><category term="pidof"></category><category term="shell"></category><category term="进程ID"></category></entry><entry><title>linux编程库libevent</title><link href="/linuxbian-cheng-ku-libevent.html" rel="alternate"></link><published>2011-11-16T11:27:00+08:00</published><author><name>dangbinghoo</name></author><id>tag:,2011-11-16:linuxbian-cheng-ku-libevent.html</id><summary type="html">&lt;div class="section" id="libevent-an-event-notification-library"&gt;
+</summary><category term="pgrep"></category><category term="pidof"></category><category term="shell"></category><category term="进程ID"></category></entry><entry><title>linux编程库libevent</title><link href="/linuxbian-cheng-ku-libevent.html" rel="alternate"></link><published>2011-11-16T11:27:00+08:00</published><updated>2011-11-16T11:27:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-11-16:linuxbian-cheng-ku-libevent.html</id><summary type="html">&lt;div class="section" id="libevent-an-event-notification-library"&gt;
 &lt;h2&gt;libevent – an event notification library&lt;/h2&gt;
 &lt;p&gt;发现一个跨平台的event库：&lt;/p&gt;
 &lt;p&gt;The &lt;em&gt;libevent&lt;/em&gt; API provides a mechanism to execute a callback function

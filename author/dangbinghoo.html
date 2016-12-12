@@ -179,6 +179,39 @@
 
          <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/xiao-zhong-you-xin-ying-de-gui.html">小众又新颖的GUI</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2016-12-08T14:18:00+08:00">
+        <i class="icon-calendar"></i>四 08 十二月 2016
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/gui.html"><i class="icon-tag"></i>GUI</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="section" id="id1">
+<h2>小众的新GUI框架记录</h2>
+<ol class="arabic simple">
+<li>ugfx, C语言 STM32等MCU可使用的嵌入式GUI，商业级但免费无任何版权限制，可为创客，商业等任何用途。且包含一个The µGFX-Studio GUI构建程序可用。</li>
+</ol>
+<p>网址： <a class="reference external" href="http://ugfx.io/">http://ugfx.io/</a>
+下载连接 <a class="reference external" href="https://community.ugfx.io/index.php?/files/">https://community.ugfx.io/index.php?/files/</a></p>
+<ol class="arabic simple" start="2">
+<li>ilixi 基于DFB的C++嵌入式Linux平台GUI，完全开源 <a class="reference external" href="http://www.ilixi.org/">http://www.ilixi.org/</a></li>
+</ol>
+<p>基于DirectFB,libsigc++等平台组件构建，看官网有个行车电脑的ui demo，API粗看了下跟WxWidget比较接近，从类列表看，3D等支持都是有的。支持buildroot构建工具，支持yocto，挺不错，值得尝试。</p>
+<ol class="arabic simple" start="3">
+<li>libui， C语言的桌面跨平台，本地UI风格的库，居然拥有10多种语言的binding了。<a class="reference external" href="https://github.com/andlabs/libui">https://github.com/andlabs ...</a></li></ol></div>
+                        <a class="btn primary xsmall" href="/xiao-zhong-you-xin-ying-de-gui.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html">安卓内核编译错误  kernel/timeconst.h defined(&#64;val)</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -444,44 +477,6 @@ class的指针，我们也有办法 把里面的成员一个一个取出来</p>
 <div class="line-block">
 <div class="line">1. 首先， 自己大多数时候是个很 ...</div></div>
                         <a class="btn primary xsmall" href="/qi-shi-zi-ji-yuan-ben-jiu-shi-ge-wu-nao-de-cheng-xu-yuan-er-yi-yi-chu-yu-huan.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html">linux flash插件等程序声音不正常的原因： 笔记本多个声卡， 需要配置</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2012-06-17T13:00:00+08:00">
-        <i class="icon-calendar"></i>日 17 六月 2012
-</abbr>
-<span class="label">By</span>
-<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
-<span class="label">Category</span>
-<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/asoundrc.html"><i class="icon-tag"></i>asound.rc</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>前段实际系统是Arch linux，
-当时什么程序都能放出声音来就是flash不行，一直无声状态， 始终没有搞定。</p>
-<p>这几天因为做嵌入式的原因，系统换成了Funtoo， 个人感觉就是改进了Gentoo 的
-emerge --sync 吧， 其他的还不怎么明显， 也没体会到，感觉根Gentoo无异了，
-不过系统装起来， 声音还是不正常， 播放mplayer说</p>
-<p>alsa-lib: pcm_dmix.c:1018:(snd_pcm_dmix_open) unable to open slave</p>
-<p>Google之发现是因为系统多个声卡， 没有配置的情况下会选择0,
-alsamixer里面我的声卡也是两个， 第一个是什么hdmi的声卡， 哎，
-感觉无奈，这个东东有用么， 不过还是自己水平低，
-真正的声卡处于第二个位置， 突然想到这也是flash无声的缘故了吧， 随即编辑
-.asoundrc 或者 /etc/asound.conf</p>
-<pre class="literal-block">
-pcm.!default {
-    type hw
-    card 1
-}
-
-ctl ...</pre>
-                        <a class="btn primary xsmall" href="/linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html">more ...</a>
                 </div>
         </div>
         <hr />
