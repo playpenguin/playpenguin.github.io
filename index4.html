@@ -179,6 +179,45 @@
 
          <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/txt2tags-yu-xelatexshu-chu-pdf.html">txt2tags 与 xelatex输出pdf</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2011-12-12T11:30:00+08:00">
+        <i class="icon-calendar"></i>一 12 十二月 2011
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/unixwen-dang-gong-ju.html"><i class="icon-folder-open"></i>Unix文档工具</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/ctex.html"><i class="icon-tag"></i>ctex</a>
+	<a href="/tag/pdf.html"><i class="icon-tag"></i>pdf</a>
+	<a href="/tag/txt2tags.html"><i class="icon-tag"></i>txt2tags</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>txt2tags由于输出target比较多，支持pdf，html，docbook，redmine
+wiki，所以基本被我“相中”。</p>
+<p>公司要求写个需求文档，就试着写了下，用自己的写的格式输出tex，再转换xelatex-ctex格式，就发现生成pdf没有问题了，编译完全通过，只不过为了pdf有更好的脸面：
+支持标签目录，目录颜色，页眉页脚样式修正就做了个脚本对txt2tags输出的格式做了简单调整，现在一个make，html，pdf就ready了，哈哈！</p>
+<p>下面是我的tex输出心得：</p>
+<p>1.tex系统有N多实现，在windows上ctex不能配置就能工作，在linux上面要安装texlive-cjk相关，安装recommded，extra等包。</p>
+<p>gentoo系统有ebuild，相对简单，ubuntu貌似我现在用的11.10还没包上线(ubuntu
+NB,但不专业了).</p>
+<ol class="arabic simple" start="2">
+<li>我用xelatex，tex文档开头得改成:</li>
+</ol>
+<pre class="literal-block">
+documentclass[UTF8,adobefonts,a4paper]{ctexart}
+</pre>
+<p>%ctexart就是ctex article了，开始恼了半天。</p>
+<p>3.
+adobefonts得有，网上下载的放进/usr …</p>
+                        <a class="btn primary xsmall" href="/txt2tags-yu-xelatexshu-chu-pdf.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/ge-chong-yong-lai-xie-wikihe-wen-dang-de-light-weight-markup-gong-ju.html">各种用来写wiki和文档的light-weight markup 工具</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -224,7 +263,7 @@ markdown2(extra), txt2tags, AsciiDoc, texy!
  #. **txt2tags**          输出格式多，未来可以支持 redmine wiki，
     wordpress，
  #. **markdown**
-    用的最多，存在各种实现，c，python，perl等各种语言的版本 ...
+    用的最多，存在各种实现，c，python，perl等各种语言的版本 …
                         <a class="btn primary xsmall" href="/ge-chong-yong-lai-xie-wikihe-wen-dang-de-light-weight-markup-gong-ju.html">more ...</a>
                 </div>
         </div>
@@ -267,7 +306,7 @@ ppc上运行的交叉工具链，然后这个交叉工具链为arm生产程序�
 <p>没有实验过，可以改天实验下，学习下。</p>
 <div class="section" id="id1">
 <h2>续：三平台交叉编译实验</h2>
-<p>对binutils源码解压 ...</p></div>
+<p>对binutils源码解压 …</p></div>
                         <a class="btn primary xsmall" href="/-host-build-targetdao-di-shi-yao-yi-si.html">more ...</a>
                 </div>
         </div>
@@ -304,7 +343,7 @@ debug，要不然会缺少东西：</p>
 #
 # Automatically generated make config: don't edit
 # Version: 0.9.32
-# Wed Nov 23 14:53 ...</pre>
+# Wed Nov 23 14:53:07 …</pre>
                         <a class="btn primary xsmall" href="/guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html">more ...</a>
                 </div>
         </div>
@@ -395,7 +434,7 @@ debug，要不然会缺少东西：</p>
 when a specific event occurs on a file descriptor or after a timeout has
 been reached. Furthermore, <em>libevent</em> also support callbacks due to
 <strong>signals</strong> or regular <strong>timeouts</strong>.</p>
-<p>Libevent additionally provides a sophisticated framework ...</p></div>
+<p>Libevent additionally provides a sophisticated framework …</p></div>
                         <a class="btn primary xsmall" href="/linuxbian-cheng-ku-libevent.html">more ...</a>
                 </div>
         </div>

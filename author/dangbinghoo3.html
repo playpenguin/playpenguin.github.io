@@ -179,6 +179,40 @@
 
          <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/exvim-xiao-xiu-gai-jie-jue-you-jian-cai-dan-wen-ti.html">exVim 小修改，解决右键菜单问题</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2012-02-14T02:18:00+08:00">
+        <i class="icon-calendar"></i>二 14 二月 2012
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/vim.html"><i class="icon-folder-open"></i>Vim</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/exvim.html"><i class="icon-tag"></i>exvim</a>
+	<a href="/tag/linux.html"><i class="icon-tag"></i>Linux</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>在安装了exVim插件之后，发现几个很不合我意的地方，exvim默认关闭折行line
+wrap功能,理由是多窗口的时候Look
+strange，我是不太受的了一行很长很长了，所以还是打开，另外exvim对xterm模式下设置了鼠标模式=a，这样在终端里居然没法右键菜单来复制了，对我来说这个有时候还是很不方便的，毕竟在窗口之间的复制粘贴快捷键不一定管用。</p>
+<p>修改vimrc_ex：</p>
+<p>注释掉</p>
+<pre class="literal-block">
+&quot;set nowrap
+&quot;if &amp;term =~ &quot;xterm&quot;
+&quot;    set mouse=a
+&quot;endif
+</pre>
+<p>另外exvim工程模式下的一些目录没有隐藏，我修改了做了修改让其功能文件统一放到隐藏的目录下面，并且exvim的vimrc设置也比较乱，修改，让从vimrc调用vimrc_ex，然后其他的目录和文件统统进入.vim下面，比较清晰一致些。</p>
+
+                        <a class="btn primary xsmall" href="/exvim-xiao-xiu-gai-jie-jue-you-jian-cai-dan-wen-ti.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/wo-de-ren-sheng-mu-biao.html">我的人生目标</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -236,7 +270,7 @@ export PATH=/your/toochain/path/usr/bin:${PATH}
 对于gentoo 系统,可以
 
 &nbsp; &nbsp;  $ cat &gt; /etc/env.d/50mipstoolchain &lt;&lt; &quot;EOF&quot;
-&nbsp; &nbsp; &nbsp; &nbsp;PATH=&quot;/media/workspace/tools/eldk-mips-x.x/usr/bin ...</pre></div>
+&nbsp; &nbsp; &nbsp; &nbsp;PATH=&quot;/media/workspace/tools/eldk-mips-x.x/usr/bin …</pre></div>
                         <a class="btn primary xsmall" href="/mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html">more ...</a>
                 </div>
         </div>
@@ -265,7 +299,7 @@ export PATH=/your/toochain/path/usr/bin:${PATH}
 </pre>
 <p>yes, a Cpp program might be 1st translated into C, and then &nbsp;AS, and
 then machine code. A shell script can be &quot;run&quot; directly, but it need
-bash to translate. so, everything on computer ...</p>
+bash to translate. so, everything on computer …</p>
                         <a class="btn primary xsmall" href="/think-what-programming-languages-really-do-translations.html">more ...</a>
                 </div>
         </div>
@@ -296,7 +330,7 @@ bash to translate. so, everything on computer ...</p>
 </div><div></div><div><p>[NOTE: package helloworld-0.1-r0: task do_package_write: started</p>
 </div><div><p>NOTE: Not creating empty archive for helloworld-dbg-0.1-r0</p>
 </div><div><p>Packaged contents of helloworld into
-/home/lenehan/devel/oe/build/titan-glibc-25/tmp/deploy/ipk/sh4/helloworld_0.1-r0_sh4.ipk ...</p></div>
+/home/lenehan/devel/oe/build/titan-glibc-25/tmp/deploy/ipk/sh4/helloworld_0.1-r0_sh4.ipk …</p></div>
                         <a class="btn primary xsmall" href="/yuan-chuang-openembedded-zhong-wen-shou-ce.html">more ...</a>
                 </div>
         </div>
@@ -360,7 +394,7 @@ bash to translate. so, everything on computer ...</p>
 <div class="line">构建。（包的配方下文除非特殊说明都将简称为“配方”；oe都代表OpenEmbedded）</div>
 </div>
 <div class="line-block">
-<div class="line">更确切的说 ...</div></div>
+<div class="line">更确切的说 …</div></div>
                         <a class="btn primary xsmall" href="/yuan-chuang-openembedded-zhong-wen-shou-ce-di-yi-bu-fen.html">more ...</a>
                 </div>
         </div>
@@ -400,7 +434,7 @@ Docbook 和&nbsp;TeX 系统了，Asciidoc感觉是&nbsp;Docbook的轻量标记�
 <h2>以这些sytax为驱动的文档系统可以选择的有：</h2>
 <p>txt2tags: 输出各种格式，简单，缺点是txt2tags的syntax功能上还是稍显欠缺。</p>
 <p>pandoc:
-以markdown为主syntax,但是由于<strong>支持几乎全部syntax</strong>的各种格式的输入，所以，&nbsp;<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/introduction.html">reStructuredText</a>&nbsp;等各种都被比较好的支持 ...</p></div>
+以markdown为主syntax,但是由于<strong>支持几乎全部syntax</strong>的各种格式的输入，所以，&nbsp;<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/introduction.html">reStructuredText</a>&nbsp;等各种都被比较好的支持 …</p></div>
                         <a class="btn primary xsmall" href="/zai-ji-qing-liang-biao-ji-qu-dong-de-wen-dang-gong-ju-yu-xi-tong.html">more ...</a>
                 </div>
         </div>
@@ -439,59 +473,8 @@ documentclass[UTF8,adobefonts,a4paper]{ctexart}
 </pre>
 <p>%ctexart就是ctex article了，开始恼了半天。</p>
 <p>3.
-adobefonts得有，网上下载的放进/usr ...</p>
+adobefonts得有，网上下载的放进/usr …</p>
                         <a class="btn primary xsmall" href="/txt2tags-yu-xelatexshu-chu-pdf.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/ge-chong-yong-lai-xie-wikihe-wen-dang-de-light-weight-markup-gong-ju.html">各种用来写wiki和文档的light-weight markup 工具</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2011-12-06T16:58:00+08:00">
-        <i class="icon-calendar"></i>二 06 十二月 2011
-</abbr>
-<span class="label">By</span>
-<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
-<span class="label">Category</span>
-<a href="/category/unixwen-dang-gong-ju.html"><i class="icon-folder-open"></i>Unix文档工具</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/markup.html"><i class="icon-tag"></i>markup</a>
-	<a href="/tag/wen-dang-gong-ju.html"><i class="icon-tag"></i>文档工具</a>
-	<a href="/tag/biao-ji.html"><i class="icon-tag"></i>标记</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p><em>wordpress，redmine，wikipedia</em>
-等都支持使用一些标记语言来写wiki页面，其实这些东西都是一种
-<strong>&quot;Lightweight_markup_language &quot;</strong>
-,搜索了下发现跟redmine使用的textile类似的东西包括: markdown,
-markdown2(extra), txt2tags, AsciiDoc, texy!
-,BBcode,Mediawiki等等，都有一个特点
-：<strong>*就是使用纯文本标记来标记文档的格式标题等*</strong>。</p>
-<address><p>经过比较发现：</p>
-</address>
-
- #.
-
-    .. raw:: html
-
-       <address>
-
-    ***AsciiDoc**    最复杂，可以用来写
-    文章，书本，与docbook转换比较好，功能上最解决与     docbook，有
-    git         manual，Programming iOS 4
-    这样的作品都是用它写的，查看其手册的确也很好很强大的感觉。*
-
-    .. raw:: html
-
-       </address>
-
- #. **txt2tags**          输出格式多，未来可以支持 redmine wiki，
-    wordpress，
- #. **markdown**
-    用的最多，存在各种实现，c，python，perl等各种语言的版本 ...
-                        <a class="btn primary xsmall" href="/ge-chong-yong-lai-xie-wikihe-wen-dang-de-light-weight-markup-gong-ju.html">more ...</a>
                 </div>
         </div>
         <hr />

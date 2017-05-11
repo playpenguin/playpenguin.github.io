@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术</title><link href="/" rel="alternate"></link><link href="/feeds/vim.atom.xml" rel="self"></link><id>/</id><updated>2012-02-14T02:18:00+08:00</updated><entry><title>exVim 小修改，解决右键菜单问题</title><link href="/exvim-xiao-xiu-gai-jie-jue-you-jian-cai-dan-wen-ti.html" rel="alternate"></link><published>2012-02-14T02:18:00+08:00</published><updated>2012-02-14T02:18:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-02-14:exvim-xiao-xiu-gai-jie-jue-you-jian-cai-dan-wen-ti.html</id><summary type="html">&lt;p&gt;在安装了exVim插件之后，发现几个很不合我意的地方，exvim默认关闭折行line
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术 - Vim</title><link href="/" rel="alternate"></link><link href="/feeds/vim.atom.xml" rel="self"></link><id>/</id><updated>2012-02-14T02:18:00+08:00</updated><entry><title>exVim 小修改，解决右键菜单问题</title><link href="/exvim-xiao-xiu-gai-jie-jue-you-jian-cai-dan-wen-ti.html" rel="alternate"></link><published>2012-02-14T02:18:00+08:00</published><updated>2012-02-14T02:18:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2012-02-14:/exvim-xiao-xiu-gai-jie-jue-you-jian-cai-dan-wen-ti.html</id><summary type="html">&lt;p&gt;在安装了exVim插件之后，发现几个很不合我意的地方，exvim默认关闭折行line
 wrap功能,理由是多窗口的时候Look
 strange，我是不太受的了一行很长很长了，所以还是打开，另外exvim对xterm模式下设置了鼠标模式=a，这样在终端里居然没法右键菜单来复制了，对我来说这个有时候还是很不方便的，毕竟在窗口之间的复制粘贴快捷键不一定管用。&lt;/p&gt;
 &lt;p&gt;修改vimrc_ex：&lt;/p&gt;
@@ -11,4 +11,16 @@ strange，我是不太受的了一行很长很长了，所以还是打开，另�
 &amp;quot;endif
 &lt;/pre&gt;
 &lt;p&gt;另外exvim工程模式下的一些目录没有隐藏，我修改了做了修改让其功能文件统一放到隐藏的目录下面，并且exvim的vimrc设置也比较乱，修改，让从vimrc调用vimrc_ex，然后其他的目录和文件统统进入.vim下面，比较清晰一致些。&lt;/p&gt;
-</summary><category term="exvim"></category><category term="Linux"></category></entry></feed>
+</summary><content type="html">&lt;p&gt;在安装了exVim插件之后，发现几个很不合我意的地方，exvim默认关闭折行line
+wrap功能,理由是多窗口的时候Look
+strange，我是不太受的了一行很长很长了，所以还是打开，另外exvim对xterm模式下设置了鼠标模式=a，这样在终端里居然没法右键菜单来复制了，对我来说这个有时候还是很不方便的，毕竟在窗口之间的复制粘贴快捷键不一定管用。&lt;/p&gt;
+&lt;p&gt;修改vimrc_ex：&lt;/p&gt;
+&lt;p&gt;注释掉&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;quot;set nowrap
+&amp;quot;if &amp;amp;term =~ &amp;quot;xterm&amp;quot;
+&amp;quot;    set mouse=a
+&amp;quot;endif
+&lt;/pre&gt;
+&lt;p&gt;另外exvim工程模式下的一些目录没有隐藏，我修改了做了修改让其功能文件统一放到隐藏的目录下面，并且exvim的vimrc设置也比较乱，修改，让从vimrc调用vimrc_ex，然后其他的目录和文件统统进入.vim下面，比较清晰一致些。&lt;/p&gt;
+</content><category term="exvim"></category><category term="Linux"></category></entry></feed>

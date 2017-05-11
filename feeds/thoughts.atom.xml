@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术</title><link href="/" rel="alternate"></link><link href="/feeds/thoughts.atom.xml" rel="self"></link><id>/</id><updated>2012-03-14T08:24:00+08:00</updated><entry><title>学习-资源</title><link href="/xue-xi-zi-yuan.html" rel="alternate"></link><published>2012-03-14T08:24:00+08:00</published><updated>2012-03-14T08:24:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-03-14:xue-xi-zi-yuan.html</id><summary type="html">&lt;div class="section" id="linux"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术 - thoughts</title><link href="/" rel="alternate"></link><link href="/feeds/thoughts.atom.xml" rel="self"></link><id>/</id><updated>2012-03-14T08:24:00+08:00</updated><entry><title>学习-资源</title><link href="/xue-xi-zi-yuan.html" rel="alternate"></link><published>2012-03-14T08:24:00+08:00</published><updated>2012-03-14T08:24:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2012-03-14:/xue-xi-zi-yuan.html</id><summary type="html">&lt;div class="section" id="linux"&gt;
+&lt;h2&gt;Linux下的工作&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;IDE&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;python -- eric&lt;/p&gt;
+&lt;p&gt;perl&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; -- padre&lt;/p&gt;
+&lt;p&gt;cpp/c,&amp;nbsp; -- codeblocks, Eclips CDT, codelite, anjuta, Geany, medit as
+IDE, gedit with plugins.&lt;/p&gt;
+&lt;p&gt;C#&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp; -- mono develop&lt;/p&gt;
+&lt;p&gt;exVim&amp;nbsp;&amp;nbsp; -- Vim IDE&lt;/p&gt;
+&lt;ol class="arabic simple" start="2"&gt;
+&lt;li&gt;Libs&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;glib for c (unix, mingw).&lt;/p&gt;
+&lt;p&gt;libevent : event driven software desgin lib for C/C++&lt;/p&gt;
+&lt;p&gt;libsig++: event lib for C++&lt;/p&gt;
+&lt;ol class="arabic simple" start="3"&gt;
+&lt;li&gt;debug&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;DDD/Nemiver/Kdbg …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="linux"&gt;
 &lt;h2&gt;Linux下的工作&lt;/h2&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;IDE&lt;/li&gt;
@@ -73,7 +93,14 @@ mapple等的替代品), GNU texmacs&lt;/p&gt;
 &lt;p&gt;Linux-Unix设计思想 Linux嵌入式系统高级程序设计&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Think what programming (languages) really do ? &gt; translations.</title><link href="/think-what-programming-languages-really-do-translations.html" rel="alternate"></link><published>2011-12-27T01:53:00+08:00</published><updated>2011-12-27T01:53:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-12-27:think-what-programming-languages-really-do-translations.html</id><summary type="html">&lt;p&gt;We write programs everyday, and then compile or &amp;quot;run&amp;quot; directly,
+</content></entry><entry><title>Think what programming (languages) really do ? &gt; translations.</title><link href="/think-what-programming-languages-really-do-translations.html" rel="alternate"></link><published>2011-12-27T01:53:00+08:00</published><updated>2011-12-27T01:53:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2011-12-27:/think-what-programming-languages-really-do-translations.html</id><summary type="html">&lt;p&gt;We write programs everyday, and then compile or &amp;quot;run&amp;quot; directly,
+&lt;strong&gt;think what really programming doing&lt;/strong&gt; ?&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt; Translations.
+&lt;/pre&gt;
+&lt;p&gt;yes, a Cpp program might be 1st translated into C, and then &amp;nbsp;AS, and
+then machine code. A shell script can be &amp;quot;run&amp;quot; directly, but it need
+bash to translate. so, everything on computer …&lt;/p&gt;</summary><content type="html">&lt;p&gt;We write programs everyday, and then compile or &amp;quot;run&amp;quot; directly,
 &lt;strong&gt;think what really programming doing&lt;/strong&gt; ?&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 &amp;gt; Translations.
@@ -88,4 +115,4 @@ or Perl 6, and&lt;/p&gt;
 and then&lt;/p&gt;
 &lt;p&gt;make parrot to translate for you to html or pdf. this is crazy !&lt;/p&gt;
 &lt;p&gt;OK, I'm imaging this... &amp;nbsp;what about you ?&lt;/p&gt;
-</summary><category term="parrot"></category><category term="programming"></category></entry></feed>
+</content><category term="parrot"></category><category term="programming"></category></entry></feed>

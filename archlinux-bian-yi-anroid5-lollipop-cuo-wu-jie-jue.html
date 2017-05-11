@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>关于ｃ语言const修饰符对指针变量的修饰问题</title>
+    <title>ArchLinux 编译Anroid5 lollipop 错误解决</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="dangbinghoo">
@@ -64,7 +64,7 @@
           <div class="nav-collapse">
             <ul class="nav">
                           <li class="divider-vertical"></li>
-                  <li >
+                  <li class="active">
                     <a href="/category/embedded.html">
 						<i class="icon-folder-open icon-large"></i>Embedded
 					</a>
@@ -74,7 +74,7 @@
 						<i class="icon-folder-open icon-large"></i>Life
 					</a>
                   </li>
-                  <li class="active">
+                  <li >
                     <a href="/category/linux.html">
 						<i class="icon-folder-open icon-large"></i>Linux
 					</a>
@@ -184,8 +184,8 @@
                         <h1>
                                 <a href=""
                                         rel="bookmark"
-                                        title="Permalink to 关于ｃ语言const修饰符对指针变量的修饰问题">
-                                        关于ｃ语言const修饰符对指针变量的修饰问题
+                                        title="Permalink to ArchLinux 编译Anroid5 lollipop 错误解决">
+                                        ArchLinux 编译Anroid5 lollipop 错误解决
                                 </a>
                         </h1>
                 </header>
@@ -193,45 +193,97 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2015-04-03T09:40:00+08:00">
-        <i class="icon-calendar"></i>五 03 四月 2015
+<abbr class="published" title="2017-05-11T22:36:00+08:00">
+        <i class="icon-calendar"></i>四 11 五月 2017
 </abbr>
 <span class="label">By</span>
 <a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
 <span class="label">Category</span>
-<a href="/category/linux.html"><i class="icon-folder-open"></i>Linux</a>.
+<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
 
 
+<span class="label">Tags</span>
+	<a href="/tag/android.html"><i class="icon-tag"></i>android</a>
 </footer><!-- /.post-info -->                </div>
-                <p>在看同事的jni幻灯片的时候，看到了const 指针，就顺便聊了下，一直都觉得 带 const 修饰符的都应该
-在声明的时候赋值，声明之后，再赋值是不过语法检查的。</p>
-<p>结果发现，对于指针来说，情况并不是我想的那样。</p>
-<p>对于char *来说，const 未修饰　变量名称时候，　赋值都是在可以后面随意改动的，也就是指针可以
-重新任意赋值，但是赋值后的内存区域是不能修改的，但是若　const 是在修饰　变量名称，那么跟 普通类型变量都一样，
-需要声明的时候赋值，否则，根本过不了语法检查。</p>
-<p>代码如下：</p>
-<pre class="code c literal-block">
-<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">a</span>  <span class="o">=</span> <span class="s">&quot;xxxxxx&quot;</span><span class="p">;</span>
-    <span class="kt">char</span> <span class="k">const</span>  <span class="o">*</span><span class="n">a1</span>  <span class="o">=</span> <span class="s">&quot;xxxxxx&quot;</span><span class="p">;</span>
-    <span class="kt">char</span> <span class="o">*</span> <span class="k">const</span> <span class="n">c</span> <span class="o">=</span> <span class="s">&quot;1111111&quot;</span><span class="p">;</span>
-    <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <div class="section" id="python">
+<h2>错误1，python工具出错</h2>
+<p>错误情况如下：</p>
+<pre class="code sh literal-block">
+<span class="o">============================================</span>
+File <span class="s2">&quot;build/tools/findleaves.py&quot;</span>, line <span class="m">95</span>
+    print r
+        ^
+SyntaxError: Missing parentheses in call to <span class="s1">'print'</span>
+File <span class="s2">&quot;build/tools/findleaves.py&quot;</span>, line <span class="m">95</span>
+    print r
+        ^
+SyntaxError: Missing parentheses in call to <span class="s1">'print'</span>
+File <span class="s2">&quot;build/tools/diff_package_overlays.py&quot;</span>, line <span class="m">88</span>
+    print r
+        ^
+SyntaxError: Missing parentheses in call to <span class="s1">'print'</span>
+No private recovery resources <span class="k">for</span> TARGET_DEVICE nanopi3
+make: *** 没有规则可制作目标“out/target/common/obj/PACKAGING/public_api.txt”，由“out/target/common/obj/PACKAGING/checkpublicapi-last-timestamp” 需求。 停止。
 
-    <span class="n">a</span> <span class="o">=</span> <span class="s">&quot;aXXXXX&quot;</span><span class="p">;</span>
-    <span class="c1">//c = &quot;yyyyyy&quot;;
-</span>    <span class="o">*</span><span class="n">a1</span> <span class="o">=</span> <span class="sc">'1'</span><span class="p">;</span>
-    <span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="sc">'2'</span><span class="p">;</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;str a = %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;str a1 = %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">a1</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;str c = %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;b = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="c1">#### make failed to build some targets (6 seconds) ####
+</span>
+File <span class="s2">&quot;build/tools/merge-event-log-tags.py&quot;</span>, line <span class="m">51</span>
+    except getopt.GetoptError, err:
+                            ^
+SyntaxError: invalid syntax
+Import includes file: out/host/linux-x86/obj32/STATIC_LIBRARIES/libaapt_intermediates/import_includes
+make: *** <span class="o">[</span>build/core/Makefile:399：out/target/common/obj/all-event-log-tags.txt<span class="o">]</span> 错误 <span class="m">1</span>
 </pre>
-<p>。</p>
+<p>解决方法, 将出错的py解释器全部更换为python2，或者将python2 链接到本地目录的mybin下面，然后加这个路径到PATH变量里面。</p>
+<pre class="code sh literal-block">
+<span class="ch">#!/usr/bin/env python
+</span>----&gt;  <span class="c1">#!/usr/bin/env python2
+</span>
+or,
+
+mkdir mybin<span class="p">;</span>   ln -s /usr/bin/python2 mybin/python<span class="p">;</span> <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">DIR</span><span class="si">}</span>/mybin:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
+</pre>
+</div>
+<div class="section" id="java">
+<h2>错误2 java版本不正确</h2>
+<p>安卓5要求的java版本为1.7，而我的archlinux安装了8，报如下错误：</p>
+<pre class="code sh literal-block">
+Checking build tools versions...
+************************************************************
+You are attempting to build with the incorrect version
+of java.
+
+Your version is: openjdk version <span class="s2">&quot;1.8.0_77&quot;</span> OpenJDK Runtime Environment <span class="o">(</span>build <span class="m">1</span>.8.0_77-b03<span class="o">)</span> OpenJDK <span class="m">64</span>-Bit Server VM <span class="o">(</span>build <span class="m">25</span>.77-b03, mixed mode<span class="o">)</span>.
+The required version is: <span class="s2">&quot;1.7.x&quot;</span>
+
+Please follow the machine setup instructions at
+    https://source.android.com/source/initializing.html
+************************************************************
+build/core/main.mk:167: *** stop。 停止。
+
+<span class="c1">#### make failed to build some targets (01:02 (mm:ss)) ####</span>
+</pre>
+<p>解决方法如下，设置java为java7，并将java bin文件在PATH变量里面提前与系统的java。</p>
+<pre class="code sh literal-block">
+<span class="o">[</span>dbh&#64;playpenguin buildAndroid<span class="o">]</span>$ cat env_openjdk7.sh
+<span class="c1">#!/bin/sh
+</span>
+<span class="c1"># java options.
+</span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/java-7-openjdk
+<span class="nb">unset</span> _JAVA_OPTIONS
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/bin:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
+</pre>
+<p>如果是需要设置为java6，则如下：</p>
+<pre class="code sh literal-block">
+<span class="o">[</span>dbh&#64;playpenguin AndroidDevel<span class="o">]</span>$ cat env_all_java6.sh
+<span class="c1">#!/bin/sh
+</span>
+<span class="c1"># java options.
+</span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/java-6-jdk
+<span class="nb">unset</span> _JAVA_OPTIONS
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/bin:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
+</pre>
+</div>
 
                 </div><!-- /.entry-content -->
         </article>

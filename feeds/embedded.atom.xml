@@ -1,5 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术</title><link href="/" rel="alternate"></link><link href="/feeds/embedded.atom.xml" rel="self"></link><id>/</id><updated>2016-12-08T14:18:00+08:00</updated><entry><title>小众又新颖的GUI</title><link href="/xiao-zhong-you-xin-ying-de-gui.html" rel="alternate"></link><published>2016-12-08T14:18:00+08:00</published><updated>2016-12-08T14:18:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2016-12-08:xiao-zhong-you-xin-ying-de-gui.html</id><summary type="html">&lt;div class="section" id="id1"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术 - Embedded</title><link href="/" rel="alternate"></link><link href="/feeds/embedded.atom.xml" rel="self"></link><id>/</id><updated>2017-05-11T22:36:00+08:00</updated><entry><title>ArchLinux 编译Anroid5 lollipop 错误解决</title><link href="/archlinux-bian-yi-anroid5-lollipop-cuo-wu-jie-jue.html" rel="alternate"></link><published>2017-05-11T22:36:00+08:00</published><updated>2017-05-11T22:36:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2017-05-11:/archlinux-bian-yi-anroid5-lollipop-cuo-wu-jie-jue.html</id><summary type="html">&lt;div class="section" id="python"&gt;
+&lt;h2&gt;错误1，python工具出错&lt;/h2&gt;
+&lt;p&gt;错误情况如下：&lt;/p&gt;
+&lt;pre class="code sh literal-block"&gt;
+&lt;span class="o"&gt;============================================&lt;/span&gt;
+File &lt;span class="s2"&gt;&amp;quot;build/tools/findleaves.py&amp;quot;&lt;/span&gt;, line &lt;span class="m"&gt;95&lt;/span&gt;
+    print r
+        ^
+SyntaxError: Missing parentheses in call to &lt;span class="s1"&gt;'print'&lt;/span&gt;
+File &lt;span class="s2"&gt;&amp;quot;build/tools/findleaves.py&amp;quot;&lt;/span&gt;, line &lt;span class="m"&gt;95&lt;/span&gt;
+    print r
+        ^
+SyntaxError: Missing parentheses in call to &lt;span class="s1"&gt;'print'&lt;/span&gt;
+File &lt;span class="s2"&gt;&amp;quot;build/tools/diff_package_overlays.py&amp;quot;&lt;/span&gt;, line &lt;span class="m"&gt;88&lt;/span&gt;
+    print r
+        ^
+SyntaxError: Missing parentheses in call to …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="python"&gt;
+&lt;h2&gt;错误1，python工具出错&lt;/h2&gt;
+&lt;p&gt;错误情况如下：&lt;/p&gt;
+&lt;pre class="code sh literal-block"&gt;
+&lt;span class="o"&gt;============================================&lt;/span&gt;
+File &lt;span class="s2"&gt;&amp;quot;build/tools/findleaves.py&amp;quot;&lt;/span&gt;, line &lt;span class="m"&gt;95&lt;/span&gt;
+    print r
+        ^
+SyntaxError: Missing parentheses in call to &lt;span class="s1"&gt;'print'&lt;/span&gt;
+File &lt;span class="s2"&gt;&amp;quot;build/tools/findleaves.py&amp;quot;&lt;/span&gt;, line &lt;span class="m"&gt;95&lt;/span&gt;
+    print r
+        ^
+SyntaxError: Missing parentheses in call to &lt;span class="s1"&gt;'print'&lt;/span&gt;
+File &lt;span class="s2"&gt;&amp;quot;build/tools/diff_package_overlays.py&amp;quot;&lt;/span&gt;, line &lt;span class="m"&gt;88&lt;/span&gt;
+    print r
+        ^
+SyntaxError: Missing parentheses in call to &lt;span class="s1"&gt;'print'&lt;/span&gt;
+No private recovery resources &lt;span class="k"&gt;for&lt;/span&gt; TARGET_DEVICE nanopi3
+make: *** 没有规则可制作目标“out/target/common/obj/PACKAGING/public_api.txt”，由“out/target/common/obj/PACKAGING/checkpublicapi-last-timestamp” 需求。 停止。
+
+&lt;span class="c1"&gt;#### make failed to build some targets (6 seconds) ####
+&lt;/span&gt;
+File &lt;span class="s2"&gt;&amp;quot;build/tools/merge-event-log-tags.py&amp;quot;&lt;/span&gt;, line &lt;span class="m"&gt;51&lt;/span&gt;
+    except getopt.GetoptError, err:
+                            ^
+SyntaxError: invalid syntax
+Import includes file: out/host/linux-x86/obj32/STATIC_LIBRARIES/libaapt_intermediates/import_includes
+make: *** &lt;span class="o"&gt;[&lt;/span&gt;build/core/Makefile:399：out/target/common/obj/all-event-log-tags.txt&lt;span class="o"&gt;]&lt;/span&gt; 错误 &lt;span class="m"&gt;1&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;解决方法, 将出错的py解释器全部更换为python2，或者将python2 链接到本地目录的mybin下面，然后加这个路径到PATH变量里面。&lt;/p&gt;
+&lt;pre class="code sh literal-block"&gt;
+&lt;span class="ch"&gt;#!/usr/bin/env python
+&lt;/span&gt;----&amp;gt;  &lt;span class="c1"&gt;#!/usr/bin/env python2
+&lt;/span&gt;
+or,
+
+mkdir mybin&lt;span class="p"&gt;;&lt;/span&gt;   ln -s /usr/bin/python2 mybin/python&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;DIR&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/mybin:&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="java"&gt;
+&lt;h2&gt;错误2 java版本不正确&lt;/h2&gt;
+&lt;p&gt;安卓5要求的java版本为1.7，而我的archlinux安装了8，报如下错误：&lt;/p&gt;
+&lt;pre class="code sh literal-block"&gt;
+Checking build tools versions...
+************************************************************
+You are attempting to build with the incorrect version
+of java.
+
+Your version is: openjdk version &lt;span class="s2"&gt;&amp;quot;1.8.0_77&amp;quot;&lt;/span&gt; OpenJDK Runtime Environment &lt;span class="o"&gt;(&lt;/span&gt;build &lt;span class="m"&gt;1&lt;/span&gt;.8.0_77-b03&lt;span class="o"&gt;)&lt;/span&gt; OpenJDK &lt;span class="m"&gt;64&lt;/span&gt;-Bit Server VM &lt;span class="o"&gt;(&lt;/span&gt;build &lt;span class="m"&gt;25&lt;/span&gt;.77-b03, mixed mode&lt;span class="o"&gt;)&lt;/span&gt;.
+The required version is: &lt;span class="s2"&gt;&amp;quot;1.7.x&amp;quot;&lt;/span&gt;
+
+Please follow the machine setup instructions at
+    https://source.android.com/source/initializing.html
+************************************************************
+build/core/main.mk:167: *** stop。 停止。
+
+&lt;span class="c1"&gt;#### make failed to build some targets (01:02 (mm:ss)) ####&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;解决方法如下，设置java为java7，并将java bin文件在PATH变量里面提前与系统的java。&lt;/p&gt;
+&lt;pre class="code sh literal-block"&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;dbh&amp;#64;playpenguin buildAndroid&lt;span class="o"&gt;]&lt;/span&gt;$ cat env_openjdk7.sh
+&lt;span class="c1"&gt;#!/bin/sh
+&lt;/span&gt;
+&lt;span class="c1"&gt;# java options.
+&lt;/span&gt;&lt;span class="nv"&gt;JAVA_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/lib/jvm/java-7-openjdk
+&lt;span class="nb"&gt;unset&lt;/span&gt; _JAVA_OPTIONS
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;JAVA_HOME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/bin:&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;如果是需要设置为java6，则如下：&lt;/p&gt;
+&lt;pre class="code sh literal-block"&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;dbh&amp;#64;playpenguin AndroidDevel&lt;span class="o"&gt;]&lt;/span&gt;$ cat env_all_java6.sh
+&lt;span class="c1"&gt;#!/bin/sh
+&lt;/span&gt;
+&lt;span class="c1"&gt;# java options.
+&lt;/span&gt;&lt;span class="nv"&gt;JAVA_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/lib/jvm/java-6-jdk
+&lt;span class="nb"&gt;unset&lt;/span&gt; _JAVA_OPTIONS
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;JAVA_HOME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/bin:&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+</content><category term="android"></category></entry><entry><title>小众又新颖的GUI</title><link href="/xiao-zhong-you-xin-ying-de-gui.html" rel="alternate"></link><published>2016-12-08T14:18:00+08:00</published><updated>2016-12-08T14:18:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2016-12-08:/xiao-zhong-you-xin-ying-de-gui.html</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;小众的新GUI框架记录&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;ugfx, C语言 STM32等MCU可使用的嵌入式GUI，商业级但免费无任何版权限制，可为创客，商业等任何用途。且包含一个The µGFX-Studio GUI构建程序可用。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;网址： &lt;a class="reference external" href="http://ugfx.io/"&gt;http://ugfx.io/&lt;/a&gt;
+下载连接 &lt;a class="reference external" href="https://community.ugfx.io/index.php?/files/"&gt;https://community.ugfx.io/index.php?/files/&lt;/a&gt;&lt;/p&gt;
+&lt;ol class="arabic simple" start="2"&gt;
+&lt;li&gt;ilixi 基于DFB的C++嵌入式Linux平台GUI，完全开源 &lt;a class="reference external" href="http://www.ilixi.org/"&gt;http://www.ilixi.org/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;基于DirectFB,libsigc++等平台组件构建，看官网有个行车电脑的ui demo，API粗看了下跟WxWidget比较接近，从类列表看，3D等支持都是有的。支持buildroot构建工具，支持yocto，挺不错，值得尝试。&lt;/p&gt;
+&lt;ol class="arabic simple" start="3"&gt;
+&lt;li&gt;libui， C语言的桌面跨平台，本地UI风格的库，居然拥有10多种语言的binding了。&lt;a class="reference external" href="https://github.com/andlabs/libui"&gt;https://github.com/andlabs …&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="id1"&gt;
 &lt;h2&gt;小众的新GUI框架记录&lt;/h2&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;ugfx, C语言 STM32等MCU可使用的嵌入式GUI，商业级但免费无任何版权限制，可为创客，商业等任何用途。且包含一个The µGFX-Studio GUI构建程序可用。&lt;/li&gt;
@@ -21,7 +128,7 @@
 &lt;li&gt;FoxToolkit. 大名鼎鼎的也是，C++的ui框架，不过有了wx，这个试试的欲望就不太强了。 &lt;a class="reference external" href="http://www.fox-toolkit.org/"&gt;http://www.fox-toolkit.org/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</summary><category term="GUI"></category></entry><entry><title>安卓内核编译错误 kernel/timeconst.h defined(@val)</title><link href="/an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html" rel="alternate"></link><published>2016-05-22T22:12:00+08:00</published><updated>2016-05-22T22:12:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2016-05-22:an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html</id><summary type="html">&lt;div class="section" id="id1"&gt;
+</content><category term="GUI"></category></entry><entry><title>安卓内核编译错误 kernel/timeconst.h defined(@val)</title><link href="/an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html" rel="alternate"></link><published>2016-05-22T22:12:00+08:00</published><updated>2016-05-22T22:12:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2016-05-22:/an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html</id><summary type="html">&lt;div class="section" id="id1"&gt;
 &lt;h2&gt;错误情况&lt;/h2&gt;
 &lt;p&gt;今天编译安卓内核出现错误，&lt;/p&gt;
 &lt;pre class="code sh literal-block"&gt;
@@ -32,7 +139,22 @@ $ ./mk -k
 &lt;/span&gt;scripts/kconfig/conf --silentoldconfig Kconfig
   CHK     include/linux/version.h
   CHK     include/generated/utsrelease.h
-make&lt;span class="o"&gt;[&lt;/span&gt;1&lt;span class="o"&gt;]&lt;/span&gt;: &lt;span class="s1"&gt;'include/generated/mach-types.h'&lt;/span&gt; is up to date.
+make&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: &lt;span class="s1"&gt;'include/generated/mach-types.h'&lt;/span&gt; is up to date.
+  CALL    scripts/checksyscalls.sh
+  CHK     include/generated/compile.h
+  TIMEC   kernel/timeconst.h
+Can&lt;span class="s1"&gt;'t use '&lt;/span&gt;defined …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;错误情况&lt;/h2&gt;
+&lt;p&gt;今天编译安卓内核出现错误，&lt;/p&gt;
+&lt;pre class="code sh literal-block"&gt;
+$ ./mk -k
+&lt;span class="c1"&gt;#
+# configuration written to .config
+#
+&lt;/span&gt;scripts/kconfig/conf --silentoldconfig Kconfig
+  CHK     include/linux/version.h
+  CHK     include/generated/utsrelease.h
+make&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: &lt;span class="s1"&gt;'include/generated/mach-types.h'&lt;/span&gt; is up to date.
   CALL    scripts/checksyscalls.sh
   CHK     include/generated/compile.h
   TIMEC   kernel/timeconst.h
@@ -40,7 +162,7 @@ Can&lt;span class="s1"&gt;'t use '&lt;/span&gt;defined&lt;span class="o"&gt;(&lt
 /run/media/playpeng/Devel/AndroidDevel/Android4_4/kernel/kernel/Makefile:140: recipe for target '&lt;/span&gt;kernel/timeconst.h&lt;span class="s1"&gt;' failed
 make[1]: *** [kernel/timeconst.h] Error 255
 Makefile:948: recipe for target '&lt;/span&gt;kernel&lt;span class="err"&gt;'&lt;/span&gt; failed
-make: *** &lt;span class="o"&gt;[&lt;/span&gt;kernel&lt;span class="o"&gt;]&lt;/span&gt; Error 2
+make: *** &lt;span class="o"&gt;[&lt;/span&gt;kernel&lt;span class="o"&gt;]&lt;/span&gt; Error &lt;span class="m"&gt;2&lt;/span&gt;
 make: *** Waiting &lt;span class="k"&gt;for&lt;/span&gt; unfinished jobs....
 &lt;/pre&gt;
 &lt;/div&gt;
@@ -65,7 +187,23 @@ index eb51d76..0461239 100644
 &lt;span class="gd"&gt;--&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary><category term="android"></category></entry><entry><title>mips嵌入式linux系统构建过程</title><link href="/mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html" rel="alternate"></link><published>2012-01-11T08:18:00+08:00</published><updated>2012-01-11T08:18:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-01-11:mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html</id><summary type="html">&lt;p&gt;mips平台的嵌入式linux构建，比较简明的步骤，包括nanoRC的使用，根文件系统的制作，不包括mips工具链的制作。&lt;/p&gt;
+</content><category term="android"></category></entry><entry><title>mips嵌入式linux系统构建过程</title><link href="/mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html" rel="alternate"></link><published>2012-01-11T08:18:00+08:00</published><updated>2012-01-11T08:18:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2012-01-11:/mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html</id><summary type="html">&lt;p&gt;mips平台的嵌入式linux构建，比较简明的步骤，包括nanoRC的使用，根文件系统的制作，不包括mips工具链的制作。&lt;/p&gt;
+&lt;div class="section" id="mips"&gt;
+&lt;h2&gt;&amp;nbsp;1. mips交叉编译环境搭建&lt;/h2&gt;
+&lt;p&gt;编译环境需要选择mips-2007-01-21,从
+&amp;quot;这里&amp;quot;:&lt;a class="reference external" href="ftp://ftp.denx.de/pub"&gt;ftp://ftp.denx.de/pub&lt;/a&gt;/eldk下载光盘iso,然后解压提取出整个环境,然后安装就可以了,安装指令:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+install -d /your/toochain/path
+&lt;/pre&gt;
+&lt;p&gt;然后设置path环境变量.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+export PATH=/your/toochain/path/usr/bin:${PATH}
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+对于gentoo 系统,可以
+
+&amp;nbsp; &amp;nbsp;  $ cat &amp;gt; /etc/env.d/50mipstoolchain &amp;lt;&amp;lt; &amp;quot;EOF&amp;quot;
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;PATH=&amp;quot;/media/workspace/tools/eldk-mips-x.x/usr/bin …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;mips平台的嵌入式linux构建，比较简明的步骤，包括nanoRC的使用，根文件系统的制作，不包括mips工具链的制作。&lt;/p&gt;
 &lt;div class="section" id="mips"&gt;
 &lt;h2&gt;&amp;nbsp;1. mips交叉编译环境搭建&lt;/h2&gt;
 &lt;p&gt;编译环境需要选择mips-2007-01-21,从
@@ -306,7 +444,15 @@ Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(2,0)
 &lt;p&gt;如果一切顺利，那么你应该可以得到一个支持login的系统了&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary><category term="embedded"></category><category term="Linux"></category><category term="mips"></category></entry><entry><title>[原创]OpenEmbedded 中文手册</title><link href="/yuan-chuang-openembedded-zhong-wen-shou-ce.html" rel="alternate"></link><published>2011-12-22T01:41:00+08:00</published><updated>2011-12-22T01:41:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-12-22:yuan-chuang-openembedded-zhong-wen-shou-ce.html</id><summary type="html">&lt;div&gt;&lt;p&gt;8.11 打包:定义包类及其内容&lt;/p&gt;
+</content><category term="embedded"></category><category term="Linux"></category><category term="mips"></category></entry><entry><title>[原创]OpenEmbedded 中文手册</title><link href="/yuan-chuang-openembedded-zhong-wen-shou-ce.html" rel="alternate"></link><published>2011-12-22T01:41:00+08:00</published><updated>2011-12-22T01:41:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2011-12-22:/yuan-chuang-openembedded-zhong-wen-shou-ce.html</id><summary type="html">&lt;div&gt;&lt;p&gt;8.11 打包:定义包类及其内容&lt;/p&gt;
+&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;一个bitbake&amp;quot;配方&amp;quot;就是一组创建一个或者多个在目标设备上安装的包的命令集合.典型的包就是&lt;/p&gt;
+&lt;/div&gt;&lt;div&gt;&lt;p&gt;.ipkg或者.deb包(尽管bitbake本身并没有跟任何特殊的包格式相关联).&lt;/p&gt;
+&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;默认情况下会自动生成一些包,这些包并没有包含任何&amp;quot;配方&amp;quot;作者要求的特定动作.上面的helloworld&lt;/p&gt;
+&lt;/div&gt;&lt;div&gt;&lt;p&gt;例子的包输出信息就说明了这些:&lt;/p&gt;
+&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;[NOTE: package helloworld-0.1-r0: task do_package_write: started&lt;/p&gt;
+&lt;/div&gt;&lt;div&gt;&lt;p&gt;NOTE: Not creating empty archive for helloworld-dbg-0.1-r0&lt;/p&gt;
+&lt;/div&gt;&lt;div&gt;&lt;p&gt;Packaged contents of helloworld into
+/home/lenehan/devel/oe/build/titan-glibc-25/tmp/deploy/ipk/sh4/helloworld_0.1-r0_sh4.ipk …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div&gt;&lt;p&gt;8.11 打包:定义包类及其内容&lt;/p&gt;
 &lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;一个bitbake&amp;quot;配方&amp;quot;就是一组创建一个或者多个在目标设备上安装的包的命令集合.典型的包就是&lt;/p&gt;
 &lt;/div&gt;&lt;div&gt;&lt;p&gt;.ipkg或者.deb包(尽管bitbake本身并没有跟任何特殊的包格式相关联).&lt;/p&gt;
 &lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;默认情况下会自动生成一些包,这些包并没有包含任何&amp;quot;配方&amp;quot;作者要求的特定动作.上面的helloworld&lt;/p&gt;
@@ -890,7 +1036,48 @@ them from&lt;/p&gt;
 &lt;/div&gt;&lt;div&gt;&lt;p&gt;8.27.3.摘要&lt;/p&gt;
 &lt;/div&gt;&lt;div&gt;&lt;p&gt;8.28其他杂项&lt;/p&gt;
 &lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;剩余章节翻译中。。。。。。。。。&lt;/p&gt;
-&lt;/div&gt;&lt;div&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="OE中文"></category><category term="OpenEmbedded"></category></entry><entry><title>[原创]OpenEmbedded 中文手册-第一部分</title><link href="/yuan-chuang-openembedded-zhong-wen-shou-ce-di-yi-bu-fen.html" rel="alternate"></link><published>2011-12-22T01:39:00+08:00</published><updated>2011-12-22T01:39:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-12-22:yuan-chuang-openembedded-zhong-wen-shou-ce-di-yi-bu-fen.html</id><summary type="html">&lt;div align="center"&gt;&lt;p&gt;声&amp;nbsp;&amp;nbsp; 明：&lt;/p&gt;
+&lt;/div&gt;&lt;div&gt;&lt;/div&gt;</content><category term="Linux"></category><category term="OE中文"></category><category term="OpenEmbedded"></category></entry><entry><title>[原创]OpenEmbedded 中文手册-第一部分</title><link href="/yuan-chuang-openembedded-zhong-wen-shou-ce-di-yi-bu-fen.html" rel="alternate"></link><published>2011-12-22T01:39:00+08:00</published><updated>2011-12-22T01:39:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2011-12-22:/yuan-chuang-openembedded-zhong-wen-shou-ce-di-yi-bu-fen.html</id><summary type="html">&lt;div align="center"&gt;&lt;p&gt;声&amp;nbsp;&amp;nbsp; 明：&lt;/p&gt;
+&lt;/div&gt;&lt;div style="text-align: justify;"&gt;&lt;p&gt;本文章为openembedded英文手册的中文翻译版。手册版权归OE所有。本文档只供技术和学习交流之用，不得用于商业用途，使用本文档如造成损失,译者一概不负任何责任。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;转载请注明出处和作者！&lt;/p&gt;
+&lt;p&gt;作者: &lt;a class="reference external" href="mailto:dangbinghoo&amp;#64;gmail.com"&gt;dangbinghoo&amp;#64;gmail.com&lt;/a&gt;&lt;/p&gt;
+&lt;div style="text-align: right;"&gt;&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;特此声明!&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;更新日志：&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;2008年12月03日 改正笔误&lt;/div&gt;
+&lt;div class="line"&gt;2008年12月21日 更新到8.11&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div&gt;&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;2010年07月28日&amp;nbsp;更新到8.12&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;第一章 .简介&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;本章内容&lt;/div&gt;
+&lt;div class="line"&gt;*预览&lt;/div&gt;
+&lt;div class="line"&gt;*历史回顾&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;1.1 预览&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;oe bitbake像所有的build工具一样（比如make，ant，jam）控制如何去构建系统并且解决构建依赖，但是&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line"&gt;不像那些功能单一的工程管理工具（比如make），bitbake不是基于把依赖写死了的makefile，而是&lt;/div&gt;
+&lt;div class="line"&gt;收集和管理大量之间没有依赖关系的描述文件（这里我们称为包的配方），然后自动按照正确的顺序进行&lt;/div&gt;
+&lt;div class="line"&gt;构建。（包的配方下文除非特殊说明都将简称为“配方”；oe都代表OpenEmbedded）&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;更确切的说 …&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div align="center"&gt;&lt;p&gt;声&amp;nbsp;&amp;nbsp; 明：&lt;/p&gt;
 &lt;/div&gt;&lt;div style="text-align: justify;"&gt;&lt;p&gt;本文章为openembedded英文手册的中文翻译版。手册版权归OE所有。本文档只供技术和学习交流之用，不得用于商业用途，使用本文档如造成损失,译者一概不负任何责任。&lt;/p&gt;
 &lt;/div&gt;&lt;p&gt;转载请注明出处和作者！&lt;/p&gt;
 &lt;p&gt;作者: &lt;a class="reference external" href="mailto:dangbinghoo&amp;#64;gmail.com"&gt;dangbinghoo&amp;#64;gmail.com&lt;/a&gt;&lt;/p&gt;
@@ -3701,7 +3888,29 @@ shell），这里面有很多命令（使用help查看）。&lt;/p&gt;
 &lt;/div&gt;
 &lt;/p&gt;&lt;div&gt;&lt;p&gt;续: OpenEmbedded 中文手册 &amp;lt;二&amp;gt;&lt;/p&gt;
 &lt;/div&gt;&lt;p&gt;&lt;a class="reference external" href="http://blog.chinaunix.net/u1/52172/showart_2284360.html"&gt;http://www.playpenguin.net/?p=81&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;</summary><category term="Linux"></category><category term="OE中文"></category><category term="OpenEmbedded"></category></entry><entry><title>--host --build --target到底什么意思？</title><link href="/-host-build-targetdao-di-shi-yao-yi-si.html" rel="alternate"></link><published>2011-11-25T16:04:00+08:00</published><updated>2011-11-25T16:04:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-11-25:-host-build-targetdao-di-shi-yao-yi-si.html</id><summary type="html">&lt;p&gt;老是在做交叉编译，其实有时候对这三个东西的理解并不是那么清楚&lt;/p&gt;
+&lt;/div&gt;</content><category term="Linux"></category><category term="OE中文"></category><category term="OpenEmbedded"></category></entry><entry><title>--host --build --target到底什么意思？</title><link href="/-host-build-targetdao-di-shi-yao-yi-si.html" rel="alternate"></link><published>2011-11-25T16:04:00+08:00</published><updated>2011-11-25T16:04:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2011-11-25:/-host-build-targetdao-di-shi-yao-yi-si.html</id><summary type="html">&lt;p&gt;老是在做交叉编译，其实有时候对这三个东西的理解并不是那么清楚&lt;/p&gt;
+&lt;p&gt;从交叉工具链的情况来看，可以总结如下&lt;/p&gt;
+&lt;p&gt;--build= 谁在这里编译？ 意思说你目前的编译动作在哪里跑的 ？
+如果是编译一个arm工具链，虽然工具链为为arm弄的，但是构建工具链的时候是在主机上进行的。所以
+--build=i686-pc-linux-gnu&lt;/p&gt;
+&lt;p&gt;--host= 目前编译出来的程序在哪里跑 ？
+所以工具链好了之后，给目标系统编译程序全部是设置host为arm的。&lt;/p&gt;
+&lt;p&gt;--target=为谁编译程序，这在交叉编译的时候跟host一个意思，一般是guess的，而且configure
+脚本会说是 =--host.&lt;/p&gt;
+&lt;p&gt;通常我们编译复杂的情况就是交叉编译了，据说还有一种很复杂的情况，三个平台：&lt;/p&gt;
+&lt;p&gt;比较，我现在在 i686机器上，想编译一个在
+ppc上运行的交叉工具链，然后这个交叉工具链为arm生产程序，这个就算比较复杂了。&lt;/p&gt;
+&lt;p&gt;应该是binutils，gcc，libc的时候这个三个--要很谨慎的设置了。&lt;/p&gt;
+&lt;p&gt;可能是&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;--build=i686-pc-linux-gnu&lt;/li&gt;
+&lt;li&gt;--host=ppc-xxx&lt;/li&gt;
+&lt;li&gt;--target=arm-xxx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;没有实验过，可以改天实验下，学习下。&lt;/p&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;续：三平台交叉编译实验&lt;/h2&gt;
+&lt;p&gt;对binutils源码解压 …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;老是在做交叉编译，其实有时候对这三个东西的理解并不是那么清楚&lt;/p&gt;
 &lt;p&gt;从交叉工具链的情况来看，可以总结如下&lt;/p&gt;
 &lt;p&gt;--build= 谁在这里编译？ 意思说你目前的编译动作在哪里跑的 ？
 如果是编译一个arm工具链，虽然工具链为为arm弄的，但是构建工具链的时候是在主机上进行的。所以
@@ -3743,7 +3952,23 @@ ppc上运行的交叉工具链，然后这个交叉工具链为arm生产程序�
 来调用合适的gcc来做事情，可以看出来，在三个平台的时候，--build平台是跑编译脚本或者说make的，会调用
 host的编译器，而且显而易见的是 host指定的一定是个交叉编译器。&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="交叉编译"></category></entry><entry><title>关于工具链的编译uclibc/gcc</title><link href="/guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html" rel="alternate"></link><published>2011-11-23T15:12:00+08:00</published><updated>2011-11-23T15:12:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-11-23:guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html</id><summary type="html">&lt;p&gt;使用之前弄的脚本编译工具链其实还是比较轻松的，脚本也是比较稳定的，不过重点在于配置上，包括target名称的选择，uclibc的配置&lt;/p&gt;
+</content><category term="交叉编译"></category></entry><entry><title>关于工具链的编译uclibc/gcc</title><link href="/guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html" rel="alternate"></link><published>2011-11-23T15:12:00+08:00</published><updated>2011-11-23T15:12:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2011-11-23:/guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html</id><summary type="html">&lt;p&gt;使用之前弄的脚本编译工具链其实还是比较轻松的，脚本也是比较稳定的，不过重点在于配置上，包括target名称的选择，uclibc的配置&lt;/p&gt;
+&lt;p&gt;一直困扰的nfs挂载不正常的问题最终发现还是uclibc配置不对，另外，对于thread的支持，一般需要使用nptl，然后如果要用gdb的话，gdbserver的编译必须要在uclibc里面启用thread
+debug，要不然会缺少东西：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;pre class="literal-block"&gt;
+#error No uintptr_t available; your C library is too old.
+&lt;/pre&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;接着还会说thread_db.h 造成的某结构体的成员th不存在。&lt;/p&gt;
+&lt;p&gt;新的uclibc
+0.9.32编译时需要链接libgcc_eh库文件，这个库文件在static阶段是不编译的，如果要让编译，需要硬性打patch实现。&lt;/p&gt;
+&lt;p&gt;这里贴一个正确的uclibc配置&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+#
+# Automatically generated make config: don't edit
+# Version: 0.9.32
+# Wed Nov 23 14:53:07 …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;使用之前弄的脚本编译工具链其实还是比较轻松的，脚本也是比较稳定的，不过重点在于配置上，包括target名称的选择，uclibc的配置&lt;/p&gt;
 &lt;p&gt;一直困扰的nfs挂载不正常的问题最终发现还是uclibc配置不对，另外，对于thread的支持，一般需要使用nptl，然后如果要用gdb的话，gdbserver的编译必须要在uclibc里面启用thread
 debug，要不然会缺少东西：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -4020,4 +4245,4 @@ EXTRA_WARNINGS=y
 # DOMULTI is not set
 # UCLIBC_MJN3_ONLY is not set
 &lt;/pre&gt;
-</summary><category term="工具链"></category></entry></feed>
+</content><category term="工具链"></category></entry></feed>

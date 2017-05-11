@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术</title><link href="/" rel="alternate"></link><link href="/feeds/linux.atom.xml" rel="self"></link><id>/</id><updated>2016-05-20T14:04:00+08:00</updated><entry><title>关于ｃ语言位域的字节对齐问题</title><link href="/guan-yu-cyu-yan-wei-yu-de-zi-jie-dui-qi-wen-ti.html" rel="alternate"></link><published>2016-05-20T14:04:00+08:00</published><updated>2016-05-20T14:04:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2016-05-20:guan-yu-cyu-yan-wei-yu-de-zi-jie-dui-qi-wen-ti.html</id><summary type="html">&lt;p&gt;最近在STM32F4上面进行嵌入式开发，需要做通讯，报文规定的字段并不以字节为最小单位，好多2,3位的长度元素
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PlayPenguin.Tech-花花企鹅.技术 - Linux</title><link href="/" rel="alternate"></link><link href="/feeds/linux.atom.xml" rel="self"></link><id>/</id><updated>2016-05-20T14:04:00+08:00</updated><entry><title>关于ｃ语言位域的字节对齐问题</title><link href="/guan-yu-cyu-yan-wei-yu-de-zi-jie-dui-qi-wen-ti.html" rel="alternate"></link><published>2016-05-20T14:04:00+08:00</published><updated>2016-05-20T14:04:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2016-05-20:/guan-yu-cyu-yan-wei-yu-de-zi-jie-dui-qi-wen-ti.html</id><summary type="html">&lt;p&gt;最近在STM32F4上面进行嵌入式开发，需要做通讯，报文规定的字段并不以字节为最小单位，好多2,3位的长度元素
+对于C语言，我们一般用位域来解决。&lt;/p&gt;
+&lt;p&gt;可是，C教科书上给我们讲的位域不占用很多空间的前提没有讲述清楚，经查证，默认情况下C语言并没有规定统一
+的字节对齐策略，导致用sizeof计算结构大小的时候结果在不同的平台上结果五花八门。下面代码的结构体，按理是
+4个字节，结果默认情况下gcc计算结果为6。&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;网络资料显示需要对结构体加pack属性， 这下GCC是对了，但是在win平台下面的MinGW结构居然是5&lt;/dt&gt;
+&lt;dd&gt;???&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;玩我呢？ 后面搜索MinGW 位域对齐问题，发现MinGW并不像我想象的就是GCC，跟linux平台和cygwin并不完全相同，
+至少这个地方表现跟VC++平台一致。&lt;/p&gt;
+&lt;p&gt;好了，用pragma来指定按字节对齐的方式，按1字节对齐，这样位域才能正确。&lt;/p&gt;
+&lt;p&gt;代码如下：&lt;/p&gt;
+&lt;pre class="code c literal-block"&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;QCoreApplication&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdint.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;
+&lt;span class="cp"&gt;#if defined WIN32 || defined _WIN64 || defined WINNT
+&lt;/span&gt;    &lt;span class="cp"&gt;#pragma pack(push,1)
+#endif
+&lt;/span&gt;
+&lt;span class="k"&gt;struct …&lt;/span&gt;&lt;/pre&gt;</summary><content type="html">&lt;p&gt;最近在STM32F4上面进行嵌入式开发，需要做通讯，报文规定的字段并不以字节为最小单位，好多2,3位的长度元素
 对于C语言，我们一般用位域来解决。&lt;/p&gt;
 &lt;p&gt;可是，C教科书上给我们讲的位域不占用很多空间的前提没有讲述清楚，经查证，默认情况下C语言并没有规定统一
 的字节对齐策略，导致用sizeof计算结构大小的时候结果在不同的平台上结果五花八门。下面代码的结构体，按理是
@@ -116,7 +138,20 @@
 &lt;p&gt;-fpack-struct[=N] 设定对齐方式为N字节对齐，不带”=N“时默认为4字节对齐。
 -mno-ms-bitfields 关闭MS对齐策略，使用GCC对齐策略。&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="bitfield"></category><category term="位域"></category><category term="C"></category><category term="GCC"></category></entry><entry><title>关于ｃ语言const修饰符对指针变量的修饰问题</title><link href="/guan-yu-cyu-yan-constxiu-shi-fu-dui-zhi-zhen-bian-liang-de-xiu-shi-wen-ti.html" rel="alternate"></link><published>2015-04-03T09:40:00+08:00</published><updated>2015-04-03T09:40:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2015-04-03:guan-yu-cyu-yan-constxiu-shi-fu-dui-zhi-zhen-bian-liang-de-xiu-shi-wen-ti.html</id><summary type="html">&lt;p&gt;在看同事的jni幻灯片的时候，看到了const 指针，就顺便聊了下，一直都觉得 带 const 修饰符的都应该
+</content><category term="bitfield"></category><category term="位域"></category><category term="C"></category><category term="GCC"></category></entry><entry><title>关于ｃ语言const修饰符对指针变量的修饰问题</title><link href="/guan-yu-cyu-yan-constxiu-shi-fu-dui-zhi-zhen-bian-liang-de-xiu-shi-wen-ti.html" rel="alternate"></link><published>2015-04-03T09:40:00+08:00</published><updated>2015-04-03T09:40:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2015-04-03:/guan-yu-cyu-yan-constxiu-shi-fu-dui-zhi-zhen-bian-liang-de-xiu-shi-wen-ti.html</id><summary type="html">&lt;p&gt;在看同事的jni幻灯片的时候，看到了const 指针，就顺便聊了下，一直都觉得 带 const 修饰符的都应该
+在声明的时候赋值，声明之后，再赋值是不过语法检查的。&lt;/p&gt;
+&lt;p&gt;结果发现，对于指针来说，情况并不是我想的那样。&lt;/p&gt;
+&lt;p&gt;对于char *来说，const 未修饰　变量名称时候，　赋值都是在可以后面随意改动的，也就是指针可以
+重新任意赋值，但是赋值后的内存区域是不能修改的，但是若　const 是在修饰　变量名称，那么跟 普通类型变量都一样，
+需要声明的时候赋值，否则，根本过不了语法检查。&lt;/p&gt;
+&lt;p&gt;代码如下：&lt;/p&gt;
+&lt;pre class="code c literal-block"&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;xxxxxx&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;a1&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;xxxxxx&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;1111111 …&lt;/span&gt;&lt;/pre&gt;</summary><content type="html">&lt;p&gt;在看同事的jni幻灯片的时候，看到了const 指针，就顺便聊了下，一直都觉得 带 const 修饰符的都应该
 在声明的时候赋值，声明之后，再赋值是不过语法检查的。&lt;/p&gt;
 &lt;p&gt;结果发现，对于指针来说，情况并不是我想的那样。&lt;/p&gt;
 &lt;p&gt;对于char *来说，const 未修饰　变量名称时候，　赋值都是在可以后面随意改动的，也就是指针可以
@@ -145,7 +180,22 @@
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;。&lt;/p&gt;
-</summary></entry><entry><title>关于 C语言 里的 反射或者内省 的讨论</title><link href="/guan-yu-cyu-yan-li-de-fan-she-huo-zhe-nei-sheng-de-tao-lun.html" rel="alternate"></link><published>2012-12-18T12:28:00+08:00</published><updated>2012-12-18T12:28:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-12-18:guan-yu-cyu-yan-li-de-fan-she-huo-zhe-nei-sheng-de-tao-lun.html</id><summary type="html">&lt;p&gt;在语言里面， 根据class名字能够知道其成员的 功能叫做
+</content></entry><entry><title>关于 C语言 里的 反射或者内省 的讨论</title><link href="/guan-yu-cyu-yan-li-de-fan-she-huo-zhe-nei-sheng-de-tao-lun.html" rel="alternate"></link><published>2012-12-18T12:28:00+08:00</published><updated>2012-12-18T12:28:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2012-12-18:/guan-yu-cyu-yan-li-de-fan-she-huo-zhe-nei-sheng-de-tao-lun.html</id><summary type="html">&lt;p&gt;在语言里面， 根据class名字能够知道其成员的 功能叫做
+内省c语言有没有这个功能.&lt;/p&gt;
+&lt;p&gt;可以想到的办法是
+通过宏，你在定义一个结构体的时候，同时生成了一个数据结构存放了这个class的成员名称，
+同时， 得到成员的类型， 比如&amp;nbsp; struct {int a, float b};&lt;/p&gt;
+&lt;p&gt;通过例子里面的宏可以得到&amp;nbsp; int a, float b, 这样的字符串的&lt;/p&gt;
+&lt;p&gt;这个其实已经解决了上次你做 sql数据库函数时想要的功能&lt;/p&gt;
+&lt;p&gt;对了&amp;nbsp; 今天开会研究nvram的意思就是以后我就不用写那个数据库的东西了？&lt;/p&gt;
+&lt;p&gt;如果 再得到成员列表字串的时候把类型分立出来， 然后你可以用 &amp;quot;int&amp;quot;,
+sizeof(int); &amp;quot;int&amp;quot;, sizeof(float); 这样的东西再做映射，
+然后得到一个结构体类型的时候， 即便只有一个指向
+class的指针，我们也有办法 把里面的成员一个一个取出来&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;这样， 对于数据库这样，你每次存的数据结构不同，但是query，什么的这些操作相同的这些操作，完全可以只写一个组函数方法就够了，而不用每&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;基本上可以达到 动态语言里面的 …&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;在语言里面， 根据class名字能够知道其成员的 功能叫做
 内省c语言有没有这个功能.&lt;/p&gt;
 &lt;p&gt;可以想到的办法是
 通过宏，你在定义一个结构体的时候，同时生成了一个数据结构存放了这个class的成员名称，
@@ -321,7 +371,27 @@ float, char, char *} ,&amp;nbsp; 这样的信息&lt;/p&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;
-</summary></entry><entry><title>学习unix路之愚见</title><link href="/xue-xi-unixlu-zhi-yu-jian.html" rel="alternate"></link><published>2012-11-27T03:03:00+08:00</published><updated>2012-11-27T03:03:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-11-27:xue-xi-unixlu-zhi-yu-jian.html</id><summary type="html">&lt;div class="section" id="id1"&gt;
+</content></entry><entry><title>学习unix路之愚见</title><link href="/xue-xi-unixlu-zhi-yu-jian.html" rel="alternate"></link><published>2012-11-27T03:03:00+08:00</published><updated>2012-11-27T03:03:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2012-11-27:/xue-xi-unixlu-zhi-yu-jian.html</id><summary type="html">&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;前言&lt;/h2&gt;
+&lt;p&gt;这段时间公司安排带领新人，
+加上公司上层软件开发者的一些做事方法和思想我不是很赞同，
+深感团队里人的重要性， 以前只是觉得技术和人都不大是问题，
+可能机遇才是最难的事情， 但是现在看来，天时地利人和中最怕的是人和了，
+一个团队做一件产品，两三年之后还拿不出东西来，做出来的东西如同大学的课程设计，只是一些能工作的代码的组合，界面使用上出现的逻辑以及错误提示达到了令所有常人难以理解的地步，以前真没有这种体会，所以才深感可怕。
+这里我并不想对代码层次， 面向对象， 抽象，
+以及做C的人根本不懂面向对象这些话题进行口舌，只是结合自己的学习路程，
+从单片机硬件到单片机软件，C语言的编程，再到嵌入式linux系统的理解（bootloader到内核以及shell和应用），和python和cpp这样的语言的使用感受来说下我的思维观点：
+因为团队很多人并不觉得软件开发都是一回事这种观点，
+抽象或者说人的整个做事情思维方式差异太大。&lt;/p&gt;
+&lt;p&gt;以下是我对新人的学习建议，这里摘录出来，其中基本也是我的思路和思维方式，其实个人愚见：
+你见的多了，自然觉得都是一个道理了，大道至简，简单就是美，联系实际生活人的认知和解决问题的方法是如此之统一和简单，
+要不然怎么会有哲学的产生？&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;h2&gt;怎么走unix之路？&lt;/h2&gt;
+&lt;p&gt;作为unix/linux程序员（有可能被逼的，但是已经是了），
+并且作为嵌入式程序员，基本的要求是C语言要掌握，并且能够很轻松的给人说明白什么是指针，什么是一板一眼的做事情（或者写程序的方法），面向对象是一个
+很好的方法，不过面向对象的本质很少有人能够真正明白 …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="id1"&gt;
 &lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;这段时间公司安排带领新人，
 加上公司上层软件开发者的一些做事方法和思想我不是很赞同，
@@ -510,7 +580,24 @@ c就不能面向对象了？ linux是c面向对象最好最好的典范了！&lt
 &lt;p&gt;其实，个人愚见：
 &lt;strong&gt;不管做什么事情&lt;/strong&gt;，&lt;strong&gt;人是逻辑思维动物&lt;/strong&gt;，&lt;strong&gt;有条理的做事风格是很关键的&lt;/strong&gt;。&lt;/p&gt;
 &lt;/div&gt;&lt;/div&gt;
-</summary></entry><entry><title>linux flash插件等程序声音不正常的原因： 笔记本多个声卡， 需要配置</title><link href="/linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html" rel="alternate"></link><published>2012-06-17T13:00:00+08:00</published><updated>2012-06-17T13:00:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-06-17:linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html</id><summary type="html">&lt;p&gt;前段实际系统是Arch linux，
+</content></entry><entry><title>linux flash插件等程序声音不正常的原因： 笔记本多个声卡， 需要配置</title><link href="/linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html" rel="alternate"></link><published>2012-06-17T13:00:00+08:00</published><updated>2012-06-17T13:00:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2012-06-17:/linux-flashcha-jian-deng-cheng-xu-sheng-yin-bu-zheng-chang-de-yuan-yin-bi-ji-ben-duo-ge-sheng-qia-xu-yao-pei-zhi.html</id><summary type="html">&lt;p&gt;前段实际系统是Arch linux，
+当时什么程序都能放出声音来就是flash不行，一直无声状态， 始终没有搞定。&lt;/p&gt;
+&lt;p&gt;这几天因为做嵌入式的原因，系统换成了Funtoo， 个人感觉就是改进了Gentoo 的
+emerge --sync 吧， 其他的还不怎么明显， 也没体会到，感觉根Gentoo无异了，
+不过系统装起来， 声音还是不正常， 播放mplayer说&lt;/p&gt;
+&lt;p&gt;alsa-lib: pcm_dmix.c:1018:(snd_pcm_dmix_open) unable to open slave&lt;/p&gt;
+&lt;p&gt;Google之发现是因为系统多个声卡， 没有配置的情况下会选择0,
+alsamixer里面我的声卡也是两个， 第一个是什么hdmi的声卡， 哎，
+感觉无奈，这个东东有用么， 不过还是自己水平低，
+真正的声卡处于第二个位置， 突然想到这也是flash无声的缘故了吧， 随即编辑
+.asoundrc 或者 /etc/asound.conf&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+pcm.!default {
+    type hw
+    card 1
+}
+
+ctl …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;前段实际系统是Arch linux，
 当时什么程序都能放出声音来就是flash不行，一直无声状态， 始终没有搞定。&lt;/p&gt;
 &lt;p&gt;这几天因为做嵌入式的原因，系统换成了Funtoo， 个人感觉就是改进了Gentoo 的
 emerge --sync 吧， 其他的还不怎么明显， 也没体会到，感觉根Gentoo无异了，
@@ -534,7 +621,7 @@ ctl.!default {
 &lt;/pre&gt;
 &lt;p&gt;立马试验果真mplayer和flash都有声音了。&lt;/p&gt;
 &lt;p&gt;突然觉得很久时间没有做LFS，用Gentoo，linux水平降低太多了。&lt;/p&gt;
-</summary><category term="asound.rc"></category></entry><entry><title>使用ostinato做网络开发分析辅助工具</title><link href="/shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html" rel="alternate"></link><published>2012-04-24T06:46:00+08:00</published><updated>2012-04-24T06:46:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-04-24:shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html</id><summary type="html">&lt;p&gt;最近参与公司一个项目, 需要在L2工作, 封包是经常的事情,之前一直用N2X,
+</content><category term="asound.rc"></category></entry><entry><title>使用ostinato做网络开发分析辅助工具</title><link href="/shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html" rel="alternate"></link><published>2012-04-24T06:46:00+08:00</published><updated>2012-04-24T06:46:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2012-04-24:/shi-yong-ostinatozuo-wang-luo-kai-fa-fen-xi-fu-zhu-gong-ju.html</id><summary type="html">&lt;p&gt;最近参与公司一个项目, 需要在L2工作, 封包是经常的事情,之前一直用N2X,
 需要排队, 后面搜索网络发现了ostinato工具， 虽然还在成长中,
 但是已经非常强大够用了.&lt;/p&gt;
 &lt;p&gt;特淘宝淘了个双口的千兆网卡, 拿回来装起, 先跑server drone程序,
@@ -544,7 +631,26 @@ ctl.!default {
 另外发现intel的网卡芯片才支持vlan, 可以抓到带vlan标签的包,
 正好淘的网卡是intel的服务器专用卡, 不错!,&lt;/p&gt;
 &lt;p&gt;这里记下, 有用的同学可以参考下.&lt;/p&gt;
-</summary><category term="ostinato"></category></entry><entry><title>acer aspire 4560G A6 apu notebook arch linux installation tips</title><link href="/acer-aspire-4560g-a6-apu-notebook-arch-linux-installation-tips.html" rel="alternate"></link><published>2012-04-18T15:54:00+08:00</published><updated>2012-04-18T15:54:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-04-18:acer-aspire-4560g-a6-apu-notebook-arch-linux-installation-tips.html</id><summary type="html">&lt;p&gt;arch linux or gentoo linux installtion on Acer aspire 4560G will always
+</summary><content type="html">&lt;p&gt;最近参与公司一个项目, 需要在L2工作, 封包是经常的事情,之前一直用N2X,
+需要排队, 后面搜索网络发现了ostinato工具， 虽然还在成长中,
+但是已经非常强大够用了.&lt;/p&gt;
+&lt;p&gt;特淘宝淘了个双口的千兆网卡, 拿回来装起, 先跑server drone程序,
+然后开ostinato客户端, 计算机上的eth0,1,2均认的出来,
+然后drone跑对了之后就port group可用了, 点击eth,
+新建stream里面就可以选择L2, Vlan等选项, 非常强大，
+另外发现intel的网卡芯片才支持vlan, 可以抓到带vlan标签的包,
+正好淘的网卡是intel的服务器专用卡, 不错!,&lt;/p&gt;
+&lt;p&gt;这里记下, 有用的同学可以参考下.&lt;/p&gt;
+</content><category term="ostinato"></category></entry><entry><title>acer aspire 4560G A6 apu notebook arch linux installation tips</title><link href="/acer-aspire-4560g-a6-apu-notebook-arch-linux-installation-tips.html" rel="alternate"></link><published>2012-04-18T15:54:00+08:00</published><updated>2012-04-18T15:54:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2012-04-18:/acer-aspire-4560g-a6-apu-notebook-arch-linux-installation-tips.html</id><summary type="html">&lt;p&gt;arch linux or gentoo linux installtion on Acer aspire 4560G will always
+have troubles.&lt;/p&gt;
+&lt;div class="section" id="the-video-driver-just-note"&gt;
+&lt;h2&gt;the video driver. JUST &lt;strong&gt;NOTE&lt;/strong&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;amd catalyst driver will not works at all, I tired 1 year before, it
+failed. and failed again today.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So, you only need the opensource driver xf86-video-ati and use radeon
+only …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;arch linux or gentoo linux installtion on Acer aspire 4560G will always
 have troubles.&lt;/p&gt;
 &lt;div class="section" id="the-video-driver-just-note"&gt;
 &lt;h2&gt;the video driver. JUST &lt;strong&gt;NOTE&lt;/strong&gt;&lt;/h2&gt;
@@ -582,7 +688,32 @@ sudo modprobe wl
 &lt;h2&gt;audio card:&lt;/h2&gt;
 &lt;p&gt;blacklist snd_hda_codec_hdmi&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="4560g"></category><category term="acer"></category><category term="Linux"></category></entry><entry><title>如何恢复mysql inno db 损毁的数据库表内容 ?</title><link href="/ru-he-hui-fu-mysql-inno-db-sun-hui-de-shu-ju-ku-biao-nei-rong.html" rel="alternate"></link><published>2012-03-31T09:01:00+08:00</published><updated>2012-03-31T09:01:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-03-31:ru-he-hui-fu-mysql-inno-db-sun-hui-de-shu-ju-ku-biao-nei-rong.html</id><summary type="html">&lt;p&gt;一次机器的强制关机,导致了服务器mysql数据库启动失败,
+</content><category term="4560g"></category><category term="acer"></category><category term="Linux"></category></entry><entry><title>如何恢复mysql inno db 损毁的数据库表内容 ?</title><link href="/ru-he-hui-fu-mysql-inno-db-sun-hui-de-shu-ju-ku-biao-nei-rong.html" rel="alternate"></link><published>2012-03-31T09:01:00+08:00</published><updated>2012-03-31T09:01:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2012-03-31:/ru-he-hui-fu-mysql-inno-db-sun-hui-de-shu-ju-ku-biao-nei-rong.html</id><summary type="html">&lt;p&gt;一次机器的强制关机,导致了服务器mysql数据库启动失败,
+说是数据库因为关机问题,数据写入不正常, 无法启动,
+使用mysql的数据库恢复功能没能成功&lt;/p&gt;
+&lt;p&gt;因为自己当时不知道数据库自己恢复的条件,只拷贝备份了数据库目录,
+并没有备份idb和idb的log1,log2两个文件,所以自动恢复没法进行,基本上是数据&lt;/p&gt;
+&lt;p&gt;已经丢失了&lt;/p&gt;
+&lt;p&gt;网上去搜索发现有个恢复工具, 开源的 就拿试试, 果然最终还是解救到了数据.&lt;/p&gt;
+&lt;p&gt;基本思路是, inno db引擎的数据库文件是 frm放 表项索引,
+idb里面是表的具体内容, 只要idb文件在, 一般都是可以恢复的&lt;/p&gt;
+&lt;p&gt;步骤如下:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;ol class="first arabic"&gt;
+&lt;li&gt;使用工具 将idb文件分割得到很多page文件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;ol class="first arabic" start="2"&gt;
+&lt;li&gt;然后page文件全部cat到一个大文件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;3. 找到你的表的结构: 我这里因为是服务器还在,
+可以从原来正确的数据库里面读取到表的结构, 就是知道表当时是如何创建的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;,使用 show table create &amp;lt;tablename&amp;gt;; sql 命令 就可以得到.&lt;/p&gt;
+&lt;p&gt;这里工具里面有个脚本, 配置上你的参数, 叫自己去读,然后会生成一个头文件,
+这个下面需要用来编译提取这个表用的解析器.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;但是我的情况是&lt;/em&gt;数据库新建的表没有使用innodb格式了,所以需要将那个脚本里面的判断是不是innodb的语句注释 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;一次机器的强制关机,导致了服务器mysql数据库启动失败,
 说是数据库因为关机问题,数据写入不正常, 无法启动,
 使用mysql的数据库恢复功能没能成功&lt;/p&gt;
 &lt;p&gt;因为自己当时不知道数据库自己恢复的条件,只拷贝备份了数据库目录,
@@ -631,7 +762,17 @@ idb里面是表的具体内容, 只要idb文件在, 一般都是可以恢复的&
 &lt;p&gt;另外.我把这个繁琐的过程写了个临时的脚本, 基本都可以工作:
 需要者下载下来自己根据情况调整, 脚本的内容反应了整个完整过程:&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="http://www.playpenguin.net/blog/wp-content/uploads/2012/03/recovery_data.txt"&gt;recovery_data&lt;/a&gt;.sh&lt;/p&gt;
-</summary></entry><entry><title>seascope代码阅读器支持编辑补丁</title><link href="/seascopedai-ma-yue-du-qi-zhi-chi-bian-ji-bu-ding.html" rel="alternate"></link><published>2012-02-18T14:22:00+08:00</published><updated>2012-02-18T14:22:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2012-02-18:seascopedai-ma-yue-du-qi-zhi-chi-bian-ji-bu-ding.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://code.google.com/p/seascope/"&gt;Seascope&lt;/a&gt;
+</content></entry><entry><title>seascope代码阅读器支持编辑补丁</title><link href="/seascopedai-ma-yue-du-qi-zhi-chi-bian-ji-bu-ding.html" rel="alternate"></link><published>2012-02-18T14:22:00+08:00</published><updated>2012-02-18T14:22:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2012-02-18:/seascopedai-ma-yue-du-qi-zhi-chi-bian-ji-bu-ding.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://code.google.com/p/seascope/"&gt;Seascope&lt;/a&gt;
+是一个pyQt写的代码阅读工具，在linux原来的kscope其实功能很强大，绝对可比source
+Insight，不过，kde到4之后就没维护了，后来偶遇seascope，不过当时是0.3版本，代码显示的时候字体不能改变，文件也是只读，没法编辑，不过函数定义，引用等搜索功能确是完整的，但是下下来用了用不是很方便编辑就不了了之了。&lt;/p&gt;
+&lt;p&gt;前两天同事又问linux下面代码阅读工具，就又去看了看，发现出0.4版本了，下载来看了下变化比较大，不过编辑功能还是没有啊，看了看是pyQt，正好自己还是想深入学习下python，那看看能不能自己改改呢
+？
+两天努力下来还真基本给实现了，支持一般的代码编辑器的编辑功能了，保存文件也基本可以工作了，不过可能有一些小bug
+，patch邮件给了原作者，不过不知道作者会不会接受了。&lt;/p&gt;
+&lt;p&gt;这里给出patch&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+diff -purN seascope-0.4/src/Seascope.py seascope-0.4-dbh/src/Seascope.py
+--- seascope-0.4/src/Seascope.py&amp;nbsp;&amp;nbsp; &amp;nbsp;2011-12-15 …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;&lt;a class="reference external" href="http://code.google.com/p/seascope/"&gt;Seascope&lt;/a&gt;
 是一个pyQt写的代码阅读工具，在linux原来的kscope其实功能很强大，绝对可比source
 Insight，不过，kde到4之后就没维护了，后来偶遇seascope，不过当时是0.3版本，代码显示的时候字体不能改变，文件也是只读，没法编辑，不过函数定义，引用等搜索功能确是完整的，但是下下来用了用不是很方便编辑就不了了之了。&lt;/p&gt;
 &lt;p&gt;前两天同事又问linux下面代码阅读工具，就又去看了看，发现出0.4版本了，下载来看了下变化比较大，不过编辑功能还是没有啊，看了看是pyQt，正好自己还是想深入学习下python，那看看能不能自己改改呢
@@ -907,8 +1048,9 @@ diff -purN seascope-0.4/src/view/EdView.py seascope-0.4-dbh/src/view/EdView.py
 &lt;/pre&gt;
 &lt;p&gt;顺便上张图：&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Seascope修改" src="http://www.playpenguin.net/blog/wp-content/uploads/2012/02/seascope.png" /&gt;&lt;/p&gt;
-</summary><category term="seascope"></category></entry><entry><title>关于linux文件系统的sync,async, sync/fsync 命令</title><link href="/guan-yu-linuxwen-jian-xi-tong-de-syncasync-syncfsync-ming-ling.html" rel="alternate"></link><published>2011-11-18T11:15:00+08:00</published><updated>2011-11-18T11:15:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-11-18:guan-yu-linuxwen-jian-xi-tong-de-syncasync-syncfsync-ming-ling.html</id><summary type="html">&lt;p&gt;linux默认情况下几乎所有应用场合都是不会将文件立马保存入磁盘的，在嵌入式上也是同样的表现，如果mount时候加上sync选项就可以保证数据立马写入，但是这种会造成系统较多的写入磁盘，磁盘的寿命就不会太长了，如果是需要保存数据，可以显式调用命令sync来写入所有文件，或者fsync来保存某个文件。&lt;/p&gt;
-</summary><category term="Linux"></category><category term="sync"></category><category term="文件系统"></category></entry><entry><title>shell获取进程ID的方法： pidof | pgrep | ps-A+grep+awk</title><link href="/shellhuo-qu-jin-cheng-idde-fang-fa-pidof-pgrep-ps-agrepawk.html" rel="alternate"></link><published>2011-11-18T11:08:00+08:00</published><updated>2011-11-18T11:08:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-11-18:shellhuo-qu-jin-cheng-idde-fang-fa-pidof-pgrep-ps-agrepawk.html</id><summary type="html">&lt;p&gt;shell获取进程ID的方法：&lt;/p&gt;
+</content><category term="seascope"></category></entry><entry><title>关于linux文件系统的sync,async, sync/fsync 命令</title><link href="/guan-yu-linuxwen-jian-xi-tong-de-syncasync-syncfsync-ming-ling.html" rel="alternate"></link><published>2011-11-18T11:15:00+08:00</published><updated>2011-11-18T11:15:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2011-11-18:/guan-yu-linuxwen-jian-xi-tong-de-syncasync-syncfsync-ming-ling.html</id><summary type="html">&lt;p&gt;linux默认情况下几乎所有应用场合都是不会将文件立马保存入磁盘的，在嵌入式上也是同样的表现，如果mount时候加上sync选项就可以保证数据立马写入，但是这种会造成系统较多的写入磁盘，磁盘的寿命就不会太长了，如果是需要保存数据，可以显式调用命令sync来写入所有文件，或者fsync来保存某个文件。&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;linux默认情况下几乎所有应用场合都是不会将文件立马保存入磁盘的，在嵌入式上也是同样的表现，如果mount时候加上sync选项就可以保证数据立马写入，但是这种会造成系统较多的写入磁盘，磁盘的寿命就不会太长了，如果是需要保存数据，可以显式调用命令sync来写入所有文件，或者fsync来保存某个文件。&lt;/p&gt;
+</content><category term="Linux"></category><category term="sync"></category><category term="文件系统"></category></entry><entry><title>shell获取进程ID的方法： pidof | pgrep | ps-A+grep+awk</title><link href="/shellhuo-qu-jin-cheng-idde-fang-fa-pidof-pgrep-ps-agrepawk.html" rel="alternate"></link><published>2011-11-18T11:08:00+08:00</published><updated>2011-11-18T11:08:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2011-11-18:/shellhuo-qu-jin-cheng-idde-fang-fa-pidof-pgrep-ps-agrepawk.html</id><summary type="html">&lt;p&gt;shell获取进程ID的方法：&lt;/p&gt;
 &lt;p&gt;我知道和实践过的有这么三种：&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;&amp;nbsp;ps -A |grep &amp;quot;cmdname&amp;quot;| awk '{print $1}'&lt;/li&gt;
@@ -922,7 +1064,28 @@ diff -purN seascope-0.4/src/view/EdView.py seascope-0.4-dbh/src/view/EdView.py
 前一种结果为空，但是在bash中执行两者一样。&lt;/p&gt;
 &lt;p&gt;第三种： pgrep跟1的效果相同，因为是单一命令，比第一种性能要好得多。&lt;/p&gt;
 &lt;p&gt;所以nanoRC就改进为pgrep。&lt;/p&gt;
-</summary><category term="pgrep"></category><category term="pidof"></category><category term="shell"></category><category term="进程ID"></category></entry><entry><title>linux编程库libevent</title><link href="/linuxbian-cheng-ku-libevent.html" rel="alternate"></link><published>2011-11-16T11:27:00+08:00</published><updated>2011-11-16T11:27:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:,2011-11-16:linuxbian-cheng-ku-libevent.html</id><summary type="html">&lt;div class="section" id="libevent-an-event-notification-library"&gt;
+</summary><content type="html">&lt;p&gt;shell获取进程ID的方法：&lt;/p&gt;
+&lt;p&gt;我知道和实践过的有这么三种：&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&amp;nbsp;ps -A |grep &amp;quot;cmdname&amp;quot;| awk '{print $1}'&lt;/li&gt;
+&lt;li&gt;&amp;nbsp;pidof &amp;quot;cmdname&amp;quot;&lt;/li&gt;
+&lt;li&gt;&amp;nbsp;pgrep &amp;quot;cmdname&amp;quot;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这三种在bash和busybox ash里面的运行结果稍有不同，&lt;/p&gt;
+&lt;p&gt;第一种完全相同，但是因为调用命令次数较多，性能上是不行的。&lt;/p&gt;
+&lt;p&gt;第二种： pidof 只能获取程序的文件名匹配到的进程号，在ash中 比如 pidof
+&amp;quot;usr/bin/telnetd&amp;quot; 和 pidof &amp;quot;telnetd&amp;quot;中结果不一样，
+前一种结果为空，但是在bash中执行两者一样。&lt;/p&gt;
+&lt;p&gt;第三种： pgrep跟1的效果相同，因为是单一命令，比第一种性能要好得多。&lt;/p&gt;
+&lt;p&gt;所以nanoRC就改进为pgrep。&lt;/p&gt;
+</content><category term="pgrep"></category><category term="pidof"></category><category term="shell"></category><category term="进程ID"></category></entry><entry><title>linux编程库libevent</title><link href="/linuxbian-cheng-ku-libevent.html" rel="alternate"></link><published>2011-11-16T11:27:00+08:00</published><updated>2011-11-16T11:27:00+08:00</updated><author><name>dangbinghoo</name></author><id>tag:None,2011-11-16:/linuxbian-cheng-ku-libevent.html</id><summary type="html">&lt;div class="section" id="libevent-an-event-notification-library"&gt;
+&lt;h2&gt;libevent – an event notification library&lt;/h2&gt;
+&lt;p&gt;发现一个跨平台的event库：&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;libevent&lt;/em&gt; API provides a mechanism to execute a callback function
+when a specific event occurs on a file descriptor or after a timeout has
+been reached. Furthermore, &lt;em&gt;libevent&lt;/em&gt; also support callbacks due to
+&lt;strong&gt;signals&lt;/strong&gt; or regular &lt;strong&gt;timeouts&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Libevent additionally provides a sophisticated framework …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="libevent-an-event-notification-library"&gt;
 &lt;h2&gt;libevent – an event notification library&lt;/h2&gt;
 &lt;p&gt;发现一个跨平台的event库：&lt;/p&gt;
 &lt;p&gt;The &lt;em&gt;libevent&lt;/em&gt; API provides a mechanism to execute a callback function
@@ -936,4 +1099,4 @@ several useful protocols, including DNS, HTTP, and a minimal RPC
 framework.&lt;/p&gt;
 &lt;p&gt;支持基于网络的事件消息。&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="libevent"></category><category term="Linux"></category></entry></feed>
+</content><category term="libevent"></category><category term="Linux"></category></entry></feed>

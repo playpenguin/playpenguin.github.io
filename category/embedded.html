@@ -179,6 +179,43 @@
 
          <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/archlinux-bian-yi-anroid5-lollipop-cuo-wu-jie-jue.html">ArchLinux 编译Anroid5 lollipop 错误解决</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2017-05-11T22:36:00+08:00">
+        <i class="icon-calendar"></i>四 11 五月 2017
+</abbr>
+<span class="label">By</span>
+<a href="/author/dangbinghoo.html"><i class="icon-user"></i>dangbinghoo</a>
+<span class="label">Category</span>
+<a href="/category/embedded.html"><i class="icon-folder-open"></i>Embedded</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/android.html"><i class="icon-tag"></i>android</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="section" id="python">
+<h2>错误1，python工具出错</h2>
+<p>错误情况如下：</p>
+<pre class="code sh literal-block">
+<span class="o">============================================</span>
+File <span class="s2">&quot;build/tools/findleaves.py&quot;</span>, line <span class="m">95</span>
+    print r
+        ^
+SyntaxError: Missing parentheses in call to <span class="s1">'print'</span>
+File <span class="s2">&quot;build/tools/findleaves.py&quot;</span>, line <span class="m">95</span>
+    print r
+        ^
+SyntaxError: Missing parentheses in call to <span class="s1">'print'</span>
+File <span class="s2">&quot;build/tools/diff_package_overlays.py&quot;</span>, line <span class="m">88</span>
+    print r
+        ^
+SyntaxError: Missing parentheses in call to …</pre></div>
+                        <a class="btn primary xsmall" href="/archlinux-bian-yi-anroid5-lollipop-cuo-wu-jie-jue.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/xiao-zhong-you-xin-ying-de-gui.html">小众又新颖的GUI</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -206,7 +243,7 @@
 </ol>
 <p>基于DirectFB,libsigc++等平台组件构建，看官网有个行车电脑的ui demo，API粗看了下跟WxWidget比较接近，从类列表看，3D等支持都是有的。支持buildroot构建工具，支持yocto，挺不错，值得尝试。</p>
 <ol class="arabic simple" start="3">
-<li>libui， C语言的桌面跨平台，本地UI风格的库，居然拥有10多种语言的binding了。<a class="reference external" href="https://github.com/andlabs/libui">https://github.com/andlabs ...</a></li></ol></div>
+<li>libui， C语言的桌面跨平台，本地UI风格的库，居然拥有10多种语言的binding了。<a class="reference external" href="https://github.com/andlabs/libui">https://github.com/andlabs …</a></li></ol></div>
                         <a class="btn primary xsmall" href="/xiao-zhong-you-xin-ying-de-gui.html">more ...</a>
                 </div>
         </div>
@@ -238,11 +275,11 @@ $ ./mk -k
 </span>scripts/kconfig/conf --silentoldconfig Kconfig
   CHK     include/linux/version.h
   CHK     include/generated/utsrelease.h
-make<span class="o">[</span>1<span class="o">]</span>: <span class="s1">'include/generated/mach-types.h'</span> is up to date.
+make<span class="o">[</span><span class="m">1</span><span class="o">]</span>: <span class="s1">'include/generated/mach-types.h'</span> is up to date.
   CALL    scripts/checksyscalls.sh
   CHK     include/generated/compile.h
   TIMEC   kernel/timeconst.h
-Can<span class="s1">'t use '</span>defined ...</pre></div>
+Can<span class="s1">'t use '</span>defined …</pre></div>
                         <a class="btn primary xsmall" href="/an-zhuo-nei-he-bian-yi-cuo-wu-kerneltimeconsth-definedval.html">more ...</a>
                 </div>
         </div>
@@ -281,7 +318,7 @@ export PATH=/your/toochain/path/usr/bin:${PATH}
 对于gentoo 系统,可以
 
 &nbsp; &nbsp;  $ cat &gt; /etc/env.d/50mipstoolchain &lt;&lt; &quot;EOF&quot;
-&nbsp; &nbsp; &nbsp; &nbsp;PATH=&quot;/media/workspace/tools/eldk-mips-x.x/usr/bin ...</pre></div>
+&nbsp; &nbsp; &nbsp; &nbsp;PATH=&quot;/media/workspace/tools/eldk-mips-x.x/usr/bin …</pre></div>
                         <a class="btn primary xsmall" href="/mipsqian-ru-shi-linuxxi-tong-gou-jian-guo-cheng.html">more ...</a>
                 </div>
         </div>
@@ -312,7 +349,7 @@ export PATH=/your/toochain/path/usr/bin:${PATH}
 </div><div></div><div><p>[NOTE: package helloworld-0.1-r0: task do_package_write: started</p>
 </div><div><p>NOTE: Not creating empty archive for helloworld-dbg-0.1-r0</p>
 </div><div><p>Packaged contents of helloworld into
-/home/lenehan/devel/oe/build/titan-glibc-25/tmp/deploy/ipk/sh4/helloworld_0.1-r0_sh4.ipk ...</p></div>
+/home/lenehan/devel/oe/build/titan-glibc-25/tmp/deploy/ipk/sh4/helloworld_0.1-r0_sh4.ipk …</p></div>
                         <a class="btn primary xsmall" href="/yuan-chuang-openembedded-zhong-wen-shou-ce.html">more ...</a>
                 </div>
         </div>
@@ -376,7 +413,7 @@ export PATH=/your/toochain/path/usr/bin:${PATH}
 <div class="line">构建。（包的配方下文除非特殊说明都将简称为“配方”；oe都代表OpenEmbedded）</div>
 </div>
 <div class="line-block">
-<div class="line">更确切的说 ...</div></div>
+<div class="line">更确切的说 …</div></div>
                         <a class="btn primary xsmall" href="/yuan-chuang-openembedded-zhong-wen-shou-ce-di-yi-bu-fen.html">more ...</a>
                 </div>
         </div>
@@ -419,7 +456,7 @@ ppc上运行的交叉工具链，然后这个交叉工具链为arm生产程序�
 <p>没有实验过，可以改天实验下，学习下。</p>
 <div class="section" id="id1">
 <h2>续：三平台交叉编译实验</h2>
-<p>对binutils源码解压 ...</p></div>
+<p>对binutils源码解压 …</p></div>
                         <a class="btn primary xsmall" href="/-host-build-targetdao-di-shi-yao-yi-si.html">more ...</a>
                 </div>
         </div>
@@ -456,7 +493,7 @@ debug，要不然会缺少东西：</p>
 #
 # Automatically generated make config: don't edit
 # Version: 0.9.32
-# Wed Nov 23 14:53 ...</pre>
+# Wed Nov 23 14:53:07 …</pre>
                         <a class="btn primary xsmall" href="/guan-yu-gong-ju-lian-de-bian-yi-uclibcgcc.html">more ...</a>
                 </div>
         </div>
